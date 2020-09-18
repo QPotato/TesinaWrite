@@ -1,3 +1,65 @@
 \chapter{Titulo del capitulo}  \label{cap1}
 
 \section{Titulo de la seccion} \label{cap1:sec1}
+
+\begin{theorem}
+    En juegos de suma constante simétricos de dos jugadores, SFP puede requerir una cantidad exponencial de rondas
+    (en el tamaño de representación del juego) antes de que un equilibrio sea jugado.
+\end{theorem}
+
+\begin{proof}
+    Consideremos un juego con la siguiente matriz de pagos:
+
+    \input{Tablas/matrizTeo1.tex}
+
+    Si $\epsilon < 1$, vemos que $(a^3, a^3)$ es el único
+    equilibrio de Nash por ser el único perfil restante luego de realizar eliminación iterada de estados estrictamente dominados.
+
+    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, SFP puede tomar $2^k$ rondas antes de que
+    alguno de los jugadores juegue $a^3$. Como el juego puede codificarse en $O(k)$ bits, esto demuestra el teorema.
+
+    Si el proceso de SFP comienza con $(a^1, a^1)$, entonces $Py^1 = x^1Q = (0, 1, 2^{-k})$ y por lo tanto ambos jugadores jugaran $a_2$
+    en la segunda ronda.
+
+    Luego, continuarán jugando $a^2$ hasta la ronda $2^k$ ya que para los $i$ tales que $1 \le i \le 2^k$,
+    tendremos $Py^i = (-i + 1, 1, 2^{-k}i)$. Mientras valga $2^{-k}i < 1$, ambos jugadores elegirán $a^2$ en la ronda $i + 1$
+
+    Por lo tanto, la secuencia
+
+    \begin{math}
+        (a^1, a^1), (a^2, a^2), ... (a^2, a^2)
+    \end{math}
+
+    es una secuencia de aprendizaje válida de este juego que es exponencialmente larga en $k$ y en al cúal no se juega ningún equilibrio.
+\end{proof}
+
+\begin{theorem}
+    En juegos de suma constante simétricos de dos jugadores, AFP puede requerir una cantidad exponencial de rondas
+    (en el tamaño de representación del juego) antes de que un equilibrio sea jugado.
+\end{theorem}
+
+\begin{proof}
+    Consideremos un juego con la siguiente matriz de pagos:
+
+    \input{Tablas/matrizTeo1.tex}
+
+    Si $\epsilon < 1$, vemos que $(a^3, a^3)$ es el único
+    equilibrio de Nash por ser el único perfil restante luego de realizar eliminación iterada de estados estrictamente dominados.
+
+    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, AFP puede tomar $2^k$ rondas antes de que
+    se juegue $(a^3, a^3)$. Como el juego puede codificarse en $O(k)$ bits, esto demuestra el teorema.
+
+    Si el proceso de AFP comienza con el jugador fia jugando $a^1$, entonces $x^1Q = (0, 1, 2^{-k})$ y por lo tanto
+    el jugador columna elegirá $a_2$.
+
+    Luego, en las siguentes $2^k - 1$ rondas tendremos que $Py^i = (-i + 1, 0, 2^{-k}i)$ y $x^{i+1}Q = (-2^{-k}i, 1 - 2^{-k}i, 2^{-k}i$.
+    Claramente, el jugador fila elegirá $a^3$. Por su parte, como $1 - 2^{-k}i \ge 2^{-k}$ el jugador columna jugará $a^2$ en la ronda $i + 1$.
+
+    Por lo tanto, la secuencia
+
+    \begin{math}
+        (a^1, a^2), \underbrace{(a^3, a^2), ... (a^3, a^2)}_{2^k - 1 veces}
+    \end{math}
+
+    es una secuencia de aprendizaje válida de este juego que es exponencialmente larga en $k$ y en al cúal no se juega ningún equilibrio.
+\end{proof}

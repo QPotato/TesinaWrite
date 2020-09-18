@@ -1,0 +1,21 @@
+\begin{theorem}
+    En juegos de suma constante simétricos de dos jugadores, SFP puede requerir una cantidad exponencial de rondas
+    (en el tamaño de representación del juego) antes de que un equilibrio sea jugado.
+\end{theorem}
+
+\begin{proof}
+    Consideremos un juego con matriz de pagos como la de la tabla \ref{tabla:teo1} con $\epsilon < 1$. Vemos que $(a_3, a_3)$ es el único
+    equilibrio de Nash por ser el único perfil restante luego de realizar eliminación iterada de estados estrictamente dominados.
+
+    \input{Tablas/matrizTeo1.tex}
+
+    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^(-k)$, SFP puede tomar $2^k$ rondas antes de que
+    alguno de los jugares juegue $a_3$. Como el juego puede codificarse en $O(k)$ bits, esto demuestra el teorema.
+
+    Si el proceso de SFP comienza con $(a_1, a_1)$, entonces $Py^i = x^iQ = (0, 1, 2^{-k})$ y por lo tanto ambos jugadores jugaran $a_2$
+    en la segunda ronda.
+
+    Luego, continuarán jugando $a_2$ hasta la ronda $2^k$ ya que para los $i$ tales que $1 \le i \le 2^k$, tendremos $Py^i = (-i + 1, 1, 2^{-k}i)$
+
+
+\end{proof}

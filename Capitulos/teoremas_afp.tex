@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\newtheorem{theorem}{Teorema}
+
+\begin{document}
+\begin{theorem}
+    En juegos de suma constante simétricos de dos jugadores, AFP puede requerir una cantidad exponencial de rondas
+    (en el tamaño de representación del juego) antes de que un equilibrio sea jugado.
+\end{theorem}
+
+\begin{proof}
+    Consideremos un juego con la siguiente matriz de pagos:
+
+    \input{Tablas/matrizTeo1.tex}
+
+    Si $\epsilon < 1$, vemos que $(a^3, a^3)$ es el único
+    equilibrio de Nash por ser el único perfil restante luego de realizar eliminación iterada de estados estrictamente dominados.
+
+    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, AFP puede tomar $2^k$ rondas antes de que
+    se juegue $(a^3, a^3)$. Como el juego puede codificarse en $O(k)$ bits, esto demuestra el teorema.
+
+    Si el proceso de AFP comienza con el jugador fia jugando $a^1$, entonces $x^1Q = (0, 1, 2^{-k})$ y por lo tanto
+    el jugador columna elegirá $a_2$.
+
+    Luego, en las siguentes $2^k - 1$ rondas tendremos que $Py^i = (-i + 1, 0, 2^{-k}i)$ y $x^{i+1}Q = (-2^{-k}i, 1 - 2^{-k}i, 2^{-k})$.
+    Claramente, el jugador fila elegirá $a^3$.
+    Por su parte, como $1 - 2^{-k}i \ge 2^{-k}$, el jugador columna jugará $a^2$ en la ronda $i + 1$.
+
+    La siguiente tabla muestra como se desarrolla este proceso:
+
+    \input{Tablas/tablaTeo1.tex}
+
+    Por lo tanto, la secuencia
+
+    \begin{center}
+    \begin{math}
+        (a^1, a^2), \underbrace{(a^3, a^2), ... (a^3, a^2)}_{\text{$2^k - 1$ veces}}
+    \end{math}
+    \end{center}
+
+    es una secuencia de aprendizaje AFP válida de este juego que es exponencialmente larga en $k$ y en al cúal no se juega ningún equilibrio.
+\end{proof}
+
+\begin{theorem}
+    En juegos no degenerativos de $2 \times 3$, AFP puede requerir una cantidad exponencial de rondas
+    (en el tamaño de representación del juego) antes de que un equilibrio sea jugado.
+\end{theorem}
+
+\begin{proof}
+    Consideremos un juego con la siguiente matriz de pagos:
+
+    \input{Tablas/matrizTeo2.tex}
+
+    Si $\epsilon < 1$, vemos que $(a^2, a^3)$ es el único
+    equilibrio de Nash por ser el único perfil restante luego de realizar eliminación iterada de estados estrictamente dominados.
+
+    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, AFP puede tomar $2^k$ rondas antes de que
+    se juegue $(a^2, a^3)$. Como el juego puede codificarse en $O(k)$ bits, esto demuestra el teorema.
+
+    Si el proceso de AFP comienza con el jugador fila jugando $a^1$, entonces $x^1Q = (1, 2, 0)$ y por lo tanto
+    el jugador columna elegirá $a_2$.
+
+    Luego, en las siguentes $2^k - 1$ rondas tendremos que $Py^i = (2i, (2+2^{-k})i)$ y $x^{i+1}Q = (1, 2+(2+2^{-k})i, (2+2^{-k+1})i)$.
+    Claramente, el jugador fila elegirá $a^2$.
+    Por su parte, como $2+(2+2^{-k})i \ge (2+2^{-k+1})i$, el jugador columna jugará $a^3$ en la ronda $i + 1$.
+
+    La siguiente tabla muestra como se desarrolla este proceso:
+
+    \input{Tablas/tablaTeo2.tex}
+
+    Por lo tanto, la secuencia
+
+    \begin{center}
+    \begin{math}
+        (a^1, a^2), \underbrace{(a^2, a^2), ... (a^2, a^2)}_{\text{$2^k - 1$ veces}}
+    \end{math}
+    \end{center}
+
+    es una secuencia de aprendizaje AFP válida de este juego que es exponencialmente larga en $k$ y en al cúal no se juega ningún equilibrio.
+
+\end{proof}
+\end{document}
