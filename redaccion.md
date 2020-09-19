@@ -6,7 +6,7 @@
 - Explicar por arriba el proceso de FP, Brown, aportes mas importantes.
 - Explicar el problema que tomé.
 - Explicar por arriba como lo solucione o mejore o algo, las concluciones a las que llegué.
-- Listar que hay en cada capitulo
+- Listar qué hay en cada capitulo
 
 ## C2: Teoría de Juegos
 
