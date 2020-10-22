@@ -1,3 +1,7 @@
 {
-    "latex-workshop.latex.external.build.command": "make"
+    "latex-workshop.latex.external.build.command": "make",
+    "python.testing.promptToConfigure": false,
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false
 }

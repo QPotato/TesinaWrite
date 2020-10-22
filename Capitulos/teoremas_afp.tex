@@ -4,6 +4,7 @@
 
 \usepackage{amsthm}
 \usepackage{mathtools}
+\usepackage{booktabs}
 
 \newtheorem{theorem}{Teorema}
 
@@ -18,8 +19,8 @@
 
     \input{Tablas/matrizTeo1.tex}
 
-    Si $\epsilon < 1$, vemos que $(a^3, a^3)$ es el único
-    equilibrio de Nash por ser el único perfil restante luego de realizar eliminación iterada de estados estrictamente dominados.
+    Si $\epsilon < 1$, vemos que $(a^3, a^3)$ es el único equilibrio de Nash puro
+    por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas.
 
     Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, AFP puede tomar $2^k$ rondas antes de que
     se juegue $(a^3, a^3)$. Como el juego puede codificarse en $O(k)$ bits, esto demuestra el teorema.
@@ -47,7 +48,7 @@
 \end{proof}
 
 \begin{theorem}
-    En juegos no degenerativos de $2 \times 3$, AFP puede requerir una cantidad exponencial de rondas
+    En juegos no degenerados de $2 \times 3$, AFP puede requerir una cantidad exponencial de rondas
     (en el tamaño de representación del juego) antes de que un equilibrio sea jugado.
 \end{theorem}
 
@@ -56,8 +57,8 @@
 
     \input{Tablas/matrizTeo2.tex}
 
-    Si $\epsilon < 1$, vemos que $(a^2, a^3)$ es el único
-    equilibrio de Nash por ser el único perfil restante luego de realizar eliminación iterada de estados estrictamente dominados.
+    Si $\epsilon < 1$, vemos que $(a^2, a^3)$ es el único equilibrio de Nash puro
+    por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas.
 
     Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, AFP puede tomar $2^k$ rondas antes de que
     se juegue $(a^2, a^3)$. Como el juego puede codificarse en $O(k)$ bits, esto demuestra el teorema.
