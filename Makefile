@@ -25,15 +25,15 @@ NUM =
 default: pdflatex
 
 carta:
-	$(PDFLATEX) $(CARTA).tex
+	$(PDFLATEX) $(CARTA).tex -halt-on-error
 
 slides: clean
-	$(PDFLATEX) $(SLIDES).tex
+	$(PDFLATEX) $(SLIDES).tex -halt-on-error
 	@latex_count=100 ; \
 	while egrep -s 'Rerun (LaTeX|to get)' $(SLIDES).log && [ $$latex_count -gt 0 ] ;\
 	    do \
 	      echo "Rerunning latex...." ;\
-	      $(PDFLATEX) $(SLIDES).tex ;\
+	      $(PDFLATEX) $(SLIDES).tex -halt-on-error ;\
 		  sleep 0.5;\
 	      latex_count=`expr $$latex_count - 1` ;\
 	    done
@@ -55,13 +55,13 @@ ps: dvi
 	dvips -f $(MAINTEX).dvi > $(MAINTEX).ps
 
 pdflatex: clean
-	$(PDFLATEX) $(MAINTEX).tex
+	$(PDFLATEX) $(MAINTEX).tex -halt-on-error
 	$(BIB) $(MAINTEX)
 	@latex_count=100 ; \
 	while egrep -s 'rerun (LaTeX|to get cross-references right)' $(MAINTEX).log && [ $$latex_count -gt 0 ] ;\
 	    do \
 	      echo "Rerunning latex...." ;\
-	      $(PDFLATEX) $(MAINTEX).tex ;\
+	      $(PDFLATEX) $(MAINTEX).tex -halt-on-error ;\
 		  sleep 0.5;\
 	      latex_count=`expr $$latex_count - 1` ;\
 	    done
