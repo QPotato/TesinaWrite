@@ -1,24 +1,115 @@
-\chapter{Conceptos Previos}  \label{cap1}
+\newcommand{\concept}{\textbf}
 
-\section{Teoría de Juegos}
-[TODO: Juegos en forma normal]
-[TODO: Juegos en forma bimatricial]
+\chapter{Conceptos Previos}  \label{cap:previos}
 
-\section{Juego Ficticio}
-Presentaremos ahora, la definición de Juego Ficticio Simultaneo (SFP) que usan Berger, Shapley, Monderer y Sela
-\cite{browns:original} \cite{strategic:complementarities} [TODO: citar shapley:counter] \cite{no:cycling}, \cite{identical:interests}.
+\section{Juegos Bimatriciales y Equilibrios de Nash}
 
+% Comenzaremos dando una definición de juego estratégico adaptada de \cite{libro:rubinstein}:
+% % Tomada de Osbourne & Rubinstein
+% \begin{definition}
+%     Un \concept{juego estrategico} consiste en
+%     \begin{itemize}
+%         \item Un conjunto finito $N$ (el conjunto de \concept{jugdores}).
+%         \item Para cada jugador $i \in N$, un conjunto no vacío $A_i$ (el conjunto de \concept{acciones} disponibles). Notamos con $A$ al conjunto $ $ y llamamos \concept{perfil} de acciones a sus elementos.
+%         % TODO: producto cartesiano en todos los indices
+%         \item Para cada jugador $i \in N$, una \concept{función de pagos} $u_i : A \rightarrow \R$ que a cada perfil de acciones $a$ le asigna un valor real que llamaremos la \concept{utilidad} o \concept{pago} del perfil $a$ para el jugador $i$.
+%     \end{itemize}
+% \end{definition}
+
+% En este trabajo, nos enfocaremos en los juegos estratégicos de dos jugadores. Suponiendo $N = \{1, 2\}$ Estos juegos pueden expresarse de manera compacta en \concept{forma normal} mediante un par de matrices $(A, B)$ tales que $A_{ij} = u_1(a_i)
+
+% Definicion de bimatricial tomada de brown's original
+Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, es decir un juego de dos jugadores finito en el que el jugador $1$ (jugador fila) tiene estrategias puras $i \in N = {1, 2, ..., n}$ y el jugador $2$ (jugador columna) tiene estrategias puras $j \in M = {1, 2, ..., m}$. $A$, $B \in \mathbb{R}^{n \times m}$ son las matrices de pago de los jugadores $1$ y $2$. Si el jugador $1$ elige la acción $i$ y el jugador $2$ elige la acción $2$, la utilidad del jugador $1$ será $a_{ij}$ y la utilidad del jugador $2$ será $b_{ij}$.
+
+% Estrategias mixtas como vectores en conjunto delta
+Notaremos con $\Delta(X)$ al espacio de probabilidades sobre el conjunto $X$ y llamaremos estrategias mixtas a los vectores de la forma $x \in \Delta(N)$ y $y \in \Delta(M)$. Las estrategias puras serán vectores unitarios de estos conjuntos.
+
+% Expected payoff como producto de matriz por vector
+La utilidad esperada del jugador $1$ al jugar la acción $i$ contra la estrategia mixta $y$ del jugador $2$ será $(Ay)_i$. Analogamente, la utilidad esperada del jugador $2$ al jugar la acción $j$ contra la estrategia mixta $x$ del jugador $2$ será $(B^tx)_j$ (donde el superíndice $t$ indica transposición). Si ambos jugadores juegan estrategias mixtas $x$ e $y$ respectivamente, sus utilidades esperadas podrán calcularse como $xAy$ para el jugador $1$ y $yB^tx$ para el jugador $2$.
+
+% Best-response
+Si $y$ es una estrategia mixta del jugador $2$, definimos el conjunto de mejores respuestas a $y$ como $BR_1(y) = \{p \in N : (Ay)_p = \max_{i \in N} (Ay)_i\}$ y análogamente, si $x$ es una estrategia mixta del jugador $2$, el conjunto de mejores respuestas a $x$ será $BR_2(x) = \{q \in N : (B^tx)_q = \max_{j \in M} (B^tx)_j\}$.
+
+Llamaremos equilibrio de Nash a todo perfil de estrategias mixtas $(x*, y*) \in \Delta(A) \times \Delta(B)$ que cumpla:
+\begin{gather}
+    \forall i \in N, x^*_i > 0 \implies i \in BR_1(y^*) \\
+    \forall j \in M, y^*_j > 0 \implies j \in BR_1(x^*)
+\end{gather}
+
+En el caso particular de que las estrategias sean puras, al equilibrio lo llamaremos también equilibrio de Nash puro.
+
+\section{Categorías de Juegos}
+
+Es útil clasificar a los juegos en distintas categorías según sus propiedades. Presentamos a continuación algunas de las categorías de juegos mas estudiadas en la literatura sobre juego ficticio.
 
 \begin{definition}
-    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$.
+    Un juego $(A, B)$ de tamaño $n \times m$ es un juego de suma cero si $\forall i \in N, j \in M : a_{ij} = -b_{ij}$. Para estos casos, nos referiremos al juego usando solo una de estas matrices.
 \end{definition}
 
-Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición equivalente que resulta más comoda para estudiar velocidades
-de convergencia:
+Los juegos de suma cero son una de las categorías mas estudiadas en teoría de juegos. Representan los juegos en los que un jugador siempre gana tanto como pierde el otro. Uno de los teoremas fundacionales del area, conocido como el Teorema de Minimax \cite{nash:minmax} establece que todos poseen un equilibrio de Nash puro y a la utilidad para el jugador fila de este perfil la llama el \concept{valor del juego}.
 
 \begin{definition}
-    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$.
+    Llamamos degenerado a un juego bimatricial $(A, B)$ de tamaño $n \times m$ si se cumple alguna de las siguientes condiciones:
+    \begin{itemize}
+        \item Existen $i, i' \in N$ y $j \in M$ tales que $a_{ij} = a_{i'j}$
+        \item Existen $j, j' \in M$ e $i \in N$ tales que $b_{ij} = b_{ij'}$
+    \end{itemize}
+\end{definition}
+Los juegos no degenerados son de particular interes porque capturan el concepto de un juego en el que, para cada acción del rival, no existen dos acciones con el mismo pago. Por lo tanto, el conjunto de mejor respuesta contra una acción dada es siempre unitario.
+
+\begin{definition}
+    Un juego bimatricial $(A, B)$ de tamaño $n \times n$ es simétrico si $\forall i, j \in N : a_{ij} = -b_{ji}$
 \end{definition}
 
-Esta definición es a su vez muy similar a la que utiliza Robinson \cite{robinson:zerosum}
-\section{Propiedad del Juego Ficticio}
+\begin{definition}
+    Un juego $(A, B)$ de tamaño $n \times m$ es de intereses idénticos si $\forall i \in N, j \in M : a_{ij} = b_{ij}$.
+\end{definition}
+
+\section{Juego Ficticio} \label{sec:def:fp}
+
+Existen en la literatura dos formas de definir el juego ficticio. Algunos autores como Berger, Monderer, Sela, Shapley, Daskalakis y Pan \cite{browns:original} \cite{no:cycling} \cite{2x2:without} \cite{identical:interests} \cite{counter:karlin:strong} utilizan un definición del estilo de la siguiente, que resulta cómoda para estudiar convergencia.
+
+\begin{definition} \label{def:fp:brown}
+    Sean $(A, B)$ un juego en forma bimatricial de $n \times m$ y una secuencia $(i^t, j^t)_{t \in \mathbb{N}}$ de perfiles de estrategias puras sobre el juego. Si tenemos unas secuencias de creencias
+    \begin{gather}
+        x^t= \frac{\sum^t_{s=1} i^s}{t}  \\
+        y^t= \frac{\sum^t_{s=1} j^s}{t}
+    \end{gather}
+    \begin{itemize}
+        \item $(i^t, j^t)_{t \in \mathbb{N}}$ es una secuencia de juego ficticio simultaneo si $(i^1, j^1) \in N \times M$ y $\forall t \in \mathbb{N}, i^{t+1} \in BR_1(y^t) \land j^{t+1} \in BR_2(x^t)$
+        \item $(i^t, j^t)_{t \in \mathbb{N}}$ es una secuencia de juego ficticio alternante si $i^1 \in N$ y $\forall t \in \mathbb{N}, i^{t+1} \in BR_1(y^t) \land j^{t} \in BR_2(x^t)$
+    \end{itemize}
+\end{definition}
+
+% Nociones sobre simultaneo vs alternante
+
+Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar a la de Robinson \cite{robinson:zerosum} pero simplificada. Es más comoda para estudiar velocidades de convergencia en juegos que se sabe que convergen.
+
+\begin{definition} \label{def:fp:brandt}
+    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$. Notamos con $u_i$ y $v_i$ al $i$-ésimo vector unitario de $\mathbb{R}^n$ y $\mathbb{R}^m$ respectivamente. Entonces:
+    \begin{itemize}
+        \item Una secuencia de juego ficticio simultaneo en $(A, B)$ es una secuencia $(x^0, y^0), (x^1, y^1), (x^2, y^2), \dots$ de pares de vectores no negativos $(x^i, y^i) \in \mathbb{R}^{n \times m}$ tal que:
+        \begin{gather}
+            x^0 = \boldmath{0}, y^0 = \boldmath{0} \\
+            x^{t+1} = x^{t} + u_i \text{donde $i$ es el índice de una componente máxima de $Ay^k$} \\
+            y^{t+1} = x^{t} + v_j \text{donde $j$ es el índice de una componente máxima de $x^kB$}
+        \end{gather}
+        \item Una secuencia de juego ficticio alternante en $(A, B)$ es una secuencia $(x^0, y^0), (x^1, y^1), (x^2, y^2), \dots$ de pares de vectores no negativos $(x^i, y^i) \in \mathbb{R}^{n \times m}$ tal que:
+        \begin{gather}
+            x^0 = \boldmath{0}, y^0 = \boldmath{0} \\
+            x^{t+1} = x^{t} + u_i \text{donde $i$ es el índice de una componente máxima de $Ay^k$} \\
+            y^{t+1} = x^{t} + v_j \text{donde $j$ es el índice de una componente máxima de $x^{k+1}B$}
+        \end{gather}
+    \end{itemize}
+\end{definition}
+
+Como vemos, en la primera se define una secuencia de jugadas que cumple una condicion contra un historial de creencias sobre la estrategia mixta del otro jugador, mientras que en la segunda la secuencia es de duplas de contadores de jugadas (sin normalizar, por lo que no son estrategias), que cumplen una condición contra el valor esperado de cada jugada. En el capítulo \ref{cap:aportes} se demostrará que estas dos definiciones son equivalentes. Durante el resto de este capitulo se utilizará la primera definición.
+
+% \section{Convergencia del Juego Ficticio}
+
+% Convergencia en pagos
+
+% Convergencia en creencias
+
+% Relacion entre distintas convergencias
+

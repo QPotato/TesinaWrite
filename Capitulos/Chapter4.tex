@@ -1,3 +1,163 @@
-\chapter{Aportes}  \label{cap1}
+\chapter{Resultados}  \label{cap:aportes}
 
-Aportes.
+\section{Equivalencia de las disntitas definiciones}
+
+Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir el juego ficticio entre los distintos autores de la literatura. Ambas simplifican de distintas formas la definición original de Brown y si bien son similares, su equivalencia no es inmediatamente evidente. Por lo tanto, presentamos a continuación dos demostración de la misma, para el caso simultaneo y alternante respesctivamente.
+
+\begin{theorem}
+    % i^t jugada del jugador fila en tiempo t
+    % j^t jugada del jugador columna en tiempo t
+    % y^t creencias del jugador fila sobre la estrategia del jugador columna en tiempo t
+    % x^t creencias del jugador columna sobre la estrategia del jugador fila en tiempo t
+    % p^t historial de jugadas del jugador fila
+    % q^t historial de jugadas del jugador columna
+    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(i^t, j^t)_{t \in \mathbb{N}}$ una secuencia de juego ficticio simultaneo (según la definicioón \ref{def:fp:brown}) con secuencias de creencias $y^t$, $x^t$ y sea $(p^t, q^t)_{t \in \mathbb{N}}$ una secuencia de juego ficticio simultaneo (según la definicion \ref{def:fp:brandt}), tales que $p^1 = u_{j^1}$, $q^1 = v_{i^1}$ y ambas usan la misma regla de desempate. Entonces, $(i^t, j^t)_{t \in \mathbb{N}}$ y $(p^t, q^t)_{t \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, para todo $t \in \mathbb{N}$, se cumplen:
+    \begin{gather}
+        p^{t+1} = p^{t} + u_{j^t} \land q^{t+1} = q^{t} + v_{i^t} \\
+        j^{t+1} \in BR_1(\frac{q^t}{t}) \land i^{t+1} \in BR_2(\frac{q^t}{t})
+    \end{gather}
+\end{theorem}
+
+\begin{proof}
+    asd
+\end{proof}
+
+\begin{theorem}
+    % i^t jugada del jugador fila en tiempo t
+    % j^t jugada del jugador columna en tiempo t
+    % y^t creencias del jugador fila sobre la estrategia del jugador columna en tiempo t
+    % x^t creencias del jugador columna sobre la estrategia del jugador fila en tiempo t
+    % p^t historial de jugadas del jugador fila
+    % q^t historial de jugadas del jugador columna
+    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(i^t, j^t)_{t \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definicioón \ref{def:fp:brown}) con secuencias de creencias $y^t$, $x^t$ y sea $(p^t, q^t)_{t \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definicion \ref{def:fp:brandt}), tales que $p^1 = u_{j^1}$ y ambas usan la misma regla de desempate. Entonces, $(i^t, j^t)_{t \in \mathbb{N}}$ y $(p^t, q^t)_{t \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, para todo $t \in \mathbb{N}$, se cumplen:
+    \begin{gather}
+        p^{t+1} = p^{t} + u_{j^t} \land q^{t+1} = q^{t} + v_{i^{t+1}} \\
+        j^{t+1} \in BR_1(\frac{q^t}{t}) \land i^{t} \in BR_2(\frac{q^t}{t})
+    \end{gather}
+\end{theorem}
+
+\begin{proof}
+    asd
+    % por induccion en t
+    % Hacelo primero en el pizarrón, bobo.
+
+\end{proof}
+
+\section{Convergencia de Juego Ficticio}
+
+En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismo. Monderer y Sela llaman a esto el Principio de Estabilidad. Sin embargo, la demostración que presentan es a criterio nuestro poco clara. Presentamos entonces a continuación una demostración alternativa que consideramos mas directa.
+
+\begin{theorem}
+    Sea $(X, Y)$ una secuencia de aprendizaje de juego ficticio en el juego en forma bimatricial $(A, B)$. Si en la iteración $t$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash, entonces $(i*, j*)$ será también el perfil jugado en las iteraciones $t+k$ con $k \in \mathbb{N}$.
+    % \N tiene al 0? xd
+\end{theorem}
+
+\begin{proof}
+    asd
+\end{proof}
+
+\section{Velocidad de Convergencia de AFP}
+
+En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos de suma constante simétricos y los no degenerados de $2 \times 3$.
+
+
+Veamos primero que para el caso de los juegos de suma constante simétricos, el teorema de estos autores efectivamente es expandible de forma bastante directa a la variante alternante.
+
+\begin{theorem}
+    En juegos de suma constante simétricos de dos jugadores, un proceso de juego ficticio alternante puede requerir una cantidad exponencial (en el tamaño de representación en bits de los valores de las utilidades del juego) de rondas antes de que un equilibrio sea jugado.
+\end{theorem}
+
+\begin{proof}
+    Consideremos un juego en forma normal con la siguiente matriz de pagos:
+
+    \input{Tablas/matrizTeo1.tex}
+
+    Si $\epsilon < 1$, vemos que $(a^3, a^3)$ es el único equilibrio de Nash puro por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas.
+
+    Consideremos un número $k > 1$ arbitrario y sea $\epsilon = 2^{-k}$. Para estos valores, $\epsilon$ puede codificarse en $O(k)$ bits, mientras que las otras utilidades del juego son constantes, por lo que podemos afirmar que la representación del juego será tambien del orden de  $O(k)$ bits. Por lo tanto, si probamos que un proceso de juego ficticio alternante puede requerir $2^k$ rondas antes de que se juegue $(a^3, a^3)$, el teorema estará demostrado.
+
+    Si el proceso de AFP comienza con el jugador fila jugando $a^1$, entonces $x^1Q = (0, 1, 2^{-k})$ y por lo tanto el jugador columna elegirá $a_2$.
+
+    Luego, en las siguentes $2^k - 1$ rondas tendremos que $Py^i = (-i + 1, 0, 2^{-k}i)$ y $x^{i+1}Q = (-2^{-k}i, 1 - 2^{-k}i, 2^{-k})$.Claramente, el jugador fila elegirá $a^3$. Por su parte, como $1 - 2^{-k}i \ge 2^{-k}$, el jugador columna jugará $a^2$ en la ronda $i + 1$.
+
+    La siguiente tabla muestra como se desarrolla este proceso:
+
+    \input{Tablas/tablaTeo1.tex}
+
+    Por lo tanto, la secuencia
+
+    \begin{center}
+    \begin{math}
+        (a^1, a^2), \underbrace{(a^3, a^2), ... (a^3, a^2)}_{\text{$2^k - 1$ veces}}
+    \end{math}
+    \end{center}
+
+    es una secuencia de aprendizaje de juego ficticio alternante válida de este juego que es exponencialmente larga en $k$ y en la cúal no se juega ningún equilibrio.
+\end{proof}
+
+Por su parte, la demostración para el caso de los juegos no degenerados de $2 \times 3$ es un poco menos directa y requiere plantear una ligera variante del juego originalmente propuesto por Brandt, Fischer y Harrenstein.
+
+\begin{theorem}
+    En juegos no degenerados de $2 \times 3$, un proceso de juego ficticio alternante puede requerir una cantidad exponencial (en el tamaño de representación en bits de los valores de las utilidades del juego) de rondas antes de que un equilibrio sea jugado.
+\end{theorem}
+
+\begin{proof}
+    Consideremos un juego con la siguiente matriz de pagos:
+
+    \input{Tablas/matrizTeo2.tex}
+
+    Si $\epsilon < 1$, vemos que $(a^2, a^3)$ es el único equilibrio de Nash puro
+    por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas.
+
+    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio alternante puede tomar $2^k$ rondas antes de que se juegue $(a^2, a^3)$. Al igual que en el teorema anterior, el juego puede codificarse en $O(k)$ bits, por lo que esto demuestra el teorema.
+
+    Si el proceso de AFP comienza con el jugador fila jugando $a^1$, entonces $x^1Q = (1, 2, 0)$ y por lo tanto el jugador columna elegirá $a_2$.
+
+    Luego, en las siguentes $2^k - 1$ rondas tendremos que $Py^i = (2i, (2+2^{-k})i)$ y $x^{i+1}Q = (1, 2+(2+2^{-k})i, (2+2^{-k+1})i)$. Claramente, el jugador fila elegirá $a^2$. Por su parte, como $2+(2+2^{-k})i \ge (2+2^{-k+1})i$, el jugador columna jugará $a^3$ en la ronda $i + 1$.
+
+    La siguiente tabla muestra como se desarrolla este proceso:
+
+    \input{Tablas/tablaTeo2.tex}
+
+    Por lo tanto, la secuencia
+
+    \begin{center}
+    \begin{math}
+        (a^1, b^2), \underbrace{(a^2, b^2), ... (a^2, b^2)}_{\text{$2^k - 1$ veces}}
+    \end{math}
+    \end{center}
+
+    es una secuencia de aprendizaje de juego ficticio alternante válida de este juego que es exponencialmente larga en $k$ y en la cúal no se juega ningún equilibrio.
+
+\end{proof}
+
+El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrenstein no nos sirva para demostrar el teorema anterior no es para nada menor. En efecto, como veremos en el siguiente teorema, es un ejemplo de un juego en el un proceso de juego ficticio simultaneo puede requerir una cantidad de rondas exponenciales mientras que, toda secuencia de juego ficticio alternante convergerá rápidamente.
+
+\begin{theorem}
+    Existe un juego para el cuál un proceso de juego ficticio simultaneo puede requerir una cantidad exponencial (en el tamaño de representación en bits de los valores de las utilidades del juego) de rondas antes de que un equilibrio sea jugado, mientras que en todo proceso de juego ficticio se jugará un equilibrio en una cantidad de rondas acotada por una constante.
+\end{theorem}
+
+
+\begin{proof}
+    Consideremos el juego con la siguiente matriz de pagos:
+
+    \input{Tablas/matrizTeo3.tex}
+
+    Al igual que en los teoremas, si $\epsilon < 1$, $(a^2, b^3)$ es el único equilibrio de Nash puro por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas.
+
+    % Si consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio alternante puede tomar $2^k$ rondas antes de que se juegue $(a^2, a^3)$. Al igual que los teoremas anteriores, el juego puede codificarse en $O(k)$ bits.
+
+    % Setup parecido a los otros
+
+    % Caso particular en SFP, como en Brandt
+
+    % AFP converge al toque
+      % por fila
+    Veamos ahora el caso alternante. Existen dos posibles secuencias de juego ficticio alternante para este juego, dado que el jugador fila elegirá primero y el jugador columna reaccionara según esta decisión.
+
+    Si el jugador fila juega $a^2$, el jugador columna responderá con $b^3$, siendo este el equilibrio.
+    Si el jugador fila juega $a^1$, el jugador columna respondera con $b^2$. Esto hará que el jugador fila juegue $a^2$ en la siguiente ronda por ser $Py^i = $, mientras que el jugador continuará fila continuara jugando $b^2$. Esta situacion se repetirá una ronda más, tras la cuál, la jugador columna se verá incentivado a jugar $b^3$.
+
+
+\end{proof}
+% TODO: Demostracion
