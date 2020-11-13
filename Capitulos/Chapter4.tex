@@ -5,41 +5,57 @@
 Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir el juego ficticio entre los distintos autores de la literatura. Ambas simplifican de distintas formas la definición original de Brown y si bien son similares, su equivalencia no es inmediatamente evidente. Por lo tanto, presentamos a continuación dos demostración de la misma, para el caso simultaneo y alternante respesctivamente.
 
 \begin{theorem}
-    % i^t jugada del jugador fila en tiempo t
-    % j^t jugada del jugador columna en tiempo t
-    % y^t creencias del jugador fila sobre la estrategia del jugador columna en tiempo t
-    % x^t creencias del jugador columna sobre la estrategia del jugador fila en tiempo t
-    % p^t historial de jugadas del jugador fila
-    % q^t historial de jugadas del jugador columna
-    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(i^t, j^t)_{t \in \mathbb{N}}$ una secuencia de juego ficticio simultaneo (según la definicioón \ref{def:fp:brown}) con secuencias de creencias $y^t$, $x^t$ y sea $(p^t, q^t)_{t \in \mathbb{N}}$ una secuencia de juego ficticio simultaneo (según la definicion \ref{def:fp:brandt}), tales que $p^1 = u_{j^1}$, $q^1 = v_{i^1}$ y ambas usan la misma regla de desempate. Entonces, $(i^t, j^t)_{t \in \mathbb{N}}$ y $(p^t, q^t)_{t \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, para todo $t \in \mathbb{N}$, se cumplen:
+    % i^k jugada del jugador fila en tiempo t
+    % j^k jugada del jugador columna en tiempo t
+    % y^k creencias del jugador fila sobre la estrategia del jugador columna en tiempo t
+    % x^k creencias del jugador columna sobre la estrategia del jugador fila en tiempo t
+    % p^k historial de jugadas del jugador fila
+    % q^k historial de jugadas del jugador columna
+    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(i^k, j^k)_{t \in \mathbb{N}}$ una secuencia de juego ficticio simultaneo (según la definicioón \ref{def:fp:brown}) con secuencias de creencias $y^k$, $x^k$ y sea $(p^k, q^k)_{t \in \mathbb{N}}$ una secuencia de juego ficticio simultaneo (según la definicion \ref{def:fp:brandt}), tales que $p^1 = i^1$, $q^1 = j^1$ y ambas usan la misma regla de desempate. Entonces, $(i^k, j^k)_{t \in \mathbb{N}}$ y $(p^k, q^k)_{t \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, $\forall t \in \mathbb{N}$, se cumplen:
     \begin{gather}
-        p^{t+1} = p^{t} + u_{j^t} \land q^{t+1} = q^{t} + v_{i^t} \\
-        j^{t+1} \in BR_1(\frac{q^t}{t}) \land i^{t+1} \in BR_2(\frac{q^t}{t})
+        % p^{k+1} = p^{k} + i^k \land q^{k+1} = q^{k} + j^k \\
+        % i^{k+1} \in BR_1(\frac{q^k}{k}) \land j^{k+1} \in BR_2(\frac{p^k}{k}) \\
+        % ----------- \\
+        % \forall t \in \mathbb{N} p^{k+1} = p^{k} + j^k \land q^{k+1} = q^{k} + i^k \\
+        % \Leftrightarrow \\
+        % \forall t \in \mathbb{N} j^{k+1} \in BR_1(\frac{q^k}{t}) \land i^{k+1} \in BR_2(\frac{q^k}{k}) \\
+        % ----------------- \\
+        p^{k} = \sum_1^k{i^k} \\
+        q^{k} = \sum_1^k{j^k}
     \end{gather}
 \end{theorem}
 
 \begin{proof}
-    asd
+
+    % hacer abuso de notacion con i_t accion y vector unitario ayuda o complica?
+
+    Probaremos ambas afirmaciones por inducción sobre $t$.
+
+    Para $t = 1$, tenemos $Aq^1 = Aj^1$ y $p^1B = i^1B$. Sabemos además que, por la definición \ref{def:fp:brown}, que $i^{2} \in BR_1(y^1) = BR_1(\frac{\sum^1_{s=1} j^s}{1}) = BR_1(j^1) = \{p \in N : (Aj^1)_p = \max_{j \in N} (Ay)_j\}$, es decir, $i^2$ es el índice de una componente máxima de $Aj^1$. Análogamente, podemos afirmar que $j^2$ es el índice de una componente máxima $i^1B$. Incluso si hubiera otras componentes máximas en alguno de los casos, el teorema establece que se utiliza la misma regla de desempate. Por lo tanto, por la definición \ref{def:fp:brandt}, tendremos $p^2 = p^1 + i_2$ y $q^2 = q^1 + j^2$. Por otro lado, $i^{2} \in BR_1(\frac{y^1}{1}) = BR_1(j^1) = BR_1(q^1)$ y $j^{2} \in BR_2(\frac{x^1}{1}) = BR_1(i^1) = BR_1(p^1)$.
+
+    Supongamos ahora que para que para todo $t < c$, se cumplen $p^{k+1} = p^{k} + i^k \land q^{k+1} = q^{k} + j^k$ y $i^{k+1} \in BR_1(\frac{q^k}{t}) \land j^{k+1} \in BR_2(\frac{p^k}{t})$. Para $t = c$, tenemos $Aq^c = A(q^{c-1} + j^{c-1}) = Aq^{c-1} + Aj^{c-1}$. Sabemos además que, por la definición \ref{def:fp:brown}, que $i^{c} \in BR_1(y^{c-1}) = BR_1(\frac{\sum^{c-1}_{s=1} j^s}{c-1})$
+
+    ??????
+
+
 \end{proof}
 
 \begin{theorem}
-    % i^t jugada del jugador fila en tiempo t
-    % j^t jugada del jugador columna en tiempo t
-    % y^t creencias del jugador fila sobre la estrategia del jugador columna en tiempo t
-    % x^t creencias del jugador columna sobre la estrategia del jugador fila en tiempo t
-    % p^t historial de jugadas del jugador fila
-    % q^t historial de jugadas del jugador columna
-    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(i^t, j^t)_{t \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definicioón \ref{def:fp:brown}) con secuencias de creencias $y^t$, $x^t$ y sea $(p^t, q^t)_{t \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definicion \ref{def:fp:brandt}), tales que $p^1 = u_{j^1}$ y ambas usan la misma regla de desempate. Entonces, $(i^t, j^t)_{t \in \mathbb{N}}$ y $(p^t, q^t)_{t \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, para todo $t \in \mathbb{N}$, se cumplen:
+    % i^k jugada del jugador fila en tiempo t
+    % j^k jugada del jugador columna en tiempo t
+    % y^k creencias del jugador fila sobre la estrategia del jugador columna en tiempo t
+    % x^k creencias del jugador columna sobre la estrategia del jugador fila en tiempo t
+    % p^k historial de jugadas del jugador fila
+    % q^k historial de jugadas del jugador columna
+    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(i^k, j^k)_{t \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definicioón \ref{def:fp:brown}) con secuencias de creencias $y^k$, $x^k$ y sea $(p^k, q^k)_{t \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definicion \ref{def:fp:brandt}), tales que $p^1 = u_{j^1}$ y ambas usan la misma regla de desempate. Entonces, $(i^k, j^k)_{t \in \mathbb{N}}$ y $(p^k, q^k)_{t \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, para todo $t \in \mathbb{N}$, se cumplen:
     \begin{gather}
-        p^{t+1} = p^{t} + u_{j^t} \land q^{t+1} = q^{t} + v_{i^{t+1}} \\
-        j^{t+1} \in BR_1(\frac{q^t}{t}) \land i^{t} \in BR_2(\frac{q^t}{t})
+        p^{k+1} = p^{k} + u_{j^k} \land q^{k+1} = q^{k} + v_{i^{k+1}} \\
+        j^{k+1} \in BR_1(\frac{q^k}{t}) \land i^{k} \in BR_2(\frac{q^k}{t})
     \end{gather}
 \end{theorem}
 
 \begin{proof}
     asd
-    % por induccion en t
-    % Hacelo primero en el pizarrón, bobo.
 
 \end{proof}
 
@@ -48,7 +64,7 @@ Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir 
 En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismo. Monderer y Sela llaman a esto el Principio de Estabilidad. Sin embargo, la demostración que presentan es a criterio nuestro poco clara. Presentamos entonces a continuación una demostración alternativa que consideramos mas directa.
 
 \begin{theorem}
-    Sea $(X, Y)$ una secuencia de aprendizaje de juego ficticio en el juego en forma bimatricial $(A, B)$. Si en la iteración $t$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash, entonces $(i*, j*)$ será también el perfil jugado en las iteraciones $t+k$ con $k \in \mathbb{N}$.
+    Sea $(X, Y)$ una secuencia de aprendizaje de juego ficticio en el juego en forma bimatricial $(A, B)$. Si en la iteración $t$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash puro, entonces $(i*, j*)$ será también el perfil jugado en las iteraciones $t+k$ con $k \in \mathbb{N}$.
     % \N tiene al 0? xd
 \end{theorem}
 
@@ -106,14 +122,14 @@ Por su parte, la demostración para el caso de los juegos no degenerados de $2 \
 
     \input{Tablas/matrizTeo2.tex}
 
-    Si $\epsilon < 1$, vemos que $(a^2, a^3)$ es el único equilibrio de Nash puro
+    Si $\epsilon < 1$, vemos que $(a^2, b^3)$ es el único equilibrio de Nash puro
     por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas.
 
-    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio alternante puede tomar $2^k$ rondas antes de que se juegue $(a^2, a^3)$. Al igual que en el teorema anterior, el juego puede codificarse en $O(k)$ bits, por lo que esto demuestra el teorema.
+    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio alternante puede tomar $2^k$ rondas antes de que se juegue $(a^2, b^3)$. Al igual que en el teorema anterior, el juego puede codificarse en $O(k)$ bits, por lo que esto demuestra el teorema.
 
     Si el proceso de AFP comienza con el jugador fila jugando $a^1$, entonces $x^1Q = (1, 2, 0)$ y por lo tanto el jugador columna elegirá $a_2$.
 
-    Luego, en las siguentes $2^k - 1$ rondas tendremos que $Py^i = (2i, (2+2^{-k})i)$ y $x^{i+1}Q = (1, 2+(2+2^{-k})i, (2+2^{-k+1})i)$. Claramente, el jugador fila elegirá $a^2$. Por su parte, como $2+(2+2^{-k})i \ge (2+2^{-k+1})i$, el jugador columna jugará $a^3$ en la ronda $i + 1$.
+    Luego, en las siguentes $2^k - 1$ rondas tendremos que $Py^i = (2i, (2+2^{-k})i)$ y $x^{i+1}Q = (1, 2+(2+2^{-k})i, (2+2^{-k+1})i)$. Claramente, el jugador fila elegirá $a^2$. Por su parte, como $2+(2+2^{-k})i \ge (2+2^{-k+1})i$, el jugador columna jugará $b^3$ en la ronda $i + 1$.
 
     La siguiente tabla muestra como se desarrolla este proceso:
 
@@ -134,7 +150,7 @@ Por su parte, la demostración para el caso de los juegos no degenerados de $2 \
 El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrenstein no nos sirva para demostrar el teorema anterior no es para nada menor. En efecto, como veremos en el siguiente teorema, es un ejemplo de un juego en el un proceso de juego ficticio simultaneo puede requerir una cantidad de rondas exponenciales mientras que, toda secuencia de juego ficticio alternante convergerá rápidamente.
 
 \begin{theorem}
-    Existe un juego para el cuál un proceso de juego ficticio simultaneo puede requerir una cantidad exponencial (en el tamaño de representación en bits de los valores de las utilidades del juego) de rondas antes de que un equilibrio sea jugado, mientras que en todo proceso de juego ficticio se jugará un equilibrio en una cantidad de rondas acotada por una constante.
+    Existe un juego para el cuál un proceso de juego ficticio simultaneo puede requerir una cantidad exponencial (en el tamaño de representación en bits de los valores de las utilidades del juego) de rondas antes de que un equilibrio sea jugado, mientras que en todo proceso de juego ficticio alternado se jugará un equilibrio en una cantidad de rondas acotada por una constante.
 \end{theorem}
 
 
