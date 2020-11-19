@@ -18,11 +18,12 @@ Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir 
 
 \end{lemma}
 \begin{proof}
+    \cambios{demostracion nueva}
     Procederemos por inducción sobre $\tau$.
 
     Para $\tau = 1$, tenemos $p^1 = \pstrat{i^1} = \sum_{s=1}^1{\pstrat{i^s}}$ y $q^1 = \pstrat{j^1} = \sum_{s=1}^1{\pstrat{j^s}}$.
 
-    Veamos ahora el caso de un $\tau = k > 1$, suponiendo que \todo{aca tengo duda de si es mejor suponer k y probar para k+1}$p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Por la definición \ref{def:fp:brandt}, $p^k = p^{k-1} + \pstrat{i}$ donde $i$ es un índice de una componente máxima de $Aq^{k-1} = A\sum_{s=1}^{k-1}{\pstrat{j^s}}$. Pero también sabemos, por la definición \ref{def:fp:berger} que $i^k \in BR_1(y^{k-1}) = BR_1(\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1}) = \{i \in N : (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_p = \max_{i' \in N} (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_{i'}\}$. Es decir que $i^k$ es el índice de una componente máxima de $A\frac{q^{k-1}}{k-1}$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $Aq^{k-1}$ \todo{lo del escalado esta bien?}. Incluso si hubiera otras componentes máximas, estamos usando en ambos procesos la misma regla de desempate. Luego, $p^k = p^{k-1} + \pstrat{i^k} = \sum_{s=1}^{k-1}{\pstrat{i^s}} + \pstrat{i^k} = \sum_{s=1}^{k}{\pstrat{i^s}}$. Análogamente, podemos afirmar que $q^{k} = \sum_{s=1}^k{\pstrat{j^s}}$.
+    Veamos ahora el caso de un $\tau = k > 1$, suponiendo que \duda{es mejor suponer k y probar para k+1? o es lo mismo?}$p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Por la definición \ref{def:fp:brandt}, $p^k = p^{k-1} + \pstrat{i}$ donde $i$ es un índice de una componente máxima de $Aq^{k-1} = A\sum_{s=1}^{k-1}{\pstrat{j^s}}$. Pero también sabemos, por la definición \ref{def:fp:berger} que $i^k \in BR_1(y^{k-1}) = BR_1(\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1}) = \{i \in N : (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_p = \max_{i' \in N} (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_{i'}\}$. Es decir que $i^k$ es el índice de una componente máxima de $A\frac{q^{k-1}}{k-1}$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $Aq^{k-1}$ \duda{lo del escalado esta bien?}. Incluso si hubiera otras componentes máximas, estamos usando en ambos procesos la misma regla de desempate. Luego, $p^k = p^{k-1} + \pstrat{i^k} = \sum_{s=1}^{k-1}{\pstrat{i^s}} + \pstrat{i^k} = \sum_{s=1}^{k}{\pstrat{i^s}}$. Análogamente, podemos afirmar que $q^{k} = \sum_{s=1}^k{\pstrat{j^s}}$.
 \end{proof}
 
 El caso alternante es un poco más complejo ya que el caso del jugador columna ya no es análogo al del jugador fila.
@@ -41,6 +42,7 @@ El caso alternante es un poco más complejo ya que el caso del jugador columna y
 
 \end{lemma}
 \begin{proof}
+    \cambios{demostracion nueva}
     Nuevamente, procederemos por inducción sobre $\tau$.
 
     Para $\tau = 1$, sabemos que $p^1 = \pstrat{i^1} = \sum_{s=1}^1{\pstrat{i^s}}$. Por la definición \ref{def:fp:brandt}, $q^1 = q^0 + \pstrat{j}$ donde $q^0$ es el vector nulo y $j$ es el índice de una componente máxima de $p^{1}B = \pstrat{i^1}B$ y, por la definición \ref{def:fp:berger}, sabemos que $j^1 \in BR_2(x^1) = BR_2(\frac{\sum^1_{s=1} \pstrat{i^s}}{\tau}) = BR_2(i^1) = \{j \in N : (i^{1}B)_j = \max_{j' \in M} (i^{1}B)_{j'}\}$. Es decir, $j^1$ es el índice de una componente máxima de $i^{1}B$. Luego, $q^1 = \pstrat{j^1} = \sum_{s=1}^1{\pstrat{j^s}}$.
@@ -51,15 +53,14 @@ El caso alternante es un poco más complejo ya que el caso del jugador columna y
 
 \section{Convergencia de Juego Ficticio}
 
-En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismo. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que presentan en esa publicación, pero este resultado puede probarse de forma más directa. Presentamos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante.\todo{mejor?}
+En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismo. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que presentan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante.\cambios{mejor?}
 
 \begin{theorem}
-    % Cambiar a definicion estilo Berger
     Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^t, y^t)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash puro, entonces $(i*, j*)$ será también el perfil jugado en todas las iteraciones posteriores.
-    % \N tiene al 0? xd
 \end{theorem}
 
 \begin{proof}
+    \cambios{demostracion nueva}
     Si en la iteracion $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1})$ y $j^* \in BR_1(x^{k-1})$. Sabemos también, por la definición de equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*})$ y $j^* \in BR_2(\pstrat{i^*})$.
 
     Veamos entonces que sucederá en la iteración $k+1$. Las creencias se actualizaran como
@@ -70,7 +71,7 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
             = \frac{\sum_{s=1}^{k-1}{\pstrat{i^s}}(k-1)}{k(k-1)} + \frac{\pstrat{i^*}}{k}
             = \frac{k - 1}{k} x^{k-1} + \frac{\pstrat{i^*}}{k}
     \]
-    % \todo{estas son las formulas de Berger en Brown's Original que las tira como alternativas pero no las demuestra}
+    \comentario{estas son las formulas de Berger en Brown's Original que las tira como alternativas pero no las demuestra}
     \[
         y^k = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}} + \pstrat{j^*}}{k}
             = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}}}{k} + \frac{\pstrat{j^*}}{k}
@@ -86,29 +87,29 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
         &= \{i \in N : (\frac{k - 1}{k} Ay^{k-1} + \frac{Aj^*}{k})_i = \max_{i' \in N} (\frac{k - 1}{k} Ay^{k-1} + \frac{Aj^*}{k})_i'\}
     \end{align*}
 
-    Como sabemos que $i^*$ es indice máximo tanto de $Ay^{k-1}$ como de $Aj^*$, podemos afirmar que lo es también de esta combinación lineal de ambos \todo{este argumento?} y por tanto que $i^* \in BR_1(y^k)$. Analogamente, $j^* \in BR_1(x^k)$. Por lo tanto, por la definición de juego ficticio, en la iteración $k$ se jugará nuevamente $(i^*, j^*)$ y este proceso se repetirá infinitamente \todo{que hacer aca con empates? agregar en el enunciado que haya un solo equilibrio?}.
+    Como sabemos que $i^*$ es indice máximo tanto de $Ay^{k-1}$ como de $Aj^*$, podemos afirmar que lo es también de esta combinación lineal de ambos \duda{este argumento esta bien asi? debería detallar más?} y por tanto que $i^* \in BR_1(y^k)$. Analogamente, $j^* \in BR_1(x^k)$. Por lo tanto, por la definición de juego ficticio, en la iteración $k$ se jugará nuevamente $(i^*, j^*)$ y este proceso se repetirá infinitamente \duda{que hacer aca con empates? agregar en el enunciado que haya un solo equilibrio?}.
 
 \end{proof}
 
 \begin{theorem}
-    % Cambiar a definicion estilo Berger
     Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio alternante en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^t, y^t)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash puro, entonces $(i*, j*)$ será también el perfil jugado en todas las iteraciones posteriores.
-    % \N tiene al 0? xd
 \end{theorem}
 
 \begin{proof}
-    asd \todo{creo que sale parecida a la simultanea, pero quiero ver bien esa antes de probar esta}
+    asd \falta{creo que sale parecida a la simultanea, pero quiero ver bien esa antes de probar esta}
 \end{proof}
 
 \section{Velocidad de Convergencia de AFP}
 
 En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos de suma constante simétricos y los no degenerados de $2 \times 3$.
 
+\falta{antes de pasar a las demostraciones hay que poner un lema sobre la codificacion en bits}
+\falta{comentar la cuestion de que se buscan caso especificos porque se generaliza a clases mas grandes}
 
 Veamos primero que para el caso de los juegos de suma constante simétricos, el teorema de estos autores efectivamente es expandible de forma bastante directa a la variante alternante.
 
 \begin{theorem}
-    En juegos de suma constante simétricos de dos jugadores, un proceso de juego ficticio alternante puede requerir una cantidad exponencial (en el tamaño de representación en bits de los valores de las utilidades del juego) de rondas antes de que un equilibrio sea jugado.
+    En juegos de suma constante simétricos de dos jugadores, un proceso de juego ficticio alternante puede requerir una cantidad exponencial (en el tamaño de representación en bits de los valores de las utilidades del juego) de rondas antes de que un equilibrio sea jugado. \falta{estos los tengo que reescribir con los conceptos nuevos y de paso mas formal} \falta{en general, se le puede agregar más explicacion coloquial a estos teoremas}
 \end{theorem}
 
 \begin{proof}
@@ -150,8 +151,7 @@ Por su parte, la demostración para el caso de los juegos no degenerados de $2 \
 
     \input{Tablas/matrizTeo2.tex}
 
-    Si $\epsilon < 1$, vemos que $(a^2, b^3)$ es el único equilibrio de Nash puro
-    por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas.
+    Si $\epsilon < 1$, vemos que $(a^2, b^3)$ es el único equilibrio de Nash puro por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas.
 
     Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio alternante puede tomar $2^k$ rondas antes de que se juegue $(a^2, b^3)$. Al igual que en el teorema anterior, el juego puede codificarse en $O(k)$ bits, por lo que esto demuestra el teorema.
 
@@ -202,6 +202,6 @@ El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrens
     Si el jugador fila juega $a^2$, el jugador columna responderá con $b^3$, siendo este el equilibrio.
     Si el jugador fila juega $a^1$, el jugador columna respondera con $b^2$. Esto hará que el jugador fila juegue $a^2$ en la siguiente ronda por ser $Py^i = $, mientras que el jugador continuará fila continuara jugando $b^2$. Esta situacion se repetirá una ronda más, tras la cuál, la jugador columna se verá incentivado a jugar $b^3$.
 
+    \falta{hay que completar esta prueba}
 
 \end{proof}
-% TODO: Demostracion

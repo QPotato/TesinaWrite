@@ -1,6 +1,3 @@
-\newcommand{\concept}{\textbf}
-\newcommand{\pstrat}{\widetilde}
-
 \chapter{Conceptos Previos}  \label{cap:previos}
 
 \section{Juegos Bimatriciales y Equilibrios de Nash}
@@ -23,13 +20,13 @@
 Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, es decir un juego de dos jugadores finito en el que el jugador $1$ (jugador fila) tiene acciones $i \in N = \{1, 2, ..., n\}$ y el jugador $2$ (jugador columna) tiene acciones $j \in M = \{1, 2, ..., m\}$. $A$, $B \in \mathbb{R}^{n \times m}$ son las matrices de pago de los jugadores $1$ y $2$. Si el jugador $1$ elige la acción $i$ y el jugador $2$ elige la acción $2$, la utilidad del jugador $1$ será $a_{ij}$ y la utilidad del jugador $2$ será $b_{ij}$.
 
 % Estrategias mixtas como vectores en conjunto delta
-Notaremos con $\Delta(X)$ al espacio de probabilidades sobre el conjunto $X$ y llamaremos estrategias mixtas a los vectores de la forma $x \in \Delta(N)$ y $y \in \Delta(M)$. A las estrategias que asigna probabilidad $1$ a una acción y $0$ a todas las otras, las llamaremos estrategias puras. Notaremos con $\pstrat{h}$ a la estrategia pura correspondiente a la acción $h$.
+Notaremos con $\Delta(X)$ al espacio de probabilidades sobre el conjunto $X$ y llamaremos estrategias mixtas a los vectores de la forma $x \in \Delta(N)$ y $y \in \Delta(M)$. A las estrategias que asignan probabilidad $1$ a una acción y $0$ a todas las otras, las llamaremos estrategias puras. Notaremos con $\pstrat{h}$ \cambios{metí esta notación para estrategias puras, para no hacer el abuso de notacion (y sacarme de encima esos $u_i$ y $v_i$ de Brandt)} a la estrategia pura correspondiente a la acción $h$.
 
 % Expected payoff como producto de matriz por vector
-La utilidad esperada del jugador $1$ al jugar la acción $i$ contra la estrategia mixta $y$ del jugador $2$ será $(Ay)_i$. Analogamente, la utilidad esperada del jugador $2$ al jugar la acción $j$ contra la estrategia mixta $x$ del jugador $2$ será $(xB)_j$. Si ambos jugadores juegan estrategias mixtas $x$ e $y$ respectivamente, sus utilidades esperadas podrán calcularse como $xAy$ para el jugador $1$ y $yB^tx$ para el jugador $2$.
+La utilidad esperada del jugador $1$ al jugar la acción $i$ contra la estrategia mixta $y$ del jugador $2$ será $(Ay)_i$. Analogamente, la utilidad esperada del jugador $2$ al jugar la acción $j$ contra la estrategia mixta $x$ del jugador $2$ será $(xB)_j$ \cambios{aca cambié a $xB$ para no tener que estar haciendo transposiciones}. Si ambos jugadores juegan estrategias mixtas $x$ e $y$ respectivamente, sus utilidades esperadas podrán calcularse como $xAy$ para el jugador $1$ y $yB^tx$ para el jugador $2$.
 
 % Best-response
-Si $y$ es una estrategia mixta del jugador $2$, definimos el conjunto de mejores respuestas a $y$ como $BR_1(y) = \{i \in N : (Ay)_i = \max_{i' \in N} (Ay)_i'\}$ y análogamente, si $x$ es una estrategia mixta del jugador $2$, el conjunto de mejores respuestas a $x$ será $BR_2(x) = \{j \in N : (xB)_j = \max_{j' \in M} (xB)_{j'}\}$.
+Si $y$ es una estrategia mixta del jugador $2$, definimos el conjunto de mejores respuestas a $y$ como $BR_1(y) = \{i \in N : (Ay)_i = \max_{i' \in N} (Ay)_i'\}$ y análogamente, si $x$ es una estrategia mixta del jugador $2$, el conjunto de mejores respuestas a $x$ será $BR_2(x) = \{j \in N : (xB)_j = \max_{j' \in M} (xB)_{j'}\}$. \cambios{Arreglé un poquito esta def}
 
 Llamaremos equilibrio de Nash a todo perfil de estrategias mixtas $(x*, y*) \in \Delta(A) \times \Delta(B)$ que cumpla:
 \begin{gather}
@@ -38,6 +35,8 @@ Llamaremos equilibrio de Nash a todo perfil de estrategias mixtas $(x*, y*) \in 
 \end{gather}
 
 En el caso particular de que las estrategias sean puras, al equilibrio lo llamaremos también equilibrio de Nash puro.
+
+\falta{aca tiene que ir algunos ejemplos de juegos conocidos}
 
 \section{Categorías de Juegos}
 
@@ -58,6 +57,7 @@ Los juegos de suma cero son una de las categorías mas estudiadas en teoría de 
 \end{definition}
 Los juegos no degenerados son de particular interes porque capturan el concepto de un juego en el que, para cada acción del rival, no existen dos acciones con el mismo pago. Por lo tanto, el conjunto de mejor respuesta contra una acción dada es siempre unitario.
 
+\falta{comentarios de estas dos clases y por que las definimos}
 \begin{definition}
     Un juego bimatricial $(A, B)$ de tamaño $n \times n$ es simétrico si $\forall i, j \in N : a_{ij} = -b_{ji}$
 \end{definition}
@@ -66,36 +66,50 @@ Los juegos no degenerados son de particular interes porque capturan el concepto 
     Un juego $(A, B)$ de tamaño $n \times m$ es de intereses idénticos si $\forall i \in N, j \in M : a_{ij} = b_{ij}$.
 \end{definition}
 
+\falta{aca pueden ir comentarios sobre cuales de los juegos ejemplo caen en cuales categorías}
+
 \section{Juego Ficticio} \label{sec:def:fp}
 
-Existen en la literatura dos formas de definir el juego ficticio. Algunos autores como Berger, Monderer, Sela, Shapley, Daskalakis y Pan \cite{browns:original} \cite{no:cycling} \cite{2x2:without} \cite{identical:interests} \cite{counter:karlin:strong} utilizan un definición del estilo de la siguiente, que resulta cómoda para estudiar convergencia.
+\todo[color=blue, inline]{Mas intro acá. Explicación coloquial. Capaz algo de la division del algoritmo en decision y actualizacion como dice en pattern:matching}
+
+Existen en la literatura dos formas de definir el juego ficticio. Algunos autores como Berger, Monderer, Sela, Shapley, Daskalakis y Pan \cite{browns:original} \cite{no:cycling} \cite{2x2:without} \cite{identical:interests} \cite{counter:karlin:strong} utilizan un definición del estilo de la siguiente, que resulta cómoda para estudiar convergencia y es la que veremos primero. Presentaremos dos variantes, correspodientes a la versión simultanea y a la alternante.
+
 
 \begin{definition} \label{def:fp:berger}
-    Sean $(A, B)$ un juego en forma bimatricial de $n \times m$ y una secuencia $(i^k, j^k)_{t \in \mathbb{N}}$ de perfiles de estrategias puras sobre el juego. Si tenemos unas secuencias de creencias
+    Sean $(A, B)$ un juego en forma bimatricial de $n \times m$ y una secuencia $(i^\tau, j^\tau)$ con $i^\tau \in N$, $j^\tau \in M$ para todo $\tau \in \mathbb{N}$. Si tenemos unas secuencias de creencias $x^\tau$ e $y^\tau$ tales que para todo $\tau \in \mathbb{N}$: \cambios{con notacion nueva y especificando que los elementos son acciones}
     \begin{gather*}
-        x^k= \frac{\sum^k_{s=1} \pstrat{i^s}}{t}  \\
-        y^k= \frac{\sum^k_{s=1} \pstrat{j^s}}{t}
+        x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{t}  \\
+        y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{t}
     \end{gather*}
+    Entonces:
     \begin{itemize}
-        \item $({i^k}, j^k)_{t \in \mathbb{N}}$ es una secuencia de juego ficticio simultaneo si $(i^1, j^1) \in N \times M$ y $\forall t \in \mathbb{N}, i^{k+1} \in BR_1(y^k) \land j^{k+1} \in BR_2(x^k)$
-        \item $(i^k, j^k)_{t \in \mathbb{N}}$ es una secuencia de juego ficticio alternante si $i^1 \in N$ y $\forall t \in \mathbb{N}, i^{k+1} \in BR_1(y^k) \land j^{k} \in BR_2(x^k)$
+        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio simultaneo si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} \in BR_1(y^\tau)$ y $j^{\tau+1} \in BR_2(x^\tau)$.
+        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio alternante si $i^1$ es un elemento arbitrario de $N$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} \in BR_1(y^\tau)$ y $j^{\tau} \in BR_2(x^\tau)$.
     \end{itemize}
 \end{definition}
 
-% Nociones sobre simultaneo vs alternante
+Vale la pena hacer algunos comentarios sobre esta primer definición. Para empezar, si observamos las secuencias de creencias, $x^\tau$ e $y\tau$, veremos que se componen de sumas de vectores unitarios, pero normalizados por el tiempo, por lo que son estrategias mixtas que se corresponden con la distribución empírica de las acciones de cada jugador.
 
-Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar a la de Robinson \cite{robinson:zerosum} pero simplificada. Es más comoda para estudiar velocidades de convergencia en juegos que se sabe que convergen.
+Por otro lado, como los elementos iniciales son arbitrarios, un mismo juego puede tener tantos procesos de juego ficticio validos como jugadas iniciales existan. Mas aún, existe una ambigüedad en cuanto que acciones elige el proceso en los casos en los que uno o ambos de los conjuntos de mejor respuesta no son unitarios\footnote{Es por esto que es tan imporante en el estudio del juego ficticio la categoría de los juegos no degenerados, para los cuáles el conjunto de mejor respuesta es unitario.}. Cada posible decisión configura un proceso distinto y válido pero es normal hablar de \concept{reglas de desempate} para referirse a criterios uniformes para resolver estas ambigüedades. Más formalmente, podemos definir una regla de desempate como un par de funciones $d_1: \mathbb{P}(N) \rightarrow N$ y $d_2: \mathbb{P}(M) \rightarrow M$ que a cada subconjunto de acciones de un jugador en un eventual empate le asignan la acción que elegira el proceso. \cambios{inicial y reglas de desempate}
+
+Sobre la variante alternante vale aclarar que efectivamente, el jugador columna toma su decisión incorporando en sus creencias la información sobre qué jugó el jugador fila en la ronda actual, si bien esto puede resultar poco intuitivo ya que normalmente en teoría de juegos se representa jugadores eligiendo simutanea e independientemente. Otra observación interesante es que su acción inicial no es arbitraria sino que ya se encuentra fijada por la mejor respuesta o mejores respuestas a la acción del jugador fila. \cambios{aclaración de alternante}
+
+Diremos que un proceso de juego ficticio (simultaneo o alternante) converge de forma pura en la iteración $k$ si $(i^k, j^k)$ es un equilibrio de Nash puro. En el capítulo \ref{cap:aportes} veremos que cuando esto ocurre, $(i^k, j^k)$ se repetirá infinitamente desde este punto en el tiempo. Diremos también que el proceso converge de forma mixta si existe un equilibrio de Nash mixto tal que para todo $\epsilon > 0$ existe un $k \in \mathbb{N}$ tal que $|x^* - x^k| < \epsilon$ y $|y^* - y^k| < \epsilon$ \cambios{defs de convergencia}. \todo[inline]{esto podría ir en una sección propia y de paso meter ahi representacion de bits y convergencia en funcion de que}
+
+\falta{aca puede ir un desarrollo de un FP para simultaneo y alternante con algun juego de los ejemplos}
+
+Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar a la de Robinson \cite{robinson:zerosum} pero simplificada. Es más cómoda para estudiar velocidades de convergencia en juegos que se sabe que convergen.
 
 \begin{definition} \label{def:fp:brandt}
     Sea $(A, B)$ un juego en forma bimatricial de $n \times m$:
     \begin{itemize}
-        \item Una secuencia de juego ficticio simultaneo en $(A, B)$ es una secuencia $(x^0, y^0), (x^1, y^1), (x^2, y^2), \dots$ de pares de vectores no negativos $(x^i, y^i) \in \mathbb{N}^{n \times m}$ tal que:
+        \item Una secuencia de juego ficticio simultaneo en $(A, B)$ es una secuencia $(x^0, y^0), (x^1, y^1), (x^2, y^2), \dots$ de pares de vectores no negativos $(x^i, y^i) \in \mathbb{N}^n \times \mathbb{N}^m$ tal que:\cambios{con notacion nueva}
         \begin{gather*}
             x^0 = \boldmath{0}, y^0 = \boldmath{0} \\
             x^{\tau+1} = x^{\tau} + \pstrat{i} \text{\ donde $i$ es el índice de una componente máxima de $Ay^\tau$} \\
             y^{\tau+1} = x^{\tau} + \pstrat{j} \text{\ donde $j$ es el índice de una componente máxima de $x^{\tau}B$}
         \end{gather*}
-        \item Una secuencia de juego ficticio alternante en $(A, B)$ es una secuencia $(x^0, y^0), (x^1, y^1), (x^2, y^2), \dots$ de pares de vectores no negativos $(x^i, y^i) \in \mathbb{R}^{n \times m}$ tal que:
+        \item Una secuencia de juego ficticio alternante en $(A, B)$ es una secuencia $(x^0, y^0), (x^1, y^1), (x^2, y^2), \dots$ de pares de vectores no negativos $(x^i, y^i) \in \mathbb{N}^n \times \mathbb{N}^m$ tal que:
         \begin{gather*}
             x^0 = \boldmath{0}, y^0 = \boldmath{0} \\
             x^{\tau+1} = x^{\tau} + \pstrat{i} \text{\ donde $i$ es el índice de una componente máxima de $Ay^\tau$} \\
@@ -104,9 +118,9 @@ Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar
     \end{itemize}
 \end{definition}
 
-Como vemos, en la primera se define una secuencia de jugadas que cumple una condicion contra un historial de creencias sobre la estrategia mixta del otro jugador, mientras que en la segunda la secuencia es de duplas de contadores de jugadas (sin normalizar, por lo que no son estrategias), que cumplen una condición contra el valor esperado de cada jugada. En el capítulo \ref{cap:aportes} se demostrará que estas dos definiciones son equivalentes. Durante el resto de este capitulo se utilizará la primera definición.
+Como podemos observar, la principal diferencia con la primer definición es que mientras en aquella se define una secuencia de jugadas que cumple una condicion contra un historial de creencias sobre la estrategia mixta del otro jugador, en esta la secuencia es de duplas de contadores de jugadas (sin normalizar, por lo que no son estrategias mixtas), que cumplen en cada iteración una condición contra producto de un elemento de la otra contra las matrices de pago, pero sin ser este tampoco el valor esperado de la jugada. En el capítulo \ref{cap:aportes} se demostrará que estas dos definiciones son equivalentes. Como en esta definición aparecen también casos ambigüos y aplica la misma noción de reglas de desempate. \cambios{este lo reescribí un poco también}
 
-% \section{Convergencia del Juego Ficticio}
+\falta{aca puede ir el mismo ejemplo de la def anterior, pero con esta}
 
 % Convergencia en pagos
 
