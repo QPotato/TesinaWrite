@@ -18,12 +18,11 @@ Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir 
 
 \end{lemma}
 \begin{proof}
-    \cambios{demostracion nueva}
     Procederemos por inducción sobre $\tau$.
 
     Para $\tau = 1$, tenemos $p^1 = \pstrat{i^1} = \sum_{s=1}^1{\pstrat{i^s}}$ y $q^1 = \pstrat{j^1} = \sum_{s=1}^1{\pstrat{j^s}}$.
 
-    Veamos ahora el caso de un $\tau = k > 1$, suponiendo que \duda{es mejor suponer k y probar para k+1? o es lo mismo?}$p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Por la definición \ref{def:fp:brandt}, $p^k = p^{k-1} + \pstrat{i}$ donde $i$ es un índice de una componente máxima de $Aq^{k-1} = A\sum_{s=1}^{k-1}{\pstrat{j^s}}$. Pero también sabemos, por la definición \ref{def:fp:berger} que $i^k \in BR_1(y^{k-1}) = BR_1(\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1}) = \{i \in N : (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_p = \max_{i' \in N} (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_{i'}\}$. Es decir que $i^k$ es el índice de una componente máxima de $A\frac{q^{k-1}}{k-1}$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $Aq^{k-1}$ \duda{lo del escalado esta bien?}. Incluso si hubiera otras componentes máximas, estamos usando en ambos procesos la misma regla de desempate. Luego, $p^k = p^{k-1} + \pstrat{i^k} = \sum_{s=1}^{k-1}{\pstrat{i^s}} + \pstrat{i^k} = \sum_{s=1}^{k}{\pstrat{i^s}}$. Análogamente, podemos afirmar que $q^{k} = \sum_{s=1}^k{\pstrat{j^s}}$.
+    Veamos ahora el caso de un $\tau = k > 1$, suponiendo que $p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Por la definición \ref{def:fp:brandt}, $p^k = p^{k-1} + \pstrat{i}$ donde $i$ es un índice de una componente máxima de $Aq^{k-1} = A\sum_{s=1}^{k-1}{\pstrat{j^s}}$. Pero también sabemos, por la definición \ref{def:fp:berger} que $i^k \in BR_1(y^{k-1}) = BR_1(\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1}) = \{i \in N : (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_p = \max_{i' \in N} (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_{i'}\}$. Es decir que $i^k$ es el índice de una componente máxima de $A\frac{q^{k-1}}{k-1}$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $Aq^{k-1}$. Incluso si hubiera otras componentes máximas, estamos usando en ambos procesos la misma regla de desempate. Luego, $p^k = p^{k-1} + \pstrat{i^k} = \sum_{s=1}^{k-1}{\pstrat{i^s}} + \pstrat{i^k} = \sum_{s=1}^{k}{\pstrat{i^s}}$. Análogamente, podemos afirmar que $q^{k} = \sum_{s=1}^k{\pstrat{j^s}}$.
 \end{proof}
 
 El caso alternante es un poco más complejo ya que el caso del jugador columna ya no es análogo al del jugador fila.
@@ -42,7 +41,6 @@ El caso alternante es un poco más complejo ya que el caso del jugador columna y
 
 \end{lemma}
 \begin{proof}
-    \cambios{demostracion nueva}
     Nuevamente, procederemos por inducción sobre $\tau$.
 
     Para $\tau = 1$, sabemos que $p^1 = \pstrat{i^1} = \sum_{s=1}^1{\pstrat{i^s}}$. Por la definición \ref{def:fp:brandt}, $q^1 = q^0 + \pstrat{j}$ donde $q^0$ es el vector nulo y $j$ es el índice de una componente máxima de $p^{1}B = \pstrat{i^1}B$ y, por la definición \ref{def:fp:berger}, sabemos que $j^1 \in BR_2(x^1) = BR_2(\frac{\sum^1_{s=1} \pstrat{i^s}}{\tau}) = BR_2(i^1) = \{j \in N : (i^{1}B)_j = \max_{j' \in M} (i^{1}B)_{j'}\}$. Es decir, $j^1$ es el índice de una componente máxima de $i^{1}B$. Luego, $q^1 = \pstrat{j^1} = \sum_{s=1}^1{\pstrat{j^s}}$.
@@ -51,16 +49,77 @@ El caso alternante es un poco más complejo ya que el caso del jugador columna y
 
 \end{proof}
 
+\section{Conservación del Juego Ficticio} \cambios{toda esta sección}
+
+En esta sección estudiaremos cómo las transformaciones a un juego afectan las secuencias de juego ficticio sobre el mismo. Esto nos es de intereses porque mas adelante nos permitirá encarar con mas claridad el estudio de la velocidad de convergencia del algoritmo. También, razonar un poco sobre esto nos permite entender mejor los resultados sobre convergencia de la literatura.
+
+Claramente, transformaciones que conserven las relaciones de orden de los pagos de las acciones en juegos del mismo tamaño (como escalar todos los pagos por un mismo factor o sumarle a todos una constante) conservararán las secuencias de juego ficticio.
+
+Pero veamos que pasa cuándo cambia el tamaño del juego. La motivacón para esto es que en general, los investigadores de teoría de juegos buscan dos tipos de resultados de convergencia sobre juego ficticio. Por la positiva, clases de juegos de tamaño lo mas grande posible (o incluso mejor, tamaño arbitrario) para los que toda secuencia converga. Por la negativa, contraejemplos de tamaño tan pequeño como sea posible que no converjan. Esto es porque en estos estudios se entiende implícitamente que un contraejemplo puede ser expandido a un juego de tamaño mas grande que presente la misma secuencia de juego ficticio y por tanto todos los juegos de ese tamaño o mayor ya presentan casos que no convergen.
+
+En los siguientes lemas, demostraremos esto para algunas de las clases de juegos mas estudiadas en la literatura. Vale la pena aclarar que si bien podríamos demostrar un solo lema general que diga que todo juego puede expandirse conservando las secuencias de juego ficticio, este resultado no nos sería útil, ya que es importante que la expansión conserve las propiedades que definen a la clase de juegos en cuestión.
+
+\begin{lemma}
+    Sea $A$ un juego de suma cero de tamaño $n$, existe un juego  de suma cero $A'$ de tamaño $n$ tal que toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (secuencial o alternante) en $A$ lo es también en $A'$.
+    \comentario{Saqué el sí y solo sí porque generan problemas los empates cuando reducís.}
+\end{lemma}
+
+\begin{proof}
+    Definimos el juego $A'$ como
+    \begin{equation*}
+        A' =
+        \begin{pmatrix}
+        a_{1,1} & a_{1,2} & \cdots & a_{1,n} & max_{j \in N} a_{1,j}    \\
+        a_{2,1} & a_{2,2} & \cdots & a_{2,n} & max_{j \in N} a_{2,j}    \\
+        \vdots  & \vdots  & \ddots & \vdots  & \vdots                   \\
+        a_{n,1} & a_{n,2} & \cdots & a_{n,n} & max_{j \in N} a_{n,j}    \\
+        min_{i \in N} a_{i,1} & min_{i \in N} a_{i,2} & \cdots & min_{i \in N} a_{i,n}        & 0
+        \end{pmatrix}
+        \end{equation*}
+
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio secuencial sobre A, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. En la iteración $\tau$, sabemos que $i^\tau \in BR_1(y^{\tau - 1})$ en $A$. Como el pago de $n+1$ para el jugador $1$ es siempre el mínimo de la columna, para cualquier acción $j$ del jugador $2$ tendremos que $a_{i^\tau, j} > a_{n+1,j}$ y por tanto podemos afirmar que $i^\tau \in BR_1(y^{\tau - 1})$ en $A'$.
+
+    Para $j^\tau$ podemos razonar de forma análoga, solo que considerando la pertenencia a $BR_2(x^{\tau - 1})$ o $BR_2(x^\tau)$ según si hablamos de juego ficticio secuencial o alternante. \duda{asi o detallo mas?}
+
+    Podemos afirmar entonces que $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ es también una secuencia de juego ficticio  válida en $A'$.
+\end{proof}
+
+\begin{lemma}
+    Sea $(A, B)$ un juego simétrico de tamaño $n \times m$, existe un juego de intereses idénticos $(A', B')$ de tamaño $n+1$ tal que toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (secuencial o alternante) en $(A, B)$ lo es también en $(A', B')$.
+\end{lemma}
+
+\begin{proof}
+    Definimos el juego $A'$ como
+    \begin{equation*}
+        A' =
+        \begin{pmatrix}
+        a_{1,1} & a_{1,2} & \cdots & a_{1,n} & max_{j \in N} a_{1,j}    \\
+        a_{2,1} & a_{2,2} & \cdots & a_{2,n} & max_{j \in N} a_{2,j}    \\
+        \vdots  & \vdots  & \ddots & \vdots  & \vdots                   \\
+        a_{n,1} & a_{n,2} & \cdots & a_{n,n} & max_{j \in N} a_{n,j}    \\
+        min_{i \in N} a_{i,1} & min_{i \in N} a_{i,2} & \cdots & min_{i \in N} a_{i,n}        & 0
+        \end{pmatrix}
+        \end{equation*}
+
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio secuencial sobre A, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. En la iteración $\tau$, sabemos que $i^\tau \in BR_1(y^{\tau - 1})$ en $A$. Como el pago de $k+1$ para el jugador $1$ es siempre el mínimo de la columna, para cualquier acción $j$ del jugador $2$ tendremos que $a_{i^\tau, j} > a_{k+1,j}$ y por tanto podemos afirmar que $i^\tau \in BR_1(y^{\tau - 1})$ en $A'$.
+
+    Para $j^\tau$ podemos razonar de forma análoga, solo que considerando la pertenencia a $BR_2(x^{\tau - 1})$ o $BR_2(x^\tau)$ según si hablamos de juego ficticio secuencial o alternante. \duda{asi o detallo mas?}
+
+    Podemos afirmar entonces que $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ es también una secuencia de juego ficticio (secuencial o alternante) válida en $A'$.
+\end{proof}
+
+
+Observemos que no valen lemas similares para la reducción en tamaño de los juegos. Agregar estados con poco incentivo no modifica las secuencias de juego ficticio, pero para un juego puede haber secuencias que pasen por todas las acciones de cada un jugador y que por tanto este no pueda reducirse a uno mas chico.
+
 \section{Convergencia de Juego Ficticio}
 
-En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismo. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que presentan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante.\cambios{mejor?}
+En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismo. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que presentan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante.
 
 \begin{theorem}
     Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^t, y^t)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash puro, entonces $(i*, j*)$ será también el perfil jugado en todas las iteraciones posteriores.
 \end{theorem}
 
 \begin{proof}
-    \cambios{demostracion nueva}
     Si en la iteracion $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1})$ y $j^* \in BR_1(x^{k-1})$. Sabemos también, por la definición de equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*})$ y $j^* \in BR_2(\pstrat{i^*})$.
 
     Veamos entonces que sucederá en la iteración $k+1$. Las creencias se actualizaran como
@@ -71,7 +130,6 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
             = \frac{\sum_{s=1}^{k-1}{\pstrat{i^s}}(k-1)}{k(k-1)} + \frac{\pstrat{i^*}}{k}
             = \frac{k - 1}{k} x^{k-1} + \frac{\pstrat{i^*}}{k}
     \]
-    \comentario{estas son las formulas de Berger en Brown's Original que las tira como alternativas pero no las demuestra}
     \[
         y^k = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}} + \pstrat{j^*}}{k}
             = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}}}{k} + \frac{\pstrat{j^*}}{k}
@@ -84,10 +142,10 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
     \begin{align*}
         BR_1(y^k) &= BR_1(\frac{k - 1}{k} y^{k-1} + \frac{j^*}{k}) \\
         &= \{i \in N : (A(\frac{k - 1}{k} y^{k-1} + \frac{j^*}{k}))_i = \max_{i' \in N} (A(\frac{k - 1}{k} y^{k-1} + \frac{j^*}{k}))_i'\}\\
-        &= \{i \in N : (\frac{k - 1}{k} Ay^{k-1} + \frac{Aj^*}{k})_i = \max_{i' \in N} (\frac{k - 1}{k} Ay^{k-1} + \frac{Aj^*}{k})_i'\}
+        &= \{i \in N : (\frac{k - 1}{k} Ay^{k-1} + A\frac{j^*}{k})_i = \max_{i' \in N} (\frac{k - 1}{k} Ay^{k-1} + A\frac{j^*}{k})_i'\}
     \end{align*}
 
-    Como sabemos que $i^*$ es indice máximo tanto de $Ay^{k-1}$ como de $Aj^*$, podemos afirmar que lo es también de esta combinación lineal de ambos \duda{este argumento esta bien asi? debería detallar más?} y por tanto que $i^* \in BR_1(y^k)$. Analogamente, $j^* \in BR_1(x^k)$. Por lo tanto, por la definición de juego ficticio, en la iteración $k$ se jugará nuevamente $(i^*, j^*)$ y este proceso se repetirá infinitamente \duda{que hacer aca con empates? agregar en el enunciado que haya un solo equilibrio?}.
+    Como sabemos que $i^*$ es indice máximo tanto de $Ay^{k-1}$ como de $Aj^*$, podemos afirmar que lo es también de esta combinación lineal de ambos y por tanto que $i^* \in BR_1(y^k)$. Analogamente, $j^* \in BR_1(x^k)$. Si huebiera mas acciones en los conjuntos de mejor respuesta, podemos asumir que aplica la misma regla de desempate que en la iteración anterior y serán estas las elegidas. \cambios{se me ocurrió esto para los empates ene ste teorema}. Por lo tanto, por la definición de juego ficticio, en la iteración $k$ se jugará nuevamente $(i^*, j^*)$ y este proceso se repetirá infinitamente.
 
 \end{proof}
 
@@ -96,17 +154,81 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
 \end{theorem}
 
 \begin{proof}
-    asd \falta{creo que sale parecida a la simultanea, pero quiero ver bien esa antes de probar esta}
+    \cambios{demostracion nueva}
+    Si en la iteracion $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1})$ y $j^* \in BR_1(x^{k})$. Sabemos también, por la definición de equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*})$ y $j^* \in BR_2(\pstrat{i^*})$.
+
+    Veamos entonces que sucederá en la iteración $k+1$, comenzando por el jugador fila. Sus creencias se actualizaran como
+    \[
+        y^k = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}} + \pstrat{j^*}}{k}
+            = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}}}{k} + \frac{\pstrat{j^*}}{k}
+            = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}}(k-1)}{k(k-1)} + \frac{\pstrat{j^*}}{k}
+            = \frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^*}}{k}
+    \]
+
+    Y su conjunto de mejor respuesta será
+    \begin{align*}
+        BR_1(y^k) &= BR_1(\frac{k - 1}{k} y^{k-1} + \frac{j^*}{k}) \\
+        &= \{i \in N : (A(\frac{k - 1}{k} y^{k-1} + \frac{j^*}{k}))_i = \max_{i' \in N} (A(\frac{k - 1}{k} y^{k-1} + \frac{j^*}{k}))_i'\}\\
+        &= \{i \in N : (\frac{k - 1}{k} Ay^{k-1} + A\frac{j^*}{k})_i = \max_{i' \in N} (\frac{k - 1}{k} Ay^{k-1} + A\frac{j^*}{k})_i'\}
+    \end{align*}
+
+    por lo que podemos afirmar, al igual que en el caso simultaneo, que jugará $i^*$ en la iteración $k+1$. Ahora, sabiendo la jugada del jugador fila, podemos analizar qué jugará el jugador columna. Sus creencias se actualizaran como
+    \[
+        x^{k+1} = \frac{\sum_{s=1}^{k}{\pstrat{i^s}} + \pstrat{i^*}}{k+1}
+            = \frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k+1} + \frac{\pstrat{i^*}}{k+1}
+            = \frac{k\sum_{s=1}^{k}{\pstrat{i^s}}}{k(k+1)} + \frac{\pstrat{i^*}}{k+1}
+            = \frac{k}{k+1} x^{k} + \frac{\pstrat{i^*}}{k+1}
+    \]
+
+    Y su conjunto de mejor respuesta será
+    \begin{align*}
+        BR_2(x^{k+1}) &= BR_2(\frac{k}{k+1} x^{k} + \frac{\pstrat{i^*}}{k+1}) \\
+        &= \{
+            j \in M :
+            ((\frac{k}{k+1} y^{k} + \frac{\pstrat{i^*}}{k+1})B)_j
+            = \max_{j' \in M} ((\frac{k}{k+1} x^{k} + \frac{\pstrat{i^*}}{k+1})B)_j'
+        \}\\
+        &= \{
+            j \in M :
+            (\frac{k}{k+1} x^{k}B + \frac{i^*}{k+1}B)_j =
+            \max_{j' \in M} (\frac{k}{k+1} x^{k}B + \frac{j^*}{k+1}B)_j'
+        \}
+    \end{align*}
+
+    Y podemos afirmar que como j* es índice máximo de $x^{k+1}B$ y de $i^*B$, lo es también de su combinación lineal. Asumiendo nuevamente que aplica la misma regla de desempate que en la iteración anterior, concluímos que en la iteración $k+1$ y por tanto en todas las sigueintes, se jugará nuevamente $(i^*, j^*)$.
+
+
 \end{proof}
 
-\section{Velocidad de Convergencia de AFP}
+\section{Velocidad de Convergencia de AFP} \label{sec:aportes:velocidad}
 
 En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos de suma constante simétricos y los no degenerados de $2 \times 3$.
 
-\falta{antes de pasar a las demostraciones hay que poner un lema sobre la codificacion en bits}
-\falta{comentar la cuestion de que se buscan caso especificos porque se generaliza a clases mas grandes}
+Pero antes, nos parece oportuno hablar mas detalladamente sobre algunas cuestiones respecto a las métricas contra las que se estudia la velocidad de convergencia de un proceso de aprendizaje en juegos. Puede llamar la atención que si bien en toda la bibliografía previa al trabajo de Brandt, Fischer y Harrenstein se habla sobre la velocidad de convergencia en función del tamaño del juego, los autores prefieren estudiarla en función del tamaño de representación en bits de los valores de las utilidades del juego. Este tipo de resultados es en realidad más general. Observemos que un juego que tenga $k$ acciones para un jugador necesitará, en cualquier codificación capaz de representar juegos bimatriciales finitos arbitrarios, $O(k)$ bits, ya que deberá codificar cada una de estas $k$ acciones con al menos un bit. Por otro lado, a efectos del estudio de la convergencia del juego ficticio, un juego con conjuntos de acciones de tamaños menores a $k$ pero que requiere $O(k)$ bits para ser representado, puede expandirse a uno con comportamiento equivalente de tamaño $k$. Esto lo mostraremos en los siguientes lemas:
+
+\begin{lemma}
+    % k_1, k_2
+    Sea $(A, B)$ un juego representable $O(k)$, de tamaño $n \times m$ con $n, m < k$, entonces existe un juego $(A', B')$ de tamaño $k \times k$ tal que toda secuencia $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ es un proceso de juego ficticio simultaneo en $(A, B)$ sí y solo sí lo es también en $(A', B')$.
+\end{lemma}
+
+\begin{proof}
+    asd \comentario{Mi idea es demostrar estos expandiendo con las acciones con minima ganancia y ver el proceso sigue igual porque no hay incentivo para jugar esas salvo empates.}
+\end{proof}
+
+\begin{lemma}
+    Sea $(A, B)$ un juego representable $O(k)$, de tamaño $n \times m$ con $n, m < k$, entonces existe un juego $(A', B')$ de tamaño $k \times k$ tal que toda secuencia $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ es un proceso de juego ficticio alternante en $(A, B)$ sí y solo sí lo es también en $(A', B')$.
+\end{lemma}
+\cambios{Este parrafo y estos lemas. No estoy seguro aun de si es la mejor formulación o de si así aportan.}
+
+% \falta{comentar la cuestion de que se buscan caso especificos porque se generaliza a clases mas grandes}
 
 Veamos primero que para el caso de los juegos de suma constante simétricos, el teorema de estos autores efectivamente es expandible de forma bastante directa a la variante alternante.
+
+\begin{theorem}
+    Existe un juego simétrico $A$ representable en $O(k)$ bits y una secuencia de juego ficticio alternante $(x^\tau, y^\tau)_{\tau \in \mathbb{}}$
+
+    En juegos de suma constante simétricos de dos jugadores, un proceso de juego ficticio alternante puede requerir una cantidad exponencial (en el tamaño de representación en bits de los valores de las utilidades del juego) de rondas antes de que un equilibrio sea jugado. \falta{estos los tengo que reescribir con los conceptos nuevos y de paso mas formal} \falta{en general, se le puede agregar más explicacion coloquial a estos teoremas}
+\end{theorem}
 
 \begin{theorem}
     En juegos de suma constante simétricos de dos jugadores, un proceso de juego ficticio alternante puede requerir una cantidad exponencial (en el tamaño de representación en bits de los valores de las utilidades del juego) de rondas antes de que un equilibrio sea jugado. \falta{estos los tengo que reescribir con los conceptos nuevos y de paso mas formal} \falta{en general, se le puede agregar más explicacion coloquial a estos teoremas}
