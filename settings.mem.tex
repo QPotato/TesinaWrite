@@ -19,7 +19,7 @@
 
 \usepackage[utf8]{inputenc}
 %\usepackage[spanish]{babel}
-\usepackage[spanish]{babel}
+\usepackage[spanish, es-tabla]{babel}
 \usepackage{paralist}
 \usepackage[hidelinks]{hyperref}
 \usepackage{array,multirow}
@@ -44,28 +44,10 @@
 %lemmas
 \usepackage{amsthm}
 \newtheorem{theorem}{Teorema}[section]
-\newtheorem{definition}{Definición}[theorem]
-\newtheorem{corollary}{Corolario}[theorem]
-\newtheorem{lemma}{Lema}[theorem]
-
-% Para graficar
-\usepackage{tikz}
-\usepackage{etoolbox}
-\usetikzlibrary{automata, positioning, shapes, arrows, calc}
-\tikzset{
-    block/.style =  { draw
-                    , thick
-                    , rectangle
-                    , fill=green!10},
-    dot/.style  =   { draw
-                    , circle
-                    , minimum size = .2em
-                    , inner sep = 0pt
-                    , outer sep = 0pt
-                    , fill=black
-                },
-    }
-
+\newtheorem{definition}{Definición}[section]
+\newtheorem{corollary}{Corolario}[section]
+\newtheorem{lemma}{Lema}[section]
+% \newtheorem{example}{Ejemplo}[section]
 
 \usepackage{listings}
 \usepackage{color}

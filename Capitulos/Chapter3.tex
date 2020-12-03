@@ -17,7 +17,20 @@
 % En este trabajo, nos enfocaremos en los juegos estratégicos de dos jugadores. Suponiendo $N = \{1, 2\}$ Estos juegos pueden expresarse de manera compacta en \concept{forma normal} mediante un par de matrices $(A, B)$ tales que $A_{ij} = u_1(a_i)
 
 % Definicion de bimatricial tomada de brown's original
-Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, es decir un juego de dos jugadores finito en el que el jugador $1$ (jugador fila) tiene acciones $i \in N = \{1, 2, ..., n\}$ y el jugador $2$ (jugador columna) tiene acciones $j \in M = \{1, 2, ..., m\}$. $A$, $B \in \mathbb{R}^{n \times m}$ son las matrices de pago de los jugadores $1$ y $2$. Si el jugador $1$ elige la acción $i$ y el jugador $2$ elige la acción $2$, la utilidad del jugador $1$ será $a_{ij}$ y la utilidad del jugador $2$ será $b_{ij}$.
+Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, es decir un juego de dos jugadores finito en el que el jugador $1$ (jugador fila) tiene acciones $i \in N = \{i_1, i_2, \dots, i_n\}$ y el jugador $2$ (jugador columna) tiene acciones $j \in M = \{j_1, j_2, \dots, j_m\}$. $A$, $B \in \mathbb{R}^{n \times m}$ son las matrices de pago de los jugadores $1$ y $2$. Si el jugador $1$ elige la acción $i$ y el jugador $2$ elige la acción $j$, la utilidad del jugador $1$ será $a_{i,j}$ y la utilidad del jugador $2$ será $b_{i,j}$. Describiremos los juegos en forma bimatricial con una matriz de duplas como la siguiente: \cambios{Encontré una notación que me convence e introduzco las tablitas.}
+
+\begin{equation*}
+    (A, B) =
+    \begin{bmatrix}
+        (a_{1, 1}, b_{1, 1})    & (a_{1, 2}, b_{1, 2})  & \cdots & (a_{1, m}, b_{1, m}) \\
+        (a_{2, 1}, b_{2, 1})    & (a_{2, 2}, b_{2, 2})  & \cdots & (a_{2, m}, b_{2, m}) \\
+        \vdots                  & \vdots                & \ddots & \vdots \\
+        (a_{n,1}, b_{n, 1})    & (a_{n, 2}, b_{n, 2})  & \cdots & (a_{n, m}, b_{n, m}) \\
+    \end{bmatrix}
+\end{equation*}
+\input{Tablas/matrizDefJuegosBimatriciales.tex}
+\comentario{Dejo las dos representaciones que se me ocurrieron, para mostrartelas, pero me gusta mas la segunda y la idea es dejar esa sola.}
+
 
 % Estrategias mixtas como vectores en conjunto delta
 Notaremos con $\Delta(X)$ al espacio de probabilidades sobre el conjunto $X$ y llamaremos \concept{estrategias mixtas} a los vectores de la forma $x \in \Delta(N)$ y $y \in \Delta(M)$. A las estrategias que asignan probabilidad $1$ a una acción y $0$ a todas las otras, las llamaremos \concept{estrategias puras}. Notaremos con $\pstrat{h}$ a la estrategia pura correspondiente a la acción $h$.
@@ -26,8 +39,9 @@ Notaremos con $\Delta(X)$ al espacio de probabilidades sobre el conjunto $X$ y l
 La utilidad esperada del jugador $1$ al jugar la acción $i$ contra la estrategia mixta $y$ del jugador $2$ será $(Ay)_i$. Analogamente, la utilidad esperada del jugador $2$ al jugar la acción $j$ contra la estrategia mixta $x$ del jugador $2$ será $(xB)_j$. Si ambos jugadores juegan estrategias mixtas $x$ e $y$ respectivamente, sus utilidades esperadas podrán calcularse como $xAy$ para el jugador $1$ e $yB^tx$ para el jugador $2$.
 
 % Best-response
-Si $y$ es una estrategia mixta del jugador $2$, definimos el \concept{conjunto de mejores respuestas} a $y$ como $BR_1(y) = \{i \in N : (Ay)_i = \max_{i' \in N} (Ay)_i'\}$ y análogamente, si $x$ es una estrategia mixta del jugador $2$, el conjunto de mejores respuestas a $x$ será $BR_2(x) = \{j \in N : (xB)_j = \max_{j' \in M} (xB)_{j'}\}$. Es decir, son los conjuntos de índices que maximizan las utilidades esperadas contra una estrategia dada.
+Si $y$ es una estrategia mixta del jugador $2$, definimos el \concept{conjunto de mejores respuestas} a $y$ como $BR_1(y) = \{i \in N : (Ay)_i = \max_{i' \in N} (Ay)_{i'}\}$ y análogamente, si $x$ es una estrategia mixta del jugador $2$, el conjunto de mejores respuestas a $x$ será $BR_2(x) = \{j \in N : (xB)_j = \max_{j' \in M} (xB)_{j'}\}$. Es decir, son los conjuntos de índices que maximizan las utilidades esperadas contra una estrategia dada.
 
+% Equilibrios de Nash mixtos y puros
 Llamaremos \concept{equilibrio de Nash} a todo perfil de estrategias mixtas $(x*, y*) \in \Delta(A) \times \Delta(B)$ que cumpla:
 \begin{gather}
     \forall i \in N, x^*_i > 0 \implies i \in BR_1(y^*) \\
@@ -40,6 +54,7 @@ En el caso particular de que las estrategias sean puras, al equilibrio lo llamar
 
 \section{Categorías de Juegos}
 
+% Intro categorias
 Es útil clasificar a los juegos en distintas categorías según sus propiedades. Presentamos a continuación algunas de las categorías de juegos mas estudiadas en la literatura sobre juego ficticio.
 
 \begin{definition}
@@ -65,7 +80,7 @@ Las siguientes definiciones corresponden a otras dos categorías de juegos que h
 \end{definition}
 
 \begin{definition}
-    Un juego $(A, B)$ de tamaño $n \times m$ es un \concept{juego de intereses idénticos} si $\forall i \in N, j \in M : a_{ij} = b_{ij}$.
+    Un juego $(A, B)$ de tamaño $n \times m$ es un \concept{juego de intereses idénticos} si $\forall i \in N, j \in M : a_{ij} = b_{ij}$. En este caso también nos referiremos al juego usando solo la matriz $A$. \cambios{esta ultima oracion}
 \end{definition}
 
 \falta{aca pueden ir comentarios sobre cuales de los juegos ejemplo caen en cuales categorías}
@@ -80,8 +95,8 @@ Existen en la literatura dos formas de definir el juego ficticio. Algunos autore
 \begin{definition} \label{def:fp:berger}
     Sean $(A, B)$ un juego en forma bimatricial de $n \times m$ y una secuencia $(i^\tau, j^\tau)$ con $i^\tau \in N$, $j^\tau \in M$ para todo $\tau \in \mathbb{N}$. Si tenemos unas secuencias de creencias $x^\tau$ e $y^\tau$ tales que para todo $\tau \in \mathbb{N}$:
     \begin{gather*}
-        x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{t}  \\
-        y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{t}
+        x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{\tau}  \\
+        y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{\tau}
     \end{gather*}
     Entonces:
     \begin{itemize}
@@ -96,7 +111,7 @@ Por otro lado, como los elementos iniciales son arbitrarios, un mismo juego pued
 
 Sobre la variante alternante vale aclarar que efectivamente, el jugador columna toma su decisión incorporando en sus creencias la información sobre qué jugó el jugador fila en la ronda actual, si bien esto puede resultar poco intuitivo ya que normalmente en teoría de juegos se representa jugadores eligiendo simutanea e independientemente. Otra observación interesante es que su acción inicial no es arbitraria sino que ya se encuentra fijada por la mejor respuesta o mejores respuestas a la acción del jugador fila.
 
-Diremos que un proceso de juego ficticio (simultaneo o alternante) converge de forma pura en la iteración $k$ si $(i^k, j^k)$ es un equilibrio de Nash puro. En el capítulo \ref{cap:aportes} veremos que cuando esto ocurre, $(i^k, j^k)$ se repetirá infinitamente desde este punto en el tiempo. Diremos también que el proceso converge de forma mixta si existe un equilibrio de Nash mixto tal que para todo $\epsilon > 0$ existe un $k \in \mathbb{N}$ tal que $|x^* - x^k| < \epsilon$ y $|y^* - y^k| < \epsilon$. \todo[inline]{esto podría ir en una sección propia y de paso meter ahi representacion de bits y convergencia en funcion de que}
+Diremos que un proceso de juego ficticio (simultaneo o alternante) converge de forma pura en la iteración $k$ si $(i^k, j^k)$ es un equilibrio de Nash puro. En el capítulo \ref{cap:aportes} veremos que cuando esto ocurre, $(i^k, j^k)$ se repetirá infinitamente desde este punto en el tiempo. Diremos también que el proceso converge de forma mixta si existe un equilibrio de Nash mixto tal que para todo $\epsilon > 0$ existe un $k \in \mathbb{N}$ tal que $|x^* - x^k| < \epsilon$ y $|y^* - y^k| < \epsilon$.
 
 \falta{aca puede ir un desarrollo de un FP para simultaneo y alternante con algun juego de los ejemplos}
 
@@ -129,4 +144,83 @@ Como podemos observar, la principal diferencia con la primer definición es que 
 % Convergencia en creencias
 
 % Relacion entre distintas convergencias
+
+
+\section{Ejemplos} \cambios{esta sección}
+
+Veamos como se aplican todos estos conceptos a algunos juegos clásicos de la literatura. Comenzaremos por el Dilema de los Prisioneros:
+
+% \begin{equation*}
+%     (A, B) =
+%     \begin{bmatrix}
+%         (2, 2) & (0, 3) \\
+%         (3, 0) & (1, 1)
+%     \end{bmatrix}
+% \end{equation*}
+
+
+\input{Tablas/matrizDilema.tex}
+
+Este juego es muy estudiado su propiedad de que si bien la mayor utilidad para ambos jugadores se encuentra en que se juegue el perfil $(i_1, j_2)$, su único equilibrio de Nash puro es el perfil $(i_2, j_2)$. En la tabla \ref{sfp:dilema:prisioneros} podemos observar como se desarrolla un proceso de juego ficticio simultaneo sobre este juego, comenzando desde $(i_1, j_1)$. Para las primeras 5 iteraciones, se muestra el perfil jugado, cómo se actualizan las creencias sobre la estrategia de los jugadores y las consecuentes utilidades esperadas de cada jugador para sus jugadas.
+
+\begin{table} % [h!]
+    \centering
+    \input{Tablas/sfp_pd.tex}
+    \caption{Proceso de juego ficticio simultaneo sobre el Dilema de los Prisioneros}
+    \label{sfp:dilema:prisioneros}
+\end{table}
+
+Como vemos, si ambos jugadores empiezan cooperando, en la segunda ronda la mejor respuesta individualmente para cada uno será desviarse de este perfil, jugando respectivamente $i_2$ y $j_2$. Las creencias, que como mencionamos previamente son observaciones empíricas de una estrategia mixta supuesta según el historial del oponente, ahora indican que este juega cada una de las acciones con probabilidad $0,5$. Como veremos en la seccion \ref{sec:convergencia:fp}, dado que $(i_2, j_2)$ es un equilibrio de Nash puro, podemos asegurar que se jugará infinitamente.
+
+La tabla \ref{afp:dilema:prisioneros} muestra el mismo juego pero en un proceso de juego ficticio alternante. Como vemos, ya en la primera iteración el jugador $2$ reacciona a $i_1$ jugando $j_2$ como mejor respuesta. El proceso continúa de forma similar, aunque el jugador fila cree que el jugador columna está siguiendo una estrategia pura.
+
+\begin{table} % [h!]
+    \centering
+    \input{Tablas/afp_pd.tex}
+    \caption{Proceso de juego ficticio alternante sobre el Dilema de los Prisioneros}
+    \label{afp:dilema:prisioneros}
+\end{table}
+
+Pasando al siguiente ejemplo, vemos en esta matriz el clásico juego de Piedra, Papel o Tijera. Dado que es un juego de suma cero, lo representamos solamente con las utilidades del jugador $1$. Además, para facilitar la lectura, nombramos las jugadas con $R$, $P$ y $S$ (por las iniciales en inglés).
+
+\input{Tablas/matrizPiedraPapelTIjeras.tex}
+
+En las tablas \ref{sfp:piedra:papel:tijera} y \ref{afp:piedra:papel:tijera} podemos ver respectivamente un desarrollo de juego ficticio simultaneo y altenernante. Para el caso simultaneo, el proceso comienza con el jugador fila jugando piedra y el columna jugando papel. Inmediatamente el jugador fila cambia su estrategia a jugar tijera, mientras el columna se mantiene en papel porque lo proyecta exitoso. En la tercera iteración el jugador $2$, esperando que el jugador $1$ juegue piedra o tijera con iguales probabilidades pero descartando que pueda jugar papel, maximizará su utilidad esperada jugando piedra. Estos cambios continuaran infinitamente pero lentamente, las creencias convergeran al unico equilibrio de Nash mixto de esto juego, que es que cada jugador juegue cada acción con $\frac{1}{3}$ de probabilidad. \falta{ajustar tamaño de estas tablas}
+
+\begin{table} % [h!]
+    \centering
+    \input{Tablas/sfp_rps.tex}
+    \caption{Proceso de juego ficticio simultaneo sobre Piedra, Papel o Tijera}
+    \label{sfp:piedra:papel:tijera}
+\end{table}
+
+El caso alternante es similar, aunque con una clara ventaja del jugador columna, que comienza ya reaccionando a la piedra del jugador fila con papel. Esta ventaja sin embargo va disminuyendo con el paso de las iteraciones y eventualmente también converge en creencias.
+
+
+\begin{table} % [h!]
+    \centering
+    \input{Tablas/afp_rps.tex}
+    \caption{Proceso de juego ficticio alternante sobre Piedra, Papel o Tijera}
+    \label{afp:piedra:papel:tijera}
+\end{table}
+
+Veamos por último un ejemplo bastante famoso en la literatura de juego ficticio.
+
+\input{Tablas/matrizShapley.tex}
+
+Este el juego de Shapley \cite{shapley:3x3}. Es muy conocido por por ser el primer juego de $3 \times 3$ publicado que no converge, de forma pura ni mixta, tanto para juego ficticio simultaneo como alternante. En las tablas \ref{sfp:shapley} y \ref{afp:shapley} vemos como se desarrollan estos procesos.
+
+
+\begin{table} % [h!]
+    \centering
+    \input{Tablas/afp_shapley.tex}
+    \caption{Proceso de juego ficticio simultaneo en el ejemplo de Shapley}
+    \label{sfp:shapley}
+\end{table}
+\begin{table} % [h!]
+    \centering
+    \input{Tablas/afp_shapley.tex}
+    \caption{Proceso de juego ficticio alternante en el ejemplo de Shapley}
+    \label{afp:shapley}
+\end{table}
 
