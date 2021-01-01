@@ -49,7 +49,7 @@ El caso alternante es un poco más complejo ya que el caso del jugador columna y
 
 \end{proof}
 
-\section{Conservación del Juego Ficticio} \cambios{toda esta sección}
+\section{Conservación del Juego Ficticio}
 
 En esta sección estudiaremos cómo las transformaciones a un juego afectan las secuencias de juego ficticio sobre el mismo. Esto nos es de intereses porque mas adelante nos permitirá encarar con mas claridad el estudio de la velocidad de convergencia del algoritmo. También, razonar un poco sobre esto nos permite entender mejor los resultados sobre convergencia de la literatura.
 
@@ -61,7 +61,6 @@ En los siguientes lemas, demostraremos esto para algunas de las clases de juegos
 
 \begin{lemma}
     Sea $A$ un juego de suma cero de tamaño $n$, existe un juego  de suma cero $A'$ de tamaño $n$ tal que toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (secuencial o alternante) en $A$ lo es también en $A'$.
-    \comentario{Saqué el sí y solo sí porque generan problemas los empates cuando reducís.}
 \end{lemma}
 
 \begin{proof}
@@ -79,7 +78,7 @@ En los siguientes lemas, demostraremos esto para algunas de las clases de juegos
 
     Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio secuencial sobre A, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. En la iteración $\tau$, sabemos que $i^\tau \in BR_1(y^{\tau - 1})$ en $A$. Como el pago de $n+1$ para el jugador $1$ es siempre el mínimo de la columna, para cualquier acción $j$ del jugador $2$ tendremos que $a_{i^\tau, j} > a_{n+1,j}$ y por tanto podemos afirmar que $i^\tau \in BR_1(y^{\tau - 1})$ en $A'$.
 
-    Para $j^\tau$ podemos razonar de forma análoga, solo que considerando la pertenencia a $BR_2(x^{\tau - 1})$ o $BR_2(x^\tau)$ según si hablamos de juego ficticio secuencial o alternante. \duda{asi o detallo mas?}
+    Para $j^\tau$ podemos razonar de forma análoga, solo que considerando la pertenencia a $BR_2(x^{\tau - 1})$ o $BR_2(x^\tau)$ según si hablamos de juego ficticio secuencial o alternante.
 
     Podemos afirmar entonces que $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ es también una secuencia de juego ficticio  válida en $A'$.
 \end{proof}
@@ -89,7 +88,7 @@ En los siguientes lemas, demostraremos esto para algunas de las clases de juegos
 \end{lemma}
 
 \begin{proof}
-    asd \comentario{Estoy pensando esta demostración. Y pensando cuáles vale la pena demostrar.}
+    asd
 \end{proof}
 
 
@@ -129,7 +128,7 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
         &= \{i \in N : (\frac{k - 1}{k} Ay^{k-1} + A\frac{j^*}{k})_i = \max_{i' \in N} (\frac{k - 1}{k} Ay^{k-1} + A\frac{j^*}{k})_i'\}
     \end{align*}
 
-    Como sabemos que $i^*$ es indice máximo tanto de $Ay^{k-1}$ como de $Aj^*$, podemos afirmar que lo es también de esta combinación lineal de ambos y por tanto que $i^* \in BR_1(y^k)$. Analogamente, $j^* \in BR_1(x^k)$. Si huebiera mas acciones en los conjuntos de mejor respuesta, podemos asumir que aplica la misma regla de desempate que en la iteración anterior y serán estas las elegidas. \cambios{se me ocurrió esto para los empates ene ste teorema}. Por lo tanto, por la definición de juego ficticio, en la iteración $k$ se jugará nuevamente $(i^*, j^*)$ y este proceso se repetirá infinitamente.
+    Como sabemos que $i^*$ es indice máximo tanto de $Ay^{k-1}$ como de $Aj^*$, podemos afirmar que lo es también de esta combinación lineal de ambos y por tanto que $i^* \in BR_1(y^k)$. Analogamente, $j^* \in BR_1(x^k)$. Si huebiera mas acciones en los conjuntos de mejor respuesta, podemos asumir que aplica la misma regla de desempate que en la iteración anterior y serán estas las elegidas. Por lo tanto, por la definición de juego ficticio, en la iteración $k$ se jugará nuevamente $(i^*, j^*)$ y este proceso se repetirá infinitamente.
 
 \end{proof}
 
@@ -138,7 +137,6 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
 \end{theorem}
 
 \begin{proof}
-    \cambios{demostracion nueva}
     Si en la iteracion $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1})$ y $j^* \in BR_1(x^{k})$. Sabemos también, por la definición de equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*})$ y $j^* \in BR_2(\pstrat{i^*})$.
 
     Veamos entonces que sucederá en la iteración $k+1$, comenzando por el jugador fila. Sus creencias se actualizaran como
@@ -184,9 +182,9 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
 
 \end{proof}
 
-\section{Velocidad de Convergencia de AFP} \label{sec:aportes:velocidad} \cambios{Toda esta sección. Falta un parrafo en el medio conectando lo de los bits.}
+\section{Velocidad de Convergencia de AFP} \label{sec:aportes:velocidad}
 
-En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}. En su paper, los autores presentan cotas superiores para la velocidad de convergencia del juego ficticio simultaneo en clases de juegos que se sabe que siempre convergen de forma pura \falta{checkear esto}. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos de suma constante \duda{aca quiero charlar lo de suma cero/constante} simétricos y los no degenerados de intereses idénticos.
+En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}. En su paper, los autores presentan cotas superiores para la velocidad de convergencia del juego ficticio simultaneo en clases de juegos que se sabe que siempre convergen de forma pura \falta{checkear esto}. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos de suma constante simétricos y los no degenerados de intereses idénticos.
 
 % Pero antes, nos parece oportuno hablar mas detalladamente sobre algunas cuestiones respecto a las métricas contra las que se estudia la velocidad de convergencia de un proceso de aprendizaje en juegos. Puede llamar la atención que si bien en toda la bibliografía previa al trabajo de Brandt, Fischer y Harrenstein se habla sobre la velocidad de convergencia en función del tamaño del juego, los autores prefieren estudiarla en función del tamaño de representación en bits de los valores de las utilidades del juego. Este tipo de resultados es en realidad más general. Observemos que un juego que tenga $k$ acciones para un jugador necesitará, en cualquier codificación capaz de representar juegos bimatriciales finitos arbitrarios, $O(k)$ bits, ya que deberá codificar cada una de estas $k$ acciones con al menos un bit. Por otro lado, a efectos del estudio de la convergencia del juego ficticio, un juego con conjuntos de acciones de tamaños menores a $k$ pero que requiere $O(k)$ bits para ser representado, puede expandirse a uno con comportamiento equivalente de tamaño $k$. Esto lo mostraremos en los siguientes lemas: \falta{hay que retocar este parrafo para referenciar la discusion previa sobre tamaños, bits, etc}
 
@@ -195,7 +193,7 @@ En esta sección nos enfocaremos en estudiar más detalladamente los resultados 
 Veamos primero que para el caso de los juegos de suma constante simétricos, el teorema de estos autores efectivamente es expandible de forma bastante directa a la variante alternante. Vale la pena notar que formulamos el teorema en términos de que el último perfil no sea un equilibrio de Nash puro, en vez de pedir que ninguno en la secuencia lo sea como hacen Brandt, Fischer y Harrenstein ya que por el principio de estabilidad, si alguno de los perfiles jugados en la secuencia fuera un equilibrio de Nash puro, todos los siguientes lo serían.
 
 \begin{theorem} \label{teorema:afp:velocidad:simetricos}
-    Existe un juego simétrico $A$ representable en $O(k)$ \duda{me genera duda lo de usar O(k) aca. Discutamoslo.} bits y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k}, j^{2^k})$ \comentario{por el principio de estabilidad, con esto alcanza para decir que no se jugo antes} no es un equilibrio de Nash puro.
+    Existe un juego simétrico $A$ representable en $O(k)$ bits y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
     Consideremos un juego en forma bimatricial con la siguiente matriz de pagos:
@@ -284,7 +282,7 @@ Por su parte, la demostración para el caso de los juegos no degenerados de $2 \
         \label{tabla:afp:velocidad:nondegen}
     \end{table}
 
-    La tabla \ref{tabla:afp:velocidad:nondegen} \duda{Fijate que la tabla anterior esta en funcion de $2^{-k}$ y esta de $\epsilon$. No se bien qué queda más entendible.}, muestra como se desarrolla este proceso. Para el jugador fila, justificar su decisión es trivial ya que la estrategia percibida de su oponente es pura y la utlidad esperada de  $i_2$ es siempre marginalmente mayor que la de $i_1$. Para entender por qué el jugador columna no cambia su estrategia, debemos notar que:
+    La tabla \ref{tabla:afp:velocidad:nondegen}, muestra como se desarrolla este proceso. Para el jugador fila, justificar su decisión es trivial ya que la estrategia percibida de su oponente es pura y la utlidad esperada de  $i_2$ es siempre marginalmente mayor que la de $i_1$. Para entender por qué el jugador columna no cambia su estrategia, debemos notar que:
 
     \begin{align*}
         \tau &\le 2^k = \frac{1}{\epsilon} \\
