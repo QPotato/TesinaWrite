@@ -1,6 +1,6 @@
 \chapter{Resultados}  \label{cap:aportes}
 
-\section{Equivalencia de las disntitas definiciones}
+\section{Equivalencia de las distintas definiciones}
 
 Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir el juego ficticio entre los distintos autores de la literatura. Ambas simplifican de distintas formas la definición original de Brown y si bien son similares, su equivalencia no es inmediatamente evidente, por lo que uno podría dudar de si un teorema expresado para una de las definiciones es válido con la otra. Por lo tanto, presentamos a continuación dos lemas sobre esta equivalencia, para el caso simultaneo y alternante respesctivamente. La idea será probar que los historiales de la definición \ref{def:fp:brandt} suman en cada iteracion la estrategia pura correspondiente a la acción elegida por la definicion \ref{def:fp:berger}. Comenzamos con el caso simulaneo.
 
@@ -333,19 +333,28 @@ El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrens
 
     \begin{table}
         \centering
-        \input{Tablas/afp_teorena_mejor_a.tex}
-        \caption{Proceso de juego ficticio alternante sobre el juego del teorema \label{teorema:afp:mejor} comenzando por $i_1$}
-        \label{tabla:afp:mejor:a}
-        \centering
         \input{Tablas/afp_teorena_mejor_b.tex}
-        \caption{Proceso de juego ficticio alternante sobre el juego del teorema \label{teorema:afp:mejor} comenzando por $i_2$}
+        \caption{Proceso de juego ficticio alternante sobre el juego del teorema \ref{teorema:afp:mejor} comenzando por $i_2$}
         \label{tabla:afp:mejor:b}
+        \centering
+        \input{Tablas/afp_teorena_mejor_a.tex}
+        \caption{Proceso de juego ficticio alternante sobre el juego del teorema \ref{teorema:afp:mejor} comenzando por $i_1$}
+        \label{tabla:afp:mejor:a}
     \end{table}
 
     Si el jugador fila juega $i^2$, el jugador columna responderá con $j^3$, siendo este el equilibrio puro. Si el jugador fila comienza con $i^1$, el jugador columna respondera con $j^2$. Esto hará que el jugador fila juegue $i^2$ en la segunda ronda por ser $A\pstrat{j^2} = (2, 2 + \epsilon)$, mientras que el jugador continuará fila continuara jugando $j^2$. Esta situacion se repetirá una ronda más, tras la cuál, la jugador columna se verá incentivado a jugar $j^3$. Los desarrollos de estos dos procesos pueden verse en las tablas \ref{tabla:afp:mejor:a} y \ref{tabla:afp:mejor:b}. Vemos entonces que, independientemente del valor de $k$, ambos procesos convergen de forma pura en 4 rondas o menos.
 
-    Pasemos ahora al caso simultaneo. Si el proceso comienza con el perfil ()
+    Pasemos ahora al caso simultaneo, para el cual nos basaremos en la prueba de Brandt, Fischer Y Harrenstein. Si el proceso comienza con el perfil $(i^1, j^1)$, entonces las utilidades esperadas serán $Ax^1 = (1, 0)$ e $y^1 B = (1, 2, 0)$ respectivamente. Luego, en la segunda iteración el jugador fila elegirá $i^1$ y el jugador columna $j^2$. Las utilidades esperadas se actualizaran entonces como $Ax^2 = (\frac{3}{2}, \frac{2 + 2^{-k}}{2})$ e $y^2 B = (1, 2, 0)$.
+    A continuación, por al menos $2^k$ rondas, los jugadores elegiran las mismas jugadas que en la iteración 2, dado que para todo $\tau$ tal que $2 \le i \le 2^k$, tendremos $Ax^\tau = (2 - \frac{1}{\tau}, 2 - \frac{2 + 2^{-k}}{\tau})$ e $y^\tau B = (1, 2, 0)$.
+    Luego, la secuencia de perfiles
 
-    \falta{a esta prueba le falta solamente la parte simultanea que es igual a la del paper de brandt, tengo que pasarla nomas}
+    \begin{center}
+    \begin{math}
+        (i^1, j^1), \underbrace{(i^1, j^2), ... (i^1, j^2)}_{\text{$2^k$ veces}}
+    \end{math}
+    \end{center}
+
+
+    es una secuencia de aprendizaje de juego ficticio simultaneo válida de este juego que es exponencialmente larga en $k$ y en la cúal no se juega ningún equilibrio de Nash puro.
 
 \end{proof}

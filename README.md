@@ -5,6 +5,7 @@ Este repositorio es una template con el formato basico de LaTeX para una tesina 
 ## Instrucciones
 
 - Forkea el repo.
+- `sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 echo "deb http://miktex.org/download/ubuntu focal universe" | sudo tee /etc/apt/sources.list.d/miktex.list & sudo apt-get install -y texlive-latex-base texlive-fonts-recommended texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra texlive-lang-spanish texlive-bibtex-extra texlive-science biber & sudo apt-get update`
 - Instalate [TeX Live](http://tug.org/texlive/) y [biber](http://biblatex-biber.sourceforge.net/) si aun no lo tenés.
 - Edita con tu editor favorito.
 - Buildea la tesis con `make` (arma la tesis con pdf, dvi, ps). Es medio quilombo el make porque tiene que correr varias veces para que biber agarre bien las referencias.

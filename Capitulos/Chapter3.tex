@@ -48,8 +48,6 @@ Llamaremos \concept{equilibrio de Nash} a todo perfil de estrategias mixtas $(x*
 
 En el caso particular de que las estrategias sean puras, al equilibrio lo llamaremos también \concept{equilibrio de Nash puro}.
 
-\falta{aca tiene que ir algunos ejemplos de juegos conocidos}
-
 \section{Categorías de Juegos}
 
 % Intro categorias
@@ -59,7 +57,7 @@ Es útil clasificar a los juegos en distintas categorías según sus propiedades
     Un juego $(A, B)$ de tamaño $n \times m$ es un \concept{juego de suma cero} si $\forall i \in N, j \in M : a_{ij} = -b_{ij}$. Para estos casos, nos referiremos al juego usando solo la matriz $A$.
 \end{definition}
 
-Los juegos de suma cero son una de las categorías mas estudiadas en teoría de juegos. Representan los juegos en los que un jugador siempre gana tanto como pierde el otro. Uno de los teoremas fundacionales del area, conocido como el Teorema de Minimax \cite{nash:minmax} establece que todos poseen un equilibrio de Nash puro y a la utilidad para el jugador fila de este perfil la llama el \concept{valor del juego}.
+Los juegos de suma cero son una de las categorías mas estudiadas en teoría de juegos. Representan los juegos en los que un jugador siempre gana tanto como pierde el otro. Uno de los teoremas fundacionales del area, conocido como el Teorema de Minimax \cite{nash:minmax} establece que todos poseen al menos un equilibrio de Nash puro y a la utilidad para el jugador fila en un equilibrio la llamamos \concept{valor del juego} (pues es la misma en todos los equilibrios).
 
 \begin{definition}
     Llamamos \concept{degenerado} a un juego bimatricial $(A, B)$ de tamaño $n \times m$ si se cumple alguna de las siguientes condiciones:
@@ -87,7 +85,7 @@ Las siguientes definiciones corresponden a otras dos categorías de juegos que h
 
 \todo[color=blue, inline]{Mas intro acá. Explicación coloquial. Capaz algo de la division del algoritmo en decision y actualizacion como dice en pattern:matching}
 
-Existen en la literatura dos formas de definir el juego ficticio. Algunos autores como Berger, Monderer, Sela, Shapley, Daskalakis y Pan \cite{browns:original} \cite{no:cycling} \cite{2x2:without} \cite{identical:interests} \cite{counter:karlin:strong} utilizan un definición del estilo de la siguiente, que resulta cómoda para estudiar convergencia y es la que veremos primero. Presentaremos dos variantes, correspodientes a la versión simultanea y a la alternante.
+Existen en la literatura dos formas de definir el juego ficticio. Algunos autores como Berger, Monderer, Sela, Shapley, Daskalakis y Pan \cite{browns:original} \cite{no:cycling} \cite{2x2:without} \cite{identical:interests} \cite{counter:karlin:strong} utilizan una definición del estilo de la siguiente, que resulta cómoda para estudiar convergencia y es la que veremos primero. Presentaremos dos variantes, correspodientes a la versión simultanea y a la alternante.
 
 
 \begin{definition} \label{def:fp:berger}
@@ -103,17 +101,15 @@ Existen en la literatura dos formas de definir el juego ficticio. Algunos autore
     \end{itemize}
 \end{definition}
 
-Vale la pena hacer algunos comentarios sobre esta primer definición. Para empezar, si observamos las secuencias de creencias, $x^\tau$ e $y\tau$, veremos que se componen de sumas de vectores unitarios, pero normalizados por el tiempo, por lo que son estrategias mixtas que se corresponden con la distribución empírica de las acciones de cada jugador.
+Vale la pena hacer algunos comentarios sobre esta primer definición. Para empezar, si observamos las secuencias de creencias, $x^\tau$ e $y^\tau$, veremos que se componen de sumas de vectores unitarios, pero normalizados por el tiempo, por lo que son estrategias mixtas que se corresponden con la distribución empírica de las acciones de cada jugador.
 
-Por otro lado, como los elementos iniciales son arbitrarios, un mismo juego puede tener tantos procesos de juego ficticio validos como jugadas iniciales existan. Mas aún, existe una ambigüedad en cuanto que acciones elige el proceso en los casos en los que uno o ambos de los conjuntos de mejor respuesta no son unitarios\footnote{Es por esto que es tan imporante en el estudio del juego ficticio la categoría de los juegos no degenerados, para los cuáles el conjunto de mejor respuesta es unitario.}. Cada posible decisión configura un proceso distinto y válido pero es normal hablar de \concept{reglas de desempate} para referirse a criterios uniformes para resolver estas ambigüedades. Más formalmente, podemos definir una regla de desempate como un par de funciones $d_1: \mathbb{P}(N) \rightarrow N$ y $d_2: \mathbb{P}(M) \rightarrow M$ que a cada subconjunto de acciones de un jugador en un eventual empate le asignan la acción que elegira el proceso.
+Por otro lado, como los elementos iniciales son arbitrarios, un mismo juego puede tener tantos procesos de juego ficticio válidos como jugadas iniciales existan. Mas aún, existe una ambigüedad en cuanto a que acciones elige el proceso en los casos en los que uno o ambos de los conjuntos de mejor respuesta no son unitarios\footnote{Es por esto que es tan imporante en el estudio del juego ficticio la categoría de los juegos no degenerados, para los cuáles el conjunto de mejor respuesta es unitario.}. Cada posible decisión configura un proceso distinto y válido pero es normal hablar de \concept{reglas de desempate} para referirse a criterios uniformes para resolver estas ambigüedades. Más formalmente, podemos definir una regla de desempate como un par de funciones $d_1: \mathbb{P}(N) \rightarrow N$ y $d_2: \mathbb{P}(M) \rightarrow M$ que a cada subconjunto de acciones de un jugador en un eventual empate le asignan la acción que elegirá el proceso.
 
 Sobre la variante alternante vale aclarar que efectivamente, el jugador columna toma su decisión incorporando en sus creencias la información sobre qué jugó el jugador fila en la ronda actual, si bien esto puede resultar poco intuitivo ya que normalmente en teoría de juegos se representa jugadores eligiendo simutanea e independientemente. Otra observación interesante es que su acción inicial no es arbitraria sino que ya se encuentra fijada por la mejor respuesta o mejores respuestas a la acción del jugador fila.
 
 Diremos que un proceso de juego ficticio (simultaneo o alternante) converge de forma pura en la iteración $k$ si $(i^k, j^k)$ es un equilibrio de Nash puro. En el capítulo \ref{cap:aportes} veremos que cuando esto ocurre, $(i^k, j^k)$ se repetirá infinitamente desde este punto en el tiempo. Diremos también que el proceso converge de forma mixta si existe un equilibrio de Nash mixto tal que para todo $\epsilon > 0$ existe un $k \in \mathbb{N}$ tal que $|x^* - x^k| < \epsilon$ y $|y^* - y^k| < \epsilon$.
 
-\falta{aca puede ir un desarrollo de un FP para simultaneo y alternante con algun juego de los ejemplos}
-
-Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar a la de Robinson \cite{robinson:zerosum} pero simplificada. Es más cómoda para estudiar velocidades de convergencia en juegos que se sabe que convergen.
+Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar a la de Robinson \cite{robinson:zerosum} pero simplificada. Es más cómoda para estudiar velocidades de convergencia en juegos que se sabe que convergen. A continuación, presentamos tambien esta definición.
 
 \begin{definition} \label{def:fp:brandt}
     Sea $(A, B)$ un juego en forma bimatricial de $n \times m$:
@@ -134,12 +130,6 @@ Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar
 \end{definition}
 
 Como podemos observar, la principal diferencia con la primer definición es que mientras en aquella se define una secuencia de jugadas que cumple una condicion contra un historial de creencias sobre la estrategia mixta del otro jugador, en esta la secuencia es de duplas de contadores de jugadas (sin normalizar, por lo que no son estrategias mixtas), que cumplen en cada iteración una condición contra producto de un elemento de la otra contra las matrices de pago, pero sin ser este tampoco el valor esperado de la jugada. En el capítulo \ref{cap:aportes} se demostrará que estas dos definiciones son equivalentes. Como en esta definición aparecen también casos ambigüos y aplica la misma noción de reglas de desempate.
-
-\falta{aca puede ir el mismo ejemplo de la def anterior, pero con esta}
-
-% Convergencia en pagos
-
-% Convergencia en creencias
 
 % Relacion entre distintas convergencias
 
