@@ -1,0 +1,14 @@
+\begin{tabular}{llllll}
+\toprule
+{} &       $(i, j)$ &              $x$     $x{^\tau}B$ &    $y$ &             $Ay$ \\
+Iteración &                &                  &                         &                         &                  \\
+\midrule
+$1$         &  $(i_1, j_1)$ &  $(1, 0)$ &  $(1, 2, 0)$ &  $(1, 0, 0)$ &                                $(1 , 0)$ \\
+$2$         &  $(i_1, j_2)$ &  $(1, 0)$ &  $(1, 2, 0)$ &  $(\frac{1}{2}, \frac{1}{2}, 0)$ &              $(\frac{3}{2}, \frac{2 + \epsilon}{2})$ \\
+$3$         &  $(i_1, j_2)$ &  $(1, 0)$ &  $(1, 2, 0)$ &  $(\frac{1}{3}, \frac{2}{3}, 0)$ &              $(0 , 3)$ \\
+        &  \vdots       \\
+$\tau$  &  $(i_1,\ j_2)$    &  $(1, 0)$ &  $(1, 2, 0)$  & $(\frac{1}{\tau}, \frac{\tau - 1}{\tau}, 0)$ & $(2 - \frac{1}{\tau}, 2 - \frac{2 + \epsilon}{\tau})$ \\
+        &  \vdots       \\
+$2^k$   &  $(i_1,\ j_2)$ &     $(1, 0)$ &  $(1, 2, 0)$  & $(\frac{1}{2^k}, \frac{2^k-1}{2^k}, 0)$      & $(2 - \frac{1}{2^k}, 2 - \frac{2 + \epsilon}{2^k})$ \\
+            \bottomrule
+\end{tabular}
