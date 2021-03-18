@@ -84,11 +84,27 @@ En los siguientes lemas, demostraremos esto para algunas de las clases de juegos
 \end{proof}
 
 \begin{lemma}
-    Sea $(A, B)$ un juego simétrico de tamaño $n \times m$, existe un juego de intereses idénticos $(A', B')$ de tamaño $n+1$ tal que toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (secuencial o alternante) en $(A, B)$ lo es también en $(A', B')$.
+    Sea $A$ un juego intereses idénticos de tamaño $n \times m$, existe un juego de intereses idénticos $A'$ de tamaño $n+1 \times m$ tal que toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (secuencial o alternante) en $(A, B)$ lo es también en $(A', B')$.
 \end{lemma}
 
 \begin{proof}
-    asd
+    % Creo que vale la misma demostracion de suma cero???
+    % Por eso queria demostrar simatricos???
+    Definimos el juego $A'$ como
+    \begin{equation*}
+        A' =
+        \begin{pmatrix}
+        a_{1,1} & a_{1,2} & \cdots & a_{1,m}     \\
+        a_{2,1} & a_{2,2} & \cdots & a_{2,m}    \\
+        \vdots  & \vdots  & \ddots & \vdots                  \\
+        a_{n,1} & a_{n,2} & \cdots & a_{n,m}    \\
+        \lambda & \lambda & \cdots &\lambda
+        \end{pmatrix}
+    \end{equation*} \falta{cambiar esto a las matrices nuevas}
+
+    con $\lambda = min(A) - 1$.
+    
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio secuencial sobre A, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. En la iteración $\tau$, sabemos que $i^\tau \in BR_1(y^{\tau - 1})$ en $A$. Como el pago de $n+1$ para el jugador $1$ es siempre el mínimo de la columna, para cualquier acción $j$ del jugador $2$ tendremos que $a_{i^\tau, j} > a_{n+1,j}$ y por tanto podemos afirmar que $i^\tau \in BR_1(y^{\tau - 1})$ en $A'$.
 \end{proof}
 
 
