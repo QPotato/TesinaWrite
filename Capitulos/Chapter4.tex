@@ -112,14 +112,14 @@ Observemos que no valen lemas similares para la reducción en tamaño de los jue
 
 \section{Convergencia de Juego Ficticio} \label{sec:convergencia:fp}
 
-En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismo. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que presentan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante.
+En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que desarollan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante e incluímos casos de empates.
 
 \begin{theorem}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^t, y^t)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash puro, entonces $(i*, j*)$ será también el perfil jugado en todas las iteraciones posteriores.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^t, y^t)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash puro, entonces $(i*, j*)$ será también el perfil jugado en todas las iteraciones posteriores.
 \end{theorem}
 
 \begin{proof}
-    Si en la iteracion $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1})$ y $j^* \in BR_1(x^{k-1})$. Sabemos también, por la definición de equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*})$ y $j^* \in BR_2(\pstrat{i^*})$.
+    Si en la iteracion $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1})$ y $j^* \in BR_2(x^{k-1})$ y por la definición de las reglas de desempate, $i^* = d_1(BR_1(y^{k-1}))$ y $j^* = d_2(BR_2(x^{k-1}))$. Sabemos también, por la definición de equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*})$ y $j^* \in BR_2(\pstrat{i^*})$.
 
     Veamos entonces que sucederá en la iteración $k+1$. Las creencias se actualizaran como
 
@@ -144,16 +144,22 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
         &= \{i \in N : (\frac{k - 1}{k} Ay^{k-1} + A\frac{j^*}{k})_i = \max_{i' \in N} (\frac{k - 1}{k} Ay^{k-1} + A\frac{j^*}{k})_i'\}
     \end{align*}
 
-    Como sabemos que $i^*$ es indice máximo tanto de $Ay^{k-1}$ como de $Aj^*$, podemos afirmar que lo es también de esta combinación lineal de ambos y por tanto que $i^* \in BR_1(y^k)$. Analogamente, $j^* \in BR_1(x^k)$. Si huebiera mas acciones en los conjuntos de mejor respuesta, podemos asumir que aplica la misma regla de desempate que en la iteración anterior y serán estas las elegidas. Por lo tanto, por la definición de juego ficticio, en la iteración $k$ se jugará nuevamente $(i^*, j^*)$ y este proceso se repetirá infinitamente.
+    Como sabemos que $i^*$ es indice máximo tanto de $Ay^{k-1}$ como de $Aj^*$, podemos afirmar que lo es también de esta combinación lineal de ambos y por tanto que $i^* \in BR_1(y^k)$. 
+    
+    Más aun, sabemos que $i^* = d_1(BR_1(y^{k-1}))$. Y como $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$, diremos que $i^* = d_1(BR_1(y^{k}))$.
+    
+    Analogamente, podemos afirmar que $j^* \in BR_2(x^k)$ y $j^* = d_2(BR_2(x^k))$.
+    
+    Por lo tanto, por la definición de juego ficticio, en la iteración $k$ se jugará nuevamente $(i^*, j^*)$ y este proceso se repetirá infinitamente.
 
 \end{proof}
 
 \begin{theorem}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio alternante en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^t, y^t)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash puro, entonces $(i*, j*)$ será también el perfil jugado en todas las iteraciones posteriores.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio alternante en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^t, y^t)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash puro, entonces $(i*, j*)$ será también el perfil jugado en todas las iteraciones posteriores.
 \end{theorem}
 
 \begin{proof}
-    Si en la iteracion $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1})$ y $j^* \in BR_1(x^{k})$. Sabemos también, por la definición de equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*})$ y $j^* \in BR_2(\pstrat{i^*})$.
+    Si en la iteracion $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1})$ y $j^* \in BR_2(x^{k-1})$ y por la definición de las reglas de desempate, $i^* = d_1(BR_1(y^{k-1}))$ y $j^* = d_2(BR_2(x^{k-1}))$. Sabemos también, por la definición de equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*})$ y $j^* \in BR_2(\pstrat{i^*})$.
 
     Veamos entonces que sucederá en la iteración $k+1$, comenzando por el jugador fila. Sus creencias se actualizaran como
     \[
@@ -193,7 +199,7 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
         \}
     \end{align*}
 
-    Y podemos afirmar que como j* es índice máximo de $x^{k+1}B$ y de $i^*B$, lo es también de su combinación lineal. Asumiendo nuevamente que aplica la misma regla de desempate que en la iteración anterior, concluímos que en la iteración $k+1$ y por tanto en todas las sigueintes, se jugará nuevamente $(i^*, j^*)$.
+    Y podemos afirmar que como $j^*$ es índice máximo de $x^{k+1}B$ y de $i^*B$, lo es también de su combinación lineal. Como sabemos que $d_2$ desempatá en favor de $j^*$, concluímos que en la iteración $k+1$ y por tanto en todas las sigueintes, se jugará nuevamente $(i^*, j^*)$.
 
 
 \end{proof}
