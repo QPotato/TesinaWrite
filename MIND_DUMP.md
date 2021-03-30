@@ -19,3 +19,7 @@
 - Reglas de desempate:
   - No me gusta que la definicion sea como un comentario. Dificil de citar.
   - Que tal si expandimos la definicion de FP o presentamos una nuestra que incorpora las reglas de desempate?
+
+## In Progress
+
+- Meti una definicion propia de FP con reglas de desempate. Si le gusta a Ariel, hay que aplicarla en todos los teoremas y eso.

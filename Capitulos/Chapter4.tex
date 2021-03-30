@@ -49,6 +49,29 @@ El caso alternante es un poco más complejo ya que el caso del jugador columna y
 
 \end{proof}
 
+\section{Reglas de Desempate}
+
+Haremos foco ahora en otra cuestión mencionada en la sección \ref{sec:def:fp} sobre las definiciones de juego ficticio. La definición de que de Berger deja implicita la ambigüedad de los casos en los que los conjuntos de mejor respuesta no son unitarios. Presentaremos entonces una definición mejorada que mejora este aspecto. Comenzaremos por formalizar el concepto de \concept{reglas de desempate}:
+
+\begin{definition}
+    Llamamos \concept{reglas de desempate} de un juego ficticio a un par de funciones $d_1: \mathbb{P}^+(N) \rightarrow N$ y $d_2: \mathbb{P}^+(M) \rightarrow M$ que a cada subconjunto de acciones de un jugador en un eventual empate le asignan la acción que elegirá el proceso.
+\end{definition}
+
+Usando este concepto, presentaremos ahora la definición de juego ficticio que utilizaremos durante el resto de este trabajo:
+
+\begin{definition} \label{def:fp:berger_desempate}
+    Sean $(A, B)$ un juego en forma bimatricial de $n \times m$ y una secuencia $(i^\tau, j^\tau)$ con $i^\tau \in N$, $j^\tau \in M$ para todo $\tau \in \mathbb{N}$. Si $d_1$ y $d_2$ son reglas de desmpate y tenemos unas secuencias de creencias $x^\tau$ e $y^\tau$ tales que para todo $\tau \in \mathbb{N}$:
+    \begin{gather*}
+        x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{\tau}  \\
+        y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{\tau}
+    \end{gather*}
+    Entonces:
+    \begin{itemize}
+        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio simultaneo si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau+1} = d_2(BR_2(x^\tau))$.
+        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio alternante si $i^1$ es un elemento arbitrario de $N$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau} = d_2(BR_2(x^\tau))$.
+    \end{itemize}
+\end{definition}
+
 \section{Conservación del Juego Ficticio}
 
 En esta sección estudiaremos cómo las transformaciones a un juego afectan las secuencias de juego ficticio sobre el mismo. Esto nos es de intereses porque mas adelante nos permitirá encarar con mas claridad el estudio de la velocidad de convergencia del algoritmo. También, razonar un poco sobre esto nos permite entender mejor los resultados sobre convergencia de la literatura.
