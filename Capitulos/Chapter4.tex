@@ -215,7 +215,7 @@ En esta sección nos enfocaremos en estudiar más detalladamente los resultados 
 Veamos primero que para el caso de los juegos de suma constante simétricos, el teorema de estos autores efectivamente es expandible de forma bastante directa a la variante alternante. Vale la pena notar que formulamos el teorema en términos de que el último perfil no sea un equilibrio de Nash puro, en vez de pedir que ninguno en la secuencia lo sea como hacen Brandt, Fischer y Harrenstein ya que por el principio de estabilidad, si alguno de los perfiles jugados en la secuencia fuera un equilibrio de Nash puro, todos los siguientes lo serían.
 
 \begin{theorem} \label{teorema:afp:velocidad:simetricos}
-    Existe un juego simétrico $A$ representable en $O(k)$ bits y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro.
+    Existe un juego simétrico $A$ representable en $O(k)$ bits, con al menos un equilibrio de Nash puro y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
     Consideremos un juego en forma bimatricial con la siguiente matriz de pagos:
@@ -273,7 +273,7 @@ Veamos primero que para el caso de los juegos de suma constante simétricos, el 
 Por su parte, la demostración para el caso de los juegos no degenerados de $2 \times 3$ es un poco menos directa y requiere plantear una ligera variante del juego originalmente propuesto por Brandt, Fischer y Harrenstein. \falta{discutir un poco como afecta el cambio de la matriz}
 
 \begin{theorem} \label{teorema:afp:velocidad:nondegen}
-    Existe un juego no degenerado de intereses identicos $A$ representable en $O(k)$ bits y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que para todo $\tau < 2^k$, $(i^\tau, j^\tau)$ no es un equilibrio de Nash puro.
+    Existe un juego no degenerado de intereses identicos $A$ representable en $O(k)$ bits, con al menos un equilibrio de Nash puro y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que para todo $\tau < 2^k$, $(i^\tau, j^\tau)$ no es un equilibrio de Nash puro.
 \end{theorem}
 
 \begin{proof}
