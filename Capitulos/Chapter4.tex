@@ -135,7 +135,16 @@ Observemos que no valen lemas similares para la reducción en tamaño de los jue
 
 \section{Convergencia de Juego Ficticio} \label{sec:convergencia:fp}
 
+% Mencionar que agregamos reglas de desempate y entonces el teorema es mas piola
 En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que desarollan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante e incluímos casos de empates.
+
+\begin{lemma}
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^t, y^t)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash puro, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k}) \subseteq BR_1(x^{k-1})$.
+\end{lemma}
+
+\begin{proof}
+    
+\end{proof}
 
 \begin{theorem}
     Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^t, y^t)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash puro, entonces $(i*, j*)$ será también el perfil jugado en todas las iteraciones posteriores.
