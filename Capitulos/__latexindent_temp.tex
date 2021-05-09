@@ -5,10 +5,10 @@
 Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir el juego ficticio entre los distintos autores de la literatura. Ambas simplifican de distintas formas la definición original de Brown y si bien son similares, su equivalencia no es inmediatamente evidente, por lo que uno podría dudar de si un teorema expresado para una de las definiciones es válido con la otra. Por lo tanto, presentamos a continuación dos lemas sobre esta equivalencia, para el caso simultaneo y alternante respectivamente. La idea será probar que los historiales de la definición \ref{def:fp:brandt} suman en cada iteración la estrategia pura correspondiente a la acción elegida por la definición \ref{def:fp:berger}. Comenzamos con el caso simultaneo.
 
 \begin{lemma} \label{lema:equiv:sim}
-    % $i^k$ jugada del jugador fila en tiempo $t$
-    % $j^k$ jugada del jugador columna en tiempo $t$
-    % $y^k$ creencias del jugador fila sobre la estrategia del jugador columna en tiempo $t$
-    % $x^k$ creencias del jugador columna sobre la estrategia del jugador fila en tiempo $t$
+    % $i^k$ jugada del jugador fila en tiempo t
+    % $j^k$ jugada del jugador columna en tiempo t
+    % $y^k$ creencias del jugador fila sobre la estrategia del jugador columna en tiempo t
+    % $x^k$ creencias del jugador columna sobre la estrategia del jugador fila en tiempo t
     % $p^k$ historial de jugadas del jugador fila
     % $q^k$ historial de jugadas del jugador columna
     Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(\pstrat{i^\tau}, \pstrat{j^\tau})_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultaneo (según la definición \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultaneo (según la definición \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$, $q^1 = \pstrat{j^1}$ y ambas usan la misma regla de desempate. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, $\forall \tau \in \mathbb{N}$, se cumplen:
@@ -28,13 +28,13 @@ Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir 
 El caso alternante es un poco más complejo ya que el caso del jugador columna ya no es análogo al del jugador fila.
 
 \begin{lemma}
-    % $i^k$ jugada del jugador fila en tiempo $t$
-    % $j^k$ jugada del jugador columna en tiempo $t$
-    % $y^k$ creencias del jugador fila sobre la estrategia del jugador columna en tiempo $t$
-    % $x^k$ creencias del jugador columna sobre la estrategia del jugador fila en tiempo $t$
+    % $i^k$ jugada del jugador fila en tiempo t
+    % $j^k$ jugada del jugador columna en tiempo t
+    % $y^k$ creencias del jugador fila sobre la estrategia del jugador columna en tiempo t
+    % $x^k$ creencias del jugador columna sobre la estrategia del jugador fila en tiempo t
     % $p^k$ historial de jugadas del jugador fila
     % $q^k$ historial de jugadas del jugador columna
-    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definición \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definición \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$ y ambas usan la misma regla de desempate. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, para todo $\tau \in \mathbb{N}$, se cumplen:
+    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definicioón \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definicion \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$ y ambas usan la misma regla de desempate. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, para todo $\tau \in \mathbb{N}$, se cumplen:
 
     \[ p^{\tau} = \sum_{s=1}^\tau{\pstrat{i^s}} \]
     \[ q^{\tau} = \sum_{s=1}^\tau{\pstrat{j^s}} \]
@@ -51,7 +51,7 @@ El caso alternante es un poco más complejo ya que el caso del jugador columna y
 
 \section{Reglas de Desempate}
 
-Haremos foco ahora en otra cuestión mencionada en la sección \ref{sec:def:fp} sobre las definiciones de juego ficticio. La definición de que de Berger deja implícita la ambigüedad de los casos en los que los conjuntos de mejor respuesta no son unitarios. Presentaremos entonces una definición mejorada que mejora este aspecto. Comenzaremos por formalizar el concepto de \concept{reglas de desempate}:
+Haremos foco ahora en otra cuestión mencionada en la sección \ref{sec:def:fp} sobre las definiciones de juego ficticio. La definición de que de Berger deja implicita la ambigüedad de los casos en los que los conjuntos de mejor respuesta no son unitarios. Presentaremos entonces una definición mejorada que mejora este aspecto. Comenzaremos por formalizar el concepto de \concept{reglas de desempate}:
 
 \begin{definition}
     Llamamos \concept{reglas de desempate} de un juego ficticio a un par de funciones $d_1: \mathbb{P}^+(N) \rightarrow N$ y $d_2: \mathbb{P}^+(M) \rightarrow M$ que a cada subconjunto de acciones de un jugador en un eventual empate le asignan la acción que elegirá el proceso.
@@ -136,10 +136,10 @@ Observemos que no valen lemas similares para la reducción en tamaño de los jue
 \section{Convergencia de Juego Ficticio} \label{sec:convergencia:fp}
 
 % Mencionar que agregamos reglas de desempate y entonces el teorema es mas piola
-En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que desarrollan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante e incluimos casos de empates. \todo{hay que reescribir este párrafo}
+En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que desarollan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante e incluímos casos de empates.
 
 \begin{lemma}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $i^* \in BR_1(y^{k})$ y $j^* \in BR_2(x^{k})$.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i*, j*)$, entonces $i^* \in BR_1(y^{k})$ y $j^* \in BR_2(x^{k})$.
 \end{lemma}
 \begin{proof}
 
@@ -171,7 +171,7 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
 \end{proof}
 
 \begin{lemma}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k}) \subseteq BR_2(x^{k-1})$.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i*, j*)$, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k}) \subseteq BR_2(x^{k-1})$.
 \end{lemma}
 
 \begin{proof}
@@ -415,7 +415,7 @@ El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrens
         \label{tabla:afp:mejor:c}
     \end{table}
 
-    Si el jugador fila juega $i^2$, el jugador columna responderá con $j^3$, siendo este el equilibrio puro. Si el jugador fila comienza con $i^1$, el jugador columna responderá con $j^2$. Esto hará que el jugador fila juegue $i^2$ en la segunda ronda por ser $A\pstrat{j^2} = (2, 2 + \epsilon)$, mientras que el jugador continuará fila continuara jugando $j^2$. Esta situación se repetirá una ronda más, tras la cuál, la jugador columna se verá incentivado a jugar $j^3$. Los desarrollos de estos dos procesos pueden verse en las tablas \ref{tabla:afp:mejor:a} y \ref{tabla:afp:mejor:b}. Vemos entonces que, independientemente del valor de $k$, ambos procesos convergen de forma pura en 4 rondas o menos.
+    Si el jugador fila juega $i^2$, el jugador columna responderá con $j^3$, siendo este el equilibrio puro. Si el jugador fila comienza con $i^1$, el jugador columna respondera con $j^2$. Esto hará que el jugador fila juegue $i^2$ en la segunda ronda por ser $A\pstrat{j^2} = (2, 2 + \epsilon)$, mientras que el jugador continuará fila continuara jugando $j^2$. Esta situación se repetirá una ronda más, tras la cuál, la jugador columna se verá incentivado a jugar $j^3$. Los desarrollos de estos dos procesos pueden verse en las tablas \ref{tabla:afp:mejor:a} y \ref{tabla:afp:mejor:b}. Vemos entonces que, independientemente del valor de $k$, ambos procesos convergen de forma pura en 4 rondas o menos.
 
     Pasemos ahora al caso simultaneo, para el cual nos basaremos en la prueba de Brandt, Fischer Y Harrenstein. Si el proceso comienza con el perfil $(i^1, j^1)$, entonces las utilidades esperadas serán $Ay^1 = (1, 0)$ e $x^1 B = (1, 2, 0)$ respectivamente. Luego, en la segunda iteración el jugador fila elegirá $i^1$ y el jugador columna $j^2$. Las utilidades esperadas se actualizaran entonces como $Ay^2 = (\frac{3}{2}, \frac{2 + \epsilon}{2})$ y $x^2 B = (1, 2, 0)$.
 

@@ -23,3 +23,6 @@
 ## In Progress
 
 - Meti una definicion propia de FP con reglas de desempate. Si le gusta a Ariel, hay que aplicarla en todos los teoremas y eso.
+- La onda es que con los dos lemas el teorema sale solo, aplicando definiciond de regla de desempate.
+- En el primer lema, hay que argumentar la pertenencia con desigualdades por lo que sabemos de i*.
+- Capaz en vez de demostrar para los alternantes, se puede simplemente decir que es muy parecida a la del simultaneo.

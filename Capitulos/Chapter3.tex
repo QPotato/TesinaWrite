@@ -16,7 +16,7 @@
 
 % En este trabajo, nos enfocaremos en los juegos estratégicos de dos jugadores. Suponiendo $N = \{1, 2\}$ Estos juegos pueden expresarse de manera compacta en \concept{forma normal} mediante un par de matrices $(A, B)$ tales que $A_{ij} = u_1(a_i)
 
-% Definicion de bimatricial tomada de brown's original
+% Definición de bimatricial tomada de Brown's original
 Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, es decir un juego de dos jugadores finito en el que el jugador $1$ (jugador fila) tiene acciones $i \in N = \{i_1, i_2, \dots, i_n\}$ y el jugador $2$ (jugador columna) tiene acciones $j \in M = \{j_1, j_2, \dots, j_m\}$. $A$, $B \in \mathbb{R}^{n \times m}$ son las matrices de pago de los jugadores $1$ y $2$. Si el jugador $1$ elige la acción $i$ y el jugador $2$ elige la acción $j$, la ganancia del jugador $1$ será $a_{i,j}$ y la ganancia del jugador $2$ será $b_{i,j}$. Describiremos los juegos en forma bimatricial con una matriz de pares como la siguiente:
 
 \input{Tablas/matrizDefJuegosBimatriciales.tex}
@@ -24,13 +24,13 @@ Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, es decir un juego de
 % Estrategias mixtas como vectores en conjunto delta
 Notaremos con $\Delta(X)$ al espacio de probabilidades sobre el conjunto $X$ y llamaremos \concept{estrategias mixtas} a los vectores de la forma $x \in \Delta(N)$ y $y \in \Delta(M)$. A las estrategias que asignan probabilidad $1$ a una acción y $0$ a todas las otras, las llamaremos \concept{estrategias puras}. Notaremos con $\pstrat{h}$ a la estrategia pura correspondiente a la acción $h$.
 
-% Expected payoff como producto de matriz por vector
-La ganancia esperada del jugador $1$ al jugar la acción $i$ contra la estrategia mixta $y$ del jugador $2$ será $(Ay)_i$. Analogamente, la ganancia esperada del jugador $2$ al jugar la acción $j$ contra la estrategia mixta $x$ del jugador $2$ será $(xB)_j$. Si ambos jugadores juegan las estrategias mixtas $x$ e $y$ respectivamente, sus ganancias esperadas pueden calcularse como $xAy$ para el jugador $1$ e $yB^tx$ para el jugador $2$.
+% Ganancia esperada como producto de matriz por vector
+La ganancia esperada del jugador $1$ al jugar la acción $i$ contra la estrategia mixta $y$ del jugador $2$ será $(Ay)_i$. Análogamente, la ganancia esperada del jugador $2$ al jugar la acción $j$ contra la estrategia mixta $x$ del jugador $2$ será $(xB)_j$. Si ambos jugadores juegan las estrategias mixtas $x$ e $y$ respectivamente, sus ganancias esperadas pueden calcularse como $xAy$ para el jugador $1$ e $yB^tx$ para el jugador $2$.
 
-% Best-response
+% Mejor Respuesta
 Si $y$ es una estrategia mixta del jugador $2$, definimos el \concept{conjunto de mejores respuestas} a $y$ como $BR_1(y) = \{i \in N : (Ay)_i = \max_{i' \in N} (Ay)_{i'}\}$ y, análogamente, si $x$ es una estrategia mixta del jugador $2$, el conjunto de mejores respuestas a $x$ será $BR_2(x) = \{j \in N : (xB)_j = \max_{j' \in M} (xB)_{j'}\}$. Es decir, son los conjuntos de índices que maximizan las ganancias esperadas contra una estrategia dada.
 
-% Best-response en mixtas
+% Mejor Respuesta en mixtas
 Este concepto puede expandirse de índices a estrategias mixtas. Si $x$ es una estrategia mixta del jugador 1 e $y$ es una estrategia mixta del jugador 2, decimos que $x \in BR_1(y)$ si $\forall i \in N, x_i > 0 \implies i \in BR_1(y)$.
 
 % Equilibrios de Nash mixtos y puros
@@ -53,11 +53,11 @@ Los juegos de suma cero son una de las categorías más estudiadas en teoría de
         \item Existen $i, i' \in N$ y $j \in M$ con $i \neq i$' tales que $a_{ij} = a_{i'j}$
         \item Existen $j, j' \in M$ e $i \in N$ con $j \neq j$' tales que $b_{ij} = b_{ij'}$
     \end{itemize}
-    En caso contrario, decimo que el juego es \concept{no degenerado}.
+    En caso contrario, decimos que el juego es \concept{no degenerado}.
 \end{definition}
 Los juegos no degenerados son de particular interés porque capturan el concepto de un juego en el que, para cada acción del rival, no existen dos acciones con el mismo pago. Por lo tanto, el conjunto de mejor respuesta contra una acción dada es siempre unitario.
 
-Las siguientes definiciones corresponden a otras dos categorías de juegos que han sido muy estudiados por sus propiedades de convergencia en los procesos de juego ficticio. Nos seran útiles en la sección \ref{sec:aportes:velocidad} cuando discutamos los resultados sobre su velocidad de convergencia.
+Las siguientes definiciones corresponden a otras dos categorías de juegos que han sido muy estudiados por sus propiedades de convergencia en los procesos de juego ficticio. Nos serán útiles en la sección \ref{sec:aportes:velocidad} cuando discutamos los resultados sobre su velocidad de convergencia.
 
 \begin{definition}
     Un juego bimatricial $(A, B)$ de tamaño $n \times n$ es un \concept{juego simétrico} si $\forall i, j \in N : a_{ij} = -b_{ji}$
@@ -91,13 +91,13 @@ Existen en la literatura dos formas de definir el juego ficticio. Algunos autore
 
 Vale la pena hacer algunos comentarios sobre esta primera definición. Para empezar, observando las secuencias de creencias, $x^\tau$ e $y^\tau$, veremos que se componen de sumas de vectores unitarios, pero normalizados por el tiempo, por lo que son estrategias mixtas que se corresponden con la distribución empírica de las acciones de cada jugador.
 
-Por otro lado, como los elementos iniciales son arbitrarios, un mismo juego puede tener tantos procesos de juego ficticio válidos como jugadas iniciales existan. Más aún, existe una ambigüedad en cuanto a qué acciones elige el proceso en los casos en los que alguno de los conjuntos de mejor respuesta no sea unitario\footnote{Es por esto que es tan imporante en el estudio del juego ficticio la categoría de los juegos no degenerados, para los cuales el conjunto de mejor respuesta es unitario.}. Cada posible decisión configura un proceso distinto y válido, por lo que algunos autores mencionan informalmente el concepto de \concept{reglas de desempate}. En el capítulo \ref{cap:aportes} definiremos formalmente este concepto y presentaremos una definición propia de Juego Ficticio que elimina esta ambigüedad.
+Por otro lado, como los elementos iniciales son arbitrarios, un mismo juego puede tener tantos procesos de juego ficticio válidos como jugadas iniciales existan. Más aún, existe una ambigüedad en cuanto a qué acciones elige el proceso en los casos en los que alguno de los conjuntos de mejor respuesta no sea unitario\footnote{Es por esto que es tan importante en el estudio del juego ficticio la categoría de los juegos no degenerados, para los cuales el conjunto de mejor respuesta es unitario.}. Cada posible decisión configura un proceso distinto y válido, por lo que algunos autores mencionan informalmente el concepto de \concept{reglas de desempate}. En el capítulo \ref{cap:aportes} definiremos formalmente este concepto y presentaremos una definición propia de Juego Ficticio que elimina esta ambigüedad.
 
-Sobre la variante alternante vale aclarar que efectivamente, el jugador columna toma su decisión incorporando en sus creencias la información sobre qué jugó el jugador fila en la ronda actual, si bien esto puede resultar poco intuitivo ya que normalmente en teoría de juegos se representa jugadores eligiendo simutánea e independientemente. Otra observación relevante es que su acción inicial no es arbitraria sino que ya se encuentra fijada por la mejor respuesta o mejores respuestas a la acción del jugador fila.
+Sobre la variante alternante vale aclarar que efectivamente, el jugador columna toma su decisión incorporando en sus creencias la información sobre qué jugó el jugador fila en la ronda actual, si bien esto puede resultar poco intuitivo ya que normalmente en teoría de juegos se representa jugadores eligiendo simultánea e independientemente. Otra observación relevante es que su acción inicial no es arbitraria sino que ya se encuentra fijada por la mejor respuesta o mejores respuestas a la acción del jugador fila.
 
 Diremos que un proceso de juego ficticio (simultaneo o alternante) converge de forma pura en la iteración $k$ si $(i^k, j^k)$ es un equilibrio de Nash puro. En el capítulo \ref{cap:aportes} veremos que cuando esto ocurre, $(i^k, j^k)$ se repetirá infinitamente desde este punto en el tiempo. Diremos también que el proceso converge de forma mixta si existe un equilibrio de Nash mixto tal que para todo $\epsilon > 0$ existe un $k \in \mathbb{N}$ tal que $|x^* - x^k| < \epsilon$ y $|y^* - y^k| < \epsilon$.
 
-Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar a la de Robinson \cite{robinson:zerosum} pero simplificada. Es más cómoda para estudiar velocidades de convergencia en juegos que se sabe que convergen. A continuación, presentamos tambien esta definición.
+Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar a la de Robinson \cite{robinson:zerosum} pero simplificada. Es más cómoda para estudiar velocidades de convergencia en juegos que se sabe que convergen. A continuación, presentamos también esta definición.
 
 \begin{definition} \label{def:fp:brandt}
     Sea $(A, B)$ un juego en forma bimatricial de $n \times m$:
@@ -119,7 +119,7 @@ Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar
 
 Como podemos observar, la principal diferencia con la primera definición es que mientras en aquella se define una secuencia de jugadas que cumple una condición contra un historial de creencias sobre la estrategia mixta del otro jugador, en esta la secuencia es de pares de contadores de jugadas (sin normalizar, por lo que no son estrategias mixtas), que cumplen en cada iteración una condición contra producto de un elemento de la otra contra las matrices de pago, pero sin ser este tampoco el valor esperado de la jugada. En el capítulo \ref{cap:aportes} se demostrará que estas dos definiciones son equivalentes.
 
-% Relacion entre distintas convergencias
+% Relación entre distintas convergencias
 
 
 \section{Ejemplos}
@@ -161,7 +161,7 @@ Pasando al siguiente ejemplo, vemos en esta matriz el clásico juego de Piedra, 
 
 \input{Tablas/matrizPiedraPapelTIjeras.tex}
 
-En las tablas \ref{sfp:piedra:papel:tijera} y \ref{afp:piedra:papel:tijera} podemos ver respectivamente un desarrollo de juego ficticio simultaneo y altenernante. Para el caso simultaneo, el proceso comienza con el jugador fila jugando piedra y el columna jugando papel. Inmediatamente el jugador fila cambia su estrategia a jugar tijera, mientras el columna se mantiene en papel porque lo proyecta exitoso. En la tercera iteración el jugador $2$, esperando que el jugador $1$ juegue piedra o tijera con iguales probabilidades pero descartando que pueda jugar papel, maximizará su ganancia esperada jugando piedra. Estos cambios continuaran infinitamente pero lentamente, las creencias convergeran al unico equilibrio de Nash mixto de esto juego, que es que cada jugador juegue cada acción con $\frac{1}{3}$ de probabilidad. \falta{ajustar tamaño de estas tablas}
+En las tablas \ref{sfp:piedra:papel:tijera} y \ref{afp:piedra:papel:tijera} podemos ver respectivamente un desarrollo de juego ficticio simultaneo y alternante. Para el caso simultaneo, el proceso comienza con el jugador fila jugando piedra y el columna jugando papel. Inmediatamente el jugador fila cambia su estrategia a jugar tijera, mientras el columna se mantiene en papel porque lo proyecta exitoso. En la tercera iteración el jugador $2$, esperando que el jugador $1$ juegue piedra o tijera con iguales probabilidades pero descartando que pueda jugar papel, maximizará su ganancia esperada jugando piedra. Estos cambios continuaran infinitamente pero lentamente, las creencias convergerán al único equilibrio de Nash mixto de esto juego, que es que cada jugador juegue cada acción con $\frac{1}{3}$ de probabilidad. \falta{ajustar tamaño de estas tablas}
 
 \begin{table} % [h!]
     \centering
