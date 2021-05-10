@@ -25,10 +25,10 @@ Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, es decir un juego de
 Notaremos con $\Delta(X)$ al espacio de probabilidades sobre el conjunto $X$ y llamaremos \concept{estrategias mixtas} a los vectores de la forma $x \in \Delta(N)$ y $y \in \Delta(M)$. A las estrategias que asignan probabilidad $1$ a una acción y $0$ a todas las otras, las llamaremos \concept{estrategias puras}. Notaremos con $\pstrat{h}$ a la estrategia pura correspondiente a la acción $h$.
 
 % Ganancia esperada como producto de matriz por vector
-La ganancia esperada del jugador $1$ al jugar la acción $i$ contra la estrategia mixta $y$ del jugador $2$ será $(Ay)_i$. Análogamente, la ganancia esperada del jugador $2$ al jugar la acción $j$ contra la estrategia mixta $x$ del jugador $2$ será $(xB)_j$. Si ambos jugadores juegan las estrategias mixtas $x$ e $y$ respectivamente, sus ganancias esperadas pueden calcularse como $xAy$ para el jugador $1$ e $yB^tx$ para el jugador $2$.
+La ganancia esperada del jugador $1$ al jugar la acción $i$ contra la estrategia mixta $y$ del jugador $2$ será $\pstrat{i}Ay$. Análogamente, la ganancia esperada del jugador $2$ al jugar la acción $j$ contra la estrategia mixta $x$ del jugador $2$ será $xB\pstrat{j}$. Si ambos jugadores juegan las estrategias mixtas $x$ e $y$ respectivamente, sus ganancias esperadas pueden calcularse como $xAy$ para el jugador $1$ e $yB^tx$ para el jugador $2$.
 
 % Mejor Respuesta
-Si $y$ es una estrategia mixta del jugador $2$, definimos el \concept{conjunto de mejores respuestas} a $y$ como $BR_1(y) = \{i \in N : (Ay)_i = \max_{i' \in N} (Ay)_{i'}\}$ y, análogamente, si $x$ es una estrategia mixta del jugador $2$, el conjunto de mejores respuestas a $x$ será $BR_2(x) = \{j \in N : (xB)_j = \max_{j' \in M} (xB)_{j'}\}$. Es decir, son los conjuntos de índices que maximizan las ganancias esperadas contra una estrategia dada.
+Si $y$ es una estrategia mixta del jugador $2$, definimos el \concept{conjunto de mejores respuestas} a $y$ como $BR_1(y) = argmax_{i \in N}\{\pstrat{i}Ay\}$ y, análogamente, si $x$ es una estrategia mixta del jugador $2$, el conjunto de mejores respuestas a $x$ será $BR_2(x) = argmax_{j \in M}\{xB\pstrat{j}\}$. Es decir, son los conjuntos de índices que maximizan las ganancias esperadas contra una estrategia dada.
 
 % Mejor Respuesta en mixtas
 Este concepto puede expandirse de índices a estrategias mixtas. Si $x$ es una estrategia mixta del jugador 1 e $y$ es una estrategia mixta del jugador 2, decimos que $x \in BR_1(y)$ si $\forall i \in N, x_i > 0 \implies i \in BR_1(y)$.
@@ -38,7 +38,7 @@ Llamaremos \concept{equilibrio de Nash} a todo perfil de estrategias mixtas $(x^
 
 \section{Categorías de Juegos}
 
-% Intro categorias
+% Intro categorías
 Es útil clasificar a los juegos en distintas categorías según sus propiedades. Presentamos a continuación algunas de las categorías de juegos mas estudiadas en la literatura sobre juego ficticio.
 
 \begin{definition}

@@ -54,7 +54,14 @@ El caso alternante es un poco más complejo ya que el caso del jugador columna y
 Haremos foco ahora en otra cuestión mencionada en la sección \ref{sec:def:fp} sobre las definiciones de juego ficticio. La definición de que de Berger deja implícita la ambigüedad de los casos en los que los conjuntos de mejor respuesta no son unitarios. Presentaremos entonces una definición mejorada que mejora este aspecto. Comenzaremos por formalizar el concepto de \concept{reglas de desempate}:
 
 \begin{definition}
-    Llamamos \concept{reglas de desempate} de un juego ficticio a un par de funciones $d_1: \mathbb{P}^+(N) \rightarrow N$ y $d_2: \mathbb{P}^+(M) \rightarrow M$ que a cada subconjunto de acciones de un jugador en un eventual empate le asignan la acción que elegirá el proceso.
+    Llamamos \concept{reglas de desempate} de un juego ficticio a un par de funciones $d_1: \mathbb{P}^+(N) \rightarrow N$ y $d_2: \mathbb{P}^+(M) \rightarrow M$ que a cada subconjunto de acciones de un jugador en un eventual empate le asignan la acción que elegirá el proceso, cumpliendo la condición de Hauthakker:
+
+    \[
+        \forall N_a, N_b \in {P}^+(N), \text{ si } N_b \subseteq N_a, i \in N_b \text{ y } d_1(N_a) = i  \text{ entonces } d_1(N_b) = i
+    \]
+    \[
+        \forall M_a, M_b \in {P}^+(M), \text{ si } M_b \subseteq M_a, j \in M_b \text{ y } d_2(M_a) = j  \text{ entonces } d_2(M_b) = j
+    \]
 \end{definition}
 
 Usando este concepto, presentaremos ahora la definición de juego ficticio que utilizaremos durante el resto de este trabajo:
@@ -184,7 +191,7 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
     Entonces, podemos razonar de la siguiente manera:
     \begin{align*}
         \pstrat{i^*}Ay^k &= \pstrat{i^*}A(\frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^*}}{k}) = \frac{(k - 1)}{k} \pstrat{i^*}Ay^{k-1} + \frac{1}{k}\pstrat{i^*}A\pstrat{j^*}\\
-        &> \frac{(k - 1)}{k} \pstrat{i}Ay^{k-1} + \frac{1}{k}\pstrat{i}A\pstrat{j^*} = \pstrat{i^*}A(\frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^*}}{k}) = \pstrat{i}Ay^k
+        &> \frac{(k - 1)}{k} \pstrat{i'}Ay^{k-1} + \frac{1}{k}\pstrat{i'}A\pstrat{j^*} = \pstrat{i'}A(\frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^*}}{k}) = \pstrat{i'}Ay^k
     \end{align*}
 
     Puesto que sabemos por el lema anterior, que $i^* \in BR_1(y^{k}) = \argmax_{i \in N} \{\pstrat{i}Ay^{k}\}$, podemos afirmar que $i' \notin BR_1(y^{k})$.
