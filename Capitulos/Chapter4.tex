@@ -2,7 +2,7 @@
 
 \section{Equivalencia de las distintas definiciones}
 
-Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir el juego ficticio entre los distintos autores de la literatura. Ambas simplifican de distintas formas la definición original de Brown y si bien son similares, su equivalencia no es inmediatamente evidente, por lo que uno podría dudar de si un teorema expresado para una de las definiciones es válido con la otra. Por lo tanto, presentamos a continuación dos lemas sobre esta equivalencia, para el caso simultaneo y alternante respectivamente. La idea será probar que los historiales de la definición \ref{def:fp:brandt} suman en cada iteración la estrategia pura correspondiente a la acción elegida por la definición \ref{def:fp:berger}. Comenzamos con el caso simultaneo.
+Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir el juego ficticio entre los distintos autores de la literatura. Ambas simplifican de distintas formas la definición original de Brown y si bien son similares, su equivalencia no es inmediatamente evidente, por lo que uno podría dudar de si un teorema expresado para una de las definiciones es válido con la otra. Por lo tanto, presentamos a continuación dos lemas sobre esta equivalencia, para el caso simultáneo y alternante respectivamente. La idea será probar que los historiales de la definición \ref{def:fp:brandt} suman en cada iteración la estrategia pura correspondiente a la acción elegida por la definición \ref{def:fp:berger}. Comenzamos con el caso simultáneo.
 
 \begin{lemma} \label{lema:equiv:sim}
     % $i^k$ jugada del jugador fila en tiempo $t$
@@ -11,7 +11,7 @@ Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir 
     % $x^k$ creencias del jugador columna sobre la estrategia del jugador fila en tiempo $t$
     % $p^k$ historial de jugadas del jugador fila
     % $q^k$ historial de jugadas del jugador columna
-    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(\pstrat{i^\tau}, \pstrat{j^\tau})_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultaneo (según la definición \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultaneo (según la definición \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$, $q^1 = \pstrat{j^1}$ y ambas usan la misma regla de desempate. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, $\forall \tau \in \mathbb{N}$, se cumplen:
+    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(\pstrat{i^\tau}, \pstrat{j^\tau})_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultáneo (según la definición \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultáneo (según la definición \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$, $q^1 = \pstrat{j^1}$ y ambas usan la misma regla de desempate. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, $\forall \tau \in \mathbb{N}$, se cumplen:
 
     \[ p^{\tau} = \sum_{s=1}^\tau{\pstrat{i^s}} \]
     \[ q^{\tau} = \sum_{s=1}^\tau{\pstrat{j^s}} \]
@@ -22,10 +22,10 @@ Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir 
 
     Para $\tau = 1$, tenemos $p^1 = \pstrat{i^1} = \sum_{s=1}^1{\pstrat{i^s}}$ y $q^1 = \pstrat{j^1} = \sum_{s=1}^1{\pstrat{j^s}}$.
 
-    Veamos ahora el caso de un $\tau = k > 1$, suponiendo que $p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Por la definición \ref{def:fp:brandt}, $p^k = p^{k-1} + \pstrat{i}$ donde $i$ es un índice de una componente máxima de $Aq^{k-1} = A\sum_{s=1}^{k-1}{\pstrat{j^s}}$. Pero también sabemos, por la definición \ref{def:fp:berger} que $i^k \in BR_1(y^{k-1}) = BR_1(\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1}) = \{i \in N : (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_p = \max_{i' \in N} (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_{i'}\}$. Es decir que $i^k$ es el índice de una componente máxima de $A\frac{q^{k-1}}{k-1}$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $Aq^{k-1}$. Incluso si hubiera otras componentes máximas, estamos usando en ambos procesos la misma regla de desempate. Luego, $p^k = p^{k-1} + \pstrat{i^k} = \sum_{s=1}^{k-1}{\pstrat{i^s}} + \pstrat{i^k} = \sum_{s=1}^{k}{\pstrat{i^s}}$. Análogamente, podemos afirmar que $q^{k} = \sum_{s=1}^k{\pstrat{j^s}}$.
+    Veamos ahora el caso de un $\tau = k > 1$, suponiendo que $p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Por la definición \ref{def:fp:brandt}, $p^k = p^{k-1} + \pstrat{i}$ donde $i$ es un índice de una componente máxima de $Aq^{k-1} = A\sum_{s=1}^{k-1}{\pstrat{j^s}}$. Pero también sabemos, por la definición \ref{def:fp:berger} que $i^k \in BR_1(y^{k-1}) = BR_1(\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1}) = \{i \in N : (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_p = \max_{i' \in N} (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_{i'}\}$. Es decir que $i^k$ es el índice de una componente máxima de $A\frac{q^{k-1}}{k-1}$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $Aq^{k-1}$. Incluso si hubiera otras componentes máximas, estamos usando en ambos procesos la misma regla de desempate. Luego, $p^k = p^{k-1} + \pstrat{i^k} = \sum_{s=1}^{k-1}{\pstrat{i^s}} + \pstrat{i^k} = \sum_{s=1}^{k}{\pstrat{i^s}}$. Análogamente, $q^{k} = \sum_{s=1}^k{\pstrat{j^s}}$.
 \end{proof}
 
-El caso alternante es un poco más complejo ya que el caso del jugador columna ya no es análogo al del jugador fila.
+En el caso alternante, la jugada del jugador columna ya no es análoga a la del jugador fila, y el análisis es un poco mas complejo.
 
 \begin{lemma}
     % $i^k$ jugada del jugador fila en tiempo $t$
@@ -45,13 +45,13 @@ El caso alternante es un poco más complejo ya que el caso del jugador columna y
 
     Para $\tau = 1$, sabemos que $p^1 = \pstrat{i^1} = \sum_{s=1}^1{\pstrat{i^s}}$. Por la definición \ref{def:fp:brandt}, $q^1 = q^0 + \pstrat{j}$ donde $q^0$ es el vector nulo y $j$ es el índice de una componente máxima de $p^{1}B = \pstrat{i^1}B$ y, por la definición \ref{def:fp:berger}, sabemos que $j^1 \in BR_2(x^1) = BR_2(\frac{\sum^1_{s=1} \pstrat{i^s}}{\tau}) = BR_2(i^1) = \{j \in N : (i^{1}B)_j = \max_{j' \in M} (i^{1}B)_{j'}\}$. Es decir, $j^1$ es el índice de una componente máxima de $i^{1}B$. Luego, $q^1 = \pstrat{j^1} = \sum_{s=1}^1{\pstrat{j^s}}$.
 
-    Veamos ahora el caso de un $\tau = k > 1$, suponiendo que $p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Podemos afirmar, con el mismo argumento que en el caso inductivo del lema \ref{lema:equiv:sim} que $p^{k} = \sum_{s=1}^k{\pstrat{i^s}}$. Por otro lado, $q^{k} = y^{k} + \pstrat{j}$ donde $j$ es el índice de una componente máxima de $p^{k}B = \sum_{s=1}^k{\pstrat{i^s}}B$. Sabemos además, por la definición \ref{def:fp:berger}, que $j^k \in BR_2(x^{k}) = BR_2(\frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k}) = \{j \in N : (\frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k}B)_j = \max_{j' \in M} (\frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k}B)_{j'}\}$. Es decir que $j^k$ es el índice de una componente máxima de $\frac{p^k}{k}B$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $p^{k}B$. Como ambos procesos desempatan igual, podemos afirmar entonces que $q^k = q^{k-1} + j^k = \sum_{s=1}^{k-1}{\pstrat{j^s}} + j^k = \sum_{s=1}^{k}{\pstrat{j^s}}$.
+    Veamos ahora el caso de $\tau = k > 1$, suponiendo que $p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Podemos afirmar, con el mismo argumento que en el caso inductivo del lema \ref{lema:equiv:sim}, que $p^{k} = \sum_{s=1}^k{\pstrat{i^s}}$. Por otro lado, $q^{k} = y^{k} + \pstrat{j}$ donde $j$ es el índice de una componente máxima de $p^{k}B = \sum_{s=1}^k{\pstrat{i^s}}B$. Sabemos además, por la definición \ref{def:fp:berger}, que $j^k \in BR_2(x^{k}) = BR_2(\frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k}) = \{j \in N : (\frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k}B)_j = \max_{j' \in M} (\frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k}B)_{j'}\}$. Es decir que $j^k$ es el índice de una componente máxima de $\frac{p^k}{k}B$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $p^{k}B$. Como ambos procesos desempatan igual, entonces que $q^k = q^{k-1} + j^k = \sum_{s=1}^{k-1}{\pstrat{j^s}} + j^k = \sum_{s=1}^{k}{\pstrat{j^s}}$.
 
 \end{proof}
 
 \section{Reglas de Desempate}
 
-Haremos foco ahora en otra cuestión mencionada en la sección \ref{sec:def:fp} sobre las definiciones de juego ficticio. La definición de que de Berger deja implícita la ambigüedad de los casos en los que los conjuntos de mejor respuesta no son unitarios. Presentaremos entonces una definición mejorada que mejora este aspecto. Comenzaremos por formalizar el concepto de \concept{reglas de desempate}:
+Haremos foco ahora en otra cuestión mencionada en la sección \ref{sec:def:fp} sobre las definiciones de juego ficticio. La definición de que de Berger deja implícita la ambigüedad de los casos en los que los conjuntos de mejor respuesta no son unitarios. Presentaremos entonces una definición que preciza este aspecto. Comenzaremos por formalizar el concepto de \concept{reglas de desempate}:
 
 \begin{definition}
     Llamamos \concept{reglas de desempate} de un juego ficticio a un par de funciones $d_1: \mathbb{P}^+(N) \rightarrow N$ y $d_2: \mathbb{P}^+(M) \rightarrow M$ que a cada subconjunto de acciones de un jugador en un eventual empate le asignan la acción que elegirá el proceso, cumpliendo la condición de Hauthakker:
@@ -74,20 +74,20 @@ Usando este concepto, presentaremos ahora la definición de juego ficticio que u
     \end{gather*}
     Entonces:
     \begin{itemize}
-        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio simultaneo si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau+1} = d_2(BR_2(x^\tau))$.
+        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio simultáneo si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau+1} = d_2(BR_2(x^\tau))$.
         \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio alternante si $i^1$ es un elemento arbitrario de $N$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau} = d_2(BR_2(x^\tau))$.
     \end{itemize}
 \end{definition}
 
-\section{Conservación del Juego Ficticio}
+\section{Preservación del Juego Ficticio}
 
-En esta sección estudiaremos cómo las transformaciones a un juego afectan las secuencias de juego ficticio sobre el mismo. Esto nos es de intereses porque mas adelante nos permitirá encarar con mas claridad el estudio de la velocidad de convergencia del algoritmo. También, razonar un poco sobre esto nos permite entender mejor los resultados sobre convergencia de la literatura.
+En esta sección estudiaremos cómo las transformaciones a un juego afectan las secuencias de juego ficticio sobre el mismo. Esto nos resulta de interés porque más adelante nos permitirá encarar con más claridad el estudio de la velocidad de convergencia del algoritmo. También, razonar sobre esto nos permite entender mejor los resultados sobre convergencia de la literatura.
 
-Claramente, transformaciones que conserven las relaciones de orden de los pagos de las acciones en juegos del mismo tamaño (como escalar todos los pagos por un mismo factor o sumarle a todos una constante) conservarán las secuencias de juego ficticio.
+Claramente, transformaciones que preserven las relaciones de orden de los pagos de las acciones en juegos del mismo tamaño (como escalar todos los pagos por un mismo factor o sumarle a todos una constante) preservarán las secuencias de juego ficticio.
 
-Pero veamos que pasa cuándo cambia el tamaño del juego. La motivación para esto es que en general, los investigadores de teoría de juegos buscan dos tipos de resultados de convergencia sobre juego ficticio. Por la positiva, clases de juegos de tamaño lo mas grande posible (o incluso mejor, tamaño arbitrario) para los que toda secuencia converja. Por la negativa, contra-ejemplos de tamaño tan pequeño como sea posible que no converjan. Esto es porque en estos estudios se entiende implícitamente que un contra-ejemplo puede ser expandido a un juego de tamaño mas grande que presente la misma secuencia de juego ficticio y por tanto todos los juegos de ese tamaño o mayor ya presentan casos que no convergen.
+Pero veamos qué pasa cuándo cambia el tamaño del juego. La motivación para esto es que, en general, los investigadores de teoría de juegos buscan dos tipos de resultados de convergencia sobre juego ficticio. Por la positiva, clases de juegos de tamaño lo ms grande posible (o incluso mejor, tamaño arbitrario) para los que toda secuencia converja. Por la negativa, contra-ejemplos de tamaño tan pequeño como sea posible que no converjan. Esto se debe a que en estos estudios se entiende implícitamente que un contra-ejemplo puede ser expandido a un juego de tamaño más grande que presente la misma secuencia de juego ficticio y por tanto todos los juegos de ese tamaño o mayor ya presentan casos que no convergen.
 
-En los siguientes lemas, demostraremos esto para algunas de las clases de juegos mas estudiadas en la literatura. Vale la pena aclarar que si bien podríamos demostrar un solo lema general que diga que todo juego puede expandirse conservando las secuencias de juego ficticio, este resultado no nos sería útil, ya que es importante que la expansión conserve las propiedades que definen a la clase de juegos en cuestión.
+En los siguientes lemas, demostraremos esto para algunas de las clases de juegos más estudiadas en la literatura. Vale la pena aclarar que si bien podríamos demostrar un solo lema general que afirme que todo juego puede expandirse conservando las secuencias de juego ficticio, este resultado no nos sería útil, ya que es importante que la expansión conserve las propiedades que definen a la clase de juegos en cuestión.
 
 \begin{lemma}
     Sea $A$ un juego de suma cero de tamaño $n$, existe un juego  de suma cero $A'$ de tamaño $n$ tal que toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (secuencial o alternante) en $A$ lo es también en $A'$.
@@ -114,7 +114,7 @@ En los siguientes lemas, demostraremos esto para algunas de las clases de juegos
 \end{proof}
 
 \begin{lemma}
-    Sea $A$ un juego intereses idénticos de tamaño $n \times m$, existe un juego de intereses idénticos $A'$ de tamaño $n+1 \times m$ tal que toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (secuencial o alternante) en $(A, B)$ lo es también en $(A', B')$.
+    Sea $A$ un juego intereses idénticos de tamaño $n \times m$, existe un juego de intereses idénticos $A'$ de tamaño $(n+1) \times m$ tal que toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (secuencial o alternante) en $(A, B)$ lo es también en $(A', B')$.
 \end{lemma}
 
 \begin{proof}
@@ -138,15 +138,15 @@ En los siguientes lemas, demostraremos esto para algunas de las clases de juegos
 \end{proof}
 
 
-Observemos que no valen lemas similares para la reducción en tamaño de los juegos. Agregar estados con poco incentivo no modifica las secuencias de juego ficticio, pero para un juego puede haber secuencias que pasen por todas las acciones de cada un jugador y que por tanto este no pueda reducirse a uno mas chico.
+Observemos que no valen lemas similares para la reducción en tamaño de los juegos. Agregar estados con poco incentivo no modifica las secuencias de juego ficticio, pero para un juego puede haber secuencias que pasen por todas las acciones de cada un jugador y que por tanto este no pueda reducirse a uno más chico.
 
 \section{Convergencia de Juego Ficticio} \label{sec:convergencia:fp}
 
 % Mencionar que agregamos reglas de desempate y entonces el teorema es mas piola
-En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que desarrollan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante e incluimos casos de empates. \todo{hay que reescribir este párrafo}
+En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que desarrollan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante e incluimos consideraciones sobre los posibles empates. \todo{hay que reescribir este párrafo}
 
 \begin{lemma}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $i^* \in BR_1(y^{k})$ y $j^* \in BR_2(x^{k})$.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $i^* \in BR_1(y^{k})$ y $j^* \in BR_2(x^{k})$.
 \end{lemma}
 \begin{proof}
 
@@ -169,7 +169,7 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
 
     Como en la iteración $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger_desempate}, sabemos que $i^* \in BR_1(y^{k-1}) = \argmax_{i \in N}\{\pstrat{i}Ay^{k-1}\}$. Es decir que para cualquier $i \in N$, podemos afirmar que $\pstrat{i^*}Ay^{k-1} \geq \pstrat{i}Ay^{k-1}$ y también (multiplicando en ambos lados por una constante positiva) que $\frac{(k - 1)}{k}\pstrat{i^*}Ay^{k-1} > \frac{(k - 1)}{k}\pstrat{i}Ay^{k-1}$.
 
-    Sabemos también, por la definición de equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*}) = \argmax_{i \in N}\{\pstrat{i}Aj^*\}$. Es decir que para cualquier $i \in N$, $\pstrat{i^*}Aj^* \geq \pstrat{i}Aj^*$ y consecuentemente $\frac{1}{k}\pstrat{i^*}Aj^* \geq \frac{1}{k}\pstrat{i}Aj^*$.
+    Sabemos también, al ser un equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*}) = \argmax_{i \in N}\{\pstrat{i}Aj^*\}$. Es decir que para cualquier $i \in N$, $\pstrat{i^*}Aj^* \geq \pstrat{i}Aj^*$ y consecuentemente $\frac{1}{k}\pstrat{i^*}Aj^* \geq \frac{1}{k}\pstrat{i}Aj^*$.
 
     Podemos sumar estas dos desigualdades para afirmar que $\frac{(k - 1)}{k}\pstrat{i^*}Ay^{k-1} + \frac{1}{k}\pstrat{i^*}Aj^* \geq \frac{(k - 1)}{k}\pstrat{i}Ay^{k-1} + \frac{1}{k}\pstrat{i}Aj^*$ para cualquier $i \in N$ y por lo tanto $i^* \in BR_1(y^{k})$.
 
@@ -178,7 +178,7 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
 \end{proof}
 
 \begin{lemma}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k}) \subseteq BR_2(x^{k-1})$.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k}) \subseteq BR_2(x^{k-1})$.
 \end{lemma}
 
 \begin{proof}
@@ -199,7 +199,7 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
 \end{proof}
 
 \begin{theorem}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultaneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i*, j*)$, entonces este perfil se repetirá en la iteración siguiente.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i*, j*)$, entonces este perfil se repetirá en la iteración siguiente.
 \end{theorem}
 
 \begin{proof}
@@ -230,7 +230,7 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
 %         &= \{i \in N : (\frac{k - 1}{k} Ay^{k-1} + A\frac{j^*}{k})_i = \max_{i' \in N} (\frac{k - 1}{k} Ay^{k-1} + A\frac{j^*}{k})_i'\}
 %     \end{align*}
 
-%     por lo que podemos afirmar, al igual que en el caso simultaneo, que jugará $i^*$ en la iteración $k+1$. Ahora, sabiendo la jugada del jugador fila, podemos analizar qué jugará el jugador columna. Sus creencias se actualizaran como
+%     por lo que podemos afirmar, al igual que en el caso simultáneo, que jugará $i^*$ en la iteración $k+1$. Ahora, sabiendo la jugada del jugador fila, podemos analizar qué jugará el jugador columna. Sus creencias se actualizaran como
 %     \[
 %         x^{k+1} = \frac{\sum_{s=1}^{k}{\pstrat{i^s}} + \pstrat{i^*}}{k+1}
 %             = \frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k+1} + \frac{\pstrat{i^*}}{k+1}
@@ -260,7 +260,7 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
 
 \section{Velocidad de Convergencia de AFP} \label{sec:aportes:velocidad}
 
-En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}. En su paper, los autores presentan cotas superiores para la velocidad de convergencia del juego ficticio simultaneo en clases de juegos que se sabe que siempre convergen de forma pura \falta{checkear esto}. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos de suma constante simétricos y los no degenerados de intereses idénticos.
+En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}. En su paper, los autores presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo en clases de juegos que se sabe que siempre convergen de forma pura \falta{checkear esto}. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos de suma constante simétricos y los no degenerados de intereses idénticos.
 
 % Pero antes, nos parece oportuno hablar mas detalladamente sobre algunas cuestiones respecto a las métricas contra las que se estudia la velocidad de convergencia de un proceso de aprendizaje en juegos. Puede llamar la atención que si bien en toda la bibliografía previa al trabajo de Brandt, Fischer y Harrenstein se habla sobre la velocidad de convergencia en función del tamaño del juego, los autores prefieren estudiarla en función del tamaño de representación en bits de los valores de las utilidades del juego. Este tipo de resultados es en realidad más general. Observemos que un juego que tenga $k$ acciones para un jugador necesitará, en cualquier codificación capaz de representar juegos bimatriciales finitos arbitrarios, $O(k)$ bits, ya que deberá codificar cada una de estas $k$ acciones con al menos un bit. Por otro lado, a efectos del estudio de la convergencia del juego ficticio, un juego con conjuntos de acciones de tamaños menores a $k$ pero que requiere $O(k)$ bits para ser representado, puede expandirse a uno con comportamiento equivalente de tamaño $k$. Esto lo mostraremos en los siguientes lemas: \falta{hay que retocar este parrafo para referenciar la discusion previa sobre tamaños, bits, etc}
 
@@ -382,10 +382,10 @@ Por su parte, la demostración para el caso de los juegos no degenerados de $2 \
     es una secuencia de aprendizaje de juego ficticio alternante válida de este juego que es exponencialmente larga en $k$ y en la cual no se juega ningún equilibrio de Nash puro.
 \end{proof}
 
-El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrenstein no nos sirva para demostrar el teorema anterior no es para nada menor. En efecto, como veremos en el siguiente teorema, es un ejemplo de un juego en el un proceso de juego ficticio simultaneo puede requerir una cantidad de rondas exponenciales mientras que, toda secuencia de juego ficticio alternante convergerá rápidamente.
+El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrenstein no nos sirva para demostrar el teorema anterior no es para nada menor. En efecto, como veremos en el siguiente teorema, es un ejemplo de un juego en el un proceso de juego ficticio simultáneo puede requerir una cantidad de rondas exponenciales mientras que, toda secuencia de juego ficticio alternante convergerá rápidamente.
 
 \begin{theorem} \label{teorema:afp:mejor}
-    Existe un juego no degenerado de intereses idénticos $A$ representable en $O(k)$ bits y una secuencia de juego ficticio simultaneo $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ y una constante $C$ tal que
+    Existe un juego no degenerado de intereses idénticos $A$ representable en $O(k)$ bits y una secuencia de juego ficticio simultáneo $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ y una constante $C$ tal que
     \begin{itemize}
         \item Para todo $\tau < 2^k$, $(i^\tau, j^\tau)$ no es un equilibrio de Nash puro.
         \item Para todo proceso de juego ficticio alternante $(\widehat{i}^\tau, \widehat{j}^\tau)_{\tau \in \mathbb{N}}$ en $A$, $(\widehat{i}^C, \widehat{j}^C)$ es un equilibrio de Nash puro.
@@ -393,7 +393,7 @@ El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrens
 \end{theorem}
 
 % \begin{theorem}
-%     Existe un juego para el cuál un proceso de juego ficticio simultaneo puede requerir una cantidad exponencial (en el tamaño de representación en bits de los valores de las utilidades del juego) de rondas antes de que un equilibrio sea jugado, mientras que en todo proceso de juego ficticio alternado se jugará un equilibrio en una cantidad de rondas acotada por una constante.
+%     Existe un juego para el cuál un proceso de juego ficticio simultáneo puede requerir una cantidad exponencial (en el tamaño de representación en bits de los valores de las utilidades del juego) de rondas antes de que un equilibrio sea jugado, mientras que en todo proceso de juego ficticio alternado se jugará un equilibrio en una cantidad de rondas acotada por una constante.
 % \end{theorem}
 
 \begin{proof}
@@ -403,7 +403,7 @@ El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrens
 
     Si $\epsilon < 1$, $(i^2, j^3)$ es el único equilibrio de Nash puro por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas.
 
-    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio simultaneo puede tomar $2^k$ rondas antes de que se juegue $(i^2, j^3)$, mientras que todo proceso de juego ficticio alternante converge de forma pura en un número constante de rondas. Al igual que los teoremas anteriores, el juego puede codificarse en $O(k)$ bits, por lo que esto demuestra el teorema.
+    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio simultáneo puede tomar $2^k$ rondas antes de que se juegue $(i^2, j^3)$, mientras que todo proceso de juego ficticio alternante converge de forma pura en un número constante de rondas. Al igual que los teoremas anteriores, el juego puede codificarse en $O(k)$ bits, por lo que esto demuestra el teorema.
 
     Veamos primero el caso alternante. Existen dos posibles secuencias de juego ficticio alternante para este juego, dado que el jugador $1$ elegirá primero y el jugador $2$ reaccionara según esta decisión.
 
@@ -418,13 +418,13 @@ El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrens
         \label{tabla:afp:mejor:a}
         \centering
         \input{Tablas/afp_teorena_mejor_c.tex}
-        \caption{Proceso de juego ficticio simultaneo sobre el juego del teorema \ref{teorema:afp:mejor} comenzando por $(i_1, j_1)$}
+        \caption{Proceso de juego ficticio simultáneo sobre el juego del teorema \ref{teorema:afp:mejor} comenzando por $(i_1, j_1)$}
         \label{tabla:afp:mejor:c}
     \end{table}
 
     Si el jugador fila juega $i^2$, el jugador columna responderá con $j^3$, siendo este el equilibrio puro. Si el jugador fila comienza con $i^1$, el jugador columna responderá con $j^2$. Esto hará que el jugador fila juegue $i^2$ en la segunda ronda por ser $A\pstrat{j^2} = (2, 2 + \epsilon)$, mientras que el jugador continuará fila continuara jugando $j^2$. Esta situación se repetirá una ronda más, tras la cuál, la jugador columna se verá incentivado a jugar $j^3$. Los desarrollos de estos dos procesos pueden verse en las tablas \ref{tabla:afp:mejor:a} y \ref{tabla:afp:mejor:b}. Vemos entonces que, independientemente del valor de $k$, ambos procesos convergen de forma pura en 4 rondas o menos.
 
-    Pasemos ahora al caso simultaneo, para el cual nos basaremos en la prueba de Brandt, Fischer Y Harrenstein. Si el proceso comienza con el perfil $(i^1, j^1)$, entonces las utilidades esperadas serán $Ay^1 = (1, 0)$ e $x^1 B = (1, 2, 0)$ respectivamente. Luego, en la segunda iteración el jugador fila elegirá $i^1$ y el jugador columna $j^2$. Las utilidades esperadas se actualizaran entonces como $Ay^2 = (\frac{3}{2}, \frac{2 + \epsilon}{2})$ y $x^2 B = (1, 2, 0)$.
+    Pasemos ahora al caso simultáneo, para el cual nos basaremos en la prueba de Brandt, Fischer Y Harrenstein. Si el proceso comienza con el perfil $(i^1, j^1)$, entonces las utilidades esperadas serán $Ay^1 = (1, 0)$ e $x^1 B = (1, 2, 0)$ respectivamente. Luego, en la segunda iteración el jugador fila elegirá $i^1$ y el jugador columna $j^2$. Las utilidades esperadas se actualizarán entonces como $Ay^2 = (\frac{3}{2}, \frac{2 + \epsilon}{2})$ y $x^2 B = (1, 2, 0)$.
 
     A continuación, por al menos $2^k$ rondas, los jugadores elegirán las mismas jugadas que en la iteración 2, dado que para todo $\tau$ tal que $2 \le i \le 2^k$, tendremos $Ay^\tau = (2 - \frac{1}{\tau}, 2 - \frac{2 + \epsilon}{\tau})$ e $x^\tau B = (1, 2, 0)$. La tabla \ref{tabla:afp:mejor:c} muestra como se desarrolla este proceso.
 
@@ -437,6 +437,6 @@ El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrens
     \end{center}
 
 
-    es una secuencia de aprendizaje de juego ficticio simultaneo válida de este juego que es exponencialmente larga en $k$ y en la cual no se juega ningún equilibrio de Nash puro.
+    es una secuencia de aprendizaje de juego ficticio simultáneo válida de este juego que es exponencialmente larga en $k$ y en la cual no se juega ningún equilibrio de Nash puro.
 
 \end{proof}

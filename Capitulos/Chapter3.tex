@@ -137,12 +137,12 @@ Veamos como se aplican todos estos conceptos a algunos juegos clásicos de la li
 
 \input{Tablas/matrizDilema.tex}
 
-Este juego es muy estudiado por su propiedad de que si bien la mayor ganancia para ambos jugadores se encuentra en que se juegue el perfil $(i_1, j_2)$, su único equilibrio de Nash puro es el perfil $(i_2, j_2)$. En la tabla \ref{sfp:dilema:prisioneros} podemos observar como se desarrolla un proceso de juego ficticio simultáneo sobre este juego, comenzando desde $(i_1, j_1)$. Para las primeras 5 iteraciones, se muestra el perfil jugado, cómo se actualizan las creencias sobre la estrategia de los jugadores y las consecuentes ganancias esperadas de cada jugador para sus jugadas a lo largo de la secuencia.
+Este juego es muy estudiado por su propiedad de que si bien la mayor ganancia para ambos jugadores se encuentra en que se juegue el perfil $(i_1, j_1)$, su único equilibrio de Nash puro es el perfil $(i_2, j_2)$. En la tabla \ref{sfp:dilema:prisioneros} podemos observar como se desarrolla un proceso de juego ficticio simultáneo sobre este juego, comenzando desde $(i_1, j_1)$. Para las primeras 5 iteraciones, se muestra el perfil jugado, cómo se actualizan las creencias sobre la estrategia de los jugadores y las consecuentes ganancias esperadas de cada jugador para sus jugadas a lo largo de la secuencia.
 
 \begin{table} % [h!]
     \centering
     \input{Tablas/sfp_pd.tex}
-    \caption{Proceso de juego ficticio simultaneo sobre el Dilema de los Prisioneros}
+    \caption{Proceso de juego ficticio simultaneo sobre el Dilema del Prisionero}
     \label{sfp:dilema:prisioneros}
 \end{table}
 
@@ -161,7 +161,7 @@ Pasando al siguiente ejemplo, vemos en esta matriz el clásico juego de Piedra, 
 
 \input{Tablas/matrizPiedraPapelTIjeras.tex}
 
-En las tablas \ref{sfp:piedra:papel:tijera} y \ref{afp:piedra:papel:tijera} podemos ver respectivamente un desarrollo de juego ficticio simultaneo y alternante. Para el caso simultaneo, el proceso comienza con el jugador fila jugando piedra y el columna jugando papel. Inmediatamente el jugador fila cambia su estrategia a jugar tijera, mientras el columna se mantiene en papel porque lo proyecta exitoso. En la tercera iteración el jugador $2$, esperando que el jugador $1$ juegue piedra o tijera con iguales probabilidades pero descartando que pueda jugar papel, maximizará su ganancia esperada jugando piedra. Estos cambios continuaran infinitamente pero lentamente, las creencias convergerán al único equilibrio de Nash mixto de esto juego, que es que cada jugador juegue cada acción con $\frac{1}{3}$ de probabilidad. \falta{ajustar tamaño de estas tablas}
+En las tablas \ref{sfp:piedra:papel:tijera} y \ref{afp:piedra:papel:tijera} respectivamente podemos ver respectivamente un desarrollo de juego ficticio simultáneo y alternante. Para el caso simultáneo, el proceso comienza con el jugador fila jugando piedra y el columna jugando papel. Inmediatamente el jugador fila cambia su estrategia a jugar tijera, mientras el columna se mantiene en papel porque lo proyecta exitoso. En la tercera iteración el jugador $2$, esperando que el jugador $1$ juegue piedra o tijera con iguales probabilidades pero descartando que pueda jugar papel, maximizará su ganancia esperada jugando piedra. Estos cambios continuaran infinitamente pero lentamente, las creencias convergen al único equilibrio de Nash mixto de esto juego, que consiste en que cada jugador juegue cada acción con $\frac{1}{3}$ de probabilidad. \falta{ajustar tamaño de estas tablas}
 
 \begin{table} % [h!]
     \centering
@@ -180,11 +180,11 @@ El caso alternante es similar, aunque con una clara ventaja del jugador columna,
     \label{afp:piedra:papel:tijera}
 \end{table}
 
-Veamos por último un ejemplo bastante famoso en la literatura de juego ficticio.
+Veamos por último un ejemplo bien conocido en la literatura de juego ficticio.
 
 \input{Tablas/matrizShapley.tex}
 
-Este el juego de Shapley \cite{shapley:3x3}. Es muy conocido por por ser el primer juego de $3 \times 3$ publicado que no converge, de forma pura ni mixta, tanto para juego ficticio simultaneo como alternante. En las tablas \ref{sfp:shapley} y \ref{afp:shapley} vemos como se desarrollan estos procesos.
+Este el juego de Shapley \cite{shapley:3x3}. Es muy conocido por por ser el primer ejemplo publicado de un juego que no converge, de forma pura ni mixta, tanto para juego ficticio simultáneo como alternante. En las tablas \ref{sfp:shapley} y \ref{afp:shapley} vemos como se desarrollan estos procesos.
 
 
 \begin{table} % [h!]
