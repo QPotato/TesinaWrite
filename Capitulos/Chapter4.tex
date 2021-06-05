@@ -90,7 +90,7 @@ Pero veamos qué pasa cuándo cambia el tamaño del juego. La motivación para e
 En los siguientes lemas, demostraremos esto para algunas de las clases de juegos más estudiadas en la literatura. Vale la pena aclarar que si bien podríamos demostrar un solo lema general que afirme que todo juego puede expandirse conservando las secuencias de juego ficticio, este resultado no nos sería útil, ya que es importante que la expansión conserve las propiedades que definen a la clase de juegos en cuestión.
 
 \begin{lemma}
-    Sea $A$ un juego de suma cero de tamaño $n$, existe un juego  de suma cero $A'$ de tamaño $n$ tal que toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (secuencial o alternante) en $A$ lo es también en $A'$.
+    Sea $A$ un juego de suma cero de tamaño $n$, existe un juego  de suma cero $A'$ de tamaño $n+1$ tal que toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (secuencial o alternante) en $A$ lo es también en $A'$.
 \end{lemma}
 
 \begin{proof}
@@ -110,7 +110,7 @@ En los siguientes lemas, demostraremos esto para algunas de las clases de juegos
 
     Para $j^\tau$ podemos razonar de forma análoga, solo que considerando la pertenencia a $BR_2(x^{\tau - 1})$ o $BR_2(x^\tau)$ según si hablamos de juego ficticio secuencial o alternante.
 
-    Podemos afirmar entonces que $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ es también una secuencia de juego ficticio  válida en $A'$.
+    Claramente $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ es también una secuencia de juego ficticio  válida en $A'$.
 \end{proof}
 
 \begin{lemma}
@@ -184,7 +184,7 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
 \begin{proof}
     Comencemos por el caso del jugador fila. Para probar que $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$, debemos probar que para todo $i \in N$, se cumple que $i \in BR_1(y^{k}) \implies i \in BR_1(y^{k-1})$, o por contra-recíproco, que $i \notin BR_1(y^{k-1}) \implies i \notin BR_1(y^{k})$. Supongamos entonces un $i' \in N$ tal que $i' \notin BR_1(y^{k-1})$.
 
-    Como $BR_1(y^{k-1}) = \argmax_{\pstrat{i} \in N} \{\pstrat{i}Ay^{k-1}\}$, si $i^* \in BR_1(y^{k-1})$ pero $i' \notin BR_1(y^{k-1})$, entonces podemos afirmar que $\pstrat{i^*}Ay^{k-1} > \pstrat{i'}Ay^{k-1}$ y luego (multiplicando ambos lados por una constante positiva) que $\frac{(k - 1)}{k} \pstrat{i^*}Ay^{k-1} > \frac{(k - 1)}{k} \pstrat{i'}Ay^{k-1}$.
+    Como $BR_1(y^{k-1}) = \argmax_{i \in N} \{\pstrat{i}Ay^{k-1}\}$, si $i^* \in BR_1(y^{k-1})$ pero $i' \notin BR_1(y^{k-1})$, entonces podemos afirmar que $\pstrat{i^*}Ay^{k-1} > \pstrat{i'}Ay^{k-1}$ y luego (multiplicando ambos lados por una constante positiva) que $\frac{(k - 1)}{k} \pstrat{i^*}Ay^{k-1} > \frac{(k - 1)}{k} \pstrat{i'}Ay^{k-1}$.
     
     Además, como $(i^*, j^*)$ es equilibrio de Nash puro, sabemos que $i^* \in BR_1(\pstrat{j*}) = \argmax_{i \in N} \{\pstrat{i}Aj^*\}$. Es decir que $\pstrat{i^*}Aj^* \ge \pstrat{i'}Aj^*$ y también $\frac{k - 1}{k} \pstrat{i^*}A\pstrat{j^*} \ge \frac{k - 1}{k} \pstrat{i'}A\pstrat{j^*}$.
 
