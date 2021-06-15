@@ -71,27 +71,37 @@ Las siguientes definiciones corresponden a otras dos categorías de juegos que h
 
 \section{Juego Ficticio} \label{sec:def:fp}
 
-\todo[color=blue, inline]{Mas intro acá. Explicación coloquial. Capaz algo de la division del algoritmo en decision y actualizacion como dice en pattern:matching}
+El algoritmo de juego ficticio consiste en una repetición iterada de un juego en la que en cada instancia los jugadores juegan una jugada que sea mejor respuesta a al historial de jugadas de su oponente, tomada como una distribución empírica. En esta sección presentaremos dos definiciones formales que podemos encontrar en la literatura sobre juego ficticio, a las cuales incorporaremos el concepto de \concept{reglas de desempate}. Este concepto nos permitirá precisar las definiciones, removiendo una ambigüedad que ocurre en los casos en los que los conjuntos de mejor respuesta no son unitarios.
 
-Existen en la literatura dos formas de definir el juego ficticio. Algunos autores como Berger, Monderer, Sela, Shapley, Daskalakis y Pan \cite{browns:original} \cite{no:cycling} \cite{2x2:without} \cite{identical:interests} \cite{counter:karlin:strong} utilizan una definición del estilo de la siguiente, que resulta cómoda para estudiar convergencia y es la que veremos primero. Presentaremos dos variantes, correspondientes a la versión simultanea y a la alternante.
+\begin{definition}
+    Llamamos \concept{reglas de desempate} de un juego ficticio a un par de funciones $d_1: \mathbb{P}^+(N) \rightarrow N$ y $d_2: \mathbb{P}^+(M) \rightarrow M$ que a cada subconjunto de acciones de un jugador en un eventual empate le asignan la acción que elegirá el proceso, cumpliendo la condición de Hauthakker:
 
+    \[
+        \forall N_a, N_b \in {P}^+(N), \text{ si } N_b \subseteq N_a, i \in N_b \text{ y } d_1(N_a) = i  \text{ entonces } d_1(N_b) = i
+    \]
+    \[
+        \forall M_a, M_b \in {P}^+(M), \text{ si } M_b \subseteq M_a, j \in M_b \text{ y } d_2(M_a) = j  \text{ entonces } d_2(M_b) = j
+    \]
+\end{definition}
+
+Algunos autores como Berger, Monderer, Sela, Shapley, Daskalakis y Pan \cite{browns:original} \cite{no:cycling} \cite{2x2:without} \cite{identical:interests} \cite{counter:karlin:strong} utilizan una definición del estilo de la siguiente, que resulta cómoda para estudiar convergencia y es la que veremos primero. Presentaremos dos variantes, correspondientes a la versión simultanea y a la alternante.
 
 \begin{definition} \label{def:fp:berger}
-    Sean $(A, B)$ un juego en forma bimatricial de $n \times m$ y una secuencia $(i^\tau, j^\tau)$ con $i^\tau \in N$, $j^\tau \in M$ para todo $\tau \in \mathbb{N}$. Si tenemos unas secuencias de creencias $x^\tau$ e $y^\tau$ tales que para todo $\tau \in \mathbb{N}$:
+    Sean $(A, B)$ un juego en forma bimatricial de $n \times m$ y una secuencia $(i^\tau, j^\tau)$ con $i^\tau \in N$, $j^\tau \in M$ para todo $\tau \in \mathbb{N}$. Si $d_1$ y $d_2$ son reglas de desempate y tenemos unas secuencias de creencias $x^\tau$ e $y^\tau$ tales que para todo $\tau \in \mathbb{N}$:
     \begin{gather*}
         x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{\tau}  \\
         y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{\tau}
     \end{gather*}
     Entonces:
     \begin{itemize}
-        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio simultaneo si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} \in BR_1(y^\tau)$ y $j^{\tau+1} \in BR_2(x^\tau)$.
-        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio alternante si $i^1$ es un elemento arbitrario de $N$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} \in BR_1(y^\tau)$ y $j^{\tau} \in BR_2(x^\tau)$.
+        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio simultáneo si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau+1} = d_2(BR_2(x^\tau))$.
+        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio alternante si $i^1$ es un elemento arbitrario de $N$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau} = d_2(BR_2(x^\tau))$.
     \end{itemize}
 \end{definition}
 
-Vale la pena hacer algunos comentarios sobre esta primera definición. Para empezar, observando las secuencias de creencias, $x^\tau$ e $y^\tau$, veremos que se componen de sumas de vectores unitarios, pero normalizados por el tiempo, por lo que son estrategias mixtas que se corresponden con la distribución empírica de las acciones de cada jugador.
+Vale la pena hacer algunos comentarios sobre esta primera definición. Para empezar, observando las secuencias de creencias, $x^\tau$ e $y^\tau$, veremos que se componen de sumas de vectores unitarios, pero normalizados por el tiempo, por lo que son estrategias mixtas que se corresponden con la distribución empírica de las acciones de cada jugador. Por otro lado, como los elementos iniciales son arbitrarios, un mismo juego puede tener tantos procesos de juego ficticio válidos como jugadas iniciales existan.
 
-Por otro lado, como los elementos iniciales son arbitrarios, un mismo juego puede tener tantos procesos de juego ficticio válidos como jugadas iniciales existan. Más aún, existe una ambigüedad en cuanto a qué acciones elige el proceso en los casos en los que alguno de los conjuntos de mejor respuesta no sea unitario\footnote{Es por esto que es tan importante en el estudio del juego ficticio la categoría de los juegos no degenerados, para los cuales el conjunto de mejor respuesta es unitario.}. Cada posible decisión configura un proceso distinto y válido, por lo que algunos autores mencionan informalmente el concepto de \concept{reglas de desempate}. En el capítulo \ref{cap:aportes} definiremos formalmente este concepto y presentaremos una definición propia de Juego Ficticio que elimina esta ambigüedad.
+Las definiciones que usan autores previamente mencionados establecen una condición mas débil sobre las jugadas, pidiendo solo que pertenezcan al conjunto de menor respuesta a la estrategia mixta percibida. Esto implica, como mencionamos recientemente, que aparecen ambigüedades en los casos en los que el conjunto de menor respuesta no es unitario. Una forma de eliminar esta ambigüedad fue centrarse en el estudio de los juegos no degenerados \cite{browns:original}. En este trabajo, tomamos el enfoque alternativo de eliminar la ambigüedad introduciendo las reglas de desempate.
 
 Sobre la variante alternante vale aclarar que efectivamente, el jugador columna toma su decisión incorporando en sus creencias la información sobre qué jugó el jugador fila en la ronda actual, si bien esto puede resultar poco intuitivo ya que normalmente en teoría de juegos se representa jugadores eligiendo simultánea e independientemente. Otra observación relevante es que su acción inicial no es arbitraria sino que ya se encuentra fijada por la mejor respuesta o mejores respuestas a la acción del jugador fila.
 
@@ -105,19 +115,19 @@ Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar
         \item Una secuencia de juego ficticio simultaneo en $(A, B)$ es una secuencia $(x^0, y^0), (x^1, y^1), (x^2, y^2), \dots$ de pares de vectores no negativos $(x^i, y^i) \in \mathbb{N}^n \times \mathbb{N}^m$ tal que:
         \begin{gather*}
             x^0 = \boldmath{0}, y^0 = \boldmath{0} \\
-            x^{\tau+1} = x^{\tau} + \pstrat{i} \text{\ donde $i$ es el índice de una componente máxima de $Ay^\tau$} \\
-            y^{\tau+1} = x^{\tau} + \pstrat{j} \text{\ donde $j$ es el índice de una componente máxima de $x^{\tau}B$}
+            x^{\tau+1} = x^{\tau} + \pstrat{i} \text{\ donde $i = d_1(argmax_{i \in N}\{\pstrat{i}Ay^\tau\})$} \\
+            y^{\tau+1} = x^{\tau} + \pstrat{j} \text{\ donde $j = d_2(argmax_{j \in M}\{x^{\tau}B\pstrat{j}\})$}
         \end{gather*}
         \item Una secuencia de juego ficticio alternante en $(A, B)$ es una secuencia $(x^0, y^0), (x^1, y^1), (x^2, y^2), \dots$ de pares de vectores no negativos $(x^i, y^i) \in \mathbb{N}^n \times \mathbb{N}^m$ tal que:
         \begin{gather*}
             x^0 = \boldmath{0}, y^0 = \boldmath{0} \\
-            x^{\tau+1} = x^{\tau} + \pstrat{i} \text{\ donde $i$ es el índice de una componente máxima de $Ay^\tau$} \\
-            y^{\tau+1} = y^{\tau} + \pstrat{j} \text{\ donde $j$ es el índice de una componente máxima de $x^{\tau+1}B$}
+            x^{\tau+1} = x^{\tau} + \pstrat{i} \text{\ donde $i = d_1(argmax_{i \in N}\{\pstrat{i}Ay^\tau\})$} \\
+            y^{\tau+1} = y^{\tau} + \pstrat{j} \text{\ donde $j = d_2(argmax_{j \in M}\{x^{\tau}B\pstrat{j}\})$}
         \end{gather*}
     \end{itemize}
 \end{definition}
 
-Como podemos observar, la principal diferencia con la primera definición es que mientras en aquella se define una secuencia de jugadas que cumple una condición contra un historial de creencias sobre la estrategia mixta del otro jugador, en esta la secuencia es de pares de contadores de jugadas (sin normalizar, por lo que no son estrategias mixtas), que cumplen en cada iteración una condición contra producto de un elemento de la otra contra las matrices de pago, pero sin ser este tampoco el valor esperado de la jugada. En el capítulo \ref{cap:aportes} se demostrará que estas dos definiciones son equivalentes.
+Como podemos observar, la principal diferencia con la primera definición es que mientras en aquella se define una secuencia de jugadas que cumple una condición contra un historial de creencias sobre la estrategia mixta del otro jugador, en esta la secuencia es de pares de contadores de jugadas (sin normalizar, por lo que no son estrategias mixtas), que cumplen en cada iteración una condición de maximizar el producto de la matriz de pagos contra el contador del rival (sin ser este tampoco la ganancia esperada por no estar el resultado normalizado). En el capítulo \ref{cap:aportes} se demostrará que estas dos definiciones son equivalentes.
 
 % Relación entre distintas convergencias
 

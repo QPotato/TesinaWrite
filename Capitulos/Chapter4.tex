@@ -22,7 +22,8 @@ Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir 
 
     Para $\tau = 1$, tenemos $p^1 = \pstrat{i^1} = \sum_{s=1}^1{\pstrat{i^s}}$ y $q^1 = \pstrat{j^1} = \sum_{s=1}^1{\pstrat{j^s}}$.
 
-    Veamos ahora el caso de un $\tau = k > 1$, suponiendo que $p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Por la definición \ref{def:fp:brandt}, $p^k = p^{k-1} + \pstrat{i}$ donde $i$ es un índice de una componente máxima de $Aq^{k-1} = A\sum_{s=1}^{k-1}{\pstrat{j^s}}$. Pero también sabemos, por la definición \ref{def:fp:berger} que $i^k \in BR_1(y^{k-1}) = BR_1(\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1}) = \{i \in N : (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_p = \max_{i' \in N} (A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})_{i'}\}$. Es decir que $i^k$ es el índice de una componente máxima de $A\frac{q^{k-1}}{k-1}$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $Aq^{k-1}$. Incluso si hubiera otras componentes máximas, estamos usando en ambos procesos la misma regla de desempate. Luego, $p^k = p^{k-1} + \pstrat{i^k} = \sum_{s=1}^{k-1}{\pstrat{i^s}} + \pstrat{i^k} = \sum_{s=1}^{k}{\pstrat{i^s}}$. Análogamente, $q^{k} = \sum_{s=1}^k{\pstrat{j^s}}$.
+    % Este parrafo esta a medio reescrbir con las defs nuevas
+    Veamos ahora el caso de un $\tau = k > 1$, suponiendo que $p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Por la definición \ref{def:fp:brandt}, $p^k = p^{k-1} + \pstrat{i}$ donde $i = d_1(argmax_{i \in N}\{\pstrat{i}Ap^{k-1}\})$. Pero también sabemos, por la definición \ref{def:fp:berger} que $i^k \in BR_1(y^{k-1}) = BR_1(\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1}) = argmax_{i \in N}\{A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})\}$. Es decir que $i^k$ es el índice de una componente máxima de $A\frac{q^{k-1}}{k-1}$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $Aq^{k-1}$. Incluso si hubiera otras componentes máximas, estamos usando en ambos procesos la misma regla de desempate. Luego, $p^k = p^{k-1} + \pstrat{i^k} = \sum_{s=1}^{k-1}{\pstrat{i^s}} + \pstrat{i^k} = \sum_{s=1}^{k}{\pstrat{i^s}}$. Análogamente, $q^{k} = \sum_{s=1}^k{\pstrat{j^s}}$.
 \end{proof}
 
 En el caso alternante, la jugada del jugador columna ya no es análoga a la del jugador fila, y el análisis es un poco mas complejo.
@@ -48,36 +49,6 @@ En el caso alternante, la jugada del jugador columna ya no es análoga a la del 
     Veamos ahora el caso de $\tau = k > 1$, suponiendo que $p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Podemos afirmar, con el mismo argumento que en el caso inductivo del lema \ref{lema:equiv:sim}, que $p^{k} = \sum_{s=1}^k{\pstrat{i^s}}$. Por otro lado, $q^{k} = y^{k} + \pstrat{j}$ donde $j$ es el índice de una componente máxima de $p^{k}B = \sum_{s=1}^k{\pstrat{i^s}}B$. Sabemos además, por la definición \ref{def:fp:berger}, que $j^k \in BR_2(x^{k}) = BR_2(\frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k}) = \{j \in N : (\frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k}B)_j = \max_{j' \in M} (\frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k}B)_{j'}\}$. Es decir que $j^k$ es el índice de una componente máxima de $\frac{p^k}{k}B$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $p^{k}B$. Como ambos procesos desempatan igual, entonces que $q^k = q^{k-1} + j^k = \sum_{s=1}^{k-1}{\pstrat{j^s}} + j^k = \sum_{s=1}^{k}{\pstrat{j^s}}$.
 
 \end{proof}
-
-\section{Reglas de Desempate}
-
-Haremos foco ahora en otra cuestión mencionada en la sección \ref{sec:def:fp} sobre las definiciones de juego ficticio. La definición de que de Berger deja implícita la ambigüedad de los casos en los que los conjuntos de mejor respuesta no son unitarios. Presentaremos entonces una definición que preciza este aspecto. Comenzaremos por formalizar el concepto de \concept{reglas de desempate}:
-
-\begin{definition}
-    Llamamos \concept{reglas de desempate} de un juego ficticio a un par de funciones $d_1: \mathbb{P}^+(N) \rightarrow N$ y $d_2: \mathbb{P}^+(M) \rightarrow M$ que a cada subconjunto de acciones de un jugador en un eventual empate le asignan la acción que elegirá el proceso, cumpliendo la condición de Hauthakker:
-
-    \[
-        \forall N_a, N_b \in {P}^+(N), \text{ si } N_b \subseteq N_a, i \in N_b \text{ y } d_1(N_a) = i  \text{ entonces } d_1(N_b) = i
-    \]
-    \[
-        \forall M_a, M_b \in {P}^+(M), \text{ si } M_b \subseteq M_a, j \in M_b \text{ y } d_2(M_a) = j  \text{ entonces } d_2(M_b) = j
-    \]
-\end{definition}
-
-Usando este concepto, presentaremos ahora la definición de juego ficticio que utilizaremos durante el resto de este trabajo:
-
-\begin{definition} \label{def:fp:berger_desempate}
-    Sean $(A, B)$ un juego en forma bimatricial de $n \times m$ y una secuencia $(i^\tau, j^\tau)$ con $i^\tau \in N$, $j^\tau \in M$ para todo $\tau \in \mathbb{N}$. Si $d_1$ y $d_2$ son reglas de desempate y tenemos unas secuencias de creencias $x^\tau$ e $y^\tau$ tales que para todo $\tau \in \mathbb{N}$:
-    \begin{gather*}
-        x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{\tau}  \\
-        y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{\tau}
-    \end{gather*}
-    Entonces:
-    \begin{itemize}
-        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio simultáneo si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau+1} = d_2(BR_2(x^\tau))$.
-        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio alternante si $i^1$ es un elemento arbitrario de $N$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau} = d_2(BR_2(x^\tau))$.
-    \end{itemize}
-\end{definition}
 
 \section{Preservación del Juego Ficticio}
 
