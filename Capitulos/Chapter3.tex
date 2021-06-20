@@ -95,7 +95,7 @@ Algunos autores como Berger, Monderer, Sela, Shapley, Daskalakis y Pan \cite{bro
     Entonces:
     \begin{itemize}
         \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio simultáneo si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau+1} = d_2(BR_2(x^\tau))$.
-        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio alternante si $i^1$ es un elemento arbitrario de $N$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau} = d_2(BR_2(x^\tau))$.
+        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio alternante si $i^0$ es un elemento arbitrario de $N$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau} = d_2(BR_2(x^\tau))$.
     \end{itemize}
 \end{definition}
 
@@ -112,17 +112,17 @@ Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar
 \begin{definition} \label{def:fp:brandt}
     Sea $(A, B)$ un juego en forma bimatricial de $n \times m$:
     \begin{itemize}
-        \item Una secuencia de juego ficticio simultaneo en $(A, B)$ es una secuencia $(x^0, y^0), (x^1, y^1), (x^2, y^2), \dots$ de pares de vectores no negativos $(x^i, y^i) \in \mathbb{N}^n \times \mathbb{N}^m$ tal que:
+        \item Una secuencia de juego ficticio simultaneo en $(A, B)$ es una secuencia $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ de pares de vectores no negativos $(p^i, q^i) \in \mathbb{N}^n \times \mathbb{N}^m$ tal que:
         \begin{gather*}
-            x^0 = \boldmath{0}, y^0 = \boldmath{0} \\
-            x^{\tau+1} = x^{\tau} + \pstrat{i} \text{\ donde $i = d_1(argmax_{i \in N}\{\pstrat{i}Ay^\tau\})$} \\
-            y^{\tau+1} = x^{\tau} + \pstrat{j} \text{\ donde $j = d_2(argmax_{j \in M}\{x^{\tau}B\pstrat{j}\})$}
+            p^0 = \boldmath{0}, q^0 = \boldmath{0} \\
+            p^{\tau+1} = p^{\tau} + \pstrat{i} \text{\ donde $i = d_1(argmax_{i' \in N}\{\pstrat{i'}Aq^\tau\})$} \\
+            q^{\tau+1} = q^{\tau} + \pstrat{j} \text{\ donde $j = d_2(argmax_{j' \in M}\{p^{\tau}B\pstrat{j'}\})$}
         \end{gather*}
-        \item Una secuencia de juego ficticio alternante en $(A, B)$ es una secuencia $(x^0, y^0), (x^1, y^1), (x^2, y^2), \dots$ de pares de vectores no negativos $(x^i, y^i) \in \mathbb{N}^n \times \mathbb{N}^m$ tal que:
+        \item Una secuencia de juego ficticio alternante en $(A, B)$ es una secuencia $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$  de pares de vectores no negativos $(x^i, y^i) \in \mathbb{N}^n \times \mathbb{N}^m$ tal que:
         \begin{gather*}
-            x^0 = \boldmath{0}, y^0 = \boldmath{0} \\
-            x^{\tau+1} = x^{\tau} + \pstrat{i} \text{\ donde $i = d_1(argmax_{i \in N}\{\pstrat{i}Ay^\tau\})$} \\
-            y^{\tau+1} = y^{\tau} + \pstrat{j} \text{\ donde $j = d_2(argmax_{j \in M}\{x^{\tau}B\pstrat{j}\})$}
+            p^0 = \boldmath{0}, q^0 = \boldmath{0} \\
+            p^{\tau+1} = p^{\tau} + \pstrat{i} \text{\ donde $i = d_1(argmax_{i' \in N}\{\pstrat{i'}Aq^\tau\})$} \\
+            q^{\tau+1} = q^{\tau} + \pstrat{j} \text{\ donde $j = d_2(argmax_{j' \in M}\{p^{\tau+1}B\pstrat{j'}\})$}
         \end{gather*}
     \end{itemize}
 \end{definition}
@@ -135,14 +135,6 @@ Como podemos observar, la principal diferencia con la primera definición es que
 \section{Ejemplos}
 
 Veamos como se aplican todos estos conceptos a algunos juegos clásicos de la literatura. Comenzaremos por el Dilema de los Prisioneros:
-
-% \begin{equation*}
-%     (A, B) =
-%     \begin{bmatrix}
-%         (2, 2) & (0, 3) \\
-%         (3, 0) & (1, 1)
-%     \end{bmatrix}
-% \end{equation*}
 
 
 \input{Tablas/matrizDilema.tex}

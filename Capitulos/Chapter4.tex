@@ -5,13 +5,7 @@
 Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir el juego ficticio entre los distintos autores de la literatura. Ambas simplifican de distintas formas la definición original de Brown y si bien son similares, su equivalencia no es inmediatamente evidente, por lo que uno podría dudar de si un teorema expresado para una de las definiciones es válido con la otra. Por lo tanto, presentamos a continuación dos lemas sobre esta equivalencia, para el caso simultáneo y alternante respectivamente. La idea será probar que los historiales de la definición \ref{def:fp:brandt} suman en cada iteración la estrategia pura correspondiente a la acción elegida por la definición \ref{def:fp:berger}. Comenzamos con el caso simultáneo.
 
 \begin{lemma} \label{lema:equiv:sim}
-    % $i^k$ jugada del jugador fila en tiempo $t$
-    % $j^k$ jugada del jugador columna en tiempo $t$
-    % $y^k$ creencias del jugador fila sobre la estrategia del jugador columna en tiempo $t$
-    % $x^k$ creencias del jugador columna sobre la estrategia del jugador fila en tiempo $t$
-    % $p^k$ historial de jugadas del jugador fila
-    % $q^k$ historial de jugadas del jugador columna
-    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(\pstrat{i^\tau}, \pstrat{j^\tau})_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultáneo (según la definición \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultáneo (según la definición \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$, $q^1 = \pstrat{j^1}$ y ambas usan la misma regla de desempate. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, $\forall \tau \in \mathbb{N}$, se cumplen:
+    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(\pstrat{i^\tau}, \pstrat{j^\tau})_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultáneo (según la definición \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultáneo (según la definición \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$, $q^1 = \pstrat{j^1}$ y ambas usan las mismas reglas de desempate $(d_1, d_2)$. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, $\forall \tau \in \mathbb{N}$, se cumplen:
 
     \[ p^{\tau} = \sum_{s=1}^\tau{\pstrat{i^s}} \]
     \[ q^{\tau} = \sum_{s=1}^\tau{\pstrat{j^s}} \]
@@ -23,19 +17,22 @@ Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir 
     Para $\tau = 1$, tenemos $p^1 = \pstrat{i^1} = \sum_{s=1}^1{\pstrat{i^s}}$ y $q^1 = \pstrat{j^1} = \sum_{s=1}^1{\pstrat{j^s}}$.
 
     % Este parrafo esta a medio reescrbir con las defs nuevas
-    Veamos ahora el caso de un $\tau = k > 1$, suponiendo que $p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Por la definición \ref{def:fp:brandt}, $p^k = p^{k-1} + \pstrat{i}$ donde $i = d_1(argmax_{i \in N}\{\pstrat{i}Ap^{k-1}\})$. Pero también sabemos, por la definición \ref{def:fp:berger} que $i^k \in BR_1(y^{k-1}) = BR_1(\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1}) = argmax_{i \in N}\{A\frac{\sum_{s=1}^{k-1} \pstrat{j^s}}{k-1})\}$. Es decir que $i^k$ es el índice de una componente máxima de $A\frac{q^{k-1}}{k-1}$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $Aq^{k-1}$. Incluso si hubiera otras componentes máximas, estamos usando en ambos procesos la misma regla de desempate. Luego, $p^k = p^{k-1} + \pstrat{i^k} = \sum_{s=1}^{k-1}{\pstrat{i^s}} + \pstrat{i^k} = \sum_{s=1}^{k}{\pstrat{i^s}}$. Análogamente, $q^{k} = \sum_{s=1}^k{\pstrat{j^s}}$.
+    Veamos ahora el caso de un $\tau > 1$, suponiendo que $p^{\tau-1} = \sum_{s=1}^{\tau-1}{\pstrat{i^s}}$ y $q^{\tau-1} = \sum_{s=1}^{\tau-1}{\pstrat{j^s}}$.
+    Por la definición \ref{def:fp:brandt}, $p^\tau = p^{\tau-1} + \pstrat{i}$
+    donde $i = d_1(argmax_{i \in N}\{\pstrat{i}Ap^{\tau-1}\})$.
+    Pero también sabemos, por la definición \ref{def:fp:berger}
+    que $i^\tau = d_1(BR_1(y^{\tau-1})) = d_1(BR_1(\frac{\sum_{s=1}^{\tau-1} \pstrat{j^s}}{\tau-1})) = d_1(argmax_{i \in N}\{A\frac{\sum_{s=1}^{\tau-1} \pstrat{j^s}}{\tau-1})\}) = d_1(argmax_{i \in N}\{A\frac{q^{\tau-1}}{\tau-1})\})$.
+    Como escalar un vector no afecta la relación de orden entre sus componentes,
+    podemos afirmar también que $i^\tau = d_1(argmax_{i \in N}\{Aq^{\tau-1})\})$.
+    Luego, aplicando esto a la definición \ref{def:fp:brandt}, $p^\tau = p^{\tau-1} + \pstrat{i^\tau} = \sum_{s=1}^{\tau-1}{\pstrat{i^s}} + \pstrat{i^\tau} = \sum_{s=1}^{\tau}{\pstrat{i^s}}$.
+    
+    Análogamente, $q^{\tau} = \sum_{s=1}^\tau{\pstrat{j^s}}$.
 \end{proof}
 
 En el caso alternante, la jugada del jugador columna ya no es análoga a la del jugador fila, y el análisis es un poco mas complejo.
 
 \begin{lemma}
-    % $i^k$ jugada del jugador fila en tiempo $t$
-    % $j^k$ jugada del jugador columna en tiempo $t$
-    % $y^k$ creencias del jugador fila sobre la estrategia del jugador columna en tiempo $t$
-    % $x^k$ creencias del jugador columna sobre la estrategia del jugador fila en tiempo $t$
-    % $p^k$ historial de jugadas del jugador fila
-    % $q^k$ historial de jugadas del jugador columna
-    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definición \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definición \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$ y ambas usan la misma regla de desempate. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, para todo $\tau \in \mathbb{N}$, se cumplen:
+    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definición \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definición \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$ y ambas usan las mismas reglas de desempate $(d_1, d_2)$. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, para todo $\tau \in \mathbb{N}$, se cumplen:
 
     \[ p^{\tau} = \sum_{s=1}^\tau{\pstrat{i^s}} \]
     \[ q^{\tau} = \sum_{s=1}^\tau{\pstrat{j^s}} \]
@@ -44,11 +41,28 @@ En el caso alternante, la jugada del jugador columna ya no es análoga a la del 
 \begin{proof}
     Nuevamente, procederemos por inducción sobre $\tau$.
 
-    Para $\tau = 1$, sabemos que $p^1 = \pstrat{i^1} = \sum_{s=1}^1{\pstrat{i^s}}$. Por la definición \ref{def:fp:brandt}, $q^1 = q^0 + \pstrat{j}$ donde $q^0$ es el vector nulo y $j$ es el índice de una componente máxima de $p^{1}B = \pstrat{i^1}B$ y, por la definición \ref{def:fp:berger}, sabemos que $j^1 \in BR_2(x^1) = BR_2(\frac{\sum^1_{s=1} \pstrat{i^s}}{\tau}) = BR_2(i^1) = \{j \in N : (i^{1}B)_j = \max_{j' \in M} (i^{1}B)_{j'}\}$. Es decir, $j^1$ es el índice de una componente máxima de $i^{1}B$. Luego, $q^1 = \pstrat{j^1} = \sum_{s=1}^1{\pstrat{j^s}}$.
+    Para $\tau = 1$, sabemos que $p^1 = \pstrat{i^1} = \sum_{s=1}^1{\pstrat{i^s}}$.
+    Por la definición \ref{def:fp:brandt}, $q^1 = q^0 + \pstrat{j}$ donde $q^0$ es el vector nulo y
+    $j = d_2(argmax_{j \in M}\{p^{1}B\pstrat{j}\}) = d_2(argmax_{j \in M}\{\pstrat{i^{1}}B\pstrat{j}\})$.
+    Además, por la definición \ref{def:fp:berger}, sabemos que
+    $j^1 = d_2(BR_2(x^1)) = d_2(BR_2(\frac{\sum^1_{s=1} \pstrat{i^s}}{\tau})) = d_2(BR_2(i^1)) = d_2(argmax_{j \in M}\{\pstrat{i^{1}}B\pstrat{j}\})$.
+    Luego, $q^1 = \pstrat{j^1} = \sum_{s=1}^1{\pstrat{j^s}}$.
 
-    Veamos ahora el caso de $\tau = k > 1$, suponiendo que $p^{k-1} = \sum_{s=1}^{k-1}{\pstrat{i^s}}$ y $q^{k-1} = \sum_{s=1}^{k-1}{\pstrat{j^s}}$. Podemos afirmar, con el mismo argumento que en el caso inductivo del lema \ref{lema:equiv:sim}, que $p^{k} = \sum_{s=1}^k{\pstrat{i^s}}$. Por otro lado, $q^{k} = y^{k} + \pstrat{j}$ donde $j$ es el índice de una componente máxima de $p^{k}B = \sum_{s=1}^k{\pstrat{i^s}}B$. Sabemos además, por la definición \ref{def:fp:berger}, que $j^k \in BR_2(x^{k}) = BR_2(\frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k}) = \{j \in N : (\frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k}B)_j = \max_{j' \in M} (\frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k}B)_{j'}\}$. Es decir que $j^k$ es el índice de una componente máxima de $\frac{p^k}{k}B$. Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar que también es una componente máxima de $p^{k}B$. Como ambos procesos desempatan igual, entonces que $q^k = q^{k-1} + j^k = \sum_{s=1}^{k-1}{\pstrat{j^s}} + j^k = \sum_{s=1}^{k}{\pstrat{j^s}}$.
+    Veamos ahora el caso de $\tau > 1$, suponiendo que
+    $p^{\tau-1} = \sum_{s=1}^{\tau-1}{\pstrat{i^s}}$ y $q^{\tau-1} = \sum_{s=1}^{\tau-1}{\pstrat{j^s}}$.
+    Podemos afirmar, con el mismo argumento que en el caso inductivo del lema \ref{lema:equiv:sim}, que
+    $p^{\tau} = \sum_{s=1}^\tau{\pstrat{i^s}}$.
+    Por otro lado, $q^{\tau} = y^{\tau} + \pstrat{j}$ donde
+    $j = d_2(argmax_{j' \in M}\{p^{\tau+1}B\pstrat{j'}\}) = d_2(argmax_{j' \in M}\{\sum_{s=1}^\tau{\pstrat{i^s}}B\pstrat{j'}\})$.
+    Sabemos además, por la definición \ref{def:fp:berger}, que
+    $j^\tau = d_2(BR_2(x^{\tau})) = d_2(BR_2(\frac{\sum_{s=1}^{\tau}{\pstrat{i^s}}}{\tau})) = d_2(argmax_{j' \in N}\{\frac{\sum_{s=1}^{\tau}{\pstrat{i^s}}}{\tau}B\pstrat{j}\})  = d_2(argmax_{j' \in N}\{\frac{p^{\tau}}{\tau}B\pstrat{j}\})$.
+    Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar también que
+    $j^\tau = d_2(argmax_{j' \in N}\{p^{\tau}B\pstrat{j}\})$.
+    Luego, aplicando esto a la definición \ref{def:fp:brandt},
+    $q^\tau = q^{\tau-1} + j^\tau = \sum_{s=1}^{\tau-1}{\pstrat{j^s}} + j^\tau = \sum_{s=1}^{\tau}{\pstrat{j^s}}$.
 
 \end{proof}
+
 
 \section{Preservación del Juego Ficticio}
 
@@ -63,7 +77,6 @@ En los siguientes lemas, demostraremos esto para algunas de las clases de juegos
 \begin{lemma}
     Sea $A$ un juego de suma cero de tamaño $n$, existe un juego  de suma cero $A'$ de tamaño $n+1$ tal que toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (secuencial o alternante) en $A$ lo es también en $A'$.
 \end{lemma}
-
 \begin{proof}
     Definimos el juego $A'$ como
     \begin{equation*}
@@ -84,10 +97,10 @@ En los siguientes lemas, demostraremos esto para algunas de las clases de juegos
     Claramente $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ es también una secuencia de juego ficticio  válida en $A'$.
 \end{proof}
 
+
 \begin{lemma}
     Sea $A$ un juego intereses idénticos de tamaño $n \times m$, existe un juego de intereses idénticos $A'$ de tamaño $(n+1) \times m$ tal que toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (secuencial o alternante) en $(A, B)$ lo es también en $(A', B')$.
 \end{lemma}
-
 \begin{proof}
     % Creo que vale la misma demostración de suma cero???
     % Por eso quería demostrar simétricos???
@@ -114,7 +127,7 @@ Observemos que no valen lemas similares para la reducción en tamaño de los jue
 \section{Convergencia de Juego Ficticio} \label{sec:convergencia:fp}
 
 % Mencionar que agregamos reglas de desempate y entonces el teorema es mas piola
-En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que desarrollan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante e incluimos consideraciones sobre los posibles empates. \todo{hay que reescribir este párrafo}
+En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que desarrollan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa.
 
 \begin{lemma}
     Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $i^* \in BR_1(y^{k})$ y $j^* \in BR_2(x^{k})$.
@@ -172,62 +185,12 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
 \begin{theorem}
     Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i*, j*)$, entonces este perfil se repetirá en la iteración siguiente.
 \end{theorem}
-
 \begin{proof}
     Nuevamente, comencemos por el jugador fila. Sabemos que en la iteración $k$ se jugó $(i*, j*)$, lo cual nos asegura que $d_1(BR_1(y^{k-1})) = i^*$. Pero sabemos también por los lemas anteriores que $i^* \in BR_1(y^{k})$ y que $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$. Luego, por la definición de reglas de desempate, debe ser que $d_1(BR_1(y^k)) = i^*$. Es decir, volverá a jugar $i^*$.
 
     Análogamente, podemos afirmar también que el jugador columna jugará $j^*$.
 \end{proof}
 
-% \begin{theorem}
-%     Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio alternante en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^t, y^t)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se juega el perfil de estrategias $(i*, j*)$ y este es un equilibrio de Nash puro, entonces $(i*, j*)$ será también el perfil jugado en todas las iteraciones posteriores.
-% \end{theorem}
-
-% \begin{proof}
-%     Si en la iteración $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1})$ y $j^* \in BR_2(x^{k-1})$ y por la definición de las reglas de desempate, $i^* = d_1(BR_1(y^{k-1}))$ y $j^* = d_2(BR_2(x^{k-1}))$. Sabemos también, por la definición de equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*})$ y $j^* \in BR_2(\pstrat{i^*})$.
-
-%     Veamos entonces que sucederá en la iteración $k+1$, comenzando por el jugador fila. Sus creencias se actualizaran como
-%     \[
-%         y^k = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}} + \pstrat{j^*}}{k}
-%             = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}}}{k} + \frac{\pstrat{j^*}}{k}
-%             = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}}(k-1)}{k(k-1)} + \frac{\pstrat{j^*}}{k}
-%             = \frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^*}}{k}
-%     \]
-
-%     Y su conjunto de mejor respuesta será
-%     \begin{align*}
-%         BR_1(y^k) &= BR_1(\frac{k - 1}{k} y^{k-1} + \frac{j^*}{k}) \\
-%         &= \{i \in N : (A(\frac{k - 1}{k} y^{k-1} + \frac{j^*}{k}))_i = \max_{i' \in N} (A(\frac{k - 1}{k} y^{k-1} + \frac{j^*}{k}))_i'\}\\
-%         &= \{i \in N : (\frac{k - 1}{k} Ay^{k-1} + A\frac{j^*}{k})_i = \max_{i' \in N} (\frac{k - 1}{k} Ay^{k-1} + A\frac{j^*}{k})_i'\}
-%     \end{align*}
-
-%     por lo que podemos afirmar, al igual que en el caso simultáneo, que jugará $i^*$ en la iteración $k+1$. Ahora, sabiendo la jugada del jugador fila, podemos analizar qué jugará el jugador columna. Sus creencias se actualizaran como
-%     \[
-%         x^{k+1} = \frac{\sum_{s=1}^{k}{\pstrat{i^s}} + \pstrat{i^*}}{k+1}
-%             = \frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k+1} + \frac{\pstrat{i^*}}{k+1}
-%             = \frac{k\sum_{s=1}^{k}{\pstrat{i^s}}}{k(k+1)} + \frac{\pstrat{i^*}}{k+1}
-%             = \frac{k}{k+1} x^{k} + \frac{\pstrat{i^*}}{k+1}
-%     \]
-
-%     Y su conjunto de mejor respuesta será
-%     \begin{align*}
-%         BR_2(x^{k+1}) &= BR_2(\frac{k}{k+1} x^{k} + \frac{\pstrat{i^*}}{k+1}) \\
-%         &= \{
-%             j \in M :
-%             ((\frac{k}{k+1} y^{k} + \frac{\pstrat{i^*}}{k+1})B)_j
-%             = \max_{j' \in M} ((\frac{k}{k+1} x^{k} + \frac{\pstrat{i^*}}{k+1})B)_j'
-%         \}\\
-%         &= \{
-%             j \in M :
-%             (\frac{k}{k+1} x^{k}B + \frac{i^*}{k+1}B)_j =
-%             \max_{j' \in M} (\frac{k}{k+1} x^{k}B + \frac{j^*}{k+1}B)_j'
-%         \}
-%     \end{align*}
-
-%     Y podemos afirmar que como $j^*$ es índice máximo de $x^{k+1}B$ y de $i^*B$, lo es también de su combinación lineal. Como sabemos que $d_2$ desempatá en favor de $j^*$, concluimos que en la iteración $k+1$ y por tanto en todas las siguientes, se jugará nuevamente $(i^*, j^*)$.
-
-
-% \end{proof}
 
 \section{Velocidad de Convergencia de AFP} \label{sec:aportes:velocidad}
 
