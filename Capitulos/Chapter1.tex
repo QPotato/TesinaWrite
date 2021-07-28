@@ -1,16 +1,41 @@
 \chapter{Introducción} \label{cap:intro}
 
 % Teoría de Juegos
-Creada por John Von Neumann y Oskar Morgenstern, la teoría de juegos surgió en la década de 1940 motivada en parte por la Segunda Guerra Mundial. Estudia una variedad de situaciones en las que diversos agentes interactúan y toman decisiones estratégicas con el fin de obtener beneficios con interdependencias. Para ello, la teoría estudia los comportamientos, la posibilidad de maximizar esas ganancias según variados criterios y los casos de equilibrio, a la vez que formula y analiza modelos.
+Creada por John Von Neumann y Oskar Morgenstern[CN], la teoría de juegos surgió en la década de 1940 motivada en parte por la Segunda Guerra Mundial. Estudia una variedad de situaciones en las que diversos agentes interactúan y toman decisiones estratégicas con el fin de obtener beneficios con interdependencias. Para ello, la teoría estudia los comportamientos, la posibilidad de maximizar esas ganancias según variados criterios y los casos de equilibrio, a la vez que formula y analiza modelos.
 
 % Aplicaciones a la Economía de la Teoría de Juegos
+La teoría de juegos ha estado también históricamente muy ligada a la economía. En esta ciencia, juega un rol fundamental en el estudio de la toma de decisiones y el modelado de actores económicos como agentes racionales. Tal es así que se han concedido más de 10 premios Nobel de Economía en reconocimiento a investigaciones sobre teoría de juegos. Hoy en día, la mayor parte de la investigación en teoría de juegos es publicada en revistas de ciencias económicas.
 
 % Teoría de Juegos Algorítmica y su lugar en las Ciencias de la Computación
+En la intersección entre la teoría de juegos y la ciencia de la computación se encuentra la teoría de juegos algorítmica. Esta rama, que se caracteriza por su enfoque más cuantitativo y concreto, típicamente modela aplicaciones como problemas de optimización y busca soluciones óptimas, resultados de imposibilidad, cotas de complejidad, garantías de aproximación, etc. La teoría de juegos algorítmica asume la necesidad de complejidades algorítmicas razonables (polinomiales) como condición necesaria sobre el comportamiento de los participantes de un sistema. Entre sus varias aplicaciones podemos mencionar el diseño de protocolos de redes,   
+
+% Conceptos Básicos de TdJ
+No hay una única forma de introducir la teoría de juegos. El enfoque clásico trata sobre juegos en forma normal (en particular los matriciales), estrategias puras y mixtas, la existencia de equilibrios y los procesos de negociación y arbitraje, especialmente a partir de planteos axiomáticos. Interesa asimismo el estudio abstracto de funciones de utilidad, loterías, modelos de subastas, esquemas de votación a partir de preferencias en la sociedad y, más recientemente, los juegos combinatorios, que se plantean algebraicamente (a partir de la idea del Nim [CN], los juegos pueden sumarse y multiplicarse, también considerar fracciones de estos y compararlos mediante relaciones de orden, con consecuencias útiles para el análisis de las estrategias involucradas).
+
+En este trabajo nos interesan particularmente los juegos de dos jugadores en forma normal y el estudio de sus equilibrios. Existen en la literatura varios conceptos que capturan la noción de equilibrio, pero sin duda el más estudiado es el del \concept{equilibrio de Nash}: una combinación de jugadas en la que todos los jugadores están jugando lo mejor que pueden dadas las jugadas de los otros o, dicho de otra forma, ninguno tiene un incentivo para jugar de forma distinta, rompiendo este equilibrio. Sin embargo, una crítica muy común al equilibrio de Nash es que falla en capturar una noción sobre como jugadores racionales llegan a un estado estable a través de un proceso de deliberación.
 
 % Equilibrios de Nash. Intuición de FP como explicación de EdN
+El proceso de aprendizaje de juego ficticio, propuesto por primera vez por Brown en 1951 \cite{brown:1951} como un método para encontrar equilibrios de un juego finito de suma cero \cite{libro:rubinstein} a través de la repetición de este en un proceso iterativo, nos provee una posible racionalización a través de la cuál los jugadores pueden llegar al equilibrio de Nash. El proceso consiste en que cada uno de ambos jugadores lleve una cuenta de la frecuencia de las jugadas realizadas por el otro, decidiendo la propia en cada turno como su mejor respuesta contra la jugada "media" del otro (tomando su historial de jugadas como una distribución empírica). 
+
+Brown propuso dos variantes de juego ficticio: simultaneo y alternante, que se diferencian en la información que en cada iteración tienen los jugadores al momento de tomar su decisión. En el simultaneo, ambos jugadores tienen el historial de jugadas hasta la iteración anterior, mientras que en el alternante, el historial del segundo jugador contiene también la jugada del primero en la iteración actual. Este segundo enfoque es un poco contra-intuitivo, pues rompe uno de los principios de la teoría de juegos: la toma de decisiones de cada jugador se considera siempre como procesos independientes uno del otro. Es quizás por este motivo que el estudio posterior en juego ficticio se focalizó en la variante simultanea. Así, se han encontrado varias categorías de juegos para los cuales este proceso converge al equilibrio de Nash. [Algunos hitos más?]
+
+Desde la teoría de juegos algorítmica, la utilidad del juego ficticio fue cuestionada en publicaciones que argumentan que si bien el proceso converge, puede requerir una cantidad de iteraciones exponencial en el tamaño de representación del juego y es por tanto menos eficiente que otros métodos para encontrar equilibrios de Nash, como las mecánicas de no arrepentimiento o la resolución del problema de optimización lineal equivalente[CN]. Sin embargo, estos trabajos se refieren solo al juego ficticio simultaneo y no existe en la literatura actual un estudio exhaustivo sobre la utilidad del juego ficticio alternante como un mecanismo para encontrara equilibrios de Nash.
+
+En este trabajo, presentaremos algunos resultados con los que proponemos que el juego ficticio alternante es, desde un punto de vista computacional, un mecanismo al menos tan eficiente como el simultaneo y en algunos casos incluso mejor. 
+
+
+\section{Organización De Este Trabajo}
+
+Este trabajo esta organizado de la siguiente manera:
+\begin{itemize}
+  \item En el capítulo \ref{cap:conc} haremos un repaso de la literatura existente en juego ficticio, comenzando por el estudio de su convergencia y luego enfocándonos en los resultados sobre su velocidad de convergencia. 
+  \item En el capítulo \ref{cap:conc} presentaremos los conceptos teóricos fundamentales necesarios para este estudio. Definiremos los juegos en forma normal, los equilibrios de Nash, el juego ficticio en sus dos variantes y daremos algunos ejemplos sobre juegos clásicos de la literatura.
+  \item En el capítulo \ref{cap:aportes} presentaremos los resultados novedosos encontrados en este trabajo. Comenzaremos por demostrar la equivalencia entre dos de las definiciones de juego ficticio presentes en la literatura para luego  
+\end{itemize}
 
 % Historización de FP
   % Algo de AFP
+
 
 % Investigación de la convergencia
 
@@ -18,8 +43,3 @@ Creada por John Von Neumann y Oskar Morgenstern, la teoría de juegos surgió en
   % Algo de las diferentes métricas
 
 % Algo de que AFP sigue estando sub-explorado
-
-\section{Objetivos} \label{cap:intro:sec:obj}
-
-Intro \falta{Esto}
-
