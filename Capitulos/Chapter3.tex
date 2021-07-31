@@ -1,20 +1,8 @@
 \chapter{Conceptos previos}  \label{cap:previos}
 
-\section{Juegos bimatriciales y equilibrios de Nash}
+% Párrafo afuera con definiciones generales de teoría de juegos
 
-% Comenzaremos dando una definición de juego estratégico adaptada de \cite{libro:rubinstein}:
-% % Tomada de Osbourne & Rubinstein
-% \begin{definition}
-%     Un \concept{juego estrategico} consiste en
-%     \begin{itemize}
-%         \item Un conjunto finito $N$ (el conjunto de \concept{jugdores}).
-%         \item Para cada jugador $i \in N$, un conjunto no vacío $A_i$ (el conjunto de \concept{acciones} disponibles). Notamos con $A$ al conjunto $ $ y llamamos \concept{perfil} de acciones a sus elementos.
-%         % TODO: producto cartesiano en todos los indices
-%         \item Para cada jugador $i \in N$, una \concept{función de pagos} $u_i : A \rightarrow \R$ que a cada perfil de acciones $a$ le asigna un valor real que llamaremos la \concept{ganancia} o \concept{pago} del perfil $a$ para el jugador $i$.
-%     \end{itemize}
-% \end{definition}
-
-% En este trabajo, nos enfocaremos en los juegos estratégicos de dos jugadores. Suponiendo $N = \{1, 2\}$ Estos juegos pueden expresarse de manera compacta en \concept{forma normal} mediante un par de matrices $(A, B)$ tales que $A_{ij} = u_1(a_i)
+\section{Juegos en forma normal y equilibrios de Nash}
 
 % Definición de bimatricial tomada de Brown's original
 Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, es decir un juego de dos jugadores finito en el que el jugador $1$ (jugador fila) tiene acciones $i \in N = \{i_1, i_2, \dots, i_n\}$ y el jugador $2$ (jugador columna) tiene acciones $j \in M = \{j_1, j_2, \dots, j_m\}$. $A$, $B \in \mathbb{R}^{n \times m}$ son las matrices de pago de los jugadores $1$ y $2$. Si el jugador $1$ elige la acción $i$ y el jugador $2$ elige la acción $j$, la ganancia del jugador $1$ será $a_{i,j}$ y la ganancia del jugador $2$ será $b_{i,j}$. Describiremos los juegos en forma bimatricial con una matriz de pares como la siguiente:
@@ -105,8 +93,6 @@ Las definiciones que usan autores previamente mencionados establecen una condici
 
 Sobre la variante alternante vale aclarar que efectivamente, el jugador columna toma su decisión incorporando en sus creencias la información sobre qué jugó el jugador fila en la ronda actual, si bien esto puede resultar poco intuitivo ya que normalmente en teoría de juegos se representa jugadores eligiendo simultánea e independientemente. Otra observación relevante es que su acción inicial no es arbitraria sino que ya se encuentra fijada por la mejor respuesta o mejores respuestas a la acción del jugador fila.
 
-Diremos que un proceso de juego ficticio (simultaneo o alternante) converge de forma pura en la iteración $k$ si $(i^k, j^k)$ es un equilibrio de Nash puro. En el capítulo \ref{cap:aportes} veremos que cuando esto ocurre, $(i^k, j^k)$ se repetirá infinitamente desde este punto en el tiempo. Diremos también que el proceso converge de forma mixta si existe un equilibrio de Nash mixto tal que para todo $\epsilon > 0$ existe un $k \in \mathbb{N}$ tal que $|x^* - x^k| < \epsilon$ y $|y^* - y^k| < \epsilon$.
-
 Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar a la de Robinson \cite{robinson:zerosum} pero simplificada. Es más cómoda para estudiar velocidades de convergencia en juegos que se sabe que convergen. A continuación, presentamos también esta definición.
 
 \begin{definition} \label{def:fp:brandt}
@@ -127,9 +113,38 @@ Alternativamente, Brandt, Fischer y Harrenstein utilizan una definición similar
     \end{itemize}
 \end{definition}
 
-Como podemos observar, la principal diferencia con la primera definición es que mientras en aquella se define una secuencia de jugadas que cumple una condición contra un historial de creencias sobre la estrategia mixta del otro jugador, en esta la secuencia es de pares de contadores de jugadas (sin normalizar, por lo que no son estrategias mixtas), que cumplen en cada iteración una condición de maximizar el producto de la matriz de pagos contra el contador del rival (sin ser este tampoco la ganancia esperada por no estar el resultado normalizado). En el capítulo \ref{cap:aportes} se demostrará que estas dos definiciones son equivalentes.
+Como podemos observar, la principal diferencia con la primera definición es que mientras en aquella se define una secuencia de jugadas que cumple una condición contra un historial de creencias sobre la estrategia mixta del otro jugador, en esta la secuencia es de pares de contadores de jugadas (sin normalizar, por lo que no son estrategias mixtas), que cumplen en cada iteración una condición de maximizar el producto de la matriz de pagos contra el contador del rival (sin ser este producto tampoco la ganancia esperada por no estar el resultado normalizado). En el capítulo \ref{cap:aportes} se demostrará que estas dos definiciones son equivalentes.
 
-% Relación entre distintas convergencias
+\section{Convergencia del juego ficticio}
+
+El interés por el estudio del juego ficticio recae en su utilidad como mecanismo para calcular equilibrios de Nash. Para esto, se analiza la convergencia del proceso.
+
+\begin{definition}
+
+    Sea $(i^\tau, j^\tau)$ una secuencia de juego ficticio (simultaneo o alternante). Diremos que $(i^\tau, j^\tau)$ \concept{converge de forma pura} en la iteración $k$ si $(i^k, j^k)$ es un equilibrio de Nash puro.
+
+\end{definition}
+
+En el capítulo \ref{cap:aportes} veremos que cuando esto ocurre, $(i^k, j^k)$ se repetirá infinitamente en las siguientes iteraciones. Es decir, la secuencia de jugadas convergerá en ese equilibrio de Nash. Esta propiedad del juego ficticio es conocida como el \concept{principio de estabilidad}.
+
+Diremos también que un juego tiene la \concept{propiedad del juego ficticio} (comúnmente referida por sus siglas en inglés \concept{FPP}) si toda secuencia de juego ficticio en el juego (es decir, comenzando desde cualquier jugada inicial y con cualquier regla de desempate) converge de forma pura.
+
+Existe otra noción de convergencia muy estudiada en la literatura de juego ficticio. Esta es la convergencia en forma mixta o convergencia en creencias.
+
+\begin{definition}
+    Sea $(i^\tau, j^\tau)$ una secuencia de juego ficticio (simultaneo o alternante). Diremos que $(i^\tau, j^\tau)$ converge de forma mixta si existe un equilibrio de Nash mixto tal que para todo $\epsilon > 0$ existe un $k \in \mathbb{N}$ tal que $|x^* - x^k| < \epsilon$ y $|y^* - y^k| < \epsilon$.
+\end{definition}
+
+Obviamente, todo juego que converge en forma pura, converge también en forma mixta, ya que todo equilibrio puro es un equilibrio mixto y si la secuencia de jugadas converge a un equilibrio puro, las secuencias de creencias lo harán también.
+Si bien esta es también una definición muy potente, en el presente trabajo nos enfocaremos en la convergencia en forma pura. De aquí en adelante, cuando digamos que un proceso de juego ficticio converge, el lector deberá interpretarlo siempre como que converge en forma pura.
+
+\section{Velocidad de convergencia del juego ficticio}
+
+Desde un enfoque computacional, nos es interesante no solo saber si un proceso de juego ficticio converge sino además qué tan rápido converge. La complejidad algorítmica del proceso puede hacer la diferencia a la hora de darle una aplicación práctica.
+
+% Mencionar el enfoque de las garantias de cercania al equilibrio, no me acuerdo en que paper estaba.
+
+% Formalizar la representación en bits de los juegos
 
 
 \section{Ejemplos}
