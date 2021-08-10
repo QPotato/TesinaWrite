@@ -1,6 +1,6 @@
 \chapter{Resultados}  \label{cap:aportes}
 
-\section{Equivalencia de las distintas definiciones}
+\section{Equivalencia de las distintas definiciones} \label{sec:aportes:equivalencia}
 
 Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir el juego ficticio entre los distintos autores de la literatura. Ambas simplifican de distintas formas la definición original de Brown y si bien son similares, su equivalencia no es inmediatamente evidente, por lo que uno podría dudar de si un teorema expresado para una de las definiciones es válido con la otra. Por lo tanto, presentamos a continuación dos lemas sobre esta equivalencia, para el caso simultáneo y alternante respectivamente. La idea será probar que los historiales de la definición \ref{def:fp:brandt} suman en cada iteración la estrategia pura correspondiente a la acción elegida por la definición \ref{def:fp:berger}. Comenzamos con el caso simultáneo.
 
@@ -67,13 +67,15 @@ En el caso alternante, la jugada del jugador columna ya no es análoga a la del 
 \section{Convergencia de juego ficticio} \label{sec:convergencia:fp}
 
 % Mencionar que agregamos reglas de desempate y entonces el teorema es mas piola
-En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que desarrollan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa.
+En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos, es decir, que una vez que se juegue un equilibrio de Nash, este se repita infinitamente y la secuencia de jugadas converja en el mismo. Monderer y Sela llaman a esto el \concept{principio de estabilidad}. La demostración que presentan es mediante otros principios y conceptos que desarrollan en esa publicación, pero este resultado puede probarse de forma más directa aplicando el concepto de reglas de desempate.
 
+Este principio nos será útil en el capítulo siguiente para simplificar las demostraciones sobre la velocidad de convergencia, pero Monderer y Sela demostraron el principio solo para la variante simultanea. Por lo tanto, presentaremos a continuación una demostración del principio de estabilidad para el juego ficticio alternante.
+
+Empezaremos por un lema que nos dice que si el proceso juega un equilibrio de Nash, entonces las jugadas de este estarán en los conjuntos de mejor respuesta de la iteración siguiente. 
 
 \begin{lemma}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $i^* \in BR_1(y^{k})$ y $j^* \in BR_2(x^{k})$.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio alternante en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $i^* \in BR_1(y^{k})$ y $j^* \in BR_2(x^{k+1})$.
 \end{lemma}
-
 \begin{proof}
     Comencemos con el caso del jugador fila. Queremos probar que $i^*$ es una mejor respuesta a las creencias del jugador fila sobre la estrategia del jugador columna. Veamos primero entonces que forma tienen estas creencias según como se actualizan.
     
@@ -83,7 +85,7 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
             = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}}(k-1)}{k(k-1)} + \frac{\pstrat{j^*}}{k}
             = \frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^*}}{k}
     \]
-    Luego, tendremos que el conjunto de mejor respuesta será
+    Luego, tendremos que el conjunto de mejor respuesta será:
     
     \begin{align*}
         BR_1(y^k) &= BR_1(\frac{k - 1}{k} y^{k-1} + \frac{j^*}{k}) \\
@@ -91,97 +93,49 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
         &= \argmax_{i \in N} \{\frac{(k - 1)}{k}\pstrat{i} Ay^{k-1} + \frac{1}{k}\pstrat{i} Aj^*\}
     \end{align*}
 
-    Como en la iteración $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger_desempate}, sabemos que $i^* \in BR_1(y^{k-1}) = \argmax_{i \in N}\{\pstrat{i}Ay^{k-1}\}$. Es decir que para cualquier $i \in N$, podemos afirmar que $\pstrat{i^*}Ay^{k-1} \geq \pstrat{i}Ay^{k-1}$ y también (multiplicando en ambos lados por una constante positiva) que $\frac{(k - 1)}{k}\pstrat{i^*}Ay^{k-1} > \frac{(k - 1)}{k}\pstrat{i}Ay^{k-1}$.
+    Como en la iteración $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1}) = \argmax_{i \in N}\{\pstrat{i}Ay^{k-1}\}$. Es decir que para cualquier $i \in N$, podemos afirmar que $\pstrat{i^*}Ay^{k-1} \geq \pstrat{i}Ay^{k-1}$ y también (multiplicando en ambos lados por una constante positiva) que $\frac{(k - 1)}{k}\pstrat{i^*}Ay^{k-1} > \frac{(k - 1)}{k}\pstrat{i}Ay^{k-1}$.
 
     Sabemos también, al ser un equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*}) = \argmax_{i \in N}\{\pstrat{i}Aj^*\}$. Es decir que para cualquier $i \in N$, $\pstrat{i^*}Aj^* \geq \pstrat{i}Aj^*$ y consecuentemente $\frac{1}{k}\pstrat{i^*}Aj^* \geq \frac{1}{k}\pstrat{i}Aj^*$.
 
     Podemos sumar estas dos desigualdades para afirmar que $\frac{(k - 1)}{k}\pstrat{i^*}Ay^{k-1} + \frac{1}{k}\pstrat{i^*}Aj^* \geq \frac{(k - 1)}{k}\pstrat{i}Ay^{k-1} + \frac{1}{k}\pstrat{i}Aj^*$ para cualquier $i \in N$ y por lo tanto $i^* \in BR_1(y^{k})$.
 
-    Razonando análogamente para el jugador columna, podemos afirmar también que $j^* \in BR_2(x^{k})$.
-    
-\end{proof}
+    El caso del jugador columna será similar. Queremos probar que $j^*$ es una mejor respuesta a sus creencias sobre la estrategia del jugador fila, pero incluyendo la última iteración. Las creencias se actualizan como:
 
-
-\begin{lemma}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k}) \subseteq BR_2(x^{k-1})$.
-\end{lemma}
-
-\begin{proof}
-    Comencemos por el caso del jugador fila. Para probar que $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$, debemos probar que para todo $i \in N$, se cumple que $i \in BR_1(y^{k}) \implies i \in BR_1(y^{k-1})$, o por contra-recíproco, que $i \notin BR_1(y^{k-1}) \implies i \notin BR_1(y^{k})$. Supongamos entonces un $i' \in N$ tal que $i' \notin BR_1(y^{k-1})$.
-
-    Como $BR_1(y^{k-1}) = \argmax_{i \in N} \{\pstrat{i}Ay^{k-1}\}$, si $i^* \in BR_1(y^{k-1})$ pero $i' \notin BR_1(y^{k-1})$, entonces podemos afirmar que $\pstrat{i^*}Ay^{k-1} > \pstrat{i'}Ay^{k-1}$ y luego (multiplicando ambos lados por una constante positiva) que $\frac{(k - 1)}{k} \pstrat{i^*}Ay^{k-1} > \frac{(k - 1)}{k} \pstrat{i'}Ay^{k-1}$.
-    
-    Además, como $(i^*, j^*)$ es equilibrio de Nash puro, sabemos que $i^* \in BR_1(\pstrat{j*}) = \argmax_{i \in N} \{\pstrat{i}Aj^*\}$. Es decir que $\pstrat{i^*}Aj^* \ge \pstrat{i'}Aj^*$ y también $\frac{k - 1}{k} \pstrat{i^*}A\pstrat{j^*} \ge \frac{k - 1}{k} \pstrat{i'}A\pstrat{j^*}$.
-
-    Entonces, podemos razonar de la siguiente manera:
-    \begin{align*}
-        \pstrat{i^*}Ay^k &= \pstrat{i^*}A(\frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^*}}{k}) = \frac{(k - 1)}{k} \pstrat{i^*}Ay^{k-1} + \frac{1}{k}\pstrat{i^*}A\pstrat{j^*}\\
-        &> \frac{(k - 1)}{k} \pstrat{i'}Ay^{k-1} + \frac{1}{k}\pstrat{i'}A\pstrat{j^*} = \pstrat{i'}A(\frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^*}}{k}) = \pstrat{i'}Ay^k
-    \end{align*}
-
-    Puesto que sabemos por el lema anterior, que $i^* \in BR_1(y^{k}) = \argmax_{i \in N} \{\pstrat{i}Ay^{k}\}$, podemos afirmar que $i' \notin BR_1(y^{k})$.
-    Podemos razonar análogamente para el jugador columna para demostrar también que $BR_2(x^{k}) \subseteq BR_2(x^{k-1})$.
-\end{proof}
-
-
-\begin{theorem}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i*, j*)$, entonces este perfil se repetirá en la iteración siguiente.
-\end{theorem}
-
-\begin{proof}
-    Nuevamente, comencemos por el jugador fila. Sabemos que en la iteración $k$ se jugó $(i*, j*)$, lo cual nos asegura que $d_1(BR_1(y^{k-1})) = i^*$. Pero sabemos también por los lemas anteriores que $i^* \in BR_1(y^{k})$ y que $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$. Luego, por la definición de reglas de desempate, debe ser que $d_1(BR_1(y^k)) = i^*$. Es decir, volverá a jugar $i^*$.
-
-    Análogamente, podemos afirmar también que el jugador columna jugará $j^*$.
-\end{proof}
-
-
-\section{Preservación del juego ficticio}
-
-% Mencionar que agregamos reglas de desempate y entonces el teorema es mas piola
-En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser el este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos. Monderer y Sela llaman a esto el Principio de Estabilidad. La demostración que presentan es mediante otros principios y conceptos que desarrollan en esa publicación, pero este resultado puede probarse de forma más directa. Presentaremos entonces a continuación una demostración alternativa. Agregamos además, una prueba para el caso del juego ficticio alternante e incluimos consideraciones sobre los posibles empates. \todo{hay que reescribir este párrafo}
-
-\begin{lemma}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $i^* \in BR_1(y^{k})$ y $j^* \in BR_2(x^{k})$.
-\end{lemma}
-\begin{proof}
-
-    % sacar una desigualdad copada
-    Comencemos con el caso del jugador fila. Queremos probar que $i^*$ es una mejor respuesta a las creencias del jugador fila sobre la estrategia del jugador columna. Veamos primero entonces que forma tienen estas creencias según como se actualizan.
-    
     \[
-        y^k = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}} + \pstrat{j^*}}{k}
-            = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}}}{k} + \frac{\pstrat{j^*}}{k}
-            = \frac{\sum_{s=1}^{k-1}{\pstrat{j^s}}(k-1)}{k(k-1)} + \frac{\pstrat{j^*}}{k}
-            = \frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^*}}{k}
+        x^{k+1} = \frac{\sum_{s=1}^{k}{\pstrat{i^s}} + \pstrat{i^*}}{k+1}
+        = \frac{\sum_{s=1}^{k}{\pstrat{i^s}}}{k+1} + \frac{\pstrat{i^*}}{k+1}
+        = \frac{\sum_{s=1}^{k}{k(\pstrat{i^s}})}{k(k+1)} + \frac{\pstrat{i^*}}{k+1}
+        = \frac{k}{k+1} x^{k} + \frac{\pstrat{i^*}}{k+1}
     \]
-    Luego, tendremos que el conjunto de mejor respuesta será
+
+
+    Luego, tendremos que el conjunto de mejor respuesta será:
     
     \begin{align*}
-        BR_1(y^k) &= BR_1(\frac{k - 1}{k} y^{k-1} + \frac{j^*}{k}) \\
-        &= \argmax_{i \in N} \{\pstrat{i} A(\frac{(k - 1)y^{k-1}}{k} + \frac{j^*}{k})\}\\
-        &= \argmax_{i \in N} \{\frac{(k - 1)}{k}\pstrat{i} Ay^{k-1} + \frac{1}{k}\pstrat{i} Aj^*\}
+        BR_2(x^{k+1}) &= BR_2(\frac{k}{k+1} x^{k} + \frac{\pstrat{i^*}}{k+1}) \\
+        &= \argmax_{j \in M} \{(\frac{kx^{k}}{k+1} + \frac{i^*}{k+1})B\pstrat{j}\}\\
+        &= \argmax_{j \in M} \{\frac{k}{k+1}x^{k}B\pstrat{j} + \frac{1}{k+1}i^*B\pstrat{j}\}
     \end{align*}
 
-    Como en la iteración $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger_desempate}, sabemos que $i^* \in BR_1(y^{k-1}) = \argmax_{i \in N}\{\pstrat{i}Ay^{k-1}\}$. Es decir que para cualquier $i \in N$, podemos afirmar que $\pstrat{i^*}Ay^{k-1} \geq \pstrat{i}Ay^{k-1}$ y también (multiplicando en ambos lados por una constante positiva) que $\frac{(k - 1)}{k}\pstrat{i^*}Ay^{k-1} > \frac{(k - 1)}{k}\pstrat{i}Ay^{k-1}$.
+    Como en la iteración $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $j^* \in BR_2(x^{k}) = \argmax_{j \in M}\{x^{k}B\pstrat{j}\}$. Es decir que para cualquier $j \in M$, podemos afirmar que $x^{k}B\pstrat{j*} \geq x^{k}B\pstrat{j}$ y también (multiplicando en ambos lados por una constante positiva) que $\frac{k}{k+1}x^{k}B\pstrat{j*} \geq \frac{k}{k+1}x^{k}B\pstrat{j}$.
 
-    Sabemos también, al ser un equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*}) = \argmax_{i \in N}\{\pstrat{i}Aj^*\}$. Es decir que para cualquier $i \in N$, $\pstrat{i^*}Aj^* \geq \pstrat{i}Aj^*$ y consecuentemente $\frac{1}{k}\pstrat{i^*}Aj^* \geq \frac{1}{k}\pstrat{i}Aj^*$.
+    Sabemos también, al ser un equilibrio de Nash, que $j^* \in BR_2(\pstrat{i^*}) = \argmax_{j \in M}\{i^*B\pstrat{j}\}$. Es decir que para cualquier $j \in M$, $i^*B\pstrat{j^*} \geq i^*B\pstrat{j}$ y consecuentemente $\frac{1}{k+1}i^*B\pstrat{j^*} \geq \frac{1}{k+1}i^*B\pstrat{j}$.
 
-    Podemos sumar estas dos desigualdades para afirmar que $\frac{(k - 1)}{k}\pstrat{i^*}Ay^{k-1} + \frac{1}{k}\pstrat{i^*}Aj^* \geq \frac{(k - 1)}{k}\pstrat{i}Ay^{k-1} + \frac{1}{k}\pstrat{i}Aj^*$ para cualquier $i \in N$ y por lo tanto $i^* \in BR_1(y^{k})$.
-
-    Razonando análogamente para el jugador columna, podemos afirmar también que $j^* \in BR_2(x^{k})$.
+    Podemos, nuevamente, sumar estas dos desigualdades para afirmar que $\frac{k}{k+1}x^{k}B\pstrat{j*} + j \in M$, $i^*B\pstrat{j^*} \geq \frac{k}{k+1}x^{k}B\pstrat{j} + i^*B\pstrat{j}$ para cualquier $j \in M$ y por lo tanto $j^* \in BR_2(x^{k+1})$.
     
 \end{proof}
 
-\begin{lemma}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k}) \subseteq BR_2(x^{k-1})$.
-\end{lemma}
+El siguiente lema nos dice que si el proceso juega un equilibrio de Nash, entonces los conjuntos de mejor respuesta en la siguiente iteración no tienen nuevos elementos.
 
+\begin{lemma}
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k+1}) \subseteq BR_2(x^{k})$.
+\end{lemma}
 \begin{proof}
     Comencemos por el caso del jugador fila. Para probar que $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$, debemos probar que para todo $i \in N$, se cumple que $i \in BR_1(y^{k}) \implies i \in BR_1(y^{k-1})$, o por contra-recíproco, que $i \notin BR_1(y^{k-1}) \implies i \notin BR_1(y^{k})$. Supongamos entonces un $i' \in N$ tal que $i' \notin BR_1(y^{k-1})$.
 
-    Como $BR_1(y^{k-1}) = \argmax_{i \in N} \{\pstrat{i}Ay^{k-1}\}$, si $i^* \in BR_1(y^{k-1})$ pero $i' \notin BR_1(y^{k-1})$, entonces podemos afirmar que $\pstrat{i^*}Ay^{k-1} > \pstrat{i'}Ay^{k-1}$ y luego (multiplicando ambos lados por una constante positiva) que $\frac{(k - 1)}{k} \pstrat{i^*}Ay^{k-1} > \frac{(k - 1)}{k} \pstrat{i'}Ay^{k-1}$.
+    Como $BR_1(y^{k-1}) = \argmax_{i \in N} \{\pstrat{i}Ay^{k-1}\}$, si $i^* \in BR_1(y^{k-1})$ pero $i' \notin BR_1(y^{k-1})$, entonces sabemos que $\pstrat{i^*}Ay^{k-1} > \pstrat{i'}Ay^{k-1}$ y luego (multiplicando ambos lados por una constante positiva) que $\frac{(k - 1)}{k} \pstrat{i^*}Ay^{k-1} > \frac{(k - 1)}{k} \pstrat{i'}Ay^{k-1}$.
     
-    Además, como $(i^*, j^*)$ es equilibrio de Nash puro, sabemos que $i^* \in BR_1(\pstrat{j*}) = \argmax_{i \in N} \{\pstrat{i}Aj^*\}$. Es decir que $\pstrat{i^*}Aj^* \ge \pstrat{i'}Aj^*$ y también $\frac{k - 1}{k} \pstrat{i^*}A\pstrat{j^*} \ge \frac{k - 1}{k} \pstrat{i'}A\pstrat{j^*}$.
+    Además, como $(i^*, j^*)$ es equilibrio de Nash puro, sabemos que $i^* \in BR_1(\pstrat{j*}) = \argmax_{i \in N} \{\pstrat{i}A\pstrat{j^*}\}$. Es decir que $\pstrat{i^*}A\pstrat{j^*} \ge \pstrat{i'}A\pstrat{j^*}$ y también $\frac{k - 1}{k} \pstrat{i^*}A\pstrat{j^*} \ge \frac{k - 1}{k} \pstrat{i'}A\pstrat{j^*}$.
 
     Entonces, podemos razonar de la siguiente manera:
     \begin{align*}
@@ -190,18 +144,92 @@ En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un result
     \end{align*}
 
     Puesto que sabemos por el lema anterior, que $i^* \in BR_1(y^{k}) = \argmax_{i \in N} \{\pstrat{i}Ay^{k}\}$, podemos afirmar que $i' \notin BR_1(y^{k})$.
-    Podemos razonar análogamente para el jugador columna para demostrar también que $BR_2(x^{k}) \subseteq BR_2(x^{k-1})$.
+    
+    Veamos ahora el caso del jugador columna. Similarmente, probaremos que para todo $j \in M$, $ j \notin BR_2(x^k) \implies j \notin BR_2(x^{k+1})$. Supongamos entonces un $j' \in M$ tal que $j' \notin BR_2(x^k)$.
+
+    Como $BR_2(x^{k}) = \argmax_{j \in M} \{x^k B \pstrat{j}\}$, si $j^* \in BR_2(x^k)$ pero $j^* \notin BR_2(x^k)$ entonces sabemos que $x^k B \pstrat{j^*} > x^k B \pstrat{j'}$ y luego (multiplicando ambos lados por una constante positiva) que $\frac{k}{k+1} x^k B \pstrat{j^*} > \frac{k}{k+1} x^k B \pstrat{j'}$ .
+
+    Además, como $(i^*, j^*)$ es equilibrio de Nash puro, sabemos que $j^* \in BR_2(\pstrat{i^*}) = \argmax_{j \in N} \{\pstrat{i^*}B\pstrat{j}\}$. Es decir que $\pstrat{i^*}B\pstrat{j*} \ge \pstrat{i^*}B\pstrat{j'}$ y también $\frac{k}{k+1} \pstrat{i^*}B\pstrat{j*} \ge \frac{k}{k+1} \pstrat{i^*}B\pstrat{j'}$. Entonces:
+
+    \begin{align*}
+        x^{k+1}B\pstrat{j^*} &= (\frac{k}{k+1} x^{k} + \frac{\pstrat{i^*}}{k+1})B\pstrat{j^*} = \frac{k}{k+1} x^{k}B\pstrat{j^*} + \frac{1}{k+1}\pstrat{i^*}B\pstrat{j^*} \\
+        &> \frac{k}{k+1} x^{k}B\pstrat{j'} + \frac{1}{k+1}\pstrat{i^*}B\pstrat{j'} = (\frac{k}{k+1} x^{k} + \frac{\pstrat{i^*}}{k+1})B\pstrat{j'} = x^{k+1}B\pstrat{j'}
+    \end{align*}
+
+    Y como sabemos por el lema anterior que $j^* \in BR_2(x^{k+1}) = \argmax_{j \in M} \{x^{k+1}B\pstrat{j'}\}$, podemos afirmar que $j' \notin BR_2(x^{k+1})$
+
+    
 \end{proof}
 
+Combinando estos dos lemas podemos ahora sí, demostrar el principio de estabilidad en el juego ficticio alternante.
+
 \begin{theorem}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i*, j*)$, entonces este perfil se repetirá en la iteración siguiente.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces este perfil se repetirá en la iteración siguiente.
 \end{theorem}
 
 \begin{proof}
-    Nuevamente, comencemos por el jugador fila. Sabemos que en la iteración $k$ se jugó $(i*, j*)$, lo cual nos asegura que $d_1(BR_1(y^{k-1})) = i^*$. Pero sabemos también por los lemas anteriores que $i^* \in BR_1(y^{k})$ y que $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$. Luego, por la definición de reglas de desempate, debe ser que $d_1(BR_1(y^k)) = i^*$. Es decir, volverá a jugar $i^*$.
+    Nuevamente, comencemos por el jugador fila. Sabemos que en la iteración $k$ se jugó $(i*, j*)$, lo cual nos asegura que $d_1(BR_1(y^{k-1})) = i^*$. Pero sabemos también por los lemas anteriores que $i^* \in BR_1(y^{k})$ y que $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$. Luego, por la definición \ref{def:reglas:desempate}, debe ser que $d_1(BR_1(y^k)) = i^*$. Es decir, volverá a jugar $i^*$.
 
-    Análogamente, podemos afirmar también que el jugador columna jugará $j^*$.
+    Similarmente, para el jugador columna sabemos que $d_2(BR_2(x^{k})) = j^*$ y también por los lemas anteriores que $j^* \in BR_2(x^{k+1})$ y $BR_2(x^{k+1}) \subseteq BR_2(x^{k})$. Por la definición \ref{def:reglas:desempate} tendremos entonces que $d_2(BR_2(x^{k+1})) = i^*$ y, por la definición de juego ficticio alternante, el proceso volverá a jugar el perfil $(i^*, j^*)$ en la iteración $k+1$.
 \end{proof}
+
+
+\section{Preservación del juego ficticio} \label{sec:aportes:preservacion}
+
+Tratamos a continuación el analizar operaciones matriciales que preserven secuencias de juego ficticio, esto es, funciones $f$ sobre matrices que garanticen que, dada una matriz $A$ y una secuencia $s$ de juego ficticio cualquiera sobre $A$, la misma $s$ sea también una secuencia de juego ficticio sobre $f(A)$. En primer lugar, cualquier transformación que preserve las relaciones de orden de los pagos manteniendo el tamaño del juego (tales como escalar todos los pagos por un mismo factor o sumarle a todos una constante) claramente preservará las secuencias de juego ficticio. Cuando se varía el tamaño del juego, en cambio, la preservación puede no ser trivial o no valer, según la clase de juego.
+
+Pero la intención es, además, que tras el cambio se mantenga la mayoría de los valores presentes en la matriz original. El caso general puede ser complejo, pero a priori damos la siguiente formalización. Llamaremos {\em rango de imagen} de una matriz $A$ al cardinal del conjunto de valores tomados por todos sus elementos. Buscamos entonces de ser posible ejemplos de juegos que tengan rango de imagen mínimo manteniendo las propiedades deseadas. En todos los casos nos interesará, , tras el agregado de filas o columnas, no la exactitud del rango de imagen sino el orden de magnitud en función de las dimensiones.
+
+Diremos que una secuencia de juego ficticio $s$ termina con una secuencia $t$ (siendo esta finita o no), o que $t$ es un sufijo de $s$, si existe $s'$ finita tal que $s = s't$.
+
+\begin{lemma}\label{lema:preservacion}
+Sea $A = (a_{i,j})$ un juego de intereses idénticos de tamaño $n\times m$, y sean $n'\geq n$, $m'\geq m$. Entonces existe un juego de intereses idénticos $A'$ de tamaño $n'\times m'$ y con rango de imagen $O(n+m)$ tal que:
+\begin{enumerate}
+\item Toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (simultáneo o alternante) en $A$ lo es también en $A'$.
+\item Toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (simultáneo o alternante) sobre $A'$ termina con una secuencia del mismo tipo sobre $A$.
+\end{enumerate}
+Además, si $A$ es no degenerado, puede pedirse que $A'$ también lo sea.
+\end{lemma}
+
+\begin{proof}
+Sea $v = min(A)$, valor a utilizar en todo el proceso que sigue (es decir, no cambia a lo largo de las iteraciones).
+
+Para obtener un juego de intereses idénticos $A'$ de $(n+1)\times m$ con la propiedad indicada, basta definir $a'_{n+1,j} = v - n - j$ para $1\leq j\leq m$. Entonces, si $i^\tau \in BR_1(y^{\tau-1})$ en $A$, también $i^\tau \in BR_1(y^{\tau-1})$ en $A'$, y similarmente para $j^\tau$ considerando $BR_2(x^{\tau-1})$ o $BR_2(x^\tau)$ (en los casos simultáneo o alternante, resp.) Se procede análogamente para obtener un juego de intereses idénticos de $n\times (m+1)$ definiendo $a'_{i,m+1} = v - m - i$ para $1\leq i\leq n$\footnote{Los términos $-j$ y $-i$ aseguran preservar la condición de no degenerado, requerida por el teorema \ref{teorema:afp:mejor}, y los términos $-n$ aseguran que finalmente el rango de imagen sea $O(n+m)$.}. Finalmente, se itera la construcción anterior $n'-n+m'-m$ veces para obtener $A'$ de un juego de intereses idénticos de $n'\times m'$.
+\end{proof}
+
+% La idea es que A' tenga un esquema como:
+%
+% v-1  v-2   v-3   ...  v-m
+% v-2  v-3   v-4   ...  v-(m-1)
+% ...
+% v-n  v-n-1 v-n-2 ...  v-(n-m)
+%
+% pero con la A original ocupando el cuadrante superior izq.
+
+En la demostración anterior, al agregar a la matriz una nueva fila, se reusan valores (pueden no ser necesarios tantos como $m$, el número de columnas). Asimismo, de no interesarnos reducir el rango de imagen, alcanzaría tan sólo con llenar cada nueva fila (o columna) con un valor como $a'_{n+1,j} = min(A) - j$ donde $j$ es el índice del elemento correspondiente\footnote{Hay otras maneras de ajustar el valor $v$ a fin de evitar espacios intermedios, es decir que los valores a agregar tiendan a ser enteros consecutivos, lo que dependerá naturalmente de los elementos presentes a lo largo de la matriz obtenida en el paso anterior, pero claramente no nos preocupa esto en tanto no afecte al rango de imagen. Por otra parte, si se ignorase el requerimiento de juego no degenerado, para todo $n,m$ se podría pedir que el rango de imagen no exceda en más que 1 al de la matriz $A$ original, simplificándose en mucho la demostración.}.
+
+Nótese que la iteración se puede dar de distintas maneras, según si se consideran primero las filas y luego las columnas, o bien al revés, o bien con las distintas posibilidades de intercalado de estas con aquellas, resultando en cada caso una matriz diferente.
+
+Veamos una propiedad similar para los juegos de suma cero.
+
+\begin{lemma}\label{lema:preservacion2}
+Sea $A = (a_{i,j})$ un juego de suma cero de tamaño $n\times m$, y sean $n'\geq n$, $m'\geq m$. Entonces existe un juego de suma cero $A'$ de tamaño $n'\times m'$ y con rango de imagen $O(n+m)$ tal que:
+\begin{enumerate}
+\item Toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de FP (simultáneo o alternante) en $A$ lo es también en $A'$.
+\item Toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de FP (simultáneo o alternante) sobre $A'$ termina con una secuencia del mismo tipo sobre $A$.
+\end{enumerate}
+Además, si $A$ es no degenerado, puede pedirse que $A'$ también lo sea.
+\end{lemma}
+
+\begin{proof}
+Sea $v = min(A)$, valor a utilizar en todo el proceso que sigue.
+Para obtener un juego de suma cero $A'$ de $(n+1)\times m$ con la propiedad indicada, basta definir $a'_{n+1,j} = v - n - j$ para $1\leq j\leq m$. Entonces, si $i^\tau \in BR_1(y^{\tau-1})$ en $A$, también $i^\tau \in BR_1(y^{\tau-1})$ en $A'$, y similarmente para $j^\tau$ considerando $BR_2(x^{\tau-1})$ o $BR_2(x^\tau)$ (en los casos simultáneo o alternante, resp.) Para obtener un juego de suma cero de $n\times (m+1)$, se procede análogamente pero tomando de entrada $v = max(A)$ y luego definiendo $a'_{i,m+1} = v + m + i$ para $1\leq i\leq n$. Finalmente, se itera la construcción anterior $n'-n+m'-m$ veces para obtener $A'$ de un juego de suma cero de $n'\times m'$.
+\end{proof}
+
+Al igual que con el lema anterior, la iteración se puede dar de muchas maneras.
+
+A priori, no contamos en cambio con un resultado similar para la reducción en tamaño de las matrices: puede haber secuencias que utilicen todas las acciones de cada jugador en $A'$ incluyendo las que no forman parte de $A$, de modo que no siempre será factible eliminar alguna estrategia en este último. 
+
 
 \section{Velocidad de convergencia del juego ficticio alternante} \label{sec:aportes:velocidad}
 
@@ -211,6 +239,7 @@ Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta 
 % Pero antes, nos parece oportuno hablar mas detalladamente sobre algunas cuestiones respecto a las métricas contra las que se estudia la velocidad de convergencia de un proceso de aprendizaje en juegos. Puede llamar la atención que si bien en toda la bibliografía previa al trabajo de Brandt, Fischer y Harrenstein se habla sobre la velocidad de convergencia en función del tamaño del juego, los autores prefieren estudiarla en función del tamaño de representación en bits de los valores de las utilidades del juego. Este tipo de resultados es en realidad más general. Observemos que un juego que tenga $k$ acciones para un jugador necesitará, en cualquier codificación capaz de representar juegos bimatriciales finitos arbitrarios, $O(k)$ bits, ya que deberá codificar cada una de estas $k$ acciones con al menos un bit. Por otro lado, a efectos del estudio de la convergencia del juego ficticio, un juego con conjuntos de acciones de tamaños menores a $k$ pero que requiere $O(k)$ bits para ser representado, puede expandirse a uno con comportamiento equivalente de tamaño $k$. Esto lo mostraremos en los siguientes lemas: \falta{hay que retocar este parrafo para referenciar la discusion previa sobre tamaños, bits, etc}
 
 % \falta{comentar la cuestion de que se buscan caso especificos porque se generaliza a clases mas grandes}
+% Y al hacer esta generalización el largo de la secuencia sin equilibrios no cambia con el tamaño de la matriz
 
 Veamos primero que para el caso de los juegos de suma constante simétricos, el teorema de estos autores efectivamente es expandible de forma bastante directa a la variante alternante. Vale la pena notar que formulamos el teorema en términos de que el último perfil no sea un equilibrio de Nash puro, en vez de pedir que ninguno en la secuencia lo sea como hacen Brandt, Fischer y Harrenstein ya que por el principio de estabilidad, si alguno de los perfiles jugados en la secuencia fuera un equilibrio de Nash puro, todos los siguientes lo serían.
 
@@ -224,7 +253,7 @@ Veamos primero que para el caso de los juegos de suma constante simétricos, el 
 
     Si $\epsilon < 1$, vemos que $(i^3, j^3)$ es el único equilibrio de Nash puro por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas. \falta{Esto no explicamos qué es. Supongo que a los conceptos previos?}
 
-    Consideremos un número $k > 1$ arbitrario y sea $\epsilon = 2^{-k}$. Para estos valores, $\epsilon$ puede codificarse en $O(k)$ bits, mientras que las otras utilidades del juego son constantes, por lo que podemos afirmar que la representación del juego será tambien del orden de  $O(k)$ bits. Por lo tanto, si probamos que un proceso de juego ficticio alternante puede requerir $2^k$ rondas antes de que se juegue $(i^3, j^3)$, el teorema estará demostrado.
+    Consideremos un número $k > 1$ arbitrario y sea $\epsilon = 2^{-k}$. Para estos valores, $\epsilon$ puede codificarse en $O(k)$ bits, mientras que el tamaño de la matriz y las representaciones de las otras utilidades del juego son constantes, por lo que podemos afirmar que la representación del juego será tambien del orden de  $O(k)$ bits. Por lo tanto, si probamos que un proceso de juego ficticio alternante puede requerir $2^k$ rondas antes de que se juegue $(i^3, j^3)$, el teorema estará demostrado.
 
     Si el proceso comienza con el jugador fila jugando $i^1$, entonces las utilidades esperadas del jugador columna serán $-x^1A = (0, 1, \epsilon)$ y elegirá $j_2$.
 
