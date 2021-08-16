@@ -233,33 +233,27 @@ A priori, no contamos en cambio con un resultado similar para la reducción en t
 
 \section{Velocidad de convergencia del juego ficticio alternante} \label{sec:aportes:velocidad}
 
-En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}. En su paper, los autores presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo en clases de juegos que se sabe que siempre convergen de forma pura \falta{checkear esto}. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos de suma constante simétricos y los no degenerados de intereses idénticos.
-Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta sección resultan en conjuntos de mejores respuestas unitarios para omitir las reglas de desempate, ya que no afectarán los resultados.
+En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}, en el que presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo algunas clases de juegos que resultan de interés. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos simétricos de suma cero y los no degenerados de intereses idénticos. Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta sección resultan en conjuntos de mejores respuestas unitarios para omitir las reglas de desempate, ya que no afectarán los resultados.
 
-% Pero antes, nos parece oportuno hablar mas detalladamente sobre algunas cuestiones respecto a las métricas contra las que se estudia la velocidad de convergencia de un proceso de aprendizaje en juegos. Puede llamar la atención que si bien en toda la bibliografía previa al trabajo de Brandt, Fischer y Harrenstein se habla sobre la velocidad de convergencia en función del tamaño del juego, los autores prefieren estudiarla en función del tamaño de representación en bits de los valores de las utilidades del juego. Este tipo de resultados es en realidad más general. Observemos que un juego que tenga $k$ acciones para un jugador necesitará, en cualquier codificación capaz de representar juegos bimatriciales finitos arbitrarios, $O(k)$ bits, ya que deberá codificar cada una de estas $k$ acciones con al menos un bit. Por otro lado, a efectos del estudio de la convergencia del juego ficticio, un juego con conjuntos de acciones de tamaños menores a $k$ pero que requiere $O(k)$ bits para ser representado, puede expandirse a uno con comportamiento equivalente de tamaño $k$. Esto lo mostraremos en los siguientes lemas: \falta{hay que retocar este parrafo para referenciar la discusion previa sobre tamaños, bits, etc}
-
-% \falta{comentar la cuestion de que se buscan caso especificos porque se generaliza a clases mas grandes}
-% Y al hacer esta generalización el largo de la secuencia sin equilibrios no cambia con el tamaño de la matriz
-
-Veamos primero que para el caso de los juegos de suma constante simétricos, el teorema de estos autores efectivamente es expandible de forma bastante directa a la variante alternante. Vale la pena notar que formulamos el teorema en términos de que el último perfil no sea un equilibrio de Nash puro, en vez de pedir que ninguno en la secuencia lo sea como hacen Brandt, Fischer y Harrenstein ya que por el principio de estabilidad, si alguno de los perfiles jugados en la secuencia fuera un equilibrio de Nash puro, todos los siguientes lo serían.
+Veamos primero que para el caso de los juegos simétricos de suma cero, el teorema de estos autores efectivamente es expandible de forma bastante directa a la variante alternante. Vale la pena notar que formulamos el teorema en términos de que el último perfil no sea un equilibrio de Nash puro, en vez de pedir que ninguno en la secuencia lo sea como hacen Brandt, Fischer y Harrenstein ya que por el principio de estabilidad, si alguno de los perfiles jugados en la secuencia fuera un equilibrio de Nash puro, todos los siguientes lo serían.
 
 \begin{theorem} \label{teorema:afp:velocidad:simetricos}
-    Existe un juego simétrico $A$ representable en $O(k)$ bits, con al menos un equilibrio de Nash puro y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro.
+    Existe un juego simétrico de suma cero $A$ de $3 \times 3$ representable en $O(k)$ bits con al menos un equilibrio de Nash puro y una secuencia de FP alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k-1}, j^{2^k-1})$ no es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
-    Consideremos un juego en forma bimatricial con la siguiente matriz de pagos:
+    Sea $A$ el juego simétrico siguiente:
 
     \input{Tablas/matrizTeoVelocidadSimetricos.tex}
 
-    Si $\epsilon < 1$, vemos que $(i^3, j^3)$ es el único equilibrio de Nash puro por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas. \falta{Esto no explicamos qué es. Supongo que a los conceptos previos?}
+    Si $\epsilon < 1$, vemos que $(i^3, j^3)$ es el único equilibrio de Nash. \footnote{Puede verse en forma directa o bien al ser el único perfil resultante después de la eliminación iterada de estrategias estrictamente dominadas \cite{libro:rubinstein}}.
 
-    Consideremos un número $k > 1$ arbitrario y sea $\epsilon = 2^{-k}$. Para estos valores, $\epsilon$ puede codificarse en $O(k)$ bits, mientras que el tamaño de la matriz y las representaciones de las otras utilidades del juego son constantes, por lo que podemos afirmar que la representación del juego será tambien del orden de  $O(k)$ bits. Por lo tanto, si probamos que un proceso de juego ficticio alternante puede requerir $2^k$ rondas antes de que se juegue $(i^3, j^3)$, el teorema estará demostrado.
+    Consideremos un número $k > 1$ arbitrario y sea $\epsilon = 2^{-k}$. Para estos valores, $\epsilon$ puede codificarse en $O(k)$ bits, mientras que el tamaño de la matriz y las representaciones de las otras utilidades del juego son constantes, por lo que podemos afirmar que la representación del juego será tambien del orden de  $O(k)$ bits. Por lo tanto, si probamos que un proceso de juego ficticio alternante puede requerir $2^{k-1}$ rondas antes de que se juegue $(i^3, j^3)$, el teorema estará demostrado.
 
     Si el proceso comienza con el jugador fila jugando $i^1$, entonces las utilidades esperadas del jugador columna serán $-x^1A = (0, 1, \epsilon)$ y elegirá $j_2$.
 
     En la siguiente ronda, el jugador $1$ reaccionará con $i_3$, dando que el jugador $2$ tendrá una creencia sobre su estrategia de $x^2 = (\frac{1}{2},0,\frac{1}{2})$, por lo que las utilidades esperadas del jugador $2$ serán $-x^2A = (\frac{-\epsilon}{2}, \frac{1-\epsilon}{2}, \frac{\epsilon}{2})$y volverá a elegir $j_2$.
 
-    Este perfil $(i_3, j_2)$ se repetirá $2^k - 1$ rondas, ya que tendremos que mientras $2 \le \tau \le 2^k$, se cumplirán:
+    Este perfil $(i_3, j_2)$ se repetirá $2^k - 2$ rondas, ya que tendremos que mientras $2 \le \tau \le 2^k$, se cumplirán:
 
     \begin{align*}
         x^\tau     &= \frac{\pstrat{i_1} + (\tau - 1) \pstrat{i_3}}{\tau} = (\frac{1}{\tau}, 0,\frac{\tau - 1}{\tau}) \\
@@ -277,12 +271,11 @@ Veamos primero que para el caso de los juegos de suma constante simétricos, el 
     La tabla \ref{tabla:afp:velocidad:simetricos}, muestra como se desarrolla este proceso. Para el jugador fila, justificar su decisión es trivial ya que la estrategia percibida de su oponente es pura e $i_3$ es la única acción con utilidad esperada positiva. Para entender por qué el jugador columna no cambia su estrategia, debemos notar que:
 
     \begin{align*}
-        \tau &\le 2^k = \frac{1}{\epsilon} \\
-        \epsilon \tau&\le 1 \\
-        \epsilon (\tau - 1 + 1) &\le 1\\
-        (\tau - 1) \epsilon + \epsilon &\le 1\\
-        1-(\tau-1)\epsilon &\ge \epsilon \\
-        \frac{1-(\tau-1)\epsilon}{\tau} &\ge \frac{\epsilon}{\tau} \\
+        \tau &< 2^k = \frac{1}{\epsilon} \\
+        (\tau - 1 + 1) \epsilon &< 1\\
+        (\tau - 1) \epsilon + \epsilon &< 1\\
+        \epsilon &< 1-(\tau-1)\epsilon\\
+        \frac{\epsilon}{\tau} &< \frac{1-(\tau-1)\epsilon}{\tau}\\
     \end{align*}
 
     Esto podemos interpretarlo como que si bien en las iteraciones recientes el jugador $1$ jugó $i_3$, el incentivo resultante de la única vez que jugó $i_1$ es muy fuerte por la gran diferencia de utilidades para el jugador $2$ entre $(i_1, j_2)$ e $(i_2, j_3)$, por lo que deberán pasar $2^{k-1}$ iteraciones de $i_3$ luego de ese único $i_1$ para que las utilidades esperadas se compensen.
@@ -291,38 +284,37 @@ Veamos primero que para el caso de los juegos de suma constante simétricos, el 
 
     \begin{center}
     \begin{math}
-        (i_1, j_2), \underbrace{(i_3, j_2), ... (i_3, j_2)}_{\text{$2^k - 1$ veces}}
+        (i_1, j_2), \underbrace{(i_3, j_2), ... (i_3, j_2)}_{\text{$2^k - 2$ veces}}
     \end{math}
     \end{center}
 
-    es una secuencia de aprendizaje de juego ficticio alternante válida de este juego que es exponencialmente larga en $k$ y en la cual no se juega ningún equilibrio de Nash puro.
+    es una secuencia de aprendizaje de juego ficticio alternante válida de este juego que es exponencialmente larga en $k$ y en la cual no se juega ningún equilibrio de Nash puro\footnote{Que en la ronda $2^k$ se juegue un NE o aún no, dependerá de la regla de desempate usada.}.
 
 \end{proof}
 
-Por su parte, la demostración para el caso de los juegos no degenerados de $2 \times 3$ es un poco menos directa y requiere plantear una ligera variante del juego originalmente propuesto por Brandt, Fischer y Harrenstein. \falta{discutir un poco como afecta el cambio de la matriz}
+Por su parte, la demostración para el caso de los juegos no degenerados de $2 \times 3$ es un poco menos directa y requiere plantear una ligera variante del juego originalmente propuesto por Brandt, Fischer y Harrenstein.
 
 \begin{theorem} \label{teorema:afp:velocidad:nondegen}
-    Existe un juego no degenerado de intereses idénticos $A$ representable en $O(k)$ bits, con al menos un equilibrio de Nash puro y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que para todo $\tau < 2^k$, $(i^\tau, j^\tau)$ no es un equilibrio de Nash puro.
+    Para todo $n\geq 2$, $m\geq 3$, existe un juego no degenerado de intereses idénticos $A$ de $n\times m$ representable en $O(k+nm. log(max\{n,m\}))$ bits con al menos un equilibrio de Nash puro, con rango de imagen $O(n+m)$, y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que para todo $\tau < 2^k$, $(i^\tau, j^\tau)$ no es un equilibrio de Nash puro.
 \end{theorem}
-
 \begin{proof}
-    Consideremos un juego en forma bimatricial con la siguiente matriz de pagos:
+    Sea $A$ el juego de intereses idénticos siguiente:
 
     \input{Tablas/matrizTeoVelocidadNonDegen.tex}
 
-    Si $\epsilon < 1$, vemos que $(i^2, j^3)$ es el único equilibrio de Nash puro por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas.
+    Si $\epsilon < 1$, vemos que $(i^2, j^3)$ es el único equilibrio de Nash puro.
 
-    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio alternante puede tomar $2^k$ rondas antes de que se juegue $(i^2, j^3)$. Al igual que en la demostración anterior, el juego puede codificarse en $O(k)$ bits, por lo que esto demuestra el teorema.
+    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio alternante puede tomar $2^k$ rondas antes de que se juegue $(i^2, j^3)$. Al igual que en la demostración anterior, el juego puede codificarse en $O(k)$ bits.
 
-    Si el proceso comienza con el jugador fila jugando $i^1$, entonces $x^1B = (1, 2, 0)$ y por lo tanto el jugador columna elegirá $j_2$.
+    Si el proceso comienza con el jugador fila jugando $i^1$, entonces $x^1A = (1, 2, 0)$ y por lo tanto el jugador columna elegirá $j_2$.
 
-    En la siguiente ronda, el jugador $1$ reaccionará con $i_2$, dando que el jugador $2$ tendrá una creencia sobre su estrategia de $x^2 = (\frac{1}{2},\frac{1}{2})$, por lo que las utilidades esperadas del jugador $2$ serán $-x^2A = (\frac{1}{2}, 2 + \frac{\epsilon}{2}, 1 + \epsilon)$ y volverá a elegir $j_2$.
+    En la siguiente ronda, el jugador $1$ reaccionará con $i_2$, dando que el jugador $2$ tendrá una creencia sobre su estrategia de $x^2 = (\frac{1}{2},\frac{1}{2})$, por lo que las utilidades esperadas del jugador $2$ serán $x^2A = (\frac{1}{2}, 2 + \frac{\epsilon}{2}, 1 + \epsilon)$ y volverá a elegir $j_2$.
 
     Este perfil $(i_2, j_2)$ se repetirá $2^k - 1$ rondas, ya que tendremos que mientras $2 \le \tau \le 2^k$, se cumplirán:
 
     \begin{align*}
         x^\tau     &= \frac{\pstrat{i_1} + (\tau - 1) \pstrat{i_2}}{\tau} = (\frac{1}{\tau}, \frac{\tau - 1}{\tau}) \\
-        x^{\tau}A &= (\frac{1}{\tau}, \frac{2 + (\tau - 1)(2 + \epsilon)}{\tau}, \frac{(\tau - 1)(2 + 2 \epsilon)}{\tau}) \\
+        x^{\tau}A  &= (\frac{1}{\tau}, 2+\frac{\tau - 1}{\tau}\epsilon, 2\frac{\tau - 1}{\tau}(1+\epsilon)) \\
         y^\tau     &= \pstrat{j_2} = (0, 1, 0) \\
         Ay^\tau    &= (2, 2 + \epsilon) \\
     \end{align*}
@@ -336,15 +328,15 @@ Por su parte, la demostración para el caso de los juegos no degenerados de $2 \
     La tabla \ref{tabla:afp:velocidad:nondegen}, muestra como se desarrolla este proceso. Para el jugador fila, justificar su decisión es trivial ya que la estrategia percibida de su oponente es pura y la utilidad esperada de  $i_2$ es siempre marginalmente mayor que la de $i_1$. Para entender por qué el jugador columna no cambia su estrategia, debemos notar que:
 
     \begin{align*}
-        \tau &\le 2^k = \frac{1}{\epsilon} \\
-        \tau &\le \frac{2}{\epsilon} + 1 \\
-        \frac{2}{\epsilon} &\ge \tau - 1 \\
-        \frac{2}{\tau - 1} &\ge \epsilon \\
-        \frac{2}{(\tau - 1)} + 2 + \epsilon &\ge 2 + 2 \epsilon \\
-        2 + (\tau - 1) (2 + \epsilon) &\ge (\tau - 1) (2 + 2 \epsilon) \\
+        \tau                        &\le 2^k = \frac{1}{\epsilon} \\
+        \tau                        &< \frac{2}{\epsilon} + 1 \\
+        \epsilon                    &< \frac{2}{\tau - 1}  \\
+        2 \epsilon + 2              &< \frac{2}{(\tau - 1)} + \epsilon + 2 \\
+        \frac{2(\tau - 1)(1 + \epsilon)}{\tau} &< \frac{2 + (\tau - 1) (2 + \epsilon)}{\tau} \\
+        2\frac{(\tau - 1)}{\tau}(1 + \epsilon) &< 2+\frac{\tau-1}{\tau}\epsilon
     \end{align*}
 
-    Similarmente al teorema anterior, esto podemos interpretarlo como que si bien en las iteraciones recientes el jugador $1$ jugó $i_2$, el incentivo resultante de la única vez que jugó $i_1$ es muy fuerte por la gran diferencia de utilidades para el jugador $2$ entre $(i_1, j_2)$ e $(i_2, j_3)$ \falta{checkear esto}, por lo que deberán pasar $2^{k-1}$ iteraciones de $i_3$ luego de ese único $i_1$ para que las utilidades esperadas se compensen.
+    Similarmente al teorema anterior, esto podemos interpretarlo como que si bien en las iteraciones recientes el jugador $1$ jugó $i_2$, el incentivo resultante de la única vez que jugó $i_1$ es muy fuerte por la gran diferencia de utilidades para el jugador $2$ entre $(i_1, j_3)$ e $(i_2, j_3)$, por lo que deberán pasar $2^{k-1}$ iteraciones de $i_2$ luego de ese único $i_1$ para que las utilidades esperadas se compensen.
 
     Concluimos entonces que la secuencia
 
@@ -354,26 +346,23 @@ Por su parte, la demostración para el caso de los juegos no degenerados de $2 \
     \end{math}
     \end{center}
 
-    es una secuencia de aprendizaje de juego ficticio alternante válida de este juego que es exponencialmente larga en $k$ y en la cual no se juega ningún equilibrio de Nash puro.
+    es una secuencia de aprendizaje de juego ficticio alternante válida de este juego que es exponencialmente larga en $k$ en la que no aparece ningún equilibrio de Nash puro, y el teorema sigue del lema \ref{lema:preservacion} con a lo sumo $nm$ elementos que requieren $O(log(max\{n,m\}))$ bits cada uno.
 \end{proof}
 
-El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrenstein no nos sirva para demostrar el teorema anterior no es para nada menor. En efecto, como veremos en el siguiente teorema, es un ejemplo de un juego en el que un proceso de juego ficticio simultáneo puede requerir una cantidad de rondas exponenciales mientras que, toda secuencia de juego ficticio alternante convergerá rápidamente.
+El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrenstein no nos sirva para demostrar el teorema anterior no es para nada menor. En efecto, como veremos en el siguiente teorema, es un ejemplo de un juego en el que un proceso de juego ficticio simultáneo puede requerir una cantidad de rondas exponenciales, mientras que toda secuencia de juego ficticio alternante converge rápidamente.
+
 
 \begin{theorem} \label{teorema:afp:mejor}
-    Existe un juego no degenerado de intereses idénticos $A$ representable en $O(k)$ bits y una secuencia de juego ficticio simultáneo $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ y una constante $C$ tal que
-    \begin{itemize}
-        \item Para todo $\tau < 2^k$, $(i^\tau, j^\tau)$ no es un equilibrio de Nash puro.
-        \item Para todo proceso de juego ficticio alternante $(\widehat{i}^\tau, \widehat{j}^\tau)_{\tau \in \mathbb{N}}$ en $A$, $(\widehat{i}^C, \widehat{j}^C)$ es un equilibrio de Nash puro.
-    \end{itemize}
+    Para todo $n\geq 2$, $m\geq 3$, existe un juego no degenerado de intereses idénticos $A$ de $n\times m$ representable en $O(k+nm. log(max\{n,m\}))$ bits, con rango de imagen $O(n+m)$, y una secuencia de juego ficticio simultáneo $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que, para todo $\tau \leq 2^k$, $(i^\tau, j^\tau)$ no es un equilibrio de Nash puro, y para todo proceso de juego ficticio alternante $(\widehat{i}^\tau, \widehat{j}^\tau)_{\tau \in \mathbb{N}}$ en $A$, $(\widehat{i}^4, \widehat{j}^4)$ es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
-    Consideremos el juego en forma bimatricial con la siguiente matriz de pagos:
+    Sea $A$ el juego de intereses idénticos siguiente:
 
     \input{Tablas/matrizTeoAfpMejor.tex}
 
-    Si $\epsilon < 1$, $(i^2, j^3)$ es el único equilibrio de Nash puro por ser el único perfil restante luego de realizar eliminación iterada de estrategias estrictamente dominadas.
+    Si $\epsilon < 1$, $(i^2, j^3)$ es el único equilibrio de Nash puro.
 
-    Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio simultáneo puede tomar $2^k$ rondas antes de que se juegue $(i^2, j^3)$, mientras que todo proceso de juego ficticio alternante converge de forma pura en un número constante de rondas. Al igual que los teoremas anteriores, el juego puede codificarse en $O(k)$ bits, por lo que esto demuestra el teorema.
+    Consideremos un $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio simultáneo puede tomar $2^k$ rondas antes de que se juegue $(i_2, j_3)$, mientras que todo proceso de juego ficticio alternante converge de forma pura en un número constante de rondas. Al igual que en los teoremas anteriores, el juego puede codificarse en $O(k)$ bits.
 
     Veamos primero el caso alternante. Existen dos posibles secuencias de juego ficticio alternante para este juego, dado que el jugador $1$ elegirá primero y el jugador $2$ reaccionara según esta decisión.
 
@@ -394,15 +383,15 @@ El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrens
 
     Si el jugador fila juega $i^2$, el jugador columna responderá con $j^3$, siendo este el equilibrio puro. Si el jugador fila comienza con $i^1$, el jugador columna responderá con $j^2$. Esto hará que el jugador fila juegue $i^2$ en la segunda ronda por ser $A\pstrat{j^2} = (2, 2 + \epsilon)$, mientras que el jugador continuará fila continuara jugando $j^2$. Esta situación se repetirá una ronda más, tras la cuál, la jugador columna se verá incentivado a jugar $j^3$. Los desarrollos de estos dos procesos pueden verse en las tablas \ref{tabla:afp:mejor:a} y \ref{tabla:afp:mejor:b}. Vemos entonces que, independientemente del valor de $k$, ambos procesos convergen de forma pura en 4 rondas o menos.
 
-    Pasemos ahora al caso simultáneo, para el cual nos basaremos en la prueba de Brandt, Fischer Y Harrenstein. Si el proceso comienza con el perfil $(i^1, j^1)$, entonces las utilidades esperadas serán $Ay^1 = (1, 0)$ e $x^1 B = (1, 2, 0)$ respectivamente. Luego, en la segunda iteración el jugador fila elegirá $i^1$ y el jugador columna $j^2$. Las utilidades esperadas se actualizarán entonces como $Ay^2 = (\frac{3}{2}, \frac{2 + \epsilon}{2})$ y $x^2 B = (1, 2, 0)$.
+    Para el caso simultáneo, nos basamos en la prueba de \cite{brandt:rate:convergence}. Si el proceso comienza con el perfil $(i^1, j^1)$, entonces las utilidades esperadas serán $Ay^1 = (1, 0)$ y $x^1 B = (1, 2, 0)$ respectivamente. Luego, en la segunda iteración el jugador fila elegirá $i^1$ y el jugador columna $j^2$. Las utilidades esperadas se actualizarán entonces como $Ay^2 = (\frac{3}{2}, \frac{2 + \epsilon}{2})$ y $x^2 B = (1, 2, 0)$.
 
-    A continuación, por al menos $2^k$ rondas, los jugadores elegirán las mismas jugadas que en la iteración 2, dado que para todo $\tau$ tal que $2 \le i \le 2^k$, tendremos $Ay^\tau = (2 - \frac{1}{\tau}, 2 - \frac{2 + \epsilon}{\tau})$ e $x^\tau B = (1, 2, 0)$. La tabla \ref{tabla:afp:mejor:c} muestra como se desarrolla este proceso.
+    A continuación, por al menos $2^{k-1}$ rondas, los jugadores elegirán las mismas jugadas que en la iteración 2, dado que para todo $\tau$ tal que $2 \le i \le 2^k$, tendremos $Ay^\tau = (2 - \frac{1}{\tau}, (2 + \epsilon)\frac{\tau-1}{\tau})$ y $x^\tau B = (1, 2, 0)$, y $\tau \le 2^k \Rightarrow 1 > \epsilon (\tau-1) \Rightarrow 2 - \frac{1}{\tau} > (2 + \epsilon)\frac{\tau-1}{\tau}$. La tabla \ref{tabla:afp:mejor:c} muestra como se desarrolla este proceso.
 
     Concluimos entonces que la secuencia de perfiles
 
     \begin{center}
     \begin{math}
-        (i_1, j_1), \underbrace{(i_1, j_2), ... (i_1, j_2)}_{\text{$2^k$ veces}}
+        (i_1, j_1), \underbrace{(i_1, j_2), ... (i_1, j_2)}_{\text{$2^{k-1}$ veces}}
     \end{math}
     \end{center}
 

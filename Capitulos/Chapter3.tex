@@ -127,13 +127,14 @@ El interés por el estudio del juego ficticio recae en su utilidad como mecanism
 
 En el capítulo \ref{cap:aportes} veremos que cuando esto ocurre, $(i^k, j^k)$ se repetirá infinitamente en las siguientes iteraciones. Es decir, la secuencia de jugadas convergerá en ese equilibrio de Nash. Esta propiedad del juego ficticio es conocida como el \concept{principio de estabilidad}.
 
-Diremos también que un juego tiene la \concept{propiedad del juego ficticio} (comúnmente referida por sus siglas en inglés \concept{FPP}) si toda secuencia de juego ficticio en el juego (es decir, comenzando desde cualquier jugada inicial y con cualquier regla de desempate) converge en jugadas.
 
 Existe otra noción de convergencia muy estudiada en la literatura de juego ficticio. Esta es la convergencia en forma mixta o convergencia en creencias.
 
 \begin{definition}
-    Sea $(i^\tau, j^\tau)$ una secuencia de juego ficticio (simultaneo o alternante). Diremos que $(i^\tau, j^\tau)$ \concept{converge de forma mixta} si existe un equilibrio de Nash mixto tal que para todo $\epsilon > 0$ existe un $k \in \mathbb{N}$ tal que $|x^* - x^k| < \epsilon$ y $|y^* - y^k| < \epsilon$.
+    Sea $(i^\tau, j^\tau)$ una secuencia de juego ficticio (simultaneo o alternante). Diremos que $(i^\tau, j^\tau)$ \concept{converge en creencias} si existe un equilibrio de Nash mixto tal que para todo $\epsilon > 0$ existe un $k \in \mathbb{N}$ tal que $|x^* - x^k| < \epsilon$ y $|y^* - y^k| < \epsilon$.
 \end{definition}
+
+Diremos también que un juego tiene la \concept{propiedad del juego ficticio} (comúnmente referida por sus siglas en inglés \concept{FPP}) si toda secuencia de juego ficticio en el juego (es decir, comenzando desde cualquier jugada inicial y con cualquier regla de desempate) converge en creencias.
 
 Obviamente, todo juego que converge en forma pura, converge también en forma mixta, ya que todo equilibrio puro es un equilibrio mixto y si la secuencia de jugadas converge a un equilibrio puro, las secuencias de creencias lo harán también.
 Si bien esta es también una definición muy potente, en el presente trabajo nos enfocaremos en la convergencia en forma pura. De aquí en adelante, cuando digamos que un proceso de juego ficticio converge, el lector deberá interpretarlo siempre como que converge en forma pura.

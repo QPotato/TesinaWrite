@@ -1,14 +1,15 @@
 \begin{tabular}{llllll}
-\toprule
-{} &       $(i, j)$ &              $x$ &                    $x{^\tau}B$ &                     $y$ &             $Ay$ \\
-Ronda   &                &                  &                         &                         &                  \\
-\midrule
-1       &  $(i_1,\ j_2)$ &  $(1, 0)$                                    &  $(1, 2, 0)$                                                                                              &  $(0, 1, 0)$ &  $(2, 2 + \epsilon)$ \\
-2       &  $(i_2,\ j_2)$ &  $(\frac{1}{2}, \frac{1}{2})$                &  $(\frac{1}{2}, 2 + \frac{\epsilon}{2}, 1 + \epsilon)$                                                    & $(0, 1, 0)$   & $(2, 2 + \epsilon)$ \\
-3       &  $(i_2,\ j_2)$ &  $(\frac{1}{3}, \frac{2}{3})$                &  $(\frac{1}{3}, 2 + \frac{2}{3} \epsilon, \frac{4 + 4 \epsilon)}{3})$   & $(0, 1, 0)$   & $(2, 2 + \epsilon)$ \\
-        &  \vdots       \\
-$\tau$  &  $(i_2,\ j_2)$ &  $(\frac{1}{\tau}, \frac{\tau - 1}{\tau})$   &  $(\frac{1}{\tau}, \frac{2 + (\tau - 1)(2 + \epsilon)}{\tau}, \frac{(\tau - 1)(2 + 2 \epsilon)}{\tau})$   & $(0, 1, 0)$   & $(2, 2 + \epsilon)$ \\
-        &  \vdots       \\
-$2^k$   &  $(i_2,\ j_2)$ &  $(\epsilon, 1 - \epsilon)$   &  $(\epsilon, 1 - \epsilon - \epsilon^2, 2 - \epsilon^2)$   & $(0, 1, 0)$   & $(2, 2 + \epsilon)$ \\
-\bottomrule
-\end{tabular}
+        \toprule
+        {} &       $(i, j)$ &              $x$ &                    $xB$ &                     $y$ &             $Ay$ \\
+        Ronda   &                &                  &                         &                         &                  \\
+        \midrule
+        1       &  $(i_1,\ j_2)$ &  $(1, 0)$                                    &  $(1, 2, 0)$                                                                                              &  $(0, 1, 0)$ &  $(2, 2 + \epsilon)$ \\
+        2       &  $(i_2,\ j_2)$ &  $(\frac{1}{2}, \frac{1}{2})$                &  $(\frac{1}{2}, 2 + \frac{\epsilon}{2}, 1 + \epsilon)$                                                    & $(0, 1, 0)$   & $(2, 2 + \epsilon)$ \\
+        3       &  $(i_2,\ j_2)$ &  $(\frac{1}{3}, \frac{2}{3})$                &  $(\frac{1}{3}, 2 + \frac{2}{3} \epsilon, \frac{4 + 4 \epsilon)}{3})$   & $(0, 1, 0)$   & $(2, 2 + \epsilon)$ \\
+                &  \vdots       \\
+        $\tau$  &  $(i_2,\ j_2)$ &  $(\frac{1}{\tau}, \frac{\tau - 1}{\tau})$   &  $(\frac{1}{\tau}, 2+\frac{\tau - 1}{\tau}\epsilon, 2\frac{\tau - 1}{\tau}(1 + \epsilon))$   & $(0, 1, 0)$   & $(2, 2 + \epsilon)$ \\
+                &  \vdots       \\
+        $2^k$   &  $(i_2,\ j_2)$ &  $(\epsilon, 1 - \epsilon)$   &  $(\epsilon, 2 + \epsilon - \epsilon^2, 2(1 - \epsilon)(1 + \epsilon))$   & $(0, 1, 0)$   & $(2, 2 + \epsilon)$\\
+        \bottomrule
+        \\
+        \end{tabular}
