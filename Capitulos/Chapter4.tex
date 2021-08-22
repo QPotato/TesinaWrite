@@ -69,7 +69,7 @@ En el caso alternante, la jugada del jugador columna ya no es análoga a la del 
 % Mencionar que agregamos reglas de desempate y entonces el teorema es mas piola
 En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos, es decir, que una vez que se juegue un equilibrio de Nash, este se repita infinitamente y la secuencia de jugadas converja en el mismo. Monderer y Sela llaman a esto el \concept{principio de estabilidad}. La demostración que presentan es mediante otros principios y conceptos que desarrollan en esa publicación, pero este resultado puede probarse de forma más directa aplicando el concepto de reglas de desempate.
 
-Este principio nos será útil en el capítulo siguiente para simplificar las demostraciones sobre la velocidad de convergencia, pero Monderer y Sela demostraron el principio solo para la variante simultanea. Por lo tanto, presentaremos a continuación una demostración del principio de estabilidad para el juego ficticio alternante.
+Este principio nos será útil en el capítulo siguiente para simplificar las demostraciones sobre la velocidad de convergencia, pero Monderer y Sela demostraron el principio solo para la variante simultánea. Por lo tanto, presentaremos a continuación una demostración del principio de estabilidad para el juego ficticio alternante.
 
 Empezaremos por un lema que nos dice que si el proceso juega un equilibrio de Nash, entonces las jugadas de este estarán en los conjuntos de mejor respuesta de la iteración siguiente. 
 
@@ -176,64 +176,41 @@ Combinando estos dos lemas podemos ahora sí, demostrar el principio de estabili
 
 \section{Preservación del juego ficticio} \label{sec:aportes:preservacion}
 
-Tratamos a continuación el analizar operaciones matriciales que preserven secuencias de juego ficticio, esto es, funciones $f$ sobre matrices que garanticen que, dada una matriz $A$ y una secuencia $s$ de juego ficticio cualquiera sobre $A$, la misma $s$ sea también una secuencia de juego ficticio sobre $f(A)$. En primer lugar, cualquier transformación que preserve las relaciones de orden de los pagos manteniendo el tamaño del juego (tales como escalar todos los pagos por un mismo factor o sumarle a todos una constante) claramente preservará las secuencias de juego ficticio. Cuando se varía el tamaño del juego, en cambio, la preservación puede no ser trivial o no valer, según la clase de juego.
+Analizaremos a continuación las operaciones matriciales que preservan secuencias de juego ficticio. Esto es, funciones $f$ sobre matrices que garanticen que, dadas dos matrices $A$ y $B$ y una secuencia $(i^\tau, j^\tau)$ de juego ficticio cualquiera sobre $(A, B)$, la misma $(i^\tau, j^\tau)$ sea también una secuencia de juego ficticio sobre $(f(A), f(B))$.
 
-Pero la intención es, además, que tras el cambio se mantenga la mayoría de los valores presentes en la matriz original. El caso general puede ser complejo, pero a priori damos la siguiente formalización. Llamaremos {\em rango de imagen} de una matriz $A$ al cardinal del conjunto de valores tomados por todos sus elementos. Buscamos entonces de ser posible ejemplos de juegos que tengan rango de imagen mínimo manteniendo las propiedades deseadas. En todos los casos nos interesará, , tras el agregado de filas o columnas, no la exactitud del rango de imagen sino el orden de magnitud en función de las dimensiones.
+En primer lugar, cualquier transformación que preserve las relaciones de orden de los pagos manteniendo el tamaño del juego (tales como escalar todos los pagos por un mismo factor o sumarle a todos una constante) claramente preservará las secuencias de juego ficticio. Cuando se varía el tamaño del juego, en cambio, la preservación puede no ser trivial o no valer, según la clase de juego.
+
+Pero la intención es, además, que tras el cambio se mantenga la mayoría de los valores presentes en la matriz original. El caso general puede ser complejo, pero a priori damos la siguiente formalización. Llamaremos \concept{rango de imagen} de una matriz $A$ al cardinal del conjunto de valores tomados por todos sus elementos. Buscamos entonces, de ser posible, ejemplos de juegos que tengan rango de imagen mínimo manteniendo las propiedades deseadas. En todos los casos nos interesará, tras el agregado de filas o columnas, no la exactitud del rango de imagen sino el orden de magnitud en función de las dimensiones.
 
 Diremos que una secuencia de juego ficticio $s$ termina con una secuencia $t$ (siendo esta finita o no), o que $t$ es un sufijo de $s$, si existe $s'$ finita tal que $s = s't$.
 
 \begin{lemma}\label{lema:preservacion}
-Sea $A = (a_{i,j})$ un juego de intereses idénticos de tamaño $n\times m$, y sean $n'\geq n$, $m'\geq m$. Entonces existe un juego de intereses idénticos $A'$ de tamaño $n'\times m'$ y con rango de imagen $O(n+m)$ tal que:
-\begin{enumerate}
-\item Toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (simultáneo o alternante) en $A$ lo es también en $A'$.
-\item Toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio (simultáneo o alternante) sobre $A'$ termina con una secuencia del mismo tipo sobre $A$.
-\end{enumerate}
-Además, si $A$ es no degenerado, puede pedirse que $A'$ también lo sea.
+    Sea $A = (a_{i,j})$ un juego de intereses idénticos de tamaño $n\times m$ con un único equilibrio de Nash puro, y sean $n'\geq n$, $m'\geq m$. Entonces existe un juego de intereses idénticos $A'$ de tamaño $n'\times m'$ y rango de imagen $O(n+m)$ con un único equilibrio de Nash puro tal que:
+    \begin{itemize}
+        \item Toda secuencia de FP (simultáneo o alternante) en $A$ lo es también en $A'$.
+        \item Toda secuencia de FP alternante sobre $A'$ es, a partir del paso 2, una secuencia de FP alternante sobre $A$.
+    \end{itemize}
+    Además, si $A$ es no degenerado, puede pedirse que $A'$ también lo sea.
 \end{lemma}
-
 \begin{proof}
-Sea $v = min(A)$, valor a utilizar en todo el proceso que sigue (es decir, no cambia a lo largo de las iteraciones).
+    Demostraremos el lema iterativamente, comenzando por agregar una columna.
+    
+    Sin pérdida de generalidad y para simplificar la construcción, supondremos\footnote{Consecuentemente con el orden relativo de los valores en cada fila y columna a agregar.} que el equilibrio de Nash está en la posición $(1,1)$. Para obtener un juego de intereses idénticos $A'$ de $(n+1)\times m$ con la propiedad indicada, basta definir $A' = (a'_{i,j})$ de la siguiente manera:
+    \begin{itemize}
+        \item $a'_{i,j} = a_{i,j}$ para $1\leq i\leq n$, $1\leq j\leq m$
+        \item $a'_{n+1,j} = v - n - j$ para $1\leq j\leq m$
+    \end{itemize}
+    Donde $v = min(A)$, valor a utilizar durante el resto del proceso (no cambia a lo largo de las iteraciones).
 
-Para obtener un juego de intereses idénticos $A'$ de $(n+1)\times m$ con la propiedad indicada, basta definir $a'_{n+1,j} = v - n - j$ para $1\leq j\leq m$. Entonces, si $i^\tau \in BR_1(y^{\tau-1})$ en $A$, también $i^\tau \in BR_1(y^{\tau-1})$ en $A'$, y similarmente para $j^\tau$ considerando $BR_2(x^{\tau-1})$ o $BR_2(x^\tau)$ (en los casos simultáneo o alternante, resp.) Se procede análogamente para obtener un juego de intereses idénticos de $n\times (m+1)$ definiendo $a'_{i,m+1} = v - m - i$ para $1\leq i\leq n$\footnote{Los términos $-j$ y $-i$ aseguran preservar la condición de no degenerado, requerida por el teorema \ref{teorema:afp:mejor}, y los términos $-n$ aseguran que finalmente el rango de imagen sea $O(n+m)$.}. Finalmente, se itera la construcción anterior $n'-n+m'-m$ veces para obtener $A'$ de un juego de intereses idénticos de $n'\times m'$.
+    Entonces, si $i^\tau \in BR_1(y^{\tau-1})$ en $A$, también $i^\tau \in BR_1(y^{\tau-1})$ en $A'$, y similarmente para $j^\tau$ considerando $BR_2(x^{\tau-1})$ o $BR_2(x^\tau)$ (en los casos simultáneo o alternante, resp.) Se procede análogamente para obtener un juego de intereses idénticos de $n\times (m+1)$ definiendo\footnote{Los términos $-j$ y $-i$ aseguran preservar la condición de no degenerado, requerida por el teorema \ref{teorema:afp:mejor}, y los términos $-n$ y $-m$ aseguran rango de imagen $O(n+m)$.} $a'_{i,m+1} = v - m - i$ para $1\leq i\leq n$. Finalmente, se itera la construcción anterior $n'-n+m'-m$ veces para obtener $A'$ de un juego de intereses idénticos de $n'\times m'$ con la propiedad indicada.
 \end{proof}
 
-% La idea es que A' tenga un esquema como:
-%
-% v-1  v-2   v-3   ...  v-m
-% v-2  v-3   v-4   ...  v-(m-1)
-% ...
-% v-n  v-n-1 v-n-2 ...  v-(n-m)
-%
-% pero con la A original ocupando el cuadrante superior izq.
-
-En la demostración anterior, al agregar a la matriz una nueva fila, se reusan valores (pueden no ser necesarios tantos como $m$, el número de columnas). Asimismo, de no interesarnos reducir el rango de imagen, alcanzaría tan sólo con llenar cada nueva fila (o columna) con un valor como $a'_{n+1,j} = min(A) - j$ donde $j$ es el índice del elemento correspondiente\footnote{Hay otras maneras de ajustar el valor $v$ a fin de evitar espacios intermedios, es decir que los valores a agregar tiendan a ser enteros consecutivos, lo que dependerá naturalmente de los elementos presentes a lo largo de la matriz obtenida en el paso anterior, pero claramente no nos preocupa esto en tanto no afecte al rango de imagen. Por otra parte, si se ignorase el requerimiento de juego no degenerado, para todo $n,m$ se podría pedir que el rango de imagen no exceda en más que 1 al de la matriz $A$ original, simplificándose en mucho la demostración.}.
-
-Nótese que la iteración se puede dar de distintas maneras, según si se consideran primero las filas y luego las columnas, o bien al revés, o bien con las distintas posibilidades de intercalado de estas con aquellas, resultando en cada caso una matriz diferente.
-
-Veamos una propiedad similar para los juegos de suma cero.
-
-\begin{lemma}\label{lema:preservacion2}
-Sea $A = (a_{i,j})$ un juego de suma cero de tamaño $n\times m$, y sean $n'\geq n$, $m'\geq m$. Entonces existe un juego de suma cero $A'$ de tamaño $n'\times m'$ y con rango de imagen $O(n+m)$ tal que:
-\begin{enumerate}
-\item Toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de FP (simultáneo o alternante) en $A$ lo es también en $A'$.
-\item Toda secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de FP (simultáneo o alternante) sobre $A'$ termina con una secuencia del mismo tipo sobre $A$.
-\end{enumerate}
-Además, si $A$ es no degenerado, puede pedirse que $A'$ también lo sea.
-\end{lemma}
-
-\begin{proof}
-Sea $v = min(A)$, valor a utilizar en todo el proceso que sigue.
-Para obtener un juego de suma cero $A'$ de $(n+1)\times m$ con la propiedad indicada, basta definir $a'_{n+1,j} = v - n - j$ para $1\leq j\leq m$. Entonces, si $i^\tau \in BR_1(y^{\tau-1})$ en $A$, también $i^\tau \in BR_1(y^{\tau-1})$ en $A'$, y similarmente para $j^\tau$ considerando $BR_2(x^{\tau-1})$ o $BR_2(x^\tau)$ (en los casos simultáneo o alternante, resp.) Para obtener un juego de suma cero de $n\times (m+1)$, se procede análogamente pero tomando de entrada $v = max(A)$ y luego definiendo $a'_{i,m+1} = v + m + i$ para $1\leq i\leq n$. Finalmente, se itera la construcción anterior $n'-n+m'-m$ veces para obtener $A'$ de un juego de suma cero de $n'\times m'$.
-\end{proof}
-
-Al igual que con el lema anterior, la iteración se puede dar de muchas maneras.
-
-A priori, no contamos en cambio con un resultado similar para la reducción en tamaño de las matrices: puede haber secuencias que utilicen todas las acciones de cada jugador en $A'$ incluyendo las que no forman parte de $A$, de modo que no siempre será factible eliminar alguna estrategia en este último. 
+Claramente, no vale un lema similar para la reducción en tamaño de las matrices, ya que quitar una fila o columna podría eliminar una acción por la cuál pasa la secuencia.
 
 
 \section{Velocidad de convergencia del juego ficticio alternante} \label{sec:aportes:velocidad}
 
-En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}, en el que presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo algunas clases de juegos que resultan de interés. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos simétricos de suma cero y los no degenerados de intereses idénticos. Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta sección resultan en conjuntos de mejores respuestas unitarios para omitir las reglas de desempate, ya que no afectarán los resultados.
+En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}, en el que presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo en algunas clases de juegos que resultan de interés. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos simétricos de suma cero y los no degenerados de intereses idénticos. Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta sección resultan en conjuntos de mejores respuestas unitarios para omitir las reglas de desempate, ya que no afectarán los resultados.
 
 Veamos primero que para el caso de los juegos simétricos de suma cero, el teorema de estos autores efectivamente es expandible de forma bastante directa a la variante alternante. Vale la pena notar que formulamos el teorema en términos de que el último perfil no sea un equilibrio de Nash puro, en vez de pedir que ninguno en la secuencia lo sea como hacen Brandt, Fischer y Harrenstein ya que por el principio de estabilidad, si alguno de los perfiles jugados en la secuencia fuera un equilibrio de Nash puro, todos los siguientes lo serían.
 
@@ -396,6 +373,6 @@ El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrens
     \end{center}
 
 
-    es una secuencia de aprendizaje de juego ficticio simultáneo válida de este juego que es exponencialmente larga en $k$ y en la cual no se juega ningún equilibrio de Nash puro.
+    es una secuencia de aprendizaje de FP simultáneo de este juego exponencialmente larga en $k$ y en la cual no se juega ningún NE puro, y el teorema sigue del lema \ref{lema:preservacion} con a lo sumo $nm$ elementos que requieren $O(log(max\{n,m\}))$ bits cada uno.
 
 \end{proof}
