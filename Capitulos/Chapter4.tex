@@ -22,8 +22,7 @@ Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir 
     donde $i = d_1(argmax_{i \in N}\{\pstrat{i}Ap^{\tau-1}\})$.
     Pero también sabemos, por la definición \ref{def:fp:berger}
     que $i^\tau = d_1(BR_1(y^{\tau-1})) = d_1(BR_1(\frac{\sum_{s=1}^{\tau-1} \pstrat{j^s}}{\tau-1})) = d_1(argmax_{i \in N}\{A\frac{\sum_{s=1}^{\tau-1} \pstrat{j^s}}{\tau-1})\}) = d_1(argmax_{i \in N}\{A\frac{q^{\tau-1}}{\tau-1})\})$.
-    Como escalar un vector no afecta la relación de orden entre sus componentes,
-    podemos afirmar también que $i^\tau = d_1(argmax_{i \in N}\{Aq^{\tau-1})\})$.
+    Como escalar un vector no afecta la relación de orden entre sus componentes, $i^\tau = d_1(argmax_{i \in N}\{Aq^{\tau-1})\})$.
     Luego, aplicando esto a la definición \ref{def:fp:brandt}, $p^\tau = p^{\tau-1} + \pstrat{i^\tau} = \sum_{s=1}^{\tau-1}{\pstrat{i^s}} + \pstrat{i^\tau} = \sum_{s=1}^{\tau}{\pstrat{i^s}}$.
     
     Análogamente, $q^{\tau} = \sum_{s=1}^\tau{\pstrat{j^s}}$.
@@ -52,13 +51,13 @@ En el caso alternante, la jugada del jugador columna ya no es análoga a la del 
 
     Veamos ahora el caso de $\tau > 1$, suponiendo que
     $p^{\tau-1} = \sum_{s=1}^{\tau-1}{\pstrat{i^s}}$ y $q^{\tau-1} = \sum_{s=1}^{\tau-1}{\pstrat{j^s}}$.
-    Podemos afirmar, con el mismo argumento que en el caso inductivo del lema \ref{lema:equiv:sim}, que
+    Siguiendo el mismo razonamiento que en el caso inductivo del lema \ref{lema:equiv:sim},
     $p^{\tau} = \sum_{s=1}^\tau{\pstrat{i^s}}$.
     Por otro lado, $q^{\tau} = y^{\tau} + \pstrat{j}$ donde
     $j = d_2(argmax_{j' \in M}\{p^{\tau+1}B\pstrat{j'}\}) = d_2(argmax_{j' \in M}\{\sum_{s=1}^\tau{\pstrat{i^s}}B\pstrat{j'}\})$.
     Sabemos además, por la definición \ref{def:fp:berger}, que
     $j^\tau = d_2(BR_2(x^{\tau})) = d_2(BR_2(\frac{\sum_{s=1}^{\tau}{\pstrat{i^s}}}{\tau})) = d_2(argmax_{j' \in N}\{\frac{\sum_{s=1}^{\tau}{\pstrat{i^s}}}{\tau}B\pstrat{j}\})  = d_2(argmax_{j' \in N}\{\frac{p^{\tau}}{\tau}B\pstrat{j}\})$.
-    Como escalar un vector no afecta la relación de orden entre sus componentes, podemos afirmar también que
+    Como escalar un vector no afecta la relación de orden entre sus componentes,
     $j^\tau = d_2(argmax_{j' \in N}\{p^{\tau}B\pstrat{j}\})$.
     Luego, aplicando esto a la definición \ref{def:fp:brandt},
     $q^\tau = q^{\tau-1} + j^\tau = \sum_{s=1}^{\tau-1}{\pstrat{j^s}} + j^\tau = \sum_{s=1}^{\tau}{\pstrat{j^s}}$.
@@ -93,7 +92,7 @@ Empezaremos por un lema que nos dice que si el proceso juega un equilibrio de Na
         &= \argmax_{i \in N} \{\frac{(k - 1)}{k}\pstrat{i} Ay^{k-1} + \frac{1}{k}\pstrat{i} Aj^*\}
     \end{align*}
 
-    Como en la iteración $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1}) = \argmax_{i \in N}\{\pstrat{i}Ay^{k-1}\}$. Es decir que para cualquier $i \in N$, podemos afirmar que $\pstrat{i^*}Ay^{k-1} \geq \pstrat{i}Ay^{k-1}$ y también (multiplicando en ambos lados por una constante positiva) que $\frac{(k - 1)}{k}\pstrat{i^*}Ay^{k-1} > \frac{(k - 1)}{k}\pstrat{i}Ay^{k-1}$.
+    Como en la iteración $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1}) = \argmax_{i \in N}\{\pstrat{i}Ay^{k-1}\}$. Es decir que para cualquier $i \in N$, $\pstrat{i^*}Ay^{k-1} \geq \pstrat{i}Ay^{k-1}$ y también (multiplicando en ambos lados por una constante positiva) que $\frac{(k - 1)}{k}\pstrat{i^*}Ay^{k-1} > \frac{(k - 1)}{k}\pstrat{i}Ay^{k-1}$.
 
     Sabemos también, al ser un equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*}) = \argmax_{i \in N}\{\pstrat{i}Aj^*\}$. Es decir que para cualquier $i \in N$, $\pstrat{i^*}Aj^* \geq \pstrat{i}Aj^*$ y consecuentemente $\frac{1}{k}\pstrat{i^*}Aj^* \geq \frac{1}{k}\pstrat{i}Aj^*$.
 
@@ -117,7 +116,7 @@ Empezaremos por un lema que nos dice que si el proceso juega un equilibrio de Na
         &= \argmax_{j \in M} \{\frac{k}{k+1}x^{k}B\pstrat{j} + \frac{1}{k+1}i^*B\pstrat{j}\}
     \end{align*}
 
-    Como en la iteración $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $j^* \in BR_2(x^{k}) = \argmax_{j \in M}\{x^{k}B\pstrat{j}\}$. Es decir que para cualquier $j \in M$, podemos afirmar que $x^{k}B\pstrat{j*} \geq x^{k}B\pstrat{j}$ y también (multiplicando en ambos lados por una constante positiva) que $\frac{k}{k+1}x^{k}B\pstrat{j*} \geq \frac{k}{k+1}x^{k}B\pstrat{j}$.
+    Como en la iteración $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $j^* \in BR_2(x^{k}) = \argmax_{j \in M}\{x^{k}B\pstrat{j}\}$. Es decir que para cualquier $j \in M$, $x^{k}B\pstrat{j*} \geq x^{k}B\pstrat{j}$ y también (multiplicando en ambos lados por una constante positiva) que $\frac{k}{k+1}x^{k}B\pstrat{j*} \geq \frac{k}{k+1}x^{k}B\pstrat{j}$.
 
     Sabemos también, al ser un equilibrio de Nash, que $j^* \in BR_2(\pstrat{i^*}) = \argmax_{j \in M}\{i^*B\pstrat{j}\}$. Es decir que para cualquier $j \in M$, $i^*B\pstrat{j^*} \geq i^*B\pstrat{j}$ y consecuentemente $\frac{1}{k+1}i^*B\pstrat{j^*} \geq \frac{1}{k+1}i^*B\pstrat{j}$.
 
@@ -143,7 +142,7 @@ El siguiente lema nos dice que si el proceso juega un equilibrio de Nash, entonc
         &> \frac{(k - 1)}{k} \pstrat{i'}Ay^{k-1} + \frac{1}{k}\pstrat{i'}A\pstrat{j^*} = \pstrat{i'}A(\frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^*}}{k}) = \pstrat{i'}Ay^k
     \end{align*}
 
-    Puesto que sabemos por el lema anterior, que $i^* \in BR_1(y^{k}) = \argmax_{i \in N} \{\pstrat{i}Ay^{k}\}$, podemos afirmar que $i' \notin BR_1(y^{k})$.
+    Puesto que sabemos por el lema anterior que $i^* \in BR_1(y^{k}) = \argmax_{i \in N} \{\pstrat{i}Ay^{k}\}$, entoces $i' \notin BR_1(y^{k})$.
     
     Veamos ahora el caso del jugador columna. Similarmente, probaremos que para todo $j \in M$, $ j \notin BR_2(x^k) \implies j \notin BR_2(x^{k+1})$. Supongamos entonces un $j' \in M$ tal que $j' \notin BR_2(x^k)$.
 
@@ -156,7 +155,7 @@ El siguiente lema nos dice que si el proceso juega un equilibrio de Nash, entonc
         &> \frac{k}{k+1} x^{k}B\pstrat{j'} + \frac{1}{k+1}\pstrat{i^*}B\pstrat{j'} = (\frac{k}{k+1} x^{k} + \frac{\pstrat{i^*}}{k+1})B\pstrat{j'} = x^{k+1}B\pstrat{j'}
     \end{align*}
 
-    Y como sabemos por el lema anterior que $j^* \in BR_2(x^{k+1}) = \argmax_{j \in M} \{x^{k+1}B\pstrat{j'}\}$, podemos afirmar que $j' \notin BR_2(x^{k+1})$
+    Y como sabemos por el lema anterior que $j^* \in BR_2(x^{k+1}) = \argmax_{j \in M} \{x^{k+1}B\pstrat{j'}\}$, entonces $j' \notin BR_2(x^{k+1})$
 
     
 \end{proof}
@@ -224,7 +223,7 @@ Veamos primero que para el caso de los juegos simétricos de suma cero, el teore
 
     Si $\epsilon < 1$, vemos que $(i^3, j^3)$ es el único equilibrio de Nash. \footnote{Puede verse en forma directa o bien al ser el único perfil resultante después de la eliminación iterada de estrategias estrictamente dominadas \cite{libro:rubinstein}}.
 
-    Consideremos un número $k > 1$ arbitrario y sea $\epsilon = 2^{-k}$. Para estos valores, $\epsilon$ puede codificarse en $O(k)$ bits, mientras que el tamaño de la matriz y las representaciones de las otras utilidades del juego son constantes, por lo que podemos afirmar que la representación del juego será tambien del orden de  $O(k)$ bits. Por lo tanto, si probamos que un proceso de juego ficticio alternante puede requerir $2^{k-1}$ rondas antes de que se juegue $(i^3, j^3)$, el teorema estará demostrado.
+    Consideremos un número $k > 1$ arbitrario y sea $\epsilon = 2^{-k}$. Para estos valores, $\epsilon$ puede codificarse en $O(k)$ bits, mientras que el tamaño de la matriz y las representaciones de las otras utilidades del juego son constantes, por lo que la representación del juego será tambien del orden de  $O(k)$ bits. Por lo tanto, si probamos que un proceso de juego ficticio alternante puede requerir $2^{k-1}$ rondas antes de que se juegue $(i^3, j^3)$, el teorema estará demostrado.
 
     Si el proceso comienza con el jugador fila jugando $i^1$, entonces las utilidades esperadas del jugador columna serán $-x^1A = (0, 1, \epsilon)$ y elegirá $j_2$.
 
