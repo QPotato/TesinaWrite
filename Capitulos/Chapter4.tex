@@ -174,7 +174,7 @@ Combinando estos dos lemas podemos ahora sí, demostrar el principio de estabili
 \end{proof}
 
 
-\section{Preservación del juego ficticio} \label{sec:aportes:preservacion}
+\section{Preservación del juego ficticio} \label{sec:aportes:preservacion} \cambios{Esta sección estoy en proceso de hacerle varios cambios. Más detalles en el mail.}
 
 Analizaremos a continuación las operaciones matriciales que preservan secuencias de juego ficticio. Esto es, funciones $f$ sobre matrices que garanticen que, dadas dos matrices $A$ y $B$ y una secuencia $(i^\tau, j^\tau)$ de juego ficticio cualquiera sobre $(A, B)$, la misma $(i^\tau, j^\tau)$ sea también una secuencia de juego ficticio sobre $(f(A), f(B))$.
 
@@ -208,7 +208,7 @@ Diremos que una secuencia de juego ficticio $s$ termina con una secuencia $t$ (s
 Claramente, no vale un lema similar para la reducción en tamaño de las matrices, ya que quitar una fila o columna podría eliminar una acción por la cuál pasa la secuencia.
 
 
-\section{Velocidad de convergencia del juego ficticio alternante} \label{sec:aportes:velocidad}
+\section{Velocidad de convergencia del juego ficticio alternante} \label{sec:aportes:velocidad} \cambios{En esta incorporé los cambios del paper.}
 
 En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}, en el que presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo en algunas clases de juegos que resultan de interés. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos simétricos de suma cero y los no degenerados de intereses idénticos. Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta sección resultan en conjuntos de mejores respuestas unitarios para omitir las reglas de desempate, ya que no afectarán los resultados.
 
@@ -373,6 +373,6 @@ El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrens
     \end{center}
 
 
-    es una secuencia de aprendizaje de FP simultáneo de este juego exponencialmente larga en $k$ y en la cual no se juega ningún NE puro, y el teorema sigue del lema \ref{lema:preservacion} con a lo sumo $nm$ elementos que requieren $O(log(max\{n,m\}))$ bits cada uno.
+    es una secuencia de aprendizaje de juego ficticio simultáneo de este juego exponencialmente larga en $k$ y en la cual no se juega ningún equilibrio de Nash puro, y el teorema sigue del lema \ref{lema:preservacion} con a lo sumo $nm$ elementos que requieren $O(log(max\{n,m\}))$ bits cada uno.
 
 \end{proof}
