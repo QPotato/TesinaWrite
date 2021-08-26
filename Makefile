@@ -7,7 +7,7 @@
 # Por el mismo motivo necesitamos hacer clean antes de buildear.
 
 MAINTEX = Tesis
-SLIDES = slides
+SLIDES = Slides/lunch_and_learn
 CARTA = carta
 CP = cp
 GHC = ghc

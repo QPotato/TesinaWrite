@@ -1,0 +1,103 @@
+\documentclass[pdf]{beamer}
+\usetheme{Copenhagen}
+\mode<presentation>{}
+
+\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen=right}
+%\setbeameroption{show only notes}
+
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{paralist}
+\usepackage{todonotes}
+\usepackage{stmaryrd}
+\usepackage{graphicx,xcolor}
+\usepackage{subcaption}
+\graphicspath{{Imgs/}}
+
+\usepackage{array}
+
+\title{Game Theory and Fictitious Play}
+
+\author[]{Federico Badaloni}
+
+\subject{Tesina}
+
+\usepackage{color}
+
+\begin{document}
+
+\begin{frame}
+\frametitle{Summary}
+
+    \begin{itemize}
+    \item Part 1: Introduction to Game Theory.
+    \item Part 2: The Fictitious Play algorithm. The Stability Principle.
+    \item Part 3: Alternating Fictitious Play.
+    \item Part 4: Convergence rates.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Game Theory 1: definitions}
+    - Informal description
+    - More formally: (tuples)
+    - Actions, Mixed Strategies
+    - Alternatively: bimatrix games
+    - payoffs as matrix products
+\end{frame}
+
+\begin{frame}
+    \frametitle{Game Theory 2: examples}
+    - Rock, Paper, Sicssors.
+    - Prisonner's Dilemma.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Game Theory 3: moar definitions}
+    - Best Response Set
+    - Nash Equilibrium
+    - back to examples
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fictitious Play 1: example}
+    - Bart vs Lisa (explain Lisa)
+    - Lisa vs Lisa
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fictitious Play 2: definition}
+    - Berger Definition, SFP
+    - Prisonner's Dilemma
+    - Stability Principle
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fictitious Play 3: proof of stability principle}
+    - Lemma 1
+    - Lemma 2
+    - Theorem 1
+\end{frame}
+
+\begin{frame}
+    \frametitle{Alternating Fictitious Play}
+    - Berger definition
+    - Prissoner's Dilemma
+    - RPS
+\end{frame}
+
+\begin{frame}
+    \frametitle{Rate of convergence}
+    - Theorem 4
+\end{frame}
+
+\begin{frame}
+    \frametitle{Code!}
+    - Implementation
+    - Prissoner's Dilemma
+    - Rock Paper Sicssors
+    - Theorem 4
+\end{frame}
+\end{document}
