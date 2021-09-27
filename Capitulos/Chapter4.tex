@@ -18,11 +18,10 @@ Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir 
     Para $\tau = 1$, tenemos $p^1 = \pstrat{i^1} = \sum_{s=1}^1{\pstrat{i^s}}$ y $q^1 = \pstrat{j^1} = \sum_{s=1}^1{\pstrat{j^s}}$.
 
     Veamos ahora el caso de un $\tau > 1$, suponiendo que $p^{\tau-1} = \sum_{s=1}^{\tau-1}{\pstrat{i^s}}$ y $q^{\tau-1} = \sum_{s=1}^{\tau-1}{\pstrat{j^s}}$.
-    Por la definición \ref{def:fp:brandt}, $p^\tau = p^{\tau-1} + \pstrat{i}$
-    donde $i = d_1(argmax_{i \in N}\{\pstrat{i}Ap^{\tau-1}\})$.
+    Por la definición \ref{def:fp:brandt}, $p^\tau = p^{\tau-1} + \pstrat{i'}$ donde $i' = d_1(argmax_{i \in N}\{\pstrat{i}Ap^{\tau-1}\})$.
     Pero también sabemos, por la definición \ref{def:fp:berger}
-    que $i^\tau = d_1(BR_1(y^{\tau-1})) = d_1(BR_1(\frac{\sum_{s=1}^{\tau-1} \pstrat{j^s}}{\tau-1})) = d_1(argmax_{i \in N}\{A\frac{\sum_{s=1}^{\tau-1} \pstrat{j^s}}{\tau-1})\}) = d_1(argmax_{i \in N}\{A\frac{q^{\tau-1}}{\tau-1})\})$.
-    Como escalar un vector no afecta la relación de orden entre sus componentes, $i^\tau = d_1(argmax_{i \in N}\{Aq^{\tau-1})\})$.
+    que $i^\tau = d_1(BR_1(y^{\tau-1})) = d_1(BR_1(\frac{\sum_{s=1}^{\tau-1} \pstrat{j^s}}{\tau-1})) = d_1(argmax_{i \in N}\{\pstrat{i} A\frac{\sum_{s=1}^{\tau-1} \pstrat{j^s}}{\tau-1})\}) = d_1(argmax_{i \in N}\{\pstrat{i} A\frac{q^{\tau-1}}{\tau-1})\})$.
+    Como escalar un vector no afecta la relación de orden entre sus componentes, $i^\tau = d_1(argmax_{i \in N}\{\pstrat{i} Aq^{\tau-1})\})$.
     Luego, aplicando esto a la definición \ref{def:fp:brandt}, $p^\tau = p^{\tau-1} + \pstrat{i^\tau} = \sum_{s=1}^{\tau-1}{\pstrat{i^s}} + \pstrat{i^\tau} = \sum_{s=1}^{\tau}{\pstrat{i^s}}$.
     
     Análogamente, $q^{\tau} = \sum_{s=1}^\tau{\pstrat{j^s}}$.
@@ -43,8 +42,8 @@ En el caso alternante, la jugada del jugador columna ya no es análoga a la del 
     Nuevamente, procederemos por inducción sobre $\tau$.
 
     Para $\tau = 1$, sabemos que $p^1 = \pstrat{i^1} = \sum_{s=1}^1{\pstrat{i^s}}$.
-    Por la definición \ref{def:fp:brandt}, $q^1 = q^0 + \pstrat{j}$ donde $q^0$ es el vector nulo y
-    $j = d_2(argmax_{j \in M}\{p^{1}B\pstrat{j}\}) = d_2(argmax_{j \in M}\{\pstrat{i^{1}}B\pstrat{j}\})$.
+    Por la definición \ref{def:fp:brandt}, $q^1 = q^0 + \pstrat{j'}$ donde $q^0$ es el vector nulo y
+    $j' = d_2(argmax_{j \in M}\{p^{1}B\pstrat{j}\}) = d_2(argmax_{j \in M}\{\pstrat{i^{1}}B\pstrat{j}\})$.
     Además, por la definición \ref{def:fp:berger}, sabemos que
     $j^1 = d_2(BR_2(x^1)) = d_2(BR_2(\frac{\sum^1_{s=1} \pstrat{i^s}}{\tau})) = d_2(BR_2(i^1)) = d_2(argmax_{j \in M}\{\pstrat{i^{1}}B\pstrat{j}\})$.
     Luego, $q^1 = \pstrat{j^1} = \sum_{s=1}^1{\pstrat{j^s}}$.
@@ -53,10 +52,10 @@ En el caso alternante, la jugada del jugador columna ya no es análoga a la del 
     $p^{\tau-1} = \sum_{s=1}^{\tau-1}{\pstrat{i^s}}$ y $q^{\tau-1} = \sum_{s=1}^{\tau-1}{\pstrat{j^s}}$.
     Siguiendo el mismo razonamiento que en el caso inductivo del lema \ref{lema:equiv:sim},
     $p^{\tau} = \sum_{s=1}^\tau{\pstrat{i^s}}$.
-    Por otro lado, $q^{\tau} = y^{\tau} + \pstrat{j}$ donde
-    $j = d_2(argmax_{j' \in M}\{p^{\tau+1}B\pstrat{j'}\}) = d_2(argmax_{j' \in M}\{\sum_{s=1}^\tau{\pstrat{i^s}}B\pstrat{j'}\})$.
+    Por otro lado, $q^{\tau} = y^{\tau} + \pstrat{j'}$ donde
+    $j' = d_2(argmax_{j \in M}\{p^{\tau+1}B\pstrat{j}\}) = d_2(argmax_{j \in M}\{\sum_{s=1}^\tau{\pstrat{i^s}}B\pstrat{j}\})$.
     Sabemos además, por la definición \ref{def:fp:berger}, que
-    $j^\tau = d_2(BR_2(x^{\tau})) = d_2(BR_2(\frac{\sum_{s=1}^{\tau}{\pstrat{i^s}}}{\tau})) = d_2(argmax_{j' \in N}\{\frac{\sum_{s=1}^{\tau}{\pstrat{i^s}}}{\tau}B\pstrat{j}\})  = d_2(argmax_{j' \in N}\{\frac{p^{\tau}}{\tau}B\pstrat{j}\})$.
+    $j^\tau = d_2(BR_2(x^{\tau})) = d_2(BR_2(\frac{\sum_{s=1}^{\tau}{\pstrat{i^s}}}{\tau})) = d_2(argmax_{j \in N}\{\frac{\sum_{s=1}^{\tau}{\pstrat{i^s}}}{\tau}B\pstrat{j}\})  = d_2(argmax_{j' \in N}\{\frac{p^{\tau}}{\tau}B\pstrat{j}\})$.
     Como escalar un vector no afecta la relación de orden entre sus componentes,
     $j^\tau = d_2(argmax_{j' \in N}\{p^{\tau}B\pstrat{j}\})$.
     Luego, aplicando esto a la definición \ref{def:fp:brandt},
@@ -87,16 +86,16 @@ Empezaremos por un lema que nos dice que si el proceso juega un equilibrio de Na
     Luego, tendremos que el conjunto de mejor respuesta será:
     
     \begin{align*}
-        BR_1(y^k) &= BR_1(\frac{k - 1}{k} y^{k-1} + \frac{j^*}{k}) \\
-        &= \argmax_{i \in N} \{\pstrat{i} A(\frac{(k - 1)y^{k-1}}{k} + \frac{j^*}{k})\}\\
-        &= \argmax_{i \in N} \{\frac{(k - 1)}{k}\pstrat{i} Ay^{k-1} + \frac{1}{k}\pstrat{i} Aj^*\}
+        BR_1(y^k) &= BR_1(\frac{k - 1}{k} y^{k-1} + \frac{ \pstrat{j^*}}{k}) \\
+        &= \argmax_{i \in N} \{\pstrat{i} A(\frac{(k - 1)y^{k-1}}{k} + \frac{ \pstrat{j^*}}{k})\}\\
+        &= \argmax_{i \in N} \{\frac{(k - 1)}{k}\pstrat{i} Ay^{k-1} + \frac{1}{k}\pstrat{i} A \pstrat{j^*}\}
     \end{align*}
 
     Como en la iteración $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $i^* \in BR_1(y^{k-1}) = \argmax_{i \in N}\{\pstrat{i}Ay^{k-1}\}$. Es decir que para cualquier $i \in N$, $\pstrat{i^*}Ay^{k-1} \geq \pstrat{i}Ay^{k-1}$ y también (multiplicando en ambos lados por una constante positiva) que $\frac{(k - 1)}{k}\pstrat{i^*}Ay^{k-1} > \frac{(k - 1)}{k}\pstrat{i}Ay^{k-1}$.
 
-    Sabemos también, al ser un equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*}) = \argmax_{i \in N}\{\pstrat{i}Aj^*\}$. Es decir que para cualquier $i \in N$, $\pstrat{i^*}Aj^* \geq \pstrat{i}Aj^*$ y consecuentemente $\frac{1}{k}\pstrat{i^*}Aj^* \geq \frac{1}{k}\pstrat{i}Aj^*$.
+    Sabemos también, al ser un equilibrio de Nash, que $i^* \in BR_1(\pstrat{j^*}) = \argmax_{i \in N}\{\pstrat{i} A \pstrat{j^*}\}$. Es decir que para cualquier $i \in N$, $\pstrat{i^*}A \pstrat{j^*} \geq \pstrat{i}A \pstrat{j^*}$ y consecuentemente $\frac{1}{k}\pstrat{i^*}A \pstrat{j^*} \geq \frac{1}{k}\pstrat{i}A \pstrat{j^*}$.
 
-    Podemos sumar estas dos desigualdades para afirmar que $\frac{(k - 1)}{k}\pstrat{i^*}Ay^{k-1} + \frac{1}{k}\pstrat{i^*}Aj^* \geq \frac{(k - 1)}{k}\pstrat{i}Ay^{k-1} + \frac{1}{k}\pstrat{i}Aj^*$ para cualquier $i \in N$ y por lo tanto $i^* \in BR_1(y^{k})$.
+    Podemos sumar estas dos desigualdades para afirmar que $\frac{(k - 1)}{k}\pstrat{i^*}Ay^{k-1} + \frac{1}{k}\pstrat{i^*}A \pstrat{j^*} \geq \frac{(k - 1)}{k}\pstrat{i}Ay^{k-1} + \frac{1}{k}\pstrat{i} A \pstrat{j^*}$ para cualquier $i \in N$ y por lo tanto $i^* \in BR_1(y^{k})$.
 
     El caso del jugador columna será similar. Queremos probar que $j^*$ es una mejor respuesta a sus creencias sobre la estrategia del jugador fila, pero incluyendo la última iteración. Las creencias se actualizan como:
 
@@ -112,15 +111,15 @@ Empezaremos por un lema que nos dice que si el proceso juega un equilibrio de Na
     
     \begin{align*}
         BR_2(x^{k+1}) &= BR_2(\frac{k}{k+1} x^{k} + \frac{\pstrat{i^*}}{k+1}) \\
-        &= \argmax_{j \in M} \{(\frac{kx^{k}}{k+1} + \frac{i^*}{k+1})B\pstrat{j}\}\\
-        &= \argmax_{j \in M} \{\frac{k}{k+1}x^{k}B\pstrat{j} + \frac{1}{k+1}i^*B\pstrat{j}\}
+        &= \argmax_{j \in M} \{(\frac{kx^{k}}{k+1} + \frac{\pstrat{i^*}}{k+1})B\pstrat{j}\}\\
+        &= \argmax_{j \in M} \{\frac{k}{k+1}x^{k}B\pstrat{j} + \frac{1}{k+1}\pstrat{i^*}B\pstrat{j}\}
     \end{align*}
 
     Como en la iteración $k$ se jugó el perfil $(i^*, j^*)$, por la definición \ref{def:fp:berger}, sabemos que $j^* \in BR_2(x^{k}) = \argmax_{j \in M}\{x^{k}B\pstrat{j}\}$. Es decir que para cualquier $j \in M$, $x^{k}B\pstrat{j*} \geq x^{k}B\pstrat{j}$ y también (multiplicando en ambos lados por una constante positiva) que $\frac{k}{k+1}x^{k}B\pstrat{j*} \geq \frac{k}{k+1}x^{k}B\pstrat{j}$.
 
-    Sabemos también, al ser un equilibrio de Nash, que $j^* \in BR_2(\pstrat{i^*}) = \argmax_{j \in M}\{i^*B\pstrat{j}\}$. Es decir que para cualquier $j \in M$, $i^*B\pstrat{j^*} \geq i^*B\pstrat{j}$ y consecuentemente $\frac{1}{k+1}i^*B\pstrat{j^*} \geq \frac{1}{k+1}i^*B\pstrat{j}$.
+    Sabemos también, al ser un equilibrio de Nash, que $j^* \in BR_2(\pstrat{i^*}) = \argmax_{j \in M}\{\pstrat{i^*}B\pstrat{j}\}$. Es decir que para cualquier $j \in M$, $\pstrat{i^*}B\pstrat{j^*} \geq \pstrat{i^*}B\pstrat{j}$ y consecuentemente $\frac{1}{k+1}\pstrat{i^*}B\pstrat{j^*} \geq \frac{1}{k+1}\pstrat{i^*}B\pstrat{j}$.
 
-    Podemos, nuevamente, sumar estas dos desigualdades para afirmar que $\frac{k}{k+1}x^{k}B\pstrat{j*} + j \in M$, $i^*B\pstrat{j^*} \geq \frac{k}{k+1}x^{k}B\pstrat{j} + i^*B\pstrat{j}$ para cualquier $j \in M$ y por lo tanto $j^* \in BR_2(x^{k+1})$.
+    Podemos, nuevamente, sumar estas dos desigualdades para afirmar que $\frac{k}{k+1}x^{k}B\pstrat{j*} + j \in M$, $\pstrat{i^*}B\pstrat{j^*} \geq \frac{k}{k+1}x^{k}B\pstrat{j} + \pstrat{i^*}B\pstrat{j}$ para cualquier $j \in M$ y por lo tanto $j^* \in BR_2(x^{k+1})$.
     
 \end{proof}
 
@@ -176,22 +175,22 @@ Combinando estos dos lemas podemos ahora sí, demostrar el principio de estabili
 \section{Preservación del juego ficticio} \label{sec:aportes:preservacion}
 
 % Intro
-Analizaremos a continuación las operaciones matriciales que preservan secuencias de juego ficticio. Esto es, funciones $f$ sobre matrices que garanticen que, dadas dos matrices $A$ y $B$ y una secuencia $(i^\tau, j^\tau)$ de juego ficticio cualquiera sobre $(A, B)$, la misma $(i^\tau, j^\tau)$ sea también una secuencia de juego ficticio sobre $(f(A), f(B))$. Esto nos servirá en la sección siguiente para generalizar los resultados obtenidos sobre velocidad de convergencia.
+Analizaremos a continuación las operaciones matriciales que preservan secuencias de juego ficticio. Esto es, funciones $f$ sobre pares de matrices que garanticen que, dadas dos matrices $A$ y $B$ y una secuencia $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ de juego ficticio cualquiera sobre $(A, B)$, la misma $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sea también una secuencia de juego ficticio sobre $f(A, B)$. Esto nos servirá en la sección siguiente para generalizar los resultados obtenidos sobre velocidad de convergencia.
 
 % Transformaciones lineales
 En primer lugar, cualquier transformación que preserve las relaciones de orden de los pagos manteniendo el tamaño del juego (tales como escalar todos los pagos por un mismo factor o sumarle a todos una constante) claramente preservará las secuencias de juego ficticio. Cuando se varía el tamaño del juego, en cambio, la preservación puede no ser trivial o no valer, según la clase de juego.
 
 % Expansiones cerradas en  
-¿Qué ocurre, por otro lado, si expandimos la matriz? Una forma evidente de conservar las secuencias de juego ficticio es expandirla con filas y columnas que tengan ganancias muy bajas para ambos jugadores, de manera de asegurarnos de que las nuevas acciones nunca entren en los conjuntos de menor respuesta. Pero sería interesante además, que estas expansiones sean cerradas en la familia de juegos (suma cero, intereses idénticos, etc). La transformación recién descripta, claramente puede romper estas propiedades.
+¿Qué ocurre si expandimos la matriz? Una forma evidente de conservar las secuencias de juego ficticio es expandirla con filas y columnas que tengan ganancias muy bajas para ambos jugadores, de manera de asegurarnos de que las nuevas acciones nunca entren en los conjuntos de mejor respuesta. Pero sería interesante además, que estas expansiones sean cerradas en la familia de juegos (suma cero, intereses idénticos, etc). La transformación recién descripta, claramente puede romper estas propiedades.
 
 % Rango de imagen
 Más aun, nos interesa además que tras el cambio se mantengan la mayoría de los valores presentes en la matriz original. El caso general puede ser complejo, pero a priori damos la siguiente formalización. Llamaremos \concept{rango de imagen} de una matriz $A$ al cardinal del conjunto de los valores tomados por todos sus elementos. Buscamos entonces, de ser posible, expansiones de un juego que tengan rango de imagen mínimo manteniendo las propiedades deseadas. En todos los casos nos interesará, tras el agregado de filas o columnas, no la exactitud del rango de imagen sino el orden de magnitud en función de las dimensiones.
 
 % Sufijos
-Por último, expandir un juego claramente agrega nuevas secuencias de juego ficticio (aquellas que empiezan en las jugadas nuevas). En estos casos, nos interesará que estas nuevas secuencias no presenten comportamientos nuevos, sino que luego de pocas jugadas pasen a comportarse como secuencias ya presentes en el juego original. Diremos que una secuencia de juego ficticio $s$ termina con una secuencia $t$ (siendo esta finita o no), o que $t$ es un sufijo de $s$, si existe $s'$ finita tal que $s = s't$.
+Por último, expandir un juego claramente agrega nuevas secuencias de juego ficticio (aquellas que empiezan en las jugadas nuevas). En estos casos, nos interesará que estas nuevas secuencias no presenten comportamientos nuevos, sino que luego de pocas jugadas pasen a comportarse como secuencias ya presentes en el juego original.
 
 % Intro al lema
-Presentamos a continuación un lema que muestra como podemos aplicar una transformación que expanda un juego de intereses idénticos cumpliendo estas condiciones.
+Presentamos a continuación un lema que muestra cómo podemos aplicar una transformación que expanda un juego de intereses idénticos cumpliendo estas condiciones.
 
 \begin{lemma}\label{lema:preservacion}
     Sea $A$ un juego de intereses idénticos de tamaño $n\times m$ con un único equilibrio de Nash puro, y sean $n'\geq n$, $m'\geq m$. Entonces existe un juego de intereses idénticos $A'$ de tamaño $n'\times m'$ y rango de imagen $O(n+m)$ con un único equilibrio de Nash puro tal que:
@@ -223,7 +222,7 @@ Presentamos a continuación un lema que muestra como podemos aplicar una transfo
     
     Sea entonces $(i^\tau, j^\tau)$ una secuencia de juego ficticio (simultaneo o alternante) sobre $A$. En cada iteración $\tau$, si $i^\tau \in BR_1^A(y^{\tau-1})$, también $i^\tau \in BR_1^{A'}(y^{\tau-1})$. En el caso del jugador columna, al no existir diferencias en la estrategia empírica del jugador fila y no existir acciones nuevas, el proceso elegirá en cada iteración las mismas jugadas. Por lo tanto, $(i^\tau, j^\tau)$ es tambien una secuencia de juego ficticio sobre $A$.
 
-    Similarmente, si una secuencia de juego ficticio alterante sobre $A'$ comienza con $i^0 = i_{n+1}$, para cualquier estrategia del jugador 2, los conjuntos de mejor respuesta nunca contendrán a $i_{n+1}$ y por lo tanto la secuencia terminará con una ya existente en $A$.
+    Similarmente, si una secuencia de juego ficticio alterante sobre $A'$ comienza con $i^1 = i_{n+1}$, para cualquier estrategia del jugador 2, los conjuntos de mejor respuesta nunca contendrán a $i_{n+1}$ y por lo tanto la secuencia terminará con una ya existente en $A$.
 
     Para obtener un juego de intereses idénticos de tamaño $n \times (m+1)$ que cumpla las propiedades deseadas, podemos definir $A'$ como:
 
@@ -244,32 +243,32 @@ Presentamos a continuación un lema que muestra como podemos aplicar una transfo
 
 \end{proof}
 
-Claramente, no vale un lema similar para la reducción en tamaño de las matrices, ya que quitar una fila o columna podría eliminar una acción por la cuál pasa la secuencia.
+Nótese que el orden de agregado de filas y columnas en la construcción que se hace en esta demostración no afecta la matriz resultante. Claramente, no vale un lema similar para la reducción en tamaño de las matrices, ya que quitar una fila o columna podría eliminar una acción por la cuál pasa la secuencia.
 
 
-\section{Velocidad de convergencia del juego ficticio alternante} \label{sec:aportes:velocidad} \cambios{En esta incorporé los cambios del paper.}
+\section{Velocidad de convergencia del juego ficticio alternante} \label{sec:aportes:velocidad}
 
-En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence}, en el que presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo en algunas clases de juegos que resultan de interés. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante de juego ficticio. Presentamos a continuación nuestro análisis para los casos de los juegos simétricos de suma cero y los no degenerados de intereses idénticos. Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta sección resultan en conjuntos de mejores respuestas unitarios para omitir las reglas de desempate, ya que no afectarán los resultados.
+En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein en \cite{brandt:rate:convergence}, donde presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo en algunas de las clases de juegos más estudiadas en la literatura del tema. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante del juego ficticio, pero no profundizan en ello. Presentamos a continuación nuestro análisis para los casos de los juegos simétricos de suma cero y los no degenerados de intereses idénticos. Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta sección resultan en conjuntos de mejores respuestas unitarios para omitir las reglas de desempate, ya que no afectarán los resultados.
 
-Veamos primero que para el caso de los juegos simétricos de suma cero, el teorema de estos autores efectivamente es expandible de forma bastante directa a la variante alternante. Vale la pena notar que formulamos el teorema en términos de que el último perfil no sea un equilibrio de Nash puro, en vez de pedir que ninguno en la secuencia lo sea como hacen Brandt, Fischer y Harrenstein ya que por el principio de estabilidad, si alguno de los perfiles jugados en la secuencia fuera un equilibrio de Nash puro, todos los siguientes lo serían.
+Veamos primero que para el caso de los juegos simétricos de suma cero, el teorema de estos autores efectivamente es expandible de forma bastante directa a la variante alternante. Vale la pena notar que formulamos el teorema en términos de que el último perfil no sea un equilibrio de Nash puro, en vez de pedir que ninguno en la secuencia lo sea como hacen Brandt, Fischer y Harrenstein ya que, por el principio de estabilidad, si alguno de los perfiles jugados en la secuencia fuera un equilibrio de Nash puro, todos los siguientes lo serían.
 
 \begin{theorem} \label{teorema:afp:velocidad:simetricos}
-    Existe un juego simétrico de suma cero $A$ de $3 \times 3$ representable en $O(k)$ bits con al menos un equilibrio de Nash puro y una secuencia de FP alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k-1}, j^{2^k-1})$ no es un equilibrio de Nash puro.
+    Para todo $k \geq 2$ Existe un juego simétrico de suma cero $A$ de $3 \times 3$ representable en $O(k)$ bits con al menos un equilibrio de Nash puro y una secuencia de FP alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k-1}, j^{2^k-1})$ no es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
-    Sea $A$ el juego simétrico siguiente:
+    Sea $A$ el siguiente juego simétrico:
 
     \input{Tablas/matrizTeoVelocidadSimetricos.tex}
 
-    Si $\epsilon < 1$, vemos que $(i^3, j^3)$ es el único equilibrio de Nash. \footnote{Puede verse en forma directa o bien al ser el único perfil resultante después de la eliminación iterada de estrategias estrictamente dominadas \cite{libro:rubinstein}}.
+    Si $\epsilon < 1$, vemos que $(i_3, j_3)$ es el único equilibrio de Nash puro   \footnote{Puede verse en forma directa o bien al ser el único perfil resultante después de la eliminación iterada de estrategias estrictamente dominadas \cite{libro:rubinstein}}.
 
-    Consideremos un número $k > 1$ arbitrario y sea $\epsilon = 2^{-k}$. Para estos valores, $\epsilon$ puede codificarse en $O(k)$ bits, mientras que el tamaño de la matriz y las representaciones de las otras utilidades del juego son constantes, por lo que la representación del juego será tambien del orden de  $O(k)$ bits. Por lo tanto, si probamos que un proceso de juego ficticio alternante puede requerir $2^{k-1}$ rondas antes de que se juegue $(i^3, j^3)$, el teorema estará demostrado.
+    Consideremos un número $k > 1$ arbitrario y sea $\epsilon = 2^{-k}$. Para estos valores, $\epsilon$ puede codificarse en $O(k)$ bits, mientras que el tamaño de la matriz y las representaciones de las otras utilidades del juego son constantes, por lo que la representación del juego será tambien del orden de  $O(k)$ bits. Por lo tanto, si probamos que un proceso de juego ficticio alternante puede requerir $2^{k-1}$ rondas antes de que se juegue $(i_3, j_3)$, el teorema estará demostrado.
 
     Si el proceso comienza con el jugador fila jugando $i^1$, entonces las utilidades esperadas del jugador columna serán $-x^1A = (0, 1, \epsilon)$ y elegirá $j_2$.
 
     En la siguiente ronda, el jugador $1$ reaccionará con $i_3$, dando que el jugador $2$ tendrá una creencia sobre su estrategia de $x^2 = (\frac{1}{2},0,\frac{1}{2})$, por lo que las utilidades esperadas del jugador $2$ serán $-x^2A = (\frac{-\epsilon}{2}, \frac{1-\epsilon}{2}, \frac{\epsilon}{2})$y volverá a elegir $j_2$.
 
-    Este perfil $(i_3, j_2)$ se repetirá $2^k - 2$ rondas, ya que tendremos que mientras $2 \le \tau \le 2^k$, se cumplirán:
+    Este perfil $(i_3, j_2)$ se repetirá $2^k - 2$ rondas, ya que tendremos que mientras $2 \le \tau < 2^k$, se cumplirán:
 
     \begin{align*}
         x^\tau     &= \frac{\pstrat{i_1} + (\tau - 1) \pstrat{i_3}}{\tau} = (\frac{1}{\tau}, 0,\frac{\tau - 1}{\tau}) \\
@@ -294,7 +293,7 @@ Veamos primero que para el caso de los juegos simétricos de suma cero, el teore
         \frac{\epsilon}{\tau} &< \frac{1-(\tau-1)\epsilon}{\tau}\\
     \end{align*}
 
-    Esto podemos interpretarlo como que si bien en las iteraciones recientes el jugador $1$ jugó $i_3$, el incentivo resultante de la única vez que jugó $i_1$ es muy fuerte por la gran diferencia de utilidades para el jugador $2$ entre $(i_1, j_2)$ e $(i_2, j_3)$, por lo que deberán pasar $2^{k-1}$ iteraciones de $i_3$ luego de ese único $i_1$ para que las utilidades esperadas se compensen.
+    Esto podemos interpretarlo como que si bien en las iteraciones recientes el jugador $1$ jugó $i_3$, el incentivo resultante de la única vez que jugó $i_1$ es muy fuerte por la gran diferencia de utilidades para el jugador $2$ entre $(i_1, j_2)$ e $(i_2, j_3)$, por lo que deberán pasar $2^{k}-2$ iteraciones de $i_3$ luego de ese único $i_1$ para que las utilidades esperadas se compensen.
 
     Concluimos entonces que la secuencia
 
@@ -308,10 +307,10 @@ Veamos primero que para el caso de los juegos simétricos de suma cero, el teore
 
 \end{proof}
 
-Por su parte, la demostración para el caso de los juegos no degenerados de $2 \times 3$ es un poco menos directa y requiere plantear una ligera variante del juego originalmente propuesto por Brandt, Fischer y Harrenstein.
+Por su parte, la demostración para el caso de los juegos no degenerados de intereses idénticos de $2 \times 3$ es un poco menos directa y requiere plantear una ligera variante del juego originalmente propuesto en \cite{brandt:rate:convergence}. Además, aprovechando que el lema \ref{lema:preservacion} nos permite expandir un juego conservando el comportamiento de sus secuencias de juego ficticio, plantearemos una versión más general de este teorema. 
 
 \begin{theorem} \label{teorema:afp:velocidad:nondegen}
-    Para todo $n\geq 2$, $m\geq 3$, existe un juego no degenerado de intereses idénticos $A$ de $n\times m$ representable en $O(k+nm. log(max\{n,m\}))$ bits con al menos un equilibrio de Nash puro, con rango de imagen $O(n+m)$, y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro.
+    Para todo $k \geq 2$, $n\geq 2$, $m\geq 3$, existe un juego no degenerado de intereses idénticos $A$ de $n\times m$ representable en $O(k+nm. log(max\{n,m\}))$ bits con al menos un equilibrio de Nash puro, con rango de imagen $O(n+m)$, y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
     Sea $A$ el juego de intereses idénticos siguiente:
@@ -322,7 +321,7 @@ Por su parte, la demostración para el caso de los juegos no degenerados de $2 \
 
     Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio alternante puede tomar $2^k$ rondas antes de que se juegue $(i^2, j^3)$. Al igual que en la demostración anterior, el juego puede codificarse en $O(k)$ bits.
 
-    Si el proceso comienza con el jugador fila jugando $i^1$, entonces $x^1A = (1, 2, 0)$ y por lo tanto el jugador columna elegirá $j_2$.
+    Si el proceso comienza con el jugador fila jugando $i_1$, entonces $x^1A = (1, 2, 0)$ y por lo tanto el jugador columna elegirá $j_2$.
 
     En la siguiente ronda, el jugador $1$ reaccionará con $i_2$, dando que el jugador $2$ tendrá una creencia sobre su estrategia de $x^2 = (\frac{1}{2},\frac{1}{2})$, por lo que las utilidades esperadas del jugador $2$ serán $x^2A = (\frac{1}{2}, 2 + \frac{\epsilon}{2}, 1 + \epsilon)$ y volverá a elegir $j_2$.
 
@@ -352,7 +351,7 @@ Por su parte, la demostración para el caso de los juegos no degenerados de $2 \
         2\frac{(\tau - 1)}{\tau}(1 + \epsilon) &< 2+\frac{\tau-1}{\tau}\epsilon
     \end{align*}
 
-    Similarmente al teorema anterior, esto podemos interpretarlo como que si bien en las iteraciones recientes el jugador $1$ jugó $i_2$, el incentivo resultante de la única vez que jugó $i_1$ es muy fuerte por la gran diferencia de utilidades para el jugador $2$ entre $(i_1, j_3)$ e $(i_2, j_3)$, por lo que deberán pasar $2^{k-1}$ iteraciones de $i_2$ luego de ese único $i_1$ para que las utilidades esperadas se compensen.
+    Similarmente al teorema anterior, esto podemos interpretarlo como que si bien en las iteraciones recientes el jugador $1$ jugó $i_2$, el incentivo resultante de la única vez que jugó $i_1$ es muy fuerte por la gran diferencia de utilidades para el jugador $2$ entre $(i_1, j_3)$ e $(i_2, j_3)$, por lo que deberán pasar $2^{k}-1$ iteraciones de $i_2$ luego de ese único $i_1$ para que las utilidades esperadas se compensen.
 
     Concluimos entonces que la secuencia
 
@@ -365,18 +364,18 @@ Por su parte, la demostración para el caso de los juegos no degenerados de $2 \
     es una secuencia de aprendizaje de juego ficticio alternante válida de este juego que es exponencialmente larga en $k$ en la que no aparece ningún equilibrio de Nash puro, y el teorema sigue del lema \ref{lema:preservacion} con a lo sumo $nm$ elementos que requieren $O(log(max\{n,m\}))$ bits cada uno.
 \end{proof}
 
-El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrenstein no nos sirva para demostrar el teorema anterior no es para nada menor. En efecto, como veremos en el siguiente teorema, es un ejemplo de un juego en el que un proceso de juego ficticio simultáneo puede requerir una cantidad de rondas exponenciales, mientras que toda secuencia de juego ficticio alternante converge rápidamente.
+El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrenstein no nos sirva para demostrar el teorema anterior no es para nada menor. En efecto, como veremos en el siguiente teorema, es un ejemplo de un juego en el que un proceso de juego ficticio simultáneo puede requerir una cantidad exponencial de rondas para converger, mientras que toda secuencia de juego ficticio alternante lo hará rápidamente.
 
 
 \begin{theorem} \label{teorema:afp:mejor}
-    Para todo $n\geq 2$, $m\geq 3$, existe un juego no degenerado de intereses idénticos $A$ de $n\times m$ representable en $O(k+nm. log(max\{n,m\}))$ bits, con rango de imagen $O(n+m)$, y una secuencia de juego ficticio simultáneo $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que, $(i^{2^k}, j^{2^k})$\cambios{este teorema y el anterior estaban planteados aca en terminos de toda la secuencia, sin tener en cuenta el principio de estabilidad} no es un equilibrio de Nash puro y para todo proceso de juego ficticio alternante $(\widehat{i}^\tau, \widehat{j}^\tau)_{\tau \in \mathbb{N}}$ en $A$, $(\widehat{i}^4, \widehat{j}^4)$ es un equilibrio de Nash puro.
+    Para todo $k \geq 2$, $n\geq 2$, $m\geq 3$, existe un juego no degenerado de intereses idénticos $A$ de $n\times m$ representable en $O(k+nm. log(max\{n,m\}))$ bits, con rango de imagen $O(n+m)$, y una secuencia de juego ficticio simultáneo $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que, $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro y para todo proceso de juego ficticio alternante $(\widehat{i}^\tau, \widehat{j}^\tau)_{\tau \in \mathbb{N}}$ en $A$, $(\widehat{i}^4, \widehat{j}^4)$ es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
     Sea $A$ el juego de intereses idénticos siguiente:
 
     \input{Tablas/matrizTeoAfpMejor.tex}
 
-    Si $\epsilon < 1$, $(i^2, j^3)$ es el único equilibrio de Nash puro.
+    Si $\epsilon < 1$, $(i_2, j_3)$ es el único equilibrio de Nash puro.
 
     Consideremos un $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio simultáneo puede tomar $2^k$ rondas antes de que se juegue $(i_2, j_3)$, mientras que todo proceso de juego ficticio alternante converge de forma pura en un número constante de rondas. Al igual que en los teoremas anteriores, el juego puede codificarse en $O(k)$ bits.
 
@@ -397,11 +396,11 @@ El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrens
         \label{tabla:afp:mejor:c}
     \end{table}
 
-    Si el jugador fila juega $i^2$, el jugador columna responderá con $j^3$, siendo este el equilibrio puro. Si el jugador fila comienza con $i^1$, el jugador columna responderá con $j^2$. Esto hará que el jugador fila juegue $i^2$ en la segunda ronda por ser $A\pstrat{j^2} = (2, 2 + \epsilon)$, mientras que el jugador continuará fila continuara jugando $j^2$. Esta situación se repetirá una ronda más, tras la cuál, la jugador columna se verá incentivado a jugar $j^3$. Los desarrollos de estos dos procesos pueden verse en las tablas \ref{tabla:afp:mejor:a} y \ref{tabla:afp:mejor:b}. Vemos entonces que, independientemente del valor de $k$, ambos procesos convergen de forma pura en 4 rondas o menos.
+    Si el jugador fila juega $i_2$, el jugador columna responderá con $j_3$, siendo este el equilibrio puro. Si el jugador fila comienza con $i_1$, el jugador columna responderá con $j_2$. Esto hará que el jugador fila juegue $i_2$ en la segunda ronda por ser $A\pstrat{j_2} = (2, 2 + \epsilon)$, mientras que el jugador fila continuara jugando $j_2$. Esta situación se repetirá una ronda más, tras la cuál el jugador columna se verá incentivado a jugar $j_3$. Los desarrollos de estos dos procesos pueden verse en las tablas \ref{tabla:afp:mejor:a} y \ref{tabla:afp:mejor:b}. Vemos entonces que, independientemente del valor de $k$, ambos procesos convergen de forma pura en 4 rondas o menos.
 
-    Para el caso simultáneo, nos basamos en la prueba de \cite{brandt:rate:convergence}. Si el proceso comienza con el perfil $(i^1, j^1)$, entonces las utilidades esperadas serán $Ay^1 = (1, 0)$ y $x^1 B = (1, 2, 0)$ respectivamente. Luego, en la segunda iteración el jugador fila elegirá $i^1$ y el jugador columna $j^2$. Las utilidades esperadas se actualizarán entonces como $Ay^2 = (\frac{3}{2}, \frac{2 + \epsilon}{2})$ y $x^2 B = (1, 2, 0)$.
+    Para el caso simultáneo, nos basamos en la prueba de \cite{brandt:rate:convergence}. Si el proceso comienza con el perfil $(i_1, j_1)$, entonces las utilidades esperadas serán $Ay^1 = (1, 0)$ y $x^1 B = (1, 2, 0)$ respectivamente. Luego, en la segunda iteración el jugador fila elegirá $i_1$ y el jugador columna $j_2$. Las utilidades esperadas se actualizarán entonces como $Ay^2 = (\frac{3}{2}, \frac{2 + \epsilon}{2})$ y $x^2 B = (1, 2, 0)$.
 
-    A continuación, por al menos $2^{k-1}$ rondas, los jugadores elegirán las mismas jugadas que en la iteración 2, dado que para todo $\tau$ tal que $2 \le i \le 2^k$, tendremos $Ay^\tau = (2 - \frac{1}{\tau}, (2 + \epsilon)\frac{\tau-1}{\tau})$ y $x^\tau B = (1, 2, 0)$, y $\tau \le 2^k \Rightarrow 1 > \epsilon (\tau-1) \Rightarrow 2 - \frac{1}{\tau} > (2 + \epsilon)\frac{\tau-1}{\tau}$. La tabla \ref{tabla:afp:mejor:c} muestra como se desarrolla este proceso.
+    A continuación, por al menos $2^{k}-1$ rondas, los jugadores elegirán las mismas jugadas que en la iteración 2, dado que para todo $\tau$ tal que $2 \le \tau \le 2^k$, tendremos $Ay^\tau = (2 - \frac{1}{\tau}, (2 + \epsilon)\frac{\tau-1}{\tau})$ y $x^\tau B = (1, 2, 0)$, y $\tau \le 2^k \Rightarrow 1 > \epsilon (\tau-1) \Rightarrow 2 - \frac{1}{\tau} > (2 + \epsilon)\frac{\tau-1}{\tau}$. La tabla \ref{tabla:afp:mejor:c} muestra como se desarrolla este proceso.
 
     Concluimos entonces que la secuencia de perfiles
 
