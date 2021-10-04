@@ -2,10 +2,10 @@
 
 % Párrafo afuera con definiciones generales de teoría de juegos
 
-\section{Juegos en forma normal y equilibrios de Nash}
+\section{Juegos matriciales y equilibrios de Nash}
 
 % Definición de bimatricial tomada de Brown's original
-Sea $(A, B)$ un juego en forma normal de $n \times m$, es decir un juego de dos jugadores finito en el que el jugador $1$ (jugador fila) tiene acciones $i \in N = \{i_1, i_2, \dots, i_n\}$ y el jugador $2$ (jugador columna) tiene acciones $j \in M = \{j_1, j_2, \dots, j_m\}$. $A, B \in \mathbb{R}^{n \times m}$ son las matrices de pago de los jugadores $1$ y $2$. Si el jugador $1$ elige la acción $i$ y el jugador $2$ elige la acción $j$, la ganancia del jugador $1$ será $a_{i,j}$ y la ganancia del jugador $2$ será $b_{i,j}$. Describiremos los juegos en forma normal con una matriz de pares como la siguiente:
+Sea $(A, B)$ un juego matricial de $n \times m$, es decir un juego de dos jugadores finito en el que el jugador $1$ (jugador fila) tiene acciones $i \in N = \{i_1, i_2, \dots, i_n\}$ y el jugador $2$ (jugador columna) tiene acciones $j \in M = \{j_1, j_2, \dots, j_m\}$. $A, B \in \mathbb{R}^{n \times m}$ son las matrices de pago de los jugadores $1$ y $2$. Si el jugador $1$ elige la acción $i$ y el jugador $2$ elige la acción $j$, la ganancia del jugador $1$ será $a_{i,j}$ y la ganancia del jugador $2$ será $b_{i,j}$. Describiremos los juegos matriciales con una tabla de pares como la siguiente:
 
 \input{Tablas/matrizDefJuegosBimatriciales.tex}
 
@@ -36,7 +36,7 @@ Es útil clasificar a los juegos en distintas categorías según sus propiedades
 Los juegos de suma cero son una de las categorías más estudiadas en teoría de juegos. Representan los juegos en los que un jugador siempre gana tanto como pierde el otro. Uno de los teoremas fundacionales del área, conocido como el Teorema de Minimax \cite{nash:minimax} establece que todos poseen al menos un equilibrio de Nash puro y a la ganancia para el jugador fila en un equilibrio la llamamos \concept{valor del juego} (pues es la misma en todos los equilibrios).
 
 \begin{definition}
-    Llamamos \concept{degenerado} a un juego bimatricial $(A, B)$ de tamaño $n \times m$ si se cumple alguna de las siguientes condiciones:
+    Llamamos \concept{degenerado} a un juego $(A, B)$ de tamaño $n \times m$ si se cumple alguna de las siguientes condiciones:
     \begin{itemize}
         \item Existen $i, i' \in N$ y $j \in M$ con $i \neq i$' tales que $a_{ij} = a_{i'j}$
         \item Existen $j, j' \in M$ e $i \in N$ con $j \neq j$' tales que $b_{ij} = b_{ij'}$
@@ -48,7 +48,7 @@ Los juegos no degenerados son de particular interés porque capturan el concepto
 Las siguientes definiciones corresponden a otras dos categorías de juegos que han sido muy estudiadas por sus propiedades de convergencia en los procesos de juego ficticio. Nos serán útiles en la sección \ref{sec:aportes:velocidad} cuando discutamos los resultados sobre su velocidad de convergencia.
 
 \begin{definition}
-    Un juego bimatricial $(A, B)$ de tamaño $n \times n$ es un \concept{juego simétrico} si $\forall i, j \in N : a_{ij} = -b_{ji}$. En este caso también nos referiremos al juego usando solo la matriz $A$.
+    Un juego $(A, B)$ de tamaño $n \times n$ es un \concept{juego simétrico} si $\forall i, j \in N : a_{ij} = -b_{ji}$. En este caso también nos referiremos al juego usando solo la matriz $A$.
 \end{definition}
 
 \begin{definition}
@@ -66,7 +66,7 @@ El algoritmo de juego ficticio consiste en una repetición iterada de un juego e
     \[ d_1: \mathbb{P}^+(N) \rightarrow N \ / \ d_1(N') \in N' \]
     \[ d_2: \mathbb{P}^+(M) \rightarrow M \ / \ d_2(M') \in M' \]
     
-    que a cada subconjunto de acciones de un jugador le asignan una acción perteneciente a este, cumpliendo la condición de independencia de altenativas irrelevantes:
+    que a cada subconjunto de acciones de un jugador le asignan una acción perteneciente a este, cumpliendo la condición de independencia de alternativas irrelevantes:
 
     \[ d_1(N') = i \in N'' \subseteq N' \implies  d_1(N'') = i \]
     \[ d_2(M') = j \in M'' \subseteq T  \implies  d_2(M'') = j \]
@@ -77,7 +77,7 @@ Esta última condición equivale a tener un orden total entre los elementos de $
 Algunos autores como Berger, Monderer, Sela, Shapley, Daskalakis y Pan \cite{browns:original} \cite{no:cycling} \cite{2x2:without} \cite{identical:interests} \cite{counter:karlin:strong} utilizan una definición de juego ficticio del estilo de la siguiente, que resulta cómoda para estudiar convergencia y es la que veremos primero. Incluiremos en la definición las variantes con actualización simultánea y alternante de creencias.
 
 \begin{definition} \label{def:fp:berger}
-    Sean $(A, B)$ un juego en forma bimatricial de $n \times m$ y una secuencia $(i^\tau, j^\tau)$ con $i^\tau \in N$, $j^\tau \in M$ para todo $\tau \in \mathbb{N}$. Si $d_1$ y $d_2$ son reglas de desempate y tenemos unas secuencias de creencias $x^\tau$ e $y^\tau$ tales que para todo $\tau \in \mathbb{N}$:
+    Sean $(A, B)$ un juego matricial de $n \times m$ y una secuencia $(i^\tau, j^\tau)$ con $i^\tau \in N$, $j^\tau \in M$ para todo $\tau \in \mathbb{N}$. Si $d_1$ y $d_2$ son reglas de desempate y tenemos unas secuencias de creencias $x^\tau$ e $y^\tau$ tales que para todo $\tau \in \mathbb{N}$:
     \begin{gather*}
         x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{\tau}  \\
         y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{\tau}
@@ -98,7 +98,7 @@ Sobre la variante alternante vale aclarar que efectivamente, el jugador columna 
 Alternativamente, Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence} utilizan una definición similar a la de Robinson \cite{robinson:zerosum} pero simplificada. Es más cómoda para estudiar velocidades de convergencia en juegos que se sabe que convergen. A continuación, presentamos también esta definición.
 
 \begin{definition} \label{def:fp:brandt}
-    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$:
+    Sea $(A, B)$ un juego matricial de $n \times m$:
     \begin{itemize}
         \item Una secuencia de juego ficticio simultáneo en $(A, B)$ es una secuencia $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ de pares de vectores no negativos $(p^i, q^i) \in \mathbb{N}^n \times \mathbb{N}^m$ tal que:
         \begin{gather*}
@@ -142,7 +142,7 @@ Obviamente, todo juego que converge en jugadas converge también en creencias, y
 
 Si bien esta es también una definición muy potente, en el presente trabajo nos enfocaremos en la convergencia en jugadas. A partir del capítulo siguiente, cuando digamos que un proceso de juego ficticio converge, el lector deberá interpretarlo siempre como que converge en jugadas.
 
-Mediremos la velocidad de convergencia en función del tamaño de representación de un juego. Sea $(A, B)$ un juego en forma normal donde $A$ y $B$ son matrices de $n \times m$ y cada uno de sus valores es representable en $O(k)$ dígitos binarios, entonces $(A, B)$ es representable en $O(n \times m \times k)$ bits.
+Mediremos la velocidad de convergencia en función del tamaño de representación de un juego. Sea $(A, B)$ un juego matricial donde $A$ y $B$ son matrices de $n \times m$ y cada uno de sus valores es representable en $O(k)$ dígitos binarios, entonces $(A, B)$ es representable en $O(n \times m \times k)$ bits.
 
 
 \section{Ejemplos}

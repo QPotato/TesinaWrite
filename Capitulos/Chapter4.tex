@@ -6,7 +6,7 @@ Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir 
 
 
 \begin{lemma} \label{lema:equiv:sim}
-    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(\pstrat{i^\tau}, \pstrat{j^\tau})_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultáneo (según la definición \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultáneo (según la definición \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$, $q^1 = \pstrat{j^1}$ y ambas usan las mismas reglas de desempate $(d_1, d_2)$. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, $\forall \tau \in \mathbb{N}$, se cumplen:
+    Sea $(A, B)$ un juego matricial de $n \times m$, $(\pstrat{i^\tau}, \pstrat{j^\tau})_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultáneo (según la definición \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio simultáneo (según la definición \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$, $q^1 = \pstrat{j^1}$ y ambas usan las mismas reglas de desempate $(d_1, d_2)$. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, $\forall \tau \in \mathbb{N}$, se cumplen:
 
     \[ p^{\tau} = \sum_{s=1}^\tau{\pstrat{i^s}} \]
     \[ q^{\tau} = \sum_{s=1}^\tau{\pstrat{j^s}} \]
@@ -32,7 +32,7 @@ En el caso alternante, la jugada del jugador columna ya no es análoga a la del 
 
 
 \begin{lemma}
-    Sea $(A, B)$ un juego en forma bimatricial de $n \times m$, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definición \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definición \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$ y ambas usan las mismas reglas de desempate $(d_1, d_2)$. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, para todo $\tau \in \mathbb{N}$, se cumplen:
+    Sea $(A, B)$ un juego matricial de $n \times m$, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definición \ref{def:fp:berger}) con secuencias de creencias $y^\tau$, $x^\tau$ y sea $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ una secuencia de juego ficticio alternante (según la definición \ref{def:fp:brandt}), tales que $p^1 = \pstrat{i^1}$ y ambas usan las mismas reglas de desempate $(d_1, d_2)$. Entonces, $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ y $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ representan el mismo proceso de aprendizaje. Es decir, para todo $\tau \in \mathbb{N}$, se cumplen:
 
     \[ p^{\tau} = \sum_{s=1}^\tau{\pstrat{i^s}} \]
     \[ q^{\tau} = \sum_{s=1}^\tau{\pstrat{j^s}} \]
@@ -72,7 +72,7 @@ Este principio nos será útil en el capítulo siguiente para simplificar las de
 Empezaremos por un lema que nos dice que si el proceso juega un equilibrio de Nash, entonces las jugadas de este estarán en los conjuntos de mejor respuesta de la iteración siguiente. 
 
 \begin{lemma}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio alternante en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $i^* \in BR_1(y^{k})$ y $j^* \in BR_2(x^{k+1})$.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio alternante en el juego matricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $i^* \in BR_1(y^{k})$ y $j^* \in BR_2(x^{k+1})$.
 \end{lemma}
 \begin{proof}
     Comencemos con el caso del jugador fila. Queremos probar que $i^*$ es una mejor respuesta a las creencias del jugador fila sobre la estrategia del jugador columna. Veamos primero entonces que forma tienen estas creencias según como se actualizan.
@@ -126,7 +126,7 @@ Empezaremos por un lema que nos dice que si el proceso juega un equilibrio de Na
 El siguiente lema nos dice que si el proceso juega un equilibrio de Nash, entonces los conjuntos de mejor respuesta en la siguiente iteración no tienen nuevos elementos.
 
 \begin{lemma}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k+1}) \subseteq BR_2(x^{k})$.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego matricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k+1}) \subseteq BR_2(x^{k})$.
 \end{lemma}
 \begin{proof}
     Comencemos por el caso del jugador fila. Para probar que $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$, debemos probar que para todo $i \in N$, se cumple que $i \in BR_1(y^{k}) \implies i \in BR_1(y^{k-1})$, o por contra-recíproco, que $i \notin BR_1(y^{k-1}) \implies i \notin BR_1(y^{k})$. Supongamos entonces un $i' \in N$ tal que $i' \notin BR_1(y^{k-1})$.
@@ -141,7 +141,7 @@ El siguiente lema nos dice que si el proceso juega un equilibrio de Nash, entonc
         &> \frac{(k - 1)}{k} \pstrat{i'}Ay^{k-1} + \frac{1}{k}\pstrat{i'}A\pstrat{j^*} = \pstrat{i'}A(\frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^*}}{k}) = \pstrat{i'}Ay^k
     \end{align*}
 
-    Puesto que sabemos por el lema anterior que $i^* \in BR_1(y^{k}) = \argmax_{i \in N} \{\pstrat{i}Ay^{k}\}$, entoces $i' \notin BR_1(y^{k})$.
+    Puesto que sabemos por el lema anterior que $i^* \in BR_1(y^{k}) = \argmax_{i \in N} \{\pstrat{i}Ay^{k}\}$, entonces $i' \notin BR_1(y^{k})$.
     
     Veamos ahora el caso del jugador columna. Similarmente, probaremos que para todo $j \in M$, $ j \notin BR_2(x^k) \implies j \notin BR_2(x^{k+1})$. Supongamos entonces un $j' \in M$ tal que $j' \notin BR_2(x^k)$.
 
@@ -162,7 +162,7 @@ El siguiente lema nos dice que si el proceso juega un equilibrio de Nash, entonc
 Combinando estos dos lemas podemos ahora sí, demostrar el principio de estabilidad en el juego ficticio alternante.
 
 \begin{theorem}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego en forma bimatricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces este perfil se repetirá en la iteración siguiente.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego matricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$ y reglas de desempate $(d_1, d_2)$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces este perfil se repetirá en la iteración siguiente.
 \end{theorem}
 
 \begin{proof}
@@ -196,8 +196,8 @@ Presentamos a continuación un lema que muestra cómo podemos aplicar una transf
     Sea $A$ un juego de intereses idénticos de tamaño $n\times m$ con un único equilibrio de Nash puro, y sean $n'\geq n$, $m'\geq m$. Entonces existe un juego de intereses idénticos $A'$ de tamaño $n'\times m'$ y rango de imagen $O(n+m)$ con un único equilibrio de Nash puro tal que:
     \begin{itemize}
         \item Si $A$ es no degenerado, entonces $A'$ es no degenerado.
-        \item Toda secuencia de FP (simultáneo o alternante) en $A$ lo es también en $A'$.
-        \item Toda secuencia de FP alternante sobre $A'$ es, a partir del paso 2, una secuencia de FP alternante sobre $A$.
+        \item Toda secuencia de juegos ficticio (simultáneo o alternante) en $A$ lo es también en $A'$.
+        \item Toda secuencia de juegos ficticio alternante sobre $A'$ es, a partir del paso 2, una secuencia de juegos ficticio alternante sobre $A$.
     \end{itemize}
     
 \end{lemma}
@@ -216,11 +216,11 @@ Presentamos a continuación un lema que muestra cómo podemos aplicar una transf
         \end{tabular}
     \end{center}
 
-    Donde $v = min(A)$, valor que utilizaremos durante el resto del proceso (no cambia a lo largo de las iteraciones). Los términos $-1, -2, \dots, -m$nos aseguran que las ganancias en la nueva fila son diferentes entre sí y diferentes a todos los valores de sus respectivas columnas y por lo tanto, si $A$ es no degenerado, $A'$ tambinén lo será\footnote{Condión que más adelante será requerida por el teorema \ref{teorema:afp:mejor}}. Para evitar ambigüedades, notaremos los conjuntos de mejor respuesta con supraíndices según el juego al que corresponden (por ejemplo, $BR_1^A(y)$).
+    Donde $v = min(A)$, valor que utilizaremos durante el resto del proceso (no cambia a lo largo de las iteraciones). Los términos $-1, -2, \dots, -m$nos aseguran que las ganancias en la nueva fila son diferentes entre sí y diferentes a todos los valores de sus respectivas columnas y por lo tanto, si $A$ es no degenerado, $A'$ también lo será\footnote{Condición que más adelante será requerida por el teorema \ref{teorema:afp:mejor}}. Para evitar ambigüedades, notaremos los conjuntos de mejor respuesta con superíndices según el juego al que corresponden (por ejemplo, $BR_1^A(y)$).
 
     Para cualquier estrategia pura del jugador columna, $i_{n+1}$ es la peor jugada posible del jugador fila. Entonces, contra cualquier estrategia mixta $y$, $i_{n+1}$ minimizará la ganancia esperada y, como existen otras jugadas provenientes del juego original, $i_{n+1} \notin BR_1^{A'}(y)$.
     
-    Sea entonces $(i^\tau, j^\tau)$ una secuencia de juego ficticio (simultaneo o alternante) sobre $A$. En cada iteración $\tau$, si $i^\tau \in BR_1^A(y^{\tau-1})$, también $i^\tau \in BR_1^{A'}(y^{\tau-1})$. En el caso del jugador columna, al no existir diferencias en la estrategia empírica del jugador fila y no existir acciones nuevas, el proceso elegirá en cada iteración las mismas jugadas. Por lo tanto, $(i^\tau, j^\tau)$ es tambien una secuencia de juego ficticio sobre $A$.
+    Sea entonces $(i^\tau, j^\tau)$ una secuencia de juego ficticio (simultaneo o alternante) sobre $A$. En cada iteración $\tau$, si $i^\tau \in BR_1^A(y^{\tau-1})$, también $i^\tau \in BR_1^{A'}(y^{\tau-1})$. En el caso del jugador columna, al no existir diferencias en la estrategia empírica del jugador fila y no existir acciones nuevas, el proceso elegirá en cada iteración las mismas jugadas. Por lo tanto, $(i^\tau, j^\tau)$ es también una secuencia de juego ficticio sobre $A$.
 
     Similarmente, si una secuencia de juego ficticio alterante sobre $A'$ comienza con $i^1 = i_{n+1}$, para cualquier estrategia del jugador 2, los conjuntos de mejor respuesta nunca contendrán a $i_{n+1}$ y por lo tanto la secuencia terminará con una ya existente en $A$.
 
@@ -253,7 +253,7 @@ En esta sección nos enfocaremos en estudiar más detalladamente los resultados 
 Veamos primero que para el caso de los juegos simétricos de suma cero, el teorema de estos autores efectivamente es expandible de forma bastante directa a la variante alternante. Vale la pena notar que formulamos el teorema en términos de que el último perfil no sea un equilibrio de Nash puro, en vez de pedir que ninguno en la secuencia lo sea como hacen Brandt, Fischer y Harrenstein ya que, por el principio de estabilidad, si alguno de los perfiles jugados en la secuencia fuera un equilibrio de Nash puro, todos los siguientes lo serían.
 
 \begin{theorem} \label{teorema:afp:velocidad:simetricos}
-    Para todo $k \geq 2$ Existe un juego simétrico de suma cero $A$ de $3 \times 3$ representable en $O(k)$ bits con al menos un equilibrio de Nash puro y una secuencia de FP alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k-1}, j^{2^k-1})$ no es un equilibrio de Nash puro.
+    Para todo $k \geq 2$ Existe un juego simétrico de suma cero $A$ de $3 \times 3$ representable en $O(k)$ bits con al menos un equilibrio de Nash puro y una secuencia de juegos ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k-1}, j^{2^k-1})$ no es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
     Sea $A$ el siguiente juego simétrico:
@@ -262,7 +262,7 @@ Veamos primero que para el caso de los juegos simétricos de suma cero, el teore
 
     Si $\epsilon < 1$, vemos que $(i_3, j_3)$ es el único equilibrio de Nash puro   \footnote{Puede verse en forma directa o bien al ser el único perfil resultante después de la eliminación iterada de estrategias estrictamente dominadas \cite{libro:rubinstein}}.
 
-    Consideremos un número $k > 1$ arbitrario y sea $\epsilon = 2^{-k}$. Para estos valores, $\epsilon$ puede codificarse en $O(k)$ bits, mientras que el tamaño de la matriz y las representaciones de las otras utilidades del juego son constantes, por lo que la representación del juego será tambien del orden de  $O(k)$ bits. Por lo tanto, si probamos que un proceso de juego ficticio alternante puede requerir $2^{k-1}$ rondas antes de que se juegue $(i_3, j_3)$, el teorema estará demostrado.
+    Consideremos un número $k > 1$ arbitrario y sea $\epsilon = 2^{-k}$. Para estos valores, $\epsilon$ puede codificarse en $O(k)$ bits, mientras que el tamaño de la matriz y las representaciones de las otras utilidades del juego son constantes, por lo que la representación del juego será también del orden de  $O(k)$ bits. Por lo tanto, si probamos que un proceso de juego ficticio alternante puede requerir $2^{k-1}$ rondas antes de que se juegue $(i_3, j_3)$, el teorema estará demostrado.
 
     Si el proceso comienza con el jugador fila jugando $i^1$, entonces las utilidades esperadas del jugador columna serán $-x^1A = (0, 1, \epsilon)$ y elegirá $j_2$.
 

@@ -50,16 +50,18 @@
 
 \begin{frame}
     \frametitle{General definition}
-    \textbf{Our problem}: modeling situations where players try to maximize their co-dependent scores by choosing from their respective
+    \textbf{El Problema}: modelar situaciones en las que jugadores tratan de maximizar ganancias co-dependientes eligiendo en sus respectivos conjuntos de acciones in una forma racional, egoísta, simultanea e independiente. 
+    
+    modeling situations where players try to maximize their co-dependent scores by choosing from their respective
     sets of actions in a rational, selfish simultaneous and independent way.
     
     \pause
     \begin{definition}[Strategic Game]
-        A strategic game is a tuple $(P, (A_p)_{p \in P}, (u_p)_{p \in P})$ where:
+        Un juego estratégico es una tupla $(P, (A_p)_{p \in P}, (u_p)_{p \in P})$ donde:
         \begin{itemize}
-            \item P is the set of players.
-            \item $\forall p \in P$, $A_p$ is the set of actions of player $p$. Elements of $\prod\limits_{p \in P} A_p$ are called action profiles.
-            \item $\forall p \in P$, $u_p: \prod\limits_{\widehat{p} \in P} A_{\widehat{p}} \rightarrow \mathbb{R}$ is the utility function or payoff function of player $p$.
+            \item P es el conjunto de jugadores.
+            \item $\forall p \in P$, $A_p$ es el conjunto de acciones del jugador $p$. Los elementos de $\prod\limits_{p \in P} A_p$ se llaman perfiles de acciones.
+            \item $\forall p \in P$, $u_p: \prod\limits_{\widehat{p} \in P} A_{\widehat{p}} \rightarrow \mathbb{R}$ es la función de utilidades o función de pagos del jugador $p$.
         \end{itemize}
     \end{definition}
 
@@ -69,7 +71,7 @@
     \frametitle{Fede's Dilemma with the general definition}
     \begin{itemize}
         \item $P = \{f, b\}$
-        \item \pause $A_f = A_b = \{Confess, Silence\}$
+        \item \pause $A_f = A_b = \{Confesar, Silencio\}$
         \item \pause $u_f: A_f \times A_b \rightarrow \mathbb{R}$
         \begin{itemize}
             \item $u_f(S, S) = -1$
@@ -82,19 +84,19 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Games in bi-matrix form}
-        \textbf{Smaller scope}: we'll focus on 2 player games. We can represent them with a cool matrix of tuples $(A, B)$ like this:
+    \frametitle{Juegos en forma matricial}
+        \textbf{Smaller scope}: Nos enfocaremos en juegos de 2 jugadores. Podemos representarlos con una matriz de tuplas $(A, B)$ de esta forma:
 
         \input{Tablas/matrizDefJuegosBimatriciales.tex}
 
         \begin{itemize}
-            \item Player 1 (row player) has actions $i \in N = \{i_1, i_2, \dots, i_n\}$.
+            \item El jugador 1 (jugador fila) tiene acciones $i \in N = \{i_1, i_2, \dots, i_n\}$.
             \pause
-            \item Player 2 (column player) has actions $j \in M = \{j_1, j_2, \dots, j_m\}$.
+            \item El jugador 2 (jugador columna) tiene acciones $j \in M = \{j_1, j_2, \dots, j_m\}$.
             \pause
-            \item $A, B \in \mathbb{R}^{n \times m}$ are called the payoff patrices.
+            \item $A, B \in \mathbb{R}^{n \times m}$ son llamadas matrices de pago.
             \pause
-            \item If player 1 plays $i$ and player 2 plays $j$, the payoff for player 1 will be $a_{i,j}$ and the payoff for player 2 will be $b_{i,j}$
+            \item Si el jugador 1 juega $i$ y el jugador 2 juega $j$, la ganancia del jugador 1 será $a_{i,j}$ y la ganancia del jugador 2 será $b_{i,j}$
         \end{itemize}
 \end{frame}
 
@@ -104,20 +106,20 @@
 \end{frame}
 
 \begin{frame}
-    What if players are not deterministic?
+    Que ocurre si los jugadores son no-deterministas?
     \begin{itemize}
-        \item A mixed strategy for player 1 is a probability distribution over $N$, represented as a row vector $x \in \Delta(N)$ of length $n$. A mixed strategy that assigns probability $1$ to action $i \in N$ is represented as $\pstrat{i}$ and is called a pure strategy. The expected payoffs for each action of player 2 against a mixed strategy $x$ of player $1$ are $xB$.
+        \item Una estrategia mixta para el jugador 1 es una distribución de probabilidaddes sobre $N$, que representaremos con un vector $x \in \Delta(N)$ de tamaño $n$. Una estrategia mixta que asigna probabildiad $1$ a la acción $i \in N$ se representa como $\pstrat{i}$ y se llama estrategia pu. La ganancias esperadas del jugador $2$ contra una estrategia mixta $x$ del jugador $1$ son $xB$.
         \pause
-        \item A mixed strategy for player 2 is a probability distribution over $M$, represented as a column vector $y \in \Delta(M)$ of length $m$. The expected payoffs for player 1 against a mixed strategy $y$ of player $2$ are  $Ay$
+        \item Una estrategia mixta para el jugador 2 es una distribución de probabilidaddes sobre $M$, que representaremos con un vector $y \in \Delta(M)$ de tamaño $m$. Una estrategia mixta que asigna probabildiad $1$ a la acción $j \in M$ se representa como $\pstrat{j}$ y se llama estrategia pura. La ganancias esperadas del jugador $2$ contra una estrategia mixta $x$ del jugador $1$ son $xB$.
         \pause
-        \item If player 1 plays the mixed strategy $x$ and player 2 plays the mixed strategy $y$ then expected payoffs for each player are $xAy$ and $xBy$ respectively. 
+        \item Si el jugador 1 juega la estrategia mixta $x$ y el jugador 2 juega la estrategia mixta $y$ entonces sus ganancias esperadas serán $xAy$ y $xBy$ respectivamente. 
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Fede's Dilemma: payoffs}
     
-    Spreadsheet
+    Planilla
 
 
 \end{frame}
@@ -126,12 +128,11 @@
     \frametitle{Best Response and Nash Equilibrium}
 
     \begin{itemize}
-        \item We define the Best Response Set for player 1 to player 2's mixed strategy $y$ as $BR_1(y) = \argmax_{i \in N}\{ \pstrat{i}Ay\}$
+        \item Definimos el conjunto de mejores respuestas del jugador 1 contra la estrategia mixta $y$ del jugador 2 como $BR_1(y) = \argmax_{i \in N}\{ \pstrat{i}Ay\}$
         \pause
-        \item Similarly, the Best Response Set for player 2 to player 1's mixed strategy $x$ is $BR_2(x) = \argmax_{j \in M}\{ xB\pstrat{j}\}$
+        \item similarmente, el conjunto de mejores respuestas del jugador 2 contra la estrategia mixta $x$ del jugador 1 es $BR_2(x) = \argmax_{j \in M}\{ xB\pstrat{j}\}$
         \pause
-        \item A pure Nash Equilibrium is a profile of pure strategies $(\pstrat{i^*}, \pstrat{j^*})$ such that $i^* \in BR_1(\pstrat{j^*})$ and $j^* \in BR_2(\pstrat{i^*})$
-        \item \pause $(C, C)$ is a Nash Equilibirum and we both knew it.
+        \item Un equilibrio de Nash puro es un perfil de estrategias $(\pstrat{i^*}, \pstrat{j^*})$ tal que $i^* \in BR_1(\pstrat{j^*})$ y $j^* \in BR_2(\pstrat{i^*})$
     \end{itemize}
 \end{frame}
 
@@ -148,41 +149,33 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Fictitious Play}
+    \frametitle{Juego Ficticio}
 
     \begin{definition} \label{def:fp:berger}
-        Given a game $(A, B)$  of size $n \times m$, a sequence of action profiles $(i^\tau, j^\tau)$, and a pair of sequences $x^\tau$ and $y^\tau$ (called belief sequences) such that for every $\tau \in \mathbb{N}$:
+        Dado un juego $(A, B)$  de tamaño $n \times m$, una sequencia de perfiles de acciones $(i^\tau, j^\tau)$, y un par de seuencias $x^\tau$ y $y^\tau$ (llamadas secuencias de creencias) tales que para cada $\tau \in \mathbb{N}$:
         \begin{gather*}
             x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{\tau}  \\
             y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{\tau}
         \end{gather*}
-        Then $(i^\tau, j^\tau)$ is a Fictitious Play sequence if $(i^1, j^1)$ is an arbitrary element of $N \times M$ and for every $\tau \in \mathbb{N}$ it's true that $i^{\tau+1} \in BR_1(y^\tau)$ and $j^{\tau+1} \in BR_2(x^\tau)$.
+        Entonces $(i^\tau, j^\tau)$ es una secuencia de juego fictiocio si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$, $i^{\tau+1} \in BR_1(y^\tau)$ y $j^{\tau+1} \in BR_2(x^\tau)$.
     \end{definition}
-    Each player consider each other's history as a mixed strategy and play a best response each round.
+    Cada jugador considera el historial del otro como una estrategia mixta y juega la mejor respuesta en cada ronda.
 \end{frame}
 
 \begin{frame}
-    \frametitle{Fictitious Play: code}
-    \begin{itemize}
-        \item Show RPS in code.
-    \end{itemize}    
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{The Stability Principle}
-    \begin{theorem}[Stability Principle]
-        Given a Fictitious Play sequence $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ in $(A, B)$ with belief sequences $x^\tau$ and $y^\tau$. If $(i^k, j^k)$ is a Nash Equilibrium then $(i^{k+1}, j^{k+1}) = (i^k, j^k)$.
+    \frametitle{El principio de estabilidad}
+    \begin{theorem}[Principio de estabilidad]
+        Dada una secuencia de juego ficticio $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ en $(A, B)$ con secuencias de creencias $x^\tau$ y $y^\tau$. Si $(i^k, j^k)$ es un equilibrio de Nash puro, entonces $(i^{k+1}, j^{k+1}) = (i^k, j^k)$.
     \end{theorem}
-    \pause If the process reaches a Nash Equilibrium then it'll keep playing that Nash Equilibrium.
+    \pause Si el proceso alcanza un equilibrio de Nash entonces seguirá jugando ese equilibrio de Nash.
 
-    \pause \textbf{Intuition}: if the process plays some action profile, then each players incentives to play the best response against their oponents action raises. But if the profile is a Nash Equilibrium then the best response is the action they just played.
+    \pause \textbf{Intuición}: Si el proceso juega un perfil de acciones, entonces los incentivos de cada jugador para jugar la mejor respuesta contra la acción del oponente en ese perfil crece. Pero si el perfil es un equilibrio de Nash entonces la mejor respuesta es la acción que acaba de jugar.
 \end{frame}
 
 \begin{frame}
-    \frametitle{Proof of the Stability Principle}
+    \frametitle{Demostración del principio de estabilidad}
     \begin{lemma}[1]
-        Given a Fictitious Play sequence $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ with belief sequences $x^\tau$ and $y^\tau$. If $(i^k, j^k)$ is a Nash Equilibrium then $i^k \in BR_1(y^{k})$ and $j^k \in BR_2(x^{k+1})$.
+        Dada una secuencia de juego ficticio $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ con secuencias de creencias $x^\tau$ y $y^\tau$. Si $(i^k, j^k)$ es un equilibrio de Nash, entonces $i^k \in BR_1(y^{k})$ y $j^k \in BR_2(x^{k+1})$.
     \end{lemma}
 \end{frame}
 
