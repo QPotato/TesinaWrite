@@ -1,3 +1,5 @@
+Este readme es el de la template y no tengo ganas de escribir uno por ahora.
+
 # Template Tesina LCC
 
 Este repositorio es una template con el formato basico de LaTeX para una tesina de LCC. Esta basada en la tesina de Martín, pero pasada a español.
