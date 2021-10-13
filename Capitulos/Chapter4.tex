@@ -216,11 +216,11 @@ Presentamos a continuación un lema que muestra cómo podemos aplicar una transf
         \end{tabular}
     \end{center}
 
-    Donde $v = min(A)$, valor que utilizaremos durante el resto del proceso (no cambia a lo largo de las iteraciones). Los términos $-1, -2, \dots, -m$nos aseguran que las ganancias en la nueva fila son diferentes entre sí y diferentes a todos los valores de sus respectivas columnas y por lo tanto, si $A$ es no degenerado, $A'$ también lo será\footnote{Condición que más adelante será requerida por el teorema \ref{teorema:afp:mejor}}. Para evitar ambigüedades, notaremos los conjuntos de mejor respuesta con superíndices según el juego al que corresponden (por ejemplo, $BR_1^A(y)$).
+    Donde $v = min(A)$, valor que utilizaremos durante el resto del proceso (no cambia a lo largo de las iteraciones). Los términos $-1, -2, \dots, -m$ nos aseguran que las ganancias en la nueva fila son diferentes entre sí y diferentes a todos los valores de sus respectivas columnas y por lo tanto, si $A$ es no degenerado, $A'$ también lo será\footnote{Condición que más adelante será requerida por el teorema \ref{teorema:afp:mejor}}. Para evitar ambigüedades, notaremos los conjuntos de mejor respuesta con superíndices según el juego al que corresponden (por ejemplo, $BR_1^A(y)$).
 
     Para cualquier estrategia pura del jugador columna, $i_{n+1}$ es la peor jugada posible del jugador fila. Entonces, contra cualquier estrategia mixta $y$, $i_{n+1}$ minimizará la ganancia esperada y, como existen otras jugadas provenientes del juego original, $i_{n+1} \notin BR_1^{A'}(y)$.
     
-    Sea entonces $(i^\tau, j^\tau)$ una secuencia de juego ficticio (simultaneo o alternante) sobre $A$. En cada iteración $\tau$, si $i^\tau \in BR_1^A(y^{\tau-1})$, también $i^\tau \in BR_1^{A'}(y^{\tau-1})$. En el caso del jugador columna, al no existir diferencias en la estrategia empírica del jugador fila y no existir acciones nuevas, el proceso elegirá en cada iteración las mismas jugadas. Por lo tanto, $(i^\tau, j^\tau)$ es también una secuencia de juego ficticio sobre $A$.
+    Sea entonces $(i^\tau, j^\tau)$ una secuencia de juego ficticio (simultáneo o alternante) sobre $A$. En cada iteración $\tau$, si $i^\tau \in BR_1^A(y^{\tau-1})$, también $i^\tau \in BR_1^{A'}(y^{\tau-1})$. En el caso del jugador columna, al no existir diferencias en la estrategia empírica del jugador fila y no existir acciones nuevas, el proceso elegirá en cada iteración las mismas jugadas. Por lo tanto, $(i^\tau, j^\tau)$ es también una secuencia de juego ficticio sobre $A$.
 
     Similarmente, si una secuencia de juego ficticio alterante sobre $A'$ comienza con $i^1 = i_{n+1}$, para cualquier estrategia del jugador 2, los conjuntos de mejor respuesta nunca contendrán a $i_{n+1}$ y por lo tanto la secuencia terminará con una ya existente en $A$.
 
@@ -236,17 +236,18 @@ Presentamos a continuación un lema que muestra cómo podemos aplicar una transf
         \end{tabular}
     \end{center}
     
-    El análisis sobre este juego será bastante similar con la salvedad de que al analizar las jugadas del jugador 2 deberemos considerar $BR_2^{A'}(x^{\tau-1})$ o $BR_2^{A'}(x^\tau)$ dependiendo de si trata de una secuencia de juego ficticio simultaneo o alternante respectivamente.
+    El análisis sobre este juego será bastante similar con la salvedad de que al analizar las jugadas del jugador 2 deberemos considerar $BR_2^{A'}(x^{\tau-1})$ o $BR_2^{A'}(x^\tau)$ dependiendo de si trata de una secuencia de juego ficticio simultáneo o alternante respectivamente.
 
     Finalmente, se itera la construcción anterior $n'-n+m'-m$ veces para obtener un juego de intereses idénticos de $n'\times m'$ con las propiedades deseadas.
     Los términos $-n$ y $-m$ aseguran un rango de imagen $O(n+m)$.
 
 \end{proof}
 
-Nótese que el orden de agregado de filas y columnas en la construcción que se hace en esta demostración no afecta la matriz resultante. Claramente, no vale un lema similar para la reducción en tamaño de las matrices, ya que quitar una fila o columna podría eliminar una acción por la cuál pasa la secuencia.
+Nótese que el orden de agregado de filas y columnas en la construcción que se hace en esta demostración no afecta la matriz resultante. Claramente, no vale un lema similar para la reducción en tamaño de las matrices, ya que quitar una fila o columna podría eliminar una acción por la cual pasa la secuencia.
 
 
 \section{Velocidad de convergencia del juego ficticio alternante} \label{sec:aportes:velocidad}
+\sectionmark{Vel. de convergencia del juego ficticio alternante}
 
 En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein en \cite{brandt:rate:convergence}, donde presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo en algunas de las clases de juegos más estudiadas en la literatura del tema. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante del juego ficticio, pero no profundizan en ello. Presentamos a continuación nuestro análisis para los casos de los juegos simétricos de suma cero y los no degenerados de intereses idénticos. Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta sección resultan en conjuntos de mejores respuestas unitarios para omitir las reglas de desempate, ya que no afectarán los resultados.
 
@@ -396,7 +397,7 @@ El detalle de que el juego originalmente propuesto por Brandt, Fischer y Harrens
         \label{tabla:afp:mejor:c}
     \end{table}
 
-    Si el jugador fila juega $i_2$, el jugador columna responderá con $j_3$, siendo este el equilibrio puro. Si el jugador fila comienza con $i_1$, el jugador columna responderá con $j_2$. Esto hará que el jugador fila juegue $i_2$ en la segunda ronda por ser $A\pstrat{j_2} = (2, 2 + \epsilon)$, mientras que el jugador fila continuara jugando $j_2$. Esta situación se repetirá una ronda más, tras la cuál el jugador columna se verá incentivado a jugar $j_3$. Los desarrollos de estos dos procesos pueden verse en las tablas \ref{tabla:afp:mejor:a} y \ref{tabla:afp:mejor:b}. Vemos entonces que, independientemente del valor de $k$, ambos procesos convergen de forma pura en 4 rondas o menos.
+    Si el jugador fila juega $i_2$, el jugador columna responderá con $j_3$, siendo este el equilibrio puro. Si el jugador fila comienza con $i_1$, el jugador columna responderá con $j_2$. Esto hará que el jugador fila juegue $i_2$ en la segunda ronda por ser $A\pstrat{j_2} = (2, 2 + \epsilon)$, mientras que el jugador fila continuara jugando $j_2$. Esta situación se repetirá una ronda más, tras la cual el jugador columna se verá incentivado a jugar $j_3$. Los desarrollos de estos dos procesos pueden verse en las tablas \ref{tabla:afp:mejor:a} y \ref{tabla:afp:mejor:b}. Vemos entonces que, independientemente del valor de $k$, ambos procesos convergen de forma pura en 4 rondas o menos.
 
     Para el caso simultáneo, nos basamos en la prueba de \cite{brandt:rate:convergence}. Si el proceso comienza con el perfil $(i_1, j_1)$, entonces las utilidades esperadas serán $Ay^1 = (1, 0)$ y $x^1 B = (1, 2, 0)$ respectivamente. Luego, en la segunda iteración el jugador fila elegirá $i_1$ y el jugador columna $j_2$. Las utilidades esperadas se actualizarán entonces como $Ay^2 = (\frac{3}{2}, \frac{2 + \epsilon}{2})$ y $x^2 B = (1, 2, 0)$.
 

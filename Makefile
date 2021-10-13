@@ -7,7 +7,7 @@
 # Por el mismo motivo necesitamos hacer clean antes de buildear.
 
 MAINTEX = Tesis
-SLIDES = Slides/lunch_and_learn
+SLIDES = Slides/defensa
 CARTA = carta
 CP = cp
 GHC = ghc
@@ -22,7 +22,7 @@ EXT = *.nav *.snm *.ptb *.blg *.log *.aux *.lof *.lot *.bit *.idx *.glo *.bbl *.
 PAG =
 NUM =
 
-default: pdflatex
+default: slides
 
 carta:
 	$(PDFLATEX) $(CARTA).tex -halt-on-error

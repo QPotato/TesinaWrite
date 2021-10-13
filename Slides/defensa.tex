@@ -1,0 +1,262 @@
+\documentclass[pdf]{beamer}
+\usetheme{Copenhagen}
+\mode<presentation>{}
+
+\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen=right}
+%\setbeameroption{show only notes}
+
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{paralist}
+\usepackage{todonotes}
+\usepackage{stmaryrd}
+\usepackage{graphicx,xcolor}
+\usepackage{subcaption}
+\graphicspath{{Imgs/}}
+
+\usepackage{array}
+
+
+\newcommand{\pstrat}{\widetilde}
+\DeclareMathOperator*{\argmax}{argmax}
+
+\title{Game Theory and Fictitious Play}
+
+\author[]{Federico Badaloni}
+
+\subject{Tesina}
+
+\usepackage{color}
+
+\begin{document}
+
+\begin{frame}
+    \frametitle{About this presentation}
+    \begin{itemize}
+        \item Sacrificed Math rigurosity in in favor of asd.
+        \item This is practice for my thesis defense. Remember to record.
+        \item Didn't get to fit everything I wanted. Making slides is hard.
+        \item \pause Remember to turn pauses on.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example: Fede's Dilemma}
+    An original example invented by me. You have never heard of it before.
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{General definition}
+    \textbf{El Problema}: modelar situaciones en las que jugadores tratan de maximizar ganancias co-dependientes eligiendo en sus respectivos conjuntos de acciones in una forma racional, egoísta, simultanea e independiente. 
+    
+    modeling situations where players try to maximize their co-dependent scores by choosing from their respective
+    sets of actions in a rational, selfish simultaneous and independent way.
+    
+    \pause
+    \begin{definition}[Strategic Game]
+        Un juego estratégico es una tupla $(P, (A_p)_{p \in P}, (u_p)_{p \in P})$ donde:
+        \begin{itemize}
+            \item P es el conjunto de jugadores.
+            \item $\forall p \in P$, $A_p$ es el conjunto de acciones del jugador $p$. Los elementos de $\prod\limits_{p \in P} A_p$ se llaman perfiles de acciones.
+            \item $\forall p \in P$, $u_p: \prod\limits_{\widehat{p} \in P} A_{\widehat{p}} \rightarrow \mathbb{R}$ es la función de utilidades o función de pagos del jugador $p$.
+        \end{itemize}
+    \end{definition}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fede's Dilemma with the general definition}
+    \begin{itemize}
+        \item $P = \{f, b\}$
+        \item \pause $A_f = A_b = \{Confesar, Silencio\}$
+        \item \pause $u_f: A_f \times A_b \rightarrow \mathbb{R}$
+        \begin{itemize}
+            \item $u_f(S, S) = -1$
+            \item $u_f(S, C) = -3$
+            \item $u_f(C, S) = 0$
+            \item $u_f(C, S) = -2$
+        \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Juegos en forma matricial}
+        \textbf{Smaller scope}: Nos enfocaremos en juegos de 2 jugadores. Podemos representarlos con una matriz de tuplas $(A, B)$ de esta forma:
+
+        \input{Tablas/matrizDefJuegosBimatriciales.tex}
+
+        \begin{itemize}
+            \item El jugador 1 (jugador fila) tiene acciones $i \in N = \{i_1, i_2, \dots, i_n\}$.
+            \pause
+            \item El jugador 2 (jugador columna) tiene acciones $j \in M = \{j_1, j_2, \dots, j_m\}$.
+            \pause
+            \item $A, B \in \mathbb{R}^{n \times m}$ son llamadas matrices de pago.
+            \pause
+            \item Si el jugador 1 juega $i$ y el jugador 2 juega $j$, la ganancia del jugador 1 será $a_{i,j}$ y la ganancia del jugador 2 será $b_{i,j}$
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fede's Dilemma in bi-matrix form}
+    \input{Slides/fede_s_dilemma.tex}
+\end{frame}
+
+\begin{frame}
+    Que ocurre si los jugadores son no-deterministas?
+    \begin{itemize}
+        \item Una estrategia mixta para el jugador 1 es una distribución de probabilidaddes sobre $N$, que representaremos con un vector $x \in \Delta(N)$ de tamaño $n$. Una estrategia mixta que asigna probabildiad $1$ a la acción $i \in N$ se representa como $\pstrat{i}$ y se llama estrategia pu. La ganancias esperadas del jugador $2$ contra una estrategia mixta $x$ del jugador $1$ son $xB$.
+        \pause
+        \item Una estrategia mixta para el jugador 2 es una distribución de probabilidaddes sobre $M$, que representaremos con un vector $y \in \Delta(M)$ de tamaño $m$. Una estrategia mixta que asigna probabildiad $1$ a la acción $j \in M$ se representa como $\pstrat{j}$ y se llama estrategia pura. La ganancias esperadas del jugador $2$ contra una estrategia mixta $x$ del jugador $1$ son $xB$.
+        \pause
+        \item Si el jugador 1 juega la estrategia mixta $x$ y el jugador 2 juega la estrategia mixta $y$ entonces sus ganancias esperadas serán $xAy$ y $xBy$ respectivamente. 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fede's Dilemma: payoffs}
+    
+    Planilla
+
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Best Response and Nash Equilibrium}
+
+    \begin{itemize}
+        \item Definimos el conjunto de mejores respuestas del jugador 1 contra la estrategia mixta $y$ del jugador 2 como $BR_1(y) = \argmax_{i \in N}\{ \pstrat{i}Ay\}$
+        \pause
+        \item similarmente, el conjunto de mejores respuestas del jugador 2 contra la estrategia mixta $x$ del jugador 1 es $BR_2(x) = \argmax_{j \in M}\{ xB\pstrat{j}\}$
+        \pause
+        \item Un equilibrio de Nash puro es un perfil de estrategias $(\pstrat{i^*}, \pstrat{j^*})$ tal que $i^* \in BR_1(\pstrat{j^*})$ y $j^* \in BR_2(\pstrat{i^*})$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{New Example}
+    Clip from a 90s cartoon
+    \pause \input{Tablas/matrizPiedraPapelTIjeras.tex}
+    \begin{itemize}
+        \item \pause Bart and Lisa have played this game many times before in an iterative process.
+        \item \pause Bart has a constant pure Rock strategy.
+        \item \pause Lisa is doing something smarter. She's playing the Best Response to what she perceives as Bart's strategy over the previous iterations of the game. She knows that $BR_1(\pstrat{j_R}) = \{ i_P\}$ so she plays Paper. 
+        \item \pause What happen's if we make Lisa play against herself?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Juego Ficticio}
+
+    \begin{definition} \label{def:fp:berger}
+        Dado un juego $(A, B)$  de tamaño $n \times m$, una sequencia de perfiles de acciones $(i^\tau, j^\tau)$, y un par de seuencias $x^\tau$ y $y^\tau$ (llamadas secuencias de creencias) tales que para cada $\tau \in \mathbb{N}$:
+        \begin{gather*}
+            x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{\tau}  \\
+            y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{\tau}
+        \end{gather*}
+        Entonces $(i^\tau, j^\tau)$ es una secuencia de juego fictiocio si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$, $i^{\tau+1} \in BR_1(y^\tau)$ y $j^{\tau+1} \in BR_2(x^\tau)$.
+    \end{definition}
+    Cada jugador considera el historial del otro como una estrategia mixta y juega la mejor respuesta en cada ronda.
+\end{frame}
+
+\begin{frame}
+    \frametitle{El principio de estabilidad}
+    \begin{theorem}[Principio de estabilidad]
+        Dada una secuencia de juego ficticio $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ en $(A, B)$ con secuencias de creencias $x^\tau$ y $y^\tau$. Si $(i^k, j^k)$ es un equilibrio de Nash puro, entonces $(i^{k+1}, j^{k+1}) = (i^k, j^k)$.
+    \end{theorem}
+    \pause Si el proceso alcanza un equilibrio de Nash entonces seguirá jugando ese equilibrio de Nash.
+
+    \pause \textbf{Intuición}: Si el proceso juega un perfil de acciones, entonces los incentivos de cada jugador para jugar la mejor respuesta contra la acción del oponente en ese perfil crece. Pero si el perfil es un equilibrio de Nash entonces la mejor respuesta es la acción que acaba de jugar.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Demostración del principio de estabilidad}
+    \begin{lemma}[1]
+        Dada una secuencia de juego ficticio $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ con secuencias de creencias $x^\tau$ y $y^\tau$. Si $(i^k, j^k)$ es un equilibrio de Nash, entonces $i^k \in BR_1(y^{k})$ y $j^k \in BR_2(x^{k+1})$.
+    \end{lemma}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Proof of the Stability Principle}
+    \begin{align*}
+        BR_1(y^k) &= BR_1(\frac{k - 1}{k} y^{k-1} + \frac{ \pstrat{j^k}}{k}) \\
+        &= \argmax_{i \in N} \{\pstrat{i} A(\frac{(k - 1)y^{k-1}}{k} + \frac{ \pstrat{j^k}}{k})\}\\
+        &= \argmax_{i \in N} \{\frac{(k - 1)}{k}\pstrat{i} Ay^{k-1} + \frac{1}{k}\pstrat{i} A \pstrat{j^*}\}
+    \end{align*}
+    \begin{itemize}
+        \item \pause The definition of Fictitious Play implies that $i^k \in BR_1(y^{k-1}) = \argmax_{i \in N}\{\pstrat{i}Ay^{k-1}\}$.
+        \item \pause The definition of Nash Equilibrium implies that $i^k \in BR_1(\pstrat{j^k}) = \argmax_{i \in N}\{\pstrat{i} A \pstrat{j^k}\}$.
+        \item \pause $\frac{(k - 1)}{k}\pstrat{i}Ay^{k-1} + \frac{1}{k}\pstrat{i} A \pstrat{j^k}$ is just a linear combination.
+        \item \pause Analogous for player 2.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Proof of the Stability Principle}
+    \begin{lemma}[2]
+        Given a Fictitious Play sequence $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ with belief sequences $x^\tau$ and $y^\tau$. If $(i^k, j^k)$ is a Nash Equilibrium then $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ and $BR_2(x^{k+1}) \subseteq BR_2(x^{k})$.
+    \end{lemma}
+    \pause If the process plays a Nash equilibrium then there are no new actions in the best response sets in the next iteration.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Proof of the Stability Principle}
+    \begin{itemize}
+        \item We can prove $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ by proving $i \notin BR_1(y^{k-1}) \implies i \notin BR_1(y^{k})$.
+        \item \pause If $i^k \in BR_1(y^{k-1})$ but $i' \notin BR_1(y^{k-1})$ then $\pstrat{i^k}Ay^{k-1} > \pstrat{i'}Ay^{k-1}$
+        \item \pause $(i^k, j^k)$ is a Nash Equilibrium so $\pstrat{i^k}A\pstrat{j^k} \ge \pstrat{i'}A\pstrat{j^k}$.
+    \end{itemize}
+    \pause
+    \begin{align*}
+        \pstrat{i^k}Ay^k &= \pstrat{i^k}A(\frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^k}}{k}) = \frac{(k - 1)}{k} \pstrat{i^k}Ay^{k-1} + \frac{1}{k}\pstrat{i^k}A\pstrat{j^k}\\
+        &> \frac{(k - 1)}{k} \pstrat{i'}Ay^{k-1} + \frac{1}{k}\pstrat{i'}A\pstrat{j^k} = \pstrat{i'}A(\frac{k - 1}{k} y^{k-1} + \frac{\pstrat{j^k}}{k}) = \pstrat{i'}Ay^k
+    \end{align*}
+    \pause If the expected payoff for $i^k$ is greater than for $i'$ and $i^k$ is in the best response set, then $i'$ is not.
+    
+    \begin{quote}[Player 2]
+        omg, same!
+    \end{quote}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Rate of convergence: Example}
+    How fast is Fictitious Play as an algorithm to find Nash Equilibriums?
+
+    \pause Consider this game with $\epsilon = 2^{-k}$:
+    \input{Tablas/matrizTeo3.tex}
+    
+    \begin{itemize}
+        \item \pause $(i_2, j_3)$ is the only Nash Equilibrium. We can prove this by iterated elimination of strictly dominated action (jargon for "discard bad choices")
+        \item \pause This game can be codified in $O(k)$ bits.
+        \item \pause If we start a Fictitious Play process with $(i_1, j_1)$, the sequence will play $2^k$ iterations before playing $(i_2, j_3)$.
+        \item \pause For some reason I can't render tables in beamer, so I'll show them in my thesis. Ignore the spanish.
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Alternating Fictitious Play}
+    \begin{definition} \label{def:fp:berger}
+        Given a game $(A, B)$  of size $n \times m$, a sequence of action profiles $(i^\tau, j^\tau)$, and a pair of sequences $x^\tau$ and $y^\tau$ (called belief sequences) such that for every $\tau \in \mathbb{N}$:
+        \begin{gather*}
+            x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{\tau}  \\
+            y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{\tau}
+        \end{gather*}
+        Then $(i^\tau, j^\tau)$ is an Alternating Fictitious Play sequence if $i^1$ is an arbitrary element of $N \times M$ and for every $\tau \in \mathbb{N}$ it's true that $i^{\tau+1} \in BR_1(y^\tau)$ and $j^{\tau} \in BR_2(x^\tau)$.
+    \end{definition}
+    \pause We break the principle of simultaneous decision making.
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Alternating Fictitious Play in the example}
+
+    For both starting actions of the row player, AFP converges in just 4 moves, independently of $\epsilon$.
+    
+
+\end{frame}
+
+\end{document}
