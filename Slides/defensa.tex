@@ -1,4 +1,4 @@
-\documentclass[pdf]{beamer}
+\documentclass[handout, pdf]{beamer}
 \usetheme{Copenhagen}
 \mode<presentation>{}
 
@@ -7,7 +7,7 @@
 %\setbeameroption{show only notes}
 
 \usepackage[utf8]{inputenc}
-\usepackage{babel}
+\usepackage[spanish]{babel}
 \usepackage{paralist}
 \usepackage{todonotes}
 \usepackage{stmaryrd}
@@ -21,7 +21,7 @@
 \newcommand{\pstrat}{\widetilde}
 \DeclareMathOperator*{\argmax}{argmax}
 
-\title{Game Theory and Fictitious Play}
+\title{Velocidad de convergencia del juego ficticio alternante}
 
 \author[]{Federico Badaloni}
 
@@ -32,134 +32,133 @@
 \begin{document}
 
 \begin{frame}
-    \frametitle{About this presentation}
-    \begin{itemize}
-        \item Sacrificed Math rigurosity in in favor of asd.
-        \item This is practice for my thesis defense. Remember to record.
-        \item Didn't get to fit everything I wanted. Making slides is hard.
-        \item \pause Remember to turn pauses on.
-    \end{itemize}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Example: Fede's Dilemma}
-    An original example invented by me. You have never heard of it before.
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{General definition}
-    \textbf{El Problema}: modelar situaciones en las que jugadores tratan de maximizar ganancias co-dependientes eligiendo en sus respectivos conjuntos de acciones in una forma racional, egoísta, simultanea e independiente. 
-    
-    modeling situations where players try to maximize their co-dependent scores by choosing from their respective
-    sets of actions in a rational, selfish simultaneous and independent way.
-    
-    \pause
-    \begin{definition}[Strategic Game]
-        Un juego estratégico es una tupla $(P, (A_p)_{p \in P}, (u_p)_{p \in P})$ donde:
-        \begin{itemize}
-            \item P es el conjunto de jugadores.
-            \item $\forall p \in P$, $A_p$ es el conjunto de acciones del jugador $p$. Los elementos de $\prod\limits_{p \in P} A_p$ se llaman perfiles de acciones.
-            \item $\forall p \in P$, $u_p: \prod\limits_{\widehat{p} \in P} A_{\widehat{p}} \rightarrow \mathbb{R}$ es la función de utilidades o función de pagos del jugador $p$.
-        \end{itemize}
-    \end{definition}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Fede's Dilemma with the general definition}
-    \begin{itemize}
-        \item $P = \{f, b\}$
-        \item \pause $A_f = A_b = \{Confesar, Silencio\}$
-        \item \pause $u_f: A_f \times A_b \rightarrow \mathbb{R}$
-        \begin{itemize}
-            \item $u_f(S, S) = -1$
-            \item $u_f(S, C) = -3$
-            \item $u_f(C, S) = 0$
-            \item $u_f(C, S) = -2$
-        \end{itemize}
-    \end{itemize}
-
-\end{frame}
-
-\begin{frame}
     \frametitle{Juegos en forma matricial}
-        \textbf{Smaller scope}: Nos enfocaremos en juegos de 2 jugadores. Podemos representarlos con una matriz de tuplas $(A, B)$ de esta forma:
-
-        \input{Tablas/matrizDefJuegosBimatriciales.tex}
-
         \begin{itemize}
+            \item Representaremos juegos de 2 jugadores con un par de matrices $(A, B)$ donde $A, B \in \mathbb{R}^{n \times m} $
+            \input{Tablas/matrizDefJuegosBimatriciales.tex}
+            \pause
             \item El jugador 1 (jugador fila) tiene acciones $i \in N = \{i_1, i_2, \dots, i_n\}$.
             \pause
             \item El jugador 2 (jugador columna) tiene acciones $j \in M = \{j_1, j_2, \dots, j_m\}$.
             \pause
-            \item $A, B \in \mathbb{R}^{n \times m}$ son llamadas matrices de pago.
-            \pause
             \item Si el jugador 1 juega $i$ y el jugador 2 juega $j$, la ganancia del jugador 1 será $a_{i,j}$ y la ganancia del jugador 2 será $b_{i,j}$
+            \pause
+            \item $A$ y $B$ son llamadas matrices de pagos.
         \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Fede's Dilemma in bi-matrix form}
-    \input{Slides/fede_s_dilemma.tex}
-\end{frame}
-
-\begin{frame}
-    Que ocurre si los jugadores son no-deterministas?
-    \begin{itemize}
-        \item Una estrategia mixta para el jugador 1 es una distribución de probabilidaddes sobre $N$, que representaremos con un vector $x \in \Delta(N)$ de tamaño $n$. Una estrategia mixta que asigna probabildiad $1$ a la acción $i \in N$ se representa como $\pstrat{i}$ y se llama estrategia pu. La ganancias esperadas del jugador $2$ contra una estrategia mixta $x$ del jugador $1$ son $xB$.
+    \frametitle{Equilibrio de Nash (NE) puro}
+        \begin{itemize}
+        \item Es un perfil $(i, j)$ tal que $a_{i,j} \geq a_{i', j} \forall{i' \neq i} \land b_{i,j} \geq b_{i, j'} \forall{i' \neq i}$.
         \pause
-        \item Una estrategia mixta para el jugador 2 es una distribución de probabilidaddes sobre $M$, que representaremos con un vector $y \in \Delta(M)$ de tamaño $m$. Una estrategia mixta que asigna probabildiad $1$ a la acción $j \in M$ se representa como $\pstrat{j}$ y se llama estrategia pura. La ganancias esperadas del jugador $2$ contra una estrategia mixta $x$ del jugador $1$ son $xB$.
+        \item $a_{i, j}$ es un máximo de fila en A.
         \pause
-        \item Si el jugador 1 juega la estrategia mixta $x$ y el jugador 2 juega la estrategia mixta $y$ entonces sus ganancias esperadas serán $xAy$ y $xBy$ respectivamente. 
-    \end{itemize}
+        \item $b_{i, j}$ es un máximo de columna en A.
+        \pause
+        \item Es decir, es un perfil tal que ninguno de los jugadores tiene un incentivo para cambiar su jugada.
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Fede's Dilemma: payoffs}
-    
-    Planilla
-
-
+    \frametitle{Juego degenerado}
+        \begin{itemize}
+        \item Decimos que un juego $(A, B)$ es degenerado si $(\exists i_1, i_2,j / i_1 \neq i_2 \land a_{{i_1}, j} = a_{{i_2}, j}) \lor (\exists i, j_1, j_2/ j_1 \neq j_2 \land b_{i, {j_1}} = b_{i, {j_2}})$ 
+        \item Es decir, para alguna de ambas matrices en alguna fila o columna se repite algún valor.
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Best Response and Nash Equilibrium}
+    \frametitle{Familias de juegos}
+    Un juego $(A, B)$ es  
+        \begin{itemize}
+        \item de intereses idénticos  si $A = B$.
+        \item de suma cero si $A = -B$.
+        \item simétrico si es de suma cero y además $A = -A^t$ y $B = -B^t$. 
+        \end{itemize}
+    En todos estos casos, podemos describir el juego dando solo la matriz $A$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Estrategias Mixtas}
+    \begin{itemize}
+        \item Una estrategia mixta para el jugador 1 es una distribución de probabilidades sobre $N$, que representaremos con un vector $x \in \Delta(N)$ de tamaño $n$.
+        \pause
+        \item Una estrategia mixta para el jugador 2 es una distribución de probabilidades sobre $M$, que representaremos con un vector $y \in \Delta(M)$ de tamaño $m$.
+        \pause
+        \item A las estrategias mixtas que asignan probabilidad $1$ a una acción las llamaremos estrategias puras y las notaremos con $\pstrat{i}$ y $\pstrat{j}$.
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ganancias esperadas}
+    Podemos expresar algebraicamente el valor esperado de las ganancias de un jugador contra una estrategia mixta del otro.
+    \pause
+    \begin{itemize}
+        \item La ganancias esperadas del jugador $1$ contra una estrategia mixta $y$ del jugador $2$ son $Ay$.
+        \pause
+        \item La ganancias esperadas del jugador $2$ contra una estrategia mixta $x$ del jugador $1$ son $xB$.
+        \pause
+        \item Si el jugador 1 juega la estrategia mixta $x$ y el jugador 2 juega la estrategia mixta $y$ entonces sus ganancias esperadas serán $xAy$ y $xBy$ respectivamente.
+        \pause
+        \item Las estrategias puras proyectan el vector de ganancias esperadas a una acción. 
+    \end{itemize} 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Mejor respuesta}
 
     \begin{itemize}
+        \item Dada una estrategia del rival, la \emph{mejor respuesta} es un conjunto de acciones que maximizan la ganancia esperada.
         \item Definimos el conjunto de mejores respuestas del jugador 1 contra la estrategia mixta $y$ del jugador 2 como $BR_1(y) = \argmax_{i \in N}\{ \pstrat{i}Ay\}$
         \pause
-        \item similarmente, el conjunto de mejores respuestas del jugador 2 contra la estrategia mixta $x$ del jugador 1 es $BR_2(x) = \argmax_{j \in M}\{ xB\pstrat{j}\}$
+        \item Similarmente, el conjunto de mejores respuestas del jugador 2 contra la estrategia mixta $x$ del jugador 1 es $BR_2(x) = \argmax_{j \in M}\{ xB\pstrat{j}\}$
         \pause
         \item Un equilibrio de Nash puro es un perfil de estrategias $(\pstrat{i^*}, \pstrat{j^*})$ tal que $i^* \in BR_1(\pstrat{j^*})$ y $j^* \in BR_2(\pstrat{i^*})$
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{New Example}
-    Clip from a 90s cartoon
-    \pause \input{Tablas/matrizPiedraPapelTIjeras.tex}
-    \begin{itemize}
-        \item \pause Bart and Lisa have played this game many times before in an iterative process.
-        \item \pause Bart has a constant pure Rock strategy.
-        \item \pause Lisa is doing something smarter. She's playing the Best Response to what she perceives as Bart's strategy over the previous iterations of the game. She knows that $BR_1(\pstrat{j_R}) = \{ i_P\}$ so she plays Paper. 
-        \item \pause What happen's if we make Lisa play against herself?
-    \end{itemize}
+    \frametitle{Reglas de desempate}
+    Una regla de desempate es un par de funciones
+        \begin{itemize}
+        \item $d_1: P(N) \rightarrow N / d_1(S) \in S$
+        \item $d_2: P(M) \rightarrow M / d_2(S) \in S$
+        \end{itemize}
+    tales que $d_1$ y $d_2$ cumplen la independencia de alternativas irrelevantes:
+    \[
+        d(T) = a \in S \subseteq T \implies d(S) = a
+    \]
+
+    \pause
+    Esto equivale a tener un orden total para cada conjunto de acciones.
 \end{frame}
 
 \begin{frame}
-    \frametitle{Juego Ficticio}
-
-    \begin{definition} \label{def:fp:berger}
-        Dado un juego $(A, B)$  de tamaño $n \times m$, una sequencia de perfiles de acciones $(i^\tau, j^\tau)$, y un par de seuencias $x^\tau$ y $y^\tau$ (llamadas secuencias de creencias) tales que para cada $\tau \in \mathbb{N}$:
+    \frametitle{Juego ficticio simultaneo (SFP)}
+    \begin{definition} 
+        Dado un juego $(A, B)$  de tamaño $n \times m$, una secuencia de perfiles de acciones $(i^\tau, j^\tau)$, y un par de secuencias $x^\tau$ y $y^\tau$ (llamadas secuencias de creencias) tales que para cada $\tau \in \mathbb{N}$:
         \begin{gather*}
             x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{\tau}  \\
             y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{\tau}
         \end{gather*}
-        Entonces $(i^\tau, j^\tau)$ es una secuencia de juego fictiocio si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$, $i^{\tau+1} \in BR_1(y^\tau)$ y $j^{\tau+1} \in BR_2(x^\tau)$.
+        Entonces $(i^\tau, j^\tau)$ es una secuencia de juego ficticio simultaneo si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$, $i^{\tau+1} \in BR_1(y^\tau)$ y $j^{\tau+1} \in BR_2(x^\tau)$.
     \end{definition}
     Cada jugador considera el historial del otro como una estrategia mixta y juega la mejor respuesta en cada ronda.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Juego ficticio alternante (AFP)}
+    \begin{definition} 
+        Dado un juego $(A, B)$  de tamaño $n \times m$, una secuencia de perfiles de acciones $(i^\tau, j^\tau)$, y un par de secuencias $x^\tau$ y $y^\tau$ (llamadas secuencias de creencias) tales que para cada $\tau \in \mathbb{N}$:
+        \begin{gather*}
+            x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{\tau}  \\
+            y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{\tau}
+        \end{gather*}
+        Entonces $(i^\tau, j^\tau)$ es una secuencia de juego ficticio alternante si $i^1$ es un elemento arbitrario de $N$ y para todo $\tau \in \mathbb{N}$, $i^{\tau+1} \in BR_1(y^\tau)$ y $j^{\tau} \in BR_2(x^\tau)$.
+    \end{definition}
+    \pause La toma de decisiones ya no es simultanea e independiente.
+
 \end{frame}
 
 \begin{frame}
@@ -180,7 +179,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Proof of the Stability Principle}
+    \frametitle{Demostración del principio de estabilidad}
     \begin{align*}
         BR_1(y^k) &= BR_1(\frac{k - 1}{k} y^{k-1} + \frac{ \pstrat{j^k}}{k}) \\
         &= \argmax_{i \in N} \{\pstrat{i} A(\frac{(k - 1)y^{k-1}}{k} + \frac{ \pstrat{j^k}}{k})\}\\
@@ -195,7 +194,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Proof of the Stability Principle}
+    \frametitle{Demostración del principio de estabilidad}
     \begin{lemma}[2]
         Given a Fictitious Play sequence $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ with belief sequences $x^\tau$ and $y^\tau$. If $(i^k, j^k)$ is a Nash Equilibrium then $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ and $BR_2(x^{k+1}) \subseteq BR_2(x^{k})$.
     \end{lemma}
@@ -203,7 +202,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Proof of the Stability Principle}
+    \frametitle{Demostración del principio de estabilidad}
     \begin{itemize}
         \item We can prove $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ by proving $i \notin BR_1(y^{k-1}) \implies i \notin BR_1(y^{k})$.
         \item \pause If $i^k \in BR_1(y^{k-1})$ but $i' \notin BR_1(y^{k-1})$ then $\pstrat{i^k}Ay^{k-1} > \pstrat{i'}Ay^{k-1}$
@@ -222,41 +221,59 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Rate of convergence: Example}
-    How fast is Fictitious Play as an algorithm to find Nash Equilibriums?
-
-    \pause Consider this game with $\epsilon = 2^{-k}$:
-    \input{Tablas/matrizTeo3.tex}
-    
-    \begin{itemize}
-        \item \pause $(i_2, j_3)$ is the only Nash Equilibrium. We can prove this by iterated elimination of strictly dominated action (jargon for "discard bad choices")
-        \item \pause This game can be codified in $O(k)$ bits.
-        \item \pause If we start a Fictitious Play process with $(i_1, j_1)$, the sequence will play $2^k$ iterations before playing $(i_2, j_3)$.
-        \item \pause For some reason I can't render tables in beamer, so I'll show them in my thesis. Ignore the spanish.
-    \end{itemize}
-    
+    \frametitle{Rango de imagen}
+        \begin{itemize}
+        \item 
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Alternating Fictitious Play}
-    \begin{definition} \label{def:fp:berger}
-        Given a game $(A, B)$  of size $n \times m$, a sequence of action profiles $(i^\tau, j^\tau)$, and a pair of sequences $x^\tau$ and $y^\tau$ (called belief sequences) such that for every $\tau \in \mathbb{N}$:
-        \begin{gather*}
-            x^\tau= \frac{\sum^\tau_{s=1} \pstrat{i^s}}{\tau}  \\
-            y^\tau= \frac{\sum^\tau_{s=1} \pstrat{j^s}}{\tau}
-        \end{gather*}
-        Then $(i^\tau, j^\tau)$ is an Alternating Fictitious Play sequence if $i^1$ is an arbitrary element of $N \times M$ and for every $\tau \in \mathbb{N}$ it's true that $i^{\tau+1} \in BR_1(y^\tau)$ and $j^{\tau} \in BR_2(x^\tau)$.
-    \end{definition}
-    \pause We break the principle of simultaneous decision making.
-
+    \frametitle{Lema de preservación}
+        \begin{itemize}
+        \item 
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Alternating Fictitious Play in the example}
+    \frametitle{Demostración del lema de preservación}
+        \begin{itemize}
+        \item 
+        \end{itemize}
+\end{frame}
 
-    For both starting actions of the row player, AFP converges in just 4 moves, independently of $\epsilon$.
-    
+\begin{frame}
+    \frametitle{Vel. de convergencia de AFP en simétricos}
+        \begin{itemize}
+        \item 
+        \end{itemize}
+\end{frame}
 
+\begin{frame}
+    \frametitle{Vel. de convergencia de AFP en intereses idénticos}
+        \begin{itemize}
+        \item 
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Conclusiones}
+        \begin{itemize}
+        \item Se continuó la línea de Brandt, Fischer y Harrenstein para mostrar que AFP puede requerir una cantidad exponencial de rondas antes de alcanzar un NE, evidenciando que su utilidad es criticable para este fin.
+        \item Se han encontrado juegos minimales (no degenerados) que dan lugar a secuencias de AFP de longitud exponencial sin alcanzar un NE puro.
+        \item Más aún, estos juegos son extensibles a tamaños mayores arbitrarios manteniendo las condiciones referidas.
+        \item Hay casos en que aplicar SFP o AFP puede hacer diferencia en lo visto.
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Trabajo futuro}
+        \begin{itemize}
+        \item Lema de preservación para otras familias de juegos (y ver en cuáles no vale).
+        \item Caracterizar mejor en qué juegos hay diferencias entre las velocidades de convergencia de SFP y AFP. 
+        \item Combinaciones de AFP con otros algoritmos para encontrar equilibrios de Nash.
+        \item Considerar $BR_1(y^{\tau-k_1})$, $BR_2(x^{\tau-k_2})$ en la ronda $\tau$.
+        \item Juegos de más de 2 jugadores.
+        \end{itemize}
 \end{frame}
 
 \end{document}
