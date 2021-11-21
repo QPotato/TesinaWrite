@@ -126,7 +126,7 @@ Empezaremos por un lema que nos dice que si el proceso juega un equilibrio de Na
 El siguiente lema nos dice que si el proceso juega un equilibrio de Nash, entonces los conjuntos de mejor respuesta en la siguiente iteración no tienen nuevos elementos.
 
 \begin{lemma}
-    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio simultáneo en el juego matricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k+1}) \subseteq BR_2(x^{k})$.
+    Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio alternante en el juego matricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k+1}) \subseteq BR_2(x^{k})$.
 \end{lemma}
 \begin{proof}
     Comencemos por el caso del jugador fila. Para probar que $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$, debemos probar que para todo $i \in N$, se cumple que $i \in BR_1(y^{k}) \implies i \in BR_1(y^{k-1})$, o por contra-recíproco, que $i \notin BR_1(y^{k-1}) \implies i \notin BR_1(y^{k})$. Supongamos entonces un $i' \in N$ tal que $i' \notin BR_1(y^{k-1})$.

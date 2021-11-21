@@ -22,7 +22,7 @@ EXT = *.nav *.snm *.ptb *.blg *.log *.aux *.lof *.lot *.bit *.idx *.glo *.bbl *.
 PAG =
 NUM =
 
-default: slides
+default: pdflatex
 
 carta:
 	$(PDFLATEX) $(CARTA).tex -halt-on-error
