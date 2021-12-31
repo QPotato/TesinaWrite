@@ -19,7 +19,7 @@ La ventaja de esta notación con matrices de pagos y vectores de estrategias es 
 Si $y$ es una estrategia mixta del jugador $2$, definimos el \concept{conjunto de mejores respuestas} a $y$ como $BR_1(y) = argmax_{i \in N}\{\pstrat{i}Ay\}$ y, análogamente, si $x$ es una estrategia mixta del jugador $1$, el conjunto de mejores respuestas a $x$ será $BR_2(x) = argmax_{j \in M}\{xB\pstrat{j}\}$. Es decir, son los conjuntos de acciones que maximizan las ganancias esperadas contra una estrategia dada.
 
 % Mejor Respuesta en mixtas
-Este concepto puede expandirse de acciones a estrategias mixtas. Si $x$ es una estrategia mixta del jugador 1 e $y$ es una estrategia mixta del jugador 2, decimos que $x \in BR_1(y)$ si $\forall i \in N, x_i > 0 \implies i \in BR_1(y)$.
+Este concepto puede expandirse de acciones a estrategias mixtas. Si $x$ es una estrategia mixta del jugador 1 e $y$ es una estrategia mixta del jugador 2, decimos que $x \in BR_1(y)$ si para todo $i \in N, x_i > 0$ implica $i \in BR_1(y)$.
 
 % Equilibrios de Nash mixtos y puros
 Llamaremos \concept{equilibrio de Nash} a todo perfil de estrategias mixtas $(x^*, y^*) \in \Delta(A) \times \Delta(B)$ tal que $x^* \in BR_1(y^*)$ e $y^* \in BR_2(x^*)$. En el caso particular de que las estrategias sean puras, al equilibrio lo llamaremos también \concept{equilibrio de Nash puro}.
@@ -30,7 +30,7 @@ Llamaremos \concept{equilibrio de Nash} a todo perfil de estrategias mixtas $(x^
 Es útil clasificar a los juegos en distintas categorías según sus propiedades. Presentamos a continuación algunas de las categorías de juegos mas estudiadas en la literatura sobre juego ficticio.
 
 \begin{definition}
-    Un juego $(A, B)$ de tamaño $n \times m$ es un \concept{juego de suma cero} si $\forall i \in N, j \in M : a_{ij} = -b_{ij}$. Para estos casos, nos referiremos al juego usando solo la matriz $A$.
+    Un juego $(A, B)$ de tamaño $n \times m$ es un \concept{juego de suma cero} si para todo $i \in N$ y $j \in M$, $ a_{ij} = -b_{ij}$. Para estos casos, nos referiremos al juego usando solo la matriz $A$.
 \end{definition}
 
 Los juegos de suma cero son una de las categorías más estudiadas en teoría de juegos. Representan los juegos en los que un jugador siempre gana tanto como pierde el otro.
@@ -48,11 +48,11 @@ Los juegos no degenerados son de particular interés porque capturan el concepto
 Las siguientes definiciones corresponden a otras dos categorías de juegos que han sido muy estudiadas por sus propiedades de convergencia en los procesos de juego ficticio. Nos serán útiles en la sección \ref{sec:aportes:velocidad} cuando discutamos los resultados sobre su velocidad de convergencia.
 
 \begin{definition}
-    Un juego $(A, B)$ de tamaño $n \times n$ es un \concept{juego simétrico} si $\forall i, j \in N : a_{ij} = -b_{ji}$. En este caso también nos referiremos al juego usando solo la matriz $A$.
+    Un juego $(A, B)$ de tamaño $n \times n$ es un \concept{juego simétrico} si es de suma cero y, para todo $i, j \in N$, $a_{ij} = -a_{ji}$ y $b_{ij} = -b_{ji}$. En este caso también nos referiremos al juego usando solo la matriz $A$.
 \end{definition}
 
 \begin{definition}
-    Un juego $(A, B)$ de tamaño $n \times m$ es un \concept{juego de intereses idénticos} si $\forall i \in N, j \in M : a_{ij} = b_{ij}$. En este caso también nos referiremos al juego usando solo la matriz $A$.
+    Un juego $(A, B)$ de tamaño $n \times m$ es un \concept{juego de intereses idénticos} si para todo $i \in N$ y $j \in M$, $a_{ij} = b_{ij}$. En este caso también nos referiremos al juego usando solo la matriz $A$.
 \end{definition}
 
 
@@ -62,19 +62,16 @@ El algoritmo de juego ficticio consiste en una repetición iterada de un juego e
 
 \begin{definition} \label{def:reglas:desempate}
     Llamamos \concept{reglas de desempate} a un par de funciones
-    
     \[ d_1: \mathbb{P}^+(N) \rightarrow N \ / \ d_1(N') \in N' \]
     \[ d_2: \mathbb{P}^+(M) \rightarrow M \ / \ d_2(M') \in M' \]
-    
     que a cada subconjunto de acciones de un jugador le asignan una acción perteneciente a este, cumpliendo la condición de independencia de alternativas irrelevantes:
-
     \[ d_1(N') = i \in N'' \subseteq N' \implies  d_1(N'') = i \]
     \[ d_2(M') = j \in M'' \subseteq T  \implies  d_2(M'') = j \]
 
 Esta última condición equivale a tener un orden total entre los elementos de $N$ y otro entre los elementos de $M$, tal que $d_1(S)$ elige el mayor de cada $S$ no vacío, y análogamente para $d_2$. 
 \end{definition}
 
-Algunos autores como Berger, Monderer, Sela, Shapley, Daskalakis y Pan \cite{browns:original} \cite{no:cycling} \cite{2x2:without} \cite{identical:interests} \cite{counter:karlin:strong} utilizan una definición de juego ficticio del estilo de la siguiente, que resulta cómoda para estudiar convergencia y es la que veremos primero. Incluiremos en la definición las variantes con actualización simultánea y alternante de creencias.
+Algunos trabajos como Berger \cite{browns:original}, Monderer y Sela \cite{no:cycling, 2x2:without}, Monderer y Shapley \cite{identical:interests}, Daskalakis y Pan \cite{counter:karlin:strong} utilizan una definición de juego ficticio del estilo de la siguiente, que resulta cómoda para estudiar convergencia y es la que veremos primero. Incluiremos en la definición las variantes con actualización simultánea y alternante de creencias.
 
 \begin{definition} \label{def:fp:berger}
     Sean $(A, B)$ un juego matricial de $n \times m$ y una secuencia $(i^\tau, j^\tau)$ con $i^\tau \in N$, $j^\tau \in M$ para todo $\tau \in \mathbb{N}$. Si $d_1$ y $d_2$ son reglas de desempate y tenemos unas secuencias de creencias $x^\tau$ e $y^\tau$ tales que para todo $\tau \in \mathbb{N}$:
@@ -84,8 +81,8 @@ Algunos autores como Berger, Monderer, Sela, Shapley, Daskalakis y Pan \cite{bro
     \end{gather*}
     Entonces:
     \begin{itemize}
-        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio simultáneo si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau+1} = d_2(BR_2(x^\tau))$.
-        \item $(i^\tau, j^\tau)$ es una secuencia de juego ficticio alternante si $i^1$ es un elemento arbitrario de $N$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau} = d_2(BR_2(x^\tau))$.
+        \item La secuencia $(i^\tau, j^\tau)$ sigue un proceso de juego ficticio simultáneo en $(A, B)$ si $(i^1, j^1)$ es un elemento arbitrario de $N \times M$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau+1} = d_2(BR_2(x^\tau))$.
+        \item La secuencia $(i^\tau, j^\tau)$ sigue un proceso de juego ficticio alternante en $(A, B)$ si $i^1$ es un elemento arbitrario de $N$ y para todo $\tau \in \mathbb{N}$ se cumplen $i^{\tau+1} = d_1(BR_1(y^\tau))$ y $j^{\tau} = d_2(BR_2(x^\tau))$.
     \end{itemize}
 \end{definition}
 
@@ -100,13 +97,13 @@ Alternativamente, Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence} u
 \begin{definition} \label{def:fp:brandt}
     Sea $(A, B)$ un juego matricial de $n \times m$:
     \begin{itemize}
-        \item Una secuencia de juego ficticio simultáneo en $(A, B)$ es una secuencia $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ de pares de vectores no negativos $(p^i, q^i) \in \mathbb{N}^n \times \mathbb{N}^m$ tal que:
+        \item Una secuencia $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ de pares de vectores no negativos $(p^i, q^i) \in \mathbb{N}^n \times \mathbb{N}^m$ sigue un proceso de juego ficticio simultáneo en $(A, B)$ si:
         \begin{gather*}
             p^0 = \boldmath{0},\ q^0 = \boldmath{0} \\
             p^{\tau+1} = p^{\tau} + \pstrat{i'} \text{\ donde $i' = d_1(argmax_{i \in N}\{\pstrat{i}Aq^\tau\})$} \\
             q^{\tau+1} = q^{\tau} + \pstrat{j'} \text{\ donde $j' = d_2(argmax_{j \in M}\{p^{\tau}B\pstrat{j}\})$}
         \end{gather*}
-        \item Una secuencia de juego ficticio alternante en $(A, B)$ es una secuencia $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$  de pares de vectores no negativos $(x^i, y^i) \in \mathbb{N}^n \times \mathbb{N}^m$ tal que:
+        \item Una secuencia $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$  de pares de vectores no negativos $(x^i, y^i) \in \mathbb{N}^n \times \mathbb{N}^m$ sigue un proceso de juego ficticio alternante en $(A, B)$ si:
         \begin{gather*}
             p^0 = \boldmath{0},\ q^0 = \boldmath{0} \\
             p^{\tau+1} = p^{\tau} + \pstrat{i'} \text{\ donde $i' = d_1(argmax_{i \in N}\{\pstrat{i}Aq^\tau\})$} \\
