@@ -21,4 +21,14 @@ los equilibrios)."
 
 ## 2021-12-20
 - En la introducción, página 1, se cambia "...la posibilidad de maximizar esas ganancias según variados criterios..." por "...la posibilidad de maximizar ganancias según variados criterios..."
-- En la introducción, página 2 se cambia "......"
+- En la introducción, página 2 se cambia "...cambios con los que proponemos que..." por "...cambios que sugieren que..."
+- En la introducción, en la sección sobre la organización de la tesis, se cambia "Además presentaremos un lema sobre la conservación del juego ficticio al expandir juegos, que nos permitirá generalizar los resultados." por "Asimismo, una prueba de la conservación del juego ficticio al expandir juegos, nos permitirá generalizar los teoremas de velocidad de convergencia."
+- En el estado del arte, pagina 6, se cambia "...método para computar equilibrios de Nash..." por "...método para calcular equilibrios de Nash..."
+- A lo largo de la tesis, se reemplazan símbolos de cuantificación por las palabras "para todo" y símbolos de implicancia por las palabras "implica que".
+- En los conceptos previos, página 8, se corrige la definición de juego simétrico.
+- En los conceptos previos, página 9, se cambia como se citan los trabajos de Monderer, Sela, Shapley, Daskalakis y Pan que utilizan la primer definición de juego ficticio.
+- En los conceptos previos, páginas 9 y 10, se cambian las definiciones 3.3.2 y 3.3.3 para dejar más claro el concepto de secuencia de juego ficticio como un elemento de un proceso de juego ficticio.
+- En la sección 4.3, página 22, se cambia "En todos los casos nos interesará, tras el agregado de filas o columnas, no la exactitud del rango de imagen sino el orden de magnitud en función de las dimensiones." por "En todos los casos nos interesará, tras el agregado de filas o columnas, el orden de magnitud del rango de imagen en función de las dimensiones.".
+- Al final de la demostración del lema 4.3.1, página 24, se cambia "Los términos $-n$ y $-m$ aseguran un rango de imagen $O(n+m)$." por "Los términos $-n$ y $-m$ aseguran un rango de imagen $O(n'+m')$.".
+- En la sección 4.4, en las páginas 24 y 26, se aclaran mejor las referencias a los teoremas de [3].
+- Correcciones generales de ortografía.
