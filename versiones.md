@@ -32,3 +32,5 @@ los equilibrios)."
 - En la sección 4.4, en las páginas 24 y 26, se aclaran mejor las referencias a los teoremas de [3].
 - A lo largo del trabajo, se reemplazan símbolos de cuantificación por las palabras "para todo" y símbolos de implicancia por las palabras "implica que".
 - Correcciones generales de ortografía.
+
+

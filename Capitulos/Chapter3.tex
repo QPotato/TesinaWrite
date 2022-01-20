@@ -5,12 +5,12 @@
 \section{Juegos matriciales y equilibrios de Nash}
 
 % Definición de bimatricial tomada de Brown's original
-Sea $(A, B)$ un juego matricial de $n \times m$, es decir un juego de dos jugadores finito en el que el jugador $1$ (jugador fila) tiene acciones $i \in N = \{i_1, i_2, \dots, i_n\}$ y el jugador $2$ (jugador columna) tiene acciones $j \in M = \{j_1, j_2, \dots, j_m\}$. $A, B \in \mathbb{R}^{n \times m}$ son las matrices de pago de los jugadores $1$ y $2$. Si el jugador $1$ elige la acción $i$ y el jugador $2$ elige la acción $j$, la ganancia del jugador $1$ será $a_{i,j}$ y la ganancia del jugador $2$ será $b_{i,j}$. Describiremos los juegos matriciales con una tabla de pares como la siguiente:
+Sea $(A, B)$ un \concept{juego matricial} de $n \times m$, es decir un juego de dos jugadores finito en el que el jugador $1$ (jugador fila) tiene acciones $i \in N = \{i_1, i_2, \dots, i_n\}$ y el jugador $2$ (jugador columna) tiene acciones $j \in M = \{j_1, j_2, \dots, j_m\}$. $A, B \in \mathbb{R}^{n \times m}$ son las matrices de pago de los jugadores $1$ y $2$. Si el jugador $1$ elige la acción $i$ y el jugador $2$ elige la acción $j$, la ganancia del jugador $1$ será $a_{i,j}$ y la ganancia del jugador $2$ será $b_{i,j}$. Describiremos los juegos matriciales con una tabla de pares como la siguiente:
 
 \input{Tablas/matrizDefJuegosBimatriciales.tex}
 
 % Estrategias mixtas como vectores en conjunto delta
-Llamaremos estrategias mixtas del jugador 1 a las distribuciones de probabilidades sobre su conjunto de acciones $N$ y las representaremos con vectores fila $x \in \Delta(N)$ de tamaño $n$. Similarmente, las estrategias mixtas del jugador 2 serán distribuciones de probabilidad sobre $M$ que notaremos con vectores columna $y \in \Delta(M)$ de tamaño $m$. A las estrategias que asignan probabilidad $1$ a una acción y $0$ a todas las otras las llamaremos \concept{estrategias puras}. Notaremos con $\pstrat{i}\in \Delta(N)$ a la estrategia pura del jugador fila correspondiente a la acción $i$ y con $\pstrat{j}\in \Delta(M)$ a la estrategia pura del jugador columna correspondiente a la acción $j$.
+Llamaremos \concept{estrategias mixtas} del jugador 1 a cada elemento del espacio de probabilidad sobre su conjunto de acciones $N$, notado $\Delta(N)$, y las representaremos con vectores fila $x$ de tamaño $n$. Similarmente, las estrategias mixtas del jugador 2 serán elementos de $\Delta(M)$ que representaremos con vectores columna $y$ de tamaño $m$. A las estrategias que asignan probabilidad $1$ a una acción y $0$ a todas las otras las llamaremos \concept{estrategias puras}. Notaremos con $\pstrat{i}\in \Delta(N)$ a la estrategia pura del jugador fila correspondiente a la acción $i$ y con $\pstrat{j}\in \Delta(M)$ a la estrategia pura del jugador columna correspondiente a la acción $j$.
 
 % Ganancia esperada como producto de matriz por vector
 La ventaja de esta notación con matrices de pagos y vectores de estrategias es que nos permitirá expresar las ganancias en forma algebraica. La ganancia esperada del jugador $1$ al jugar la acción $i$ contra la estrategia mixta $y$ del jugador $2$ será $\pstrat{i}Ay$. Análogamente, la ganancia esperada del jugador $2$ al jugar la acción $j$ contra la estrategia mixta $x$ del jugador $1$ será $xB\pstrat{j}$. Si ambos jugadores juegan las estrategias mixtas $x$ e $y$ respectivamente, sus ganancias esperadas pueden calcularse como $xAy$ para el jugador $1$ y $xBy$ para el jugador $2$.
@@ -116,7 +116,7 @@ Como podemos observar, la principal diferencia con la primera definición es que
 
 \section{Convergencia del juego ficticio}
 
-El interés por el estudio del juego ficticio recae en su utilidad como mecanismo para calcular equilibrios de Nash. Para esto, se analiza la convergencia del proceso.
+El interés por el estudio del juego ficticio recae en su utilidad como mecanismo para aproximar equilibrios de Nash. Para esto, se analiza la convergencia del proceso.
 
 \begin{definition}
 
@@ -144,12 +144,12 @@ Mediremos la velocidad de convergencia en función del tamaño de representació
 
 \section{Ejemplos}
 
-Veamos como se aplican todos estos conceptos a algunos juegos clásicos de la literatura. Comenzaremos por el Dilema de los Prisioneros:
+Veamos cómo se aplican todos estos conceptos a algunos juegos clásicos de la literatura. Comenzaremos por el Dilema de los Prisioneros:
 
 
 \input{Tablas/matrizDilema.tex}
 
-Este juego es muy estudiado por el hecho de que si bien la mayor ganancia para ambos jugadores se encuentra en que se juegue el perfil $(i_1, j_1)$, su único equilibrio de Nash es el perfil $(i_2, j_2)$. En la tabla \ref{sfp:dilema:prisioneros} podemos observar como se desarrolla un proceso de juego ficticio simultáneo sobre este juego, comenzando desde $(i_1, j_1)$. Para las primeras 5 iteraciones $\tau$, se muestra el perfil $(i^\tau, j^\tau)$ jugado , cómo se actualizan las creencias $x^\tau$ e $y^\tau$ sobre las estrategias de los jugadores y las consecuentes ganancias esperadas en la siguiente ronda de cada jugador, para cada una de sus jugadas, $x^\tau B$ e $A y^\tau$.
+Este juego es muy estudiado por el hecho de que si bien la mayor ganancia simultánea para ambos jugadores se encuentra en que se juegue el perfil $(i_1, j_1)$, su único equilibrio de Nash es el perfil $(i_2, j_2)$. En la tabla \ref{sfp:dilema:prisioneros} podemos observar cómo se desarrolla un proceso de juego ficticio simultáneo sobre este juego, comenzando desde $(i_1, j_1)$. Para las primeras 5 iteraciones $\tau$, se muestra el perfil $(i^\tau, j^\tau)$ jugado , cómo se actualizan las creencias $x^\tau$ e $y^\tau$ sobre las estrategias de los jugadores y las consecuentes ganancias esperadas en la siguiente ronda de cada jugador, para cada una de sus jugadas, $x^\tau B$ e $A y^\tau$.
 
 \begin{table} % [h!]
     \centering
@@ -158,7 +158,7 @@ Este juego es muy estudiado por el hecho de que si bien la mayor ganancia para a
     \label{sfp:dilema:prisioneros}
 \end{table}
 
-Como vemos, si ambos jugadores empiezan cooperando, en la segunda ronda la mejor respuesta individualmente para cada uno será desviarse de este perfil, jugando respectivamente $i_2$ y $j_2$. Las creencias, que como mencionamos previamente son observaciones empíricas de una estrategia mixta supuesta según el historial del oponente, ahora indican que cada jugador juega cada una de las acciones con probabilidad $0,5$. Si observamos como se actualizan según esto las ganancias esperadas, veremos que los incentivos para no cooperar son ahora incluso mayores. Esto nos anticipa intuitivamente un principio que veremos en más detalle en la sección \ref{sec:convergencia:fp}: dado que el perfil jugado $(i_2, j_2)$ es un equilibrio de Nash puro, podemos asegurar que se repetirá infinitamente.
+Como vemos, si ambos jugadores empiezan cooperando, en la segunda ronda la mejor respuesta individualmente para cada uno será desviarse de este perfil, jugando respectivamente $i_2$ y $j_2$. Las creencias, que como mencionamos previamente son observaciones empíricas de una estrategia mixta supuesta según el historial del oponente, ahora indican que cada jugador juega cada una de las acciones con probabilidad $0,5$. Si observamos cómo se actualizan según esto las ganancias esperadas, veremos que los incentivos para no cooperar son ahora incluso mayores. Esto nos anticipa intuitivamente un principio que veremos en más detalle en la sección \ref{sec:convergencia:fp}: dado que el perfil jugado $(i_2, j_2)$ es un equilibrio de Nash puro, podemos asegurar que se repetirá infinitamente.
 
 La tabla \ref{afp:dilema:prisioneros} muestra el mismo juego pero en un proceso de juego ficticio alternante. Vemos que, ya en la primera iteración el jugador $2$ reacciona a $i_1$ jugando $j_2$ como mejor respuesta. El proceso continúa de forma similar, aunque el jugador fila cree que el jugador columna está siguiendo una estrategia pura.
 
@@ -173,7 +173,7 @@ Pasando al siguiente ejemplo, vemos en esta matriz el clásico juego de Piedra, 
 
 \input{Tablas/matrizPiedraPapelTIjeras.tex}
 
-En las tablas \ref{sfp:piedra:papel:tijera} y \ref{afp:piedra:papel:tijera} respectivamente podemos ver respectivamente un desarrollo de juego ficticio simultáneo y alternante. Para el caso simultáneo, el proceso comienza con el jugador fila jugando piedra y el columna jugando papel. Inmediatamente el jugador fila cambia su estrategia a jugar tijera, mientras el columna se mantiene en papel porque lo proyecta exitoso. En la tercera iteración el jugador $2$, esperando que el jugador $1$ juegue piedra o tijera con iguales probabilidades pero descartando que pueda jugar papel, maximizará su ganancia esperada jugando piedra. Estos cambios continuaran infinitamente pero, lentamente las creencias convergerán al único equilibrio de Nash mixto de este juego, que consiste en que cada jugador juegue cada acción con $\frac{1}{3}$ de probabilidad.
+En las tablas \ref{sfp:piedra:papel:tijera} y \ref{afp:piedra:papel:tijera} respectivamente podemos ver un desarrollo de juego ficticio simultáneo y alternante. Para el caso simultáneo, el proceso comienza con el jugador fila jugando piedra y el columna jugando papel. Inmediatamente el jugador fila cambia su estrategia a jugar tijera, mientras el columna se mantiene en papel porque lo proyecta exitoso. En la tercera iteración el jugador $2$, esperando que el jugador $1$ juegue piedra o tijera con iguales probabilidades pero descartando que pueda jugar papel, maximizará su ganancia esperada jugando piedra. Estos cambios continuaran infinitamente pero, lentamente las creencias convergerán al único equilibrio de Nash mixto de este juego, que consiste en que cada jugador juegue cada acción con $\frac{1}{3}$ de probabilidad.
 
 \begin{table} % [h!]
     \centering
@@ -196,7 +196,7 @@ Veamos por último un ejemplo bien conocido en la literatura de juego ficticio.
 
 \input{Tablas/matrizShapley.tex}
 
-Este el juego de Shapley \cite{shapley:3x3}. Esta variante de Piedra, Papel o Tijeras es el primer ejemplo publicado de un juego con una secuencia que no converge, ni siquiera en creencias, tanto para juego ficticio simultáneo como alternante, independientemente de la regla de desempate elegida. En las tablas \ref{sfp:shapley} y \ref{afp:shapley} vemos como se desarrollan estos procesos.
+Este es el juego de Shapley \cite{shapley:3x3}. Esta variante de Piedra, Papel o Tijeras es el primer ejemplo publicado de un juego con una secuencia que no converge, ni siquiera en creencias, tanto para juego ficticio simultáneo como alternante, independientemente de la regla de desempate elegida. En las tablas \ref{sfp:shapley} y \ref{afp:shapley} vemos cómo se desarrollan estos procesos.
 
 
 \begin{table} % [h!]
