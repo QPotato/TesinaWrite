@@ -2,7 +2,7 @@
 
 \section{Equivalencia de las distintas definiciones} \label{sec:aportes:equivalencia}
 
-Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir el juego ficticio entre los distintos autores de la literatura. Ambas simplifican de distintas formas la definición original de Brown y si bien son similares, su equivalencia no es inmediatamente evidente, por lo que uno podría dudar de si un teorema expresado para una de las definiciones es válido con la otra. Por lo tanto, presentamos a continuación dos lemas sobre esta equivalencia, para el caso simultáneo y alternante respectivamente. La idea será probar que los historiales de la definición \ref{def:fp:brandt} suman en cada iteración la estrategia pura correspondiente a la acción elegida por la definición \ref{def:fp:berger}. Comenzamos con el caso simultáneo.
+Como mencionamos en la sección \ref{sec:def:fp}, existen dos formas de definir el juego ficticio entre los distintos autores de la literatura. Ambas simplifican de distintas formas la definición original de Brown y si bien son similares, su equivalencia no es inmediatamente evidente, por lo que uno podría dudar de si un teorema expresado para una de las definiciones es válido con la otra. Por lo tanto, presentamos a continuación dos lemas sobre esta equivalencia, para el caso simultáneo y alternante respectivamente. La idea será probar que los contadores de la definición \ref{def:fp:brandt} suman en cada iteración la estrategia pura correspondiente a la acción elegida por la definición \ref{def:fp:berger}. Comenzamos con el caso simultáneo.
 
 
 \begin{lemma} \label{lema:equiv:sim}
@@ -129,7 +129,7 @@ El siguiente lema nos dice que si el proceso juega un equilibrio de Nash, entonc
     Sea $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ una secuencia de aprendizaje de juego ficticio alternante en el juego matricial $(A, B)$ de tamaño $n \times m$, con secuencias de creencias $(x^\tau, y^\tau)_{\tau \in \mathbb{N}}$. Si en la iteración $k$ se jugó el equilibrio de Nash puro $(i^*, j^*)$, entonces $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$ y $BR_2(x^{k+1}) \subseteq BR_2(x^{k})$.
 \end{lemma}
 \begin{proof}
-    Comencemos por el caso del jugador fila. Para probar que $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$, debemos probar que para todo $i \in N$, se cumple que $i \in BR_1(y^{k})$ implica $i \in BR_1(y^{k-1})$, o por contra-recíproco, que $i \notin BR_1(y^{k-1})$ implica $i \notin BR_1(y^{k})$. Supongamos entonces un $i' \in N$ tal que $i' \notin BR_1(y^{k-1})$.
+    Comencemos por el caso del jugador fila. Para probar que $BR_1(y^{k}) \subseteq BR_1(y^{k-1})$, debemos probar que para todo $i \in N$ se cumple que $i \in BR_1(y^{k})$ implica $i \in BR_1(y^{k-1})$, o por contra-recíproco, que $i \notin BR_1(y^{k-1})$ implica $i \notin BR_1(y^{k})$. Supongamos entonces un $i' \in N$ tal que $i' \notin BR_1(y^{k-1})$.
 
     Como $BR_1(y^{k-1}) = \argmax_{i \in N} \{\pstrat{i}Ay^{k-1}\}$, si $i^* \in BR_1(y^{k-1})$ pero $i' \notin BR_1(y^{k-1})$, entonces sabemos que $\pstrat{i^*}Ay^{k-1} > \pstrat{i'}Ay^{k-1}$ y luego (multiplicando ambos lados por una constante positiva) que $\frac{(k - 1)}{k} \pstrat{i^*}Ay^{k-1} \geq \frac{(k - 1)}{k} \pstrat{i'}Ay^{k-1}$.
     
@@ -196,8 +196,8 @@ Presentamos a continuación un lema que muestra cómo podemos aplicar una transf
     Sea $A$ un juego de intereses idénticos de tamaño $n\times m$ con un único equilibrio de Nash puro, y sean $n'\geq n$, $m'\geq m$. Entonces existe un juego de intereses idénticos $A'$ de tamaño $n'\times m'$ y rango de imagen $O(n'+m')$ con un único equilibrio de Nash puro tal que:
     \begin{itemize}
         \item Si $A$ es no degenerado, entonces $A'$ es no degenerado.
-        \item Toda secuencia de juegos ficticio (simultáneo o alternante) en $A$ lo es también en $A'$.
-        \item Toda secuencia de juegos ficticio alternante sobre $A'$ es, a partir del paso 2, una secuencia de juegos ficticio alternante sobre $A$.
+        \item Toda secuencia de juego ficticio (simultáneo o alternante) en $A$ lo es también en $A'$.
+        \item Toda secuencia de juego ficticio alternante sobre $A'$ es, a partir del paso 2, una secuencia de juego ficticio alternante sobre $A$.
     \end{itemize}
     
 \end{lemma}
@@ -249,19 +249,19 @@ Nótese que el orden de agregado de filas y columnas en la construcción que se 
 \section{Velocidad de convergencia del juego ficticio alternante} \label{sec:aportes:velocidad}
 \sectionmark{Vel. de convergencia del juego ficticio alternante}
 
-En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein en \cite{brandt:rate:convergence}, donde presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo en algunas de las clases de juegos más estudiadas en la literatura del tema. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante del juego ficticio, pero no profundizan en ello. Presentamos a continuación nuestro análisis para los casos de los juegos simétricos de suma cero y los no degenerados de intereses idénticos. Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta sección resultan en conjuntos de mejores respuestas unitarios para omitir las reglas de desempate, ya que no afectarán los resultados.
+En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein en \cite{brandt:rate:convergence}, donde presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo en algunas de las clases de juegos más estudiadas en la literatura del tema. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante del juego ficticio, pero no profundizan en ello. Presentamos a continuación nuestro análisis para los casos de los juegos simétricos y los no degenerados de intereses idénticos. Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta sección resultan en conjuntos de mejores respuestas unitarios para omitir las reglas de desempate, ya que no afectarán los resultados.
 
 Veamos primero que para el caso de los juegos simétricos de suma cero, el teorema 1 en \cite{brandt:rate:convergence} efectivamente es extendible de forma bastante directa a la variante alternante. Vale la pena notar que formulamos el teorema en términos de que el último perfil no sea un equilibrio de Nash puro, en vez de pedir que ninguno en la secuencia lo sea como hacen Brandt, Fischer y Harrenstein ya que, por el principio de estabilidad, si alguno de los perfiles jugados en la secuencia fuera un equilibrio de Nash puro, todos los siguientes lo serían.
 
 \begin{theorem} \label{teorema:afp:velocidad:simetricos}
-    Para todo $k \geq 2$ Existe un juego simétrico de suma cero $A$ de $3 \times 3$ representable en $O(k)$ bits con al menos un equilibrio de Nash puro y una secuencia de juegos ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k-1}, j^{2^k-1})$ no es un equilibrio de Nash puro.
+    Para todo $k \geq 2$ Existe un juego simétrico de suma cero $A$ de $3 \times 3$ representable en $O(k)$ bits con al menos un equilibrio de Nash puro y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k-1}, j^{2^k-1})$ no es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
-    Sea $A$ el siguiente juego simétrico:
+    Sea $A$ el siguiente juego simétrico, con $\epsilon < 1$:
 
     \input{Tablas/matrizTeoVelocidadSimetricos.tex}
 
-    Si $\epsilon < 1$, vemos que $(i_3, j_3)$ es el único equilibrio de Nash puro   \footnote{Puede verse en forma directa o bien al ser el único perfil resultante después de la eliminación iterada de estrategias estrictamente dominadas \cite{libro:rubinstein}}.
+    Como podemos ver, $(i_3, j_3)$ es el único equilibrio de Nash puro\footnote{Puede verse en forma directa o bien al ser el único perfil resultante después de la eliminación iterada de estrategias estrictamente dominadas \cite{libro:rubinstein}}.
 
     Consideremos un número $k > 1$ arbitrario y sea $\epsilon = 2^{-k}$. Para estos valores, $\epsilon$ puede codificarse en $O(k)$ bits, mientras que el tamaño de la matriz y las representaciones de las otras utilidades del juego son constantes, por lo que la representación del juego será también del orden de  $O(k)$ bits. Por lo tanto, si probamos que un proceso de juego ficticio alternante puede requerir $2^{k-1}$ rondas antes de que se juegue $(i_3, j_3)$, el teorema estará demostrado.
 
@@ -304,7 +304,7 @@ Veamos primero que para el caso de los juegos simétricos de suma cero, el teore
     \end{math}
     \end{center}
 
-    es una secuencia de aprendizaje de juego ficticio alternante válida de este juego que es exponencialmente larga en $k$ y en la cual no se juega ningún equilibrio de Nash puro\footnote{Que en la ronda $2^k$ se juegue un NE o aún no, dependerá de la regla de desempate usada.}.
+    es una secuencia de aprendizaje de juego ficticio alternante válida de este juego que es exponencialmente larga en $k$ y en la cual no se juega ningún equilibrio de Nash puro\footnote{Que en la ronda $2^k$ se juegue un equilibrio de Nash o aún no, dependerá de la regla de desempate usada.}.
 
 \end{proof}
 
@@ -314,11 +314,11 @@ Por su parte, la extensión del caso de los juegos no degenerados de intereses i
     Para todo $k \geq 2$, $n\geq 2$, $m\geq 3$, existe un juego no degenerado de intereses idénticos $A$ de $n\times m$ representable en $O(k+nm. log(max\{n,m\}))$ bits con al menos un equilibrio de Nash puro, con rango de imagen $O(n+m)$, y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
-    Sea $A$ el juego de intereses idénticos siguiente:
+    Sea $A$ el juego de intereses idénticos siguiente, con $\epsilon < 1$:
 
     \input{Tablas/matrizTeoVelocidadNonDegen.tex}
 
-    Si $\epsilon < 1$, vemos que $(i^2, j^3)$ es el único equilibrio de Nash puro.
+    Vemos nuevamente que $(i^2, j^3)$ es el único equilibrio de Nash puro.
 
     Consideremos un número $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio alternante puede tomar $2^k$ rondas antes de que se juegue $(i^2, j^3)$. Al igual que en la demostración anterior, el juego puede codificarse en $O(k)$ bits.
 
@@ -361,7 +361,7 @@ Por su parte, la extensión del caso de los juegos no degenerados de intereses i
         (i_1, j_2), \underbrace{(i_2, j_2), ... (i_2, j_2)}_{\text{$2^k - 1$ veces}}
     \end{math}
     \end{center}
-    es una secuencia de aprendizaje de juego ficticio alternante válida de este juego que es exponencialmente larga en $k$ en la que no aparece ningún equilibrio de Nash puro para el juego de $2 \times 3$, y el teorema para el caso de $n \times m$ sigue del lema \ref{lema:preservacion} con a lo sumo $nm$ elementos que requieren $O(log(max\{n,m\}))$ bits cada uno.
+    es una secuencia de aprendizaje de juego ficticio alternante válida de este juego que es exponencialmente larga en $k$ en la que no aparece ningún equilibrio de Nash puro para el juego de $2 \times 3$. El teorema para el caso de $n \times m$ sigue del lema \ref{lema:preservacion} con a lo sumo $nm$ elementos que requieren $O(log(max\{n,m\}))$ bits cada uno.
 \end{proof}
 
 El detalle de que el juego originalmente propuesto por \cite{brandt:rate:convergence} no sea adecuado para demostrar el teorema anterior no es para nada menor. En efecto, como veremos en el siguiente resultado, es un ejemplo de un juego en el que un proceso de juego ficticio simultáneo puede requerir una cantidad exponencial de rondas para converger, mientras que toda secuencia de juego ficticio alternante lo hará rápidamente.
@@ -371,11 +371,11 @@ El detalle de que el juego originalmente propuesto por \cite{brandt:rate:converg
     Para todo $k \geq 2$, $n\geq 2$, $m\geq 3$, existe un juego no degenerado de intereses idénticos $A$ de $n\times m$ representable en $O(k+nm. log(max\{n,m\}))$ bits, con rango de imagen $O(n+m)$, y una secuencia de juego ficticio simultáneo $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que, $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro y para todo proceso de juego ficticio alternante $(\widehat{i}^\tau, \widehat{j}^\tau)_{\tau \in \mathbb{N}}$ en $A$, $(\widehat{i}^4, \widehat{j}^4)$ es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
-    Sea $A$ el juego de intereses idénticos siguiente:
+    Sea $A$ el juego de intereses idénticos siguiente, con $\epsilon < 1$:
 
     \input{Tablas/matrizTeoAfpMejor.tex}
 
-    Si $\epsilon < 1$, $(i_2, j_3)$ es el único equilibrio de Nash puro.
+    $(i_2, j_3)$ es el único equilibrio de Nash puro.
 
     Consideremos un $k > 1$ arbitrario. Mostraremos que para $\epsilon = 2^{-k}$, un proceso de juego ficticio simultáneo puede tomar $2^k$ rondas antes de que se juegue $(i_2, j_3)$, mientras que todo proceso de juego ficticio alternante converge de forma pura en un número constante de rondas. Al igual que en los teoremas anteriores, el juego puede codificarse en $O(k)$ bits.
 
@@ -411,6 +411,6 @@ El detalle de que el juego originalmente propuesto por \cite{brandt:rate:converg
     \end{center}
 
 
-    es una secuencia de aprendizaje de juego ficticio simultáneo de este juego exponencialmente larga en $k$ y en la cual no se juega ningún equilibrio de Nash puro, y el teorema sigue del lema \ref{lema:preservacion} con a lo sumo $nm$ elementos que requieren $O(log(max\{n,m\}))$ bits cada uno.
+    es una secuencia de aprendizaje de juego ficticio simultáneo de este juego exponencialmente larga en $k$ y en la cual no se juega ningún equilibrio de Nash puro para el juego de $2 \times 3$. El teorema para el caso de $n \times m$ sigue del lema \ref{lema:preservacion} con a lo sumo $nm$ elementos que requieren $O(log(max\{n,m\}))$ bits cada uno.
 
 \end{proof}

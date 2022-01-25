@@ -48,7 +48,7 @@ Los juegos no degenerados son de particular interés porque capturan el concepto
 Las siguientes definiciones corresponden a otras dos categorías de juegos que han sido muy estudiadas por sus propiedades de convergencia en los procesos de juego ficticio. Nos serán útiles en la sección \ref{sec:aportes:velocidad} cuando discutamos los resultados sobre su velocidad de convergencia.
 
 \begin{definition}
-    Un juego $(A, B)$ de tamaño $n \times n$ es un \concept{juego simétrico} si es de suma cero y, para todo $i, j \in N$, $a_{ij} = -a_{ji}$ y $b_{ij} = -b_{ji}$. En este caso también nos referiremos al juego usando solo la matriz $A$.
+    Un juego $(A, B)$ de tamaño $n \times n$ es un \concept{juego simétrico} si es de suma cero y, para todo $i, j \in N$, $a_{ij} = -a_{ji}$ y $b_{ij} = -b_{ji}$.
 \end{definition}
 
 \begin{definition}
@@ -68,7 +68,7 @@ El algoritmo de juego ficticio consiste en una repetición iterada de un juego e
     \[ d_1(N') = i \in N'' \subseteq N' \implies  d_1(N'') = i \]
     \[ d_2(M') = j \in M'' \subseteq T  \implies  d_2(M'') = j \]
 
-Esta última condición equivale a tener un orden total entre los elementos de $N$ y otro entre los elementos de $M$, tal que $d_1(S)$ elige el mayor de cada $S$ no vacío, y análogamente para $d_2$. 
+Esta última condición equivale a tener un orden total entre los elementos de $N$ y otro entre los elementos de $M$, tal que $d_1(N')$ elige el mayor de cada $N'$ no vacío, y análogamente para $d_2$. 
 \end{definition}
 
 Algunos trabajos como Berger \cite{browns:original}, Monderer y Sela \cite{no:cycling, 2x2:without}, Monderer y Shapley \cite{identical:interests}, Daskalakis y Pan \cite{counter:karlin:strong} utilizan una definición de juego ficticio del estilo de la siguiente, que resulta cómoda para estudiar convergencia y es la que veremos primero. Incluiremos en la definición las variantes con actualización simultánea y alternante de creencias.
@@ -90,7 +90,7 @@ Vale la pena hacer algunos comentarios sobre esta primera definición. Para empe
 
 Las definiciones originales que usan los autores previamente mencionados establecen una condición mas débil sobre las jugadas, pidiendo solo que pertenezcan al conjunto de mejor respuesta a la estrategia mixta percibida. Esto implica, como mencionamos recientemente, que aparecen ambigüedades en los casos en los que el conjunto de mejor respuesta no es unitario. Una forma de eliminar esta ambigüedad fue centrarse en el estudio de los juegos no degenerados \cite{browns:original}. En este trabajo, tomamos el enfoque alternativo de eliminar la ambigüedad introduciendo las reglas de desempate, que deciden con algún criterio fijo qué acción elige el proceso en eventuales empates. El uso de distintas reglas puede determinar, incluso para las mismas jugadas iniciales, distintos procesos válidos de juego ficticio.
 
-Sobre la variante alternante vale aclarar que efectivamente, el jugador columna toma su decisión incorporando en sus creencias la información sobre qué jugó el jugador fila en la ronda actual, si bien esto puede resultar poco intuitivo ya que normalmente en teoría de juegos se representa jugadores eligiendo simultánea e independientemente. Otra observación relevante es que su acción inicial no es arbitraria sino que ya se encuentra fijada por la mejor respuesta a la acción del jugador fila.
+Sobre la variante alternante vale aclarar que efectivamente, el jugador columna toma su decisión incorporando en sus creencias la información sobre qué jugó el jugador fila en la ronda actual, si bien esto puede resultar poco intuitivo ya que normalmente, en el contexto de juegos no cooperativos, se representa jugadores eligiendo simultánea e independientemente. Otra observación relevante es que su acción inicial no es arbitraria sino que ya se encuentra fijada por la mejor respuesta a la acción del jugador fila.
 
 Alternativamente, Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence} utilizan una definición similar a la de Robinson \cite{robinson:zerosum} pero simplificada. Es más cómoda para estudiar velocidades de convergencia en juegos que se sabe que convergen. A continuación, presentamos también esta definición.
 
@@ -100,14 +100,14 @@ Alternativamente, Brandt, Fischer y Harrenstein \cite{brandt:rate:convergence} u
         \item Una secuencia $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$ de pares de vectores no negativos $(p^i, q^i) \in \mathbb{N}^n \times \mathbb{N}^m$ sigue un proceso de juego ficticio simultáneo en $(A, B)$ si:
         \begin{gather*}
             p^0 = \boldmath{0},\ q^0 = \boldmath{0} \\
-            p^{\tau+1} = p^{\tau} + \pstrat{i'} \text{\ donde $i' = d_1(argmax_{i \in N}\{\pstrat{i}Aq^\tau\})$} \\
-            q^{\tau+1} = q^{\tau} + \pstrat{j'} \text{\ donde $j' = d_2(argmax_{j \in M}\{p^{\tau}B\pstrat{j}\})$}
+            p^{\tau} = p^{\tau-1} + \pstrat{i'} \text{\ donde $i' = d_1(argmax_{i \in N}\{\pstrat{i}Aq^{\tau-1}\})$} \\
+            q^{\tau} = q^{\tau-1} + \pstrat{j'} \text{\ donde $j' = d_2(argmax_{j \in M}\{p^{\tau-1}B\pstrat{j}\})$}
         \end{gather*}
         \item Una secuencia $(p^\tau, q^\tau)_{\tau \in \mathbb{N}}$  de pares de vectores no negativos $(x^i, y^i) \in \mathbb{N}^n \times \mathbb{N}^m$ sigue un proceso de juego ficticio alternante en $(A, B)$ si:
         \begin{gather*}
             p^0 = \boldmath{0},\ q^0 = \boldmath{0} \\
-            p^{\tau+1} = p^{\tau} + \pstrat{i'} \text{\ donde $i' = d_1(argmax_{i \in N}\{\pstrat{i}Aq^\tau\})$} \\
-            q^{\tau+1} = q^{\tau} + \pstrat{j'} \text{\ donde $j' = d_2(argmax_{j \in M}\{p^{\tau+1}B\pstrat{j}\})$}
+            p^{\tau} = p^{\tau-1} + \pstrat{i'} \text{\ donde $i' = d_1(argmax_{i \in N}\{\pstrat{i}Aq^{\tau-1}\})$} \\
+            q^{\tau} = q^{\tau-1} + \pstrat{j'} \text{\ donde $j' = d_2(argmax_{j \in M}\{p^{\tau}B\pstrat{j}\})$}
         \end{gather*}
     \end{itemize}
 \end{definition}
