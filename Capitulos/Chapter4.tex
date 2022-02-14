@@ -62,7 +62,7 @@ En el caso alternante, la jugada del jugador columna ya no es análoga a la del 
     $q^\tau = q^{\tau-1} + j^\tau = \sum_{s=1}^{\tau-1}{\pstrat{j^s}} + j^\tau = \sum_{s=1}^{\tau}{\pstrat{j^s}}$.
 \end{proof}
 
-\section{Convergencia de juego ficticio} \label{sec:convergencia:fp}
+\section{Convergencia del juego ficticio} \label{sec:convergencia:fp}
 
 % Mencionar que agregamos reglas de desempate y entonces el teorema es mas piola
 En su publicación de 1997, Monderer y Sela \cite{no:cycling} enuncian un resultado que nos da una intuición interesante sobre el comportamiento del juego ficticio. Al ser este un mecanismo utilizado para encontrar equilibrios de Nash, uno esperaría observar un comportamiento estable alrededor de los mismos, es decir, que una vez que se juegue un equilibrio de Nash, este se repita infinitamente y la secuencia de jugadas converja en el mismo. Monderer y Sela llaman a esto el \concept{principio de estabilidad}. La demostración que presentan es mediante otros principios y conceptos que desarrollan en esa publicación, pero este resultado puede probarse de forma más directa aplicando el concepto de reglas de desempate.
@@ -190,10 +190,10 @@ Más aun, nos interesa además que tras el cambio se mantengan la mayoría de lo
 Por último, expandir un juego claramente agrega nuevas secuencias de juego ficticio (aquellas que empiezan en las jugadas nuevas). En estos casos, nos interesará que estas nuevas secuencias no presenten comportamientos nuevos, sino que luego de pocas jugadas pasen a comportarse como secuencias ya presentes en el juego original.
 
 % Intro al lema
-Presentamos a continuación un lema que muestra cómo podemos aplicar una transformación que expanda un juego de intereses idénticos cumpliendo estas condiciones.
+Presentamos a continuación un lema que muestra cómo podemos aplicar una transformación que expanda un juego de ganancias idénticas cumpliendo estas condiciones.
 
 \begin{lemma}\label{lema:preservacion}
-    Sea $A$ un juego de intereses idénticos de tamaño $n\times m$ con un único equilibrio de Nash puro, y sean $n'\geq n$, $m'\geq m$. Entonces existe un juego de intereses idénticos $A'$ de tamaño $n'\times m'$ y rango de imagen $O(n'+m')$ con un único equilibrio de Nash puro tal que:
+    Sea $A$ un juego de ganancias idénticas de tamaño $n\times m$ con un único equilibrio de Nash puro, y sean $n'\geq n$, $m'\geq m$. Entonces existe un juego de ganancias idénticas $A'$ de tamaño $n'\times m'$ y rango de imagen $O(n'+m')$ con un único equilibrio de Nash puro tal que:
     \begin{itemize}
         \item Si $A$ es no degenerado, entonces $A'$ es no degenerado.
         \item Toda secuencia de juego ficticio (simultáneo o alternante) en $A$ lo es también en $A'$.
@@ -204,7 +204,7 @@ Presentamos a continuación un lema que muestra cómo podemos aplicar una transf
 \begin{proof}
     Demostraremos el lema iterativamente, comenzando por agregar una fila.
     
-    Sin pérdida de generalidad y para simplificar la construcción, supondremos\footnote{Consecuentemente con el orden relativo de los valores en cada fila y columna a agregar.} que el equilibrio de Nash está en la posición $(1,1)$. Para obtener un juego de intereses idénticos $A'$ de $(n+1)\times m$ con las propiedades indicadas, basta definir $A'$ de la siguiente manera:
+    Sin pérdida de generalidad y para simplificar la construcción, supondremos\footnote{Consecuentemente con el orden relativo de los valores en cada fila y columna a agregar.} que el equilibrio de Nash está en la posición $(1,1)$. Para obtener un juego de ganancias idénticas $A'$ de $(n+1)\times m$ con las propiedades indicadas, basta definir $A'$ de la siguiente manera:
     \begin{center}
         \begin{tabular}{lllll}
                                         & $j_1$       & $j_2$       & $\dots$ & $j_m$                            \\ \cline{2-5} 
@@ -224,7 +224,7 @@ Presentamos a continuación un lema que muestra cómo podemos aplicar una transf
 
     Similarmente, si una secuencia de juego ficticio alterante sobre $A'$ comienza con $i^1 = i_{n+1}$, para cualquier estrategia del jugador 2, los conjuntos de mejor respuesta nunca contendrán a $i_{n+1}$ y por lo tanto la secuencia terminará con una ya existente en $A$.
 
-    Para obtener un juego de intereses idénticos de tamaño $n \times (m+1)$ que cumpla las propiedades deseadas, podemos definir $A'$ como:
+    Para obtener un juego de ganancias idénticas de tamaño $n \times (m+1)$ que cumpla las propiedades deseadas, podemos definir $A'$ como:
 
     \begin{center}
         \begin{tabular}{lcllll}
@@ -238,7 +238,7 @@ Presentamos a continuación un lema que muestra cómo podemos aplicar una transf
     
     El análisis sobre este juego será bastante similar con la salvedad de que al analizar las jugadas del jugador 2 deberemos considerar $BR_2^{A'}(x^{\tau-1})$ o $BR_2^{A'}(x^\tau)$ dependiendo de si trata de una secuencia de juego ficticio simultáneo o alternante respectivamente.
 
-    Finalmente, se itera la construcción anterior $n'-n+m'-m$ veces para obtener un juego de intereses idénticos de $n'\times m'$ con las propiedades deseadas.
+    Finalmente, se itera la construcción anterior $n'-n+m'-m$ veces para obtener un juego de ganancias idénticas de $n'\times m'$ con las propiedades deseadas.
     Los términos $-n$ y $-m$ aseguran un rango de imagen $O(n'+m')$.
 
 \end{proof}
@@ -249,7 +249,7 @@ Nótese que el orden de agregado de filas y columnas en la construcción que se 
 \section{Velocidad de convergencia del juego ficticio alternante} \label{sec:aportes:velocidad}
 \sectionmark{Vel. de convergencia del juego ficticio alternante}
 
-En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein en \cite{brandt:rate:convergence}, donde presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo en algunas de las clases de juegos más estudiadas en la literatura del tema. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante del juego ficticio, pero no profundizan en ello. Presentamos a continuación nuestro análisis para los casos de los juegos simétricos y los no degenerados de intereses idénticos. Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta sección resultan en conjuntos de mejores respuestas unitarios para omitir las reglas de desempate, ya que no afectarán los resultados.
+En esta sección nos enfocaremos en estudiar más detalladamente los resultados de Brandt, Fischer y Harrenstein en \cite{brandt:rate:convergence}, donde presentan cotas superiores para la velocidad de convergencia del juego ficticio simultáneo en algunas de las clases de juegos más estudiadas en la literatura del tema. Como dijimos en el capítulo \ref{cap:relwork}, los autores mencionan la posibilidad de expandir sus resultados a la variante alternante del juego ficticio, pero no profundizan en ello. Presentamos a continuación nuestro análisis para los casos de los juegos simétricos de suma cero y los no degenerados de intereses idénticos. Por claridad, aprovecharemos el hecho de que todos los casos analizados en esta sección resultan en conjuntos de mejores respuestas unitarios para omitir las reglas de desempate, ya que no afectarán los resultados.
 
 Veamos primero que para el caso de los juegos simétricos de suma cero, el teorema 1 en \cite{brandt:rate:convergence} efectivamente es extendible de forma bastante directa a la variante alternante. Vale la pena notar que formulamos el teorema en términos de que el último perfil no sea un equilibrio de Nash puro, en vez de pedir que ninguno en la secuencia lo sea como hacen Brandt, Fischer y Harrenstein ya que, por el principio de estabilidad, si alguno de los perfiles jugados en la secuencia fuera un equilibrio de Nash puro, todos los siguientes lo serían.
 
@@ -257,7 +257,7 @@ Veamos primero que para el caso de los juegos simétricos de suma cero, el teore
     Para todo $k \geq 2$ Existe un juego simétrico de suma cero $A$ de $3 \times 3$ representable en $O(k)$ bits con al menos un equilibrio de Nash puro y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k-1}, j^{2^k-1})$ no es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
-    Sea $A$ el siguiente juego simétrico, con $\epsilon < 1$:
+    Sea $A$ el siguiente juego simétrico de suma cero, con $\epsilon < 1$:
 
     \input{Tablas/matrizTeoVelocidadSimetricos.tex}
 
@@ -308,13 +308,13 @@ Veamos primero que para el caso de los juegos simétricos de suma cero, el teore
 
 \end{proof}
 
-Por su parte, la extensión del caso de los juegos no degenerados de intereses idénticos de $2 \times 3$ (teorema 2 en \cite{brandt:rate:convergence}) es un poco menos directa y requiere plantear una ligera variante del juego originalmente propuesto por los autores. Además, aprovechando que el lema \ref{lema:preservacion} nos permite expandir un juego conservando el comportamiento de sus secuencias de juego ficticio, plantearemos una versión más general de este teorema. 
+Por su parte, la extensión del caso de los juegos no degenerados de ganancias idénticas de $2 \times 3$ (teorema 2 en \cite{brandt:rate:convergence}) es un poco menos directa y requiere plantear una ligera variante del juego originalmente propuesto por los autores. Además, aprovechando que el lema \ref{lema:preservacion} nos permite expandir un juego conservando el comportamiento de sus secuencias de juego ficticio, plantearemos una versión más general de este teorema. 
 
 \begin{theorem} \label{teorema:afp:velocidad:nondegen}
-    Para todo $k \geq 2$, $n\geq 2$, $m\geq 3$, existe un juego no degenerado de intereses idénticos $A$ de $n\times m$ representable en $O(k+nm. log(max\{n,m\}))$ bits con al menos un equilibrio de Nash puro, con rango de imagen $O(n+m)$, y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro.
+    Para todo $k \geq 2$, $n\geq 2$, $m\geq 3$, existe un juego no degenerado de ganancias idénticas (y por tanto, de intereses idénticos) $A$ de $n\times m$ representable en $O(k+nm. log(max\{n,m\}))$ bits con al menos un equilibrio de Nash puro, con rango de imagen $O(n+m)$, y una secuencia de juego ficticio alternante $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
-    Sea $A$ el juego de intereses idénticos siguiente, con $\epsilon < 1$:
+    Sea $A$ el juego de ganancias idénticas siguiente, con $\epsilon < 1$:
 
     \input{Tablas/matrizTeoVelocidadNonDegen.tex}
 
@@ -368,10 +368,10 @@ El detalle de que el juego originalmente propuesto por \cite{brandt:rate:converg
 
 
 \begin{theorem} \label{teorema:afp:mejor}
-    Para todo $k \geq 2$, $n\geq 2$, $m\geq 3$, existe un juego no degenerado de intereses idénticos $A$ de $n\times m$ representable en $O(k+nm. log(max\{n,m\}))$ bits, con rango de imagen $O(n+m)$, y una secuencia de juego ficticio simultáneo $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que, $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro y para todo proceso de juego ficticio alternante $(\widehat{i}^\tau, \widehat{j}^\tau)_{\tau \in \mathbb{N}}$ en $A$, $(\widehat{i}^4, \widehat{j}^4)$ es un equilibrio de Nash puro.
+    Para todo $k \geq 2$, $n\geq 2$, $m\geq 3$, existe un juego no degenerado de ganancias idénticas (y por tanto, de intereses idénticos) $A$ de $n\times m$ representable en $O(k+nm. log(max\{n,m\}))$ bits, con rango de imagen $O(n+m)$, y una secuencia de juego ficticio simultáneo $(i^\tau, j^\tau)_{\tau \in \mathbb{N}}$ sobre $A$ tal que, $(i^{2^k}, j^{2^k})$ no es un equilibrio de Nash puro y para todo proceso de juego ficticio alternante $(\widehat{i}^\tau, \widehat{j}^\tau)_{\tau \in \mathbb{N}}$ en $A$, $(\widehat{i}^4, \widehat{j}^4)$ es un equilibrio de Nash puro.
 \end{theorem}
 \begin{proof}
-    Sea $A$ el juego de intereses idénticos siguiente, con $\epsilon < 1$:
+    Sea $A$ el juego de ganancias idénticas siguiente, con $\epsilon < 1$:
 
     \input{Tablas/matrizTeoAfpMejor.tex}
 

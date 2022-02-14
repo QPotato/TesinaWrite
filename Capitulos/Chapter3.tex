@@ -10,7 +10,7 @@ Sea $(A, B)$ un \concept{juego matricial} de $n \times m$, es decir un juego de 
 \input{Tablas/matrizDefJuegosBimatriciales.tex}
 
 % Estrategias mixtas como vectores en conjunto delta
-Llamaremos \concept{estrategias mixtas} del jugador 1 a cada elemento del espacio de probabilidad sobre su conjunto de acciones $N$, notado $\Delta(N)$, y las representaremos con vectores fila $x$ de tamaño $n$. Similarmente, las estrategias mixtas del jugador 2 serán elementos de $\Delta(M)$ que representaremos con vectores columna $y$ de tamaño $m$. A las estrategias que asignan probabilidad $1$ a una acción y $0$ a todas las otras las llamaremos \concept{estrategias puras}. Notaremos con $\pstrat{i}\in \Delta(N)$ a la estrategia pura del jugador fila correspondiente a la acción $i$ y con $\pstrat{j}\in \Delta(M)$ a la estrategia pura del jugador columna correspondiente a la acción $j$.
+Llamaremos \concept{estrategias mixtas} del jugador 1 a cada elemento del conjunto de distribuciones de probabilidad sobre sus acciones $N$, notado $\Delta(N)$, y las representaremos con vectores fila $x$ de tamaño $n$. Similarmente, las estrategias mixtas del jugador 2 serán elementos de $\Delta(M)$ que representaremos con vectores columna $y$ de tamaño $m$. A las estrategias que asignan probabilidad $1$ a una acción y $0$ a todas las otras las llamaremos \concept{estrategias puras}. Notaremos con $\pstrat{i}\in \Delta(N)$ a la estrategia pura del jugador fila correspondiente a la acción $i$ y con $\pstrat{j}\in \Delta(M)$ a la estrategia pura del jugador columna correspondiente a la acción $j$.
 
 % Ganancia esperada como producto de matriz por vector
 La ventaja de esta notación con matrices de pagos y vectores de estrategias es que nos permitirá expresar las ganancias en forma algebraica. La ganancia esperada del jugador $1$ al jugar la acción $i$ contra la estrategia mixta $y$ del jugador $2$ será $\pstrat{i}Ay$. Análogamente, la ganancia esperada del jugador $2$ al jugar la acción $j$ contra la estrategia mixta $x$ del jugador $1$ será $xB\pstrat{j}$. Si ambos jugadores juegan las estrategias mixtas $x$ e $y$ respectivamente, sus ganancias esperadas pueden calcularse como $xAy$ para el jugador $1$ y $xBy$ para el jugador $2$.
@@ -23,6 +23,7 @@ Este concepto puede expandirse de acciones a estrategias mixtas. Si $x$ es una e
 
 % Equilibrios de Nash mixtos y puros
 Llamaremos \concept{equilibrio de Nash} a todo perfil de estrategias mixtas $(x^*, y^*) \in \Delta(A) \times \Delta(B)$ tal que $x^* \in BR_1(y^*)$ e $y^* \in BR_2(x^*)$. En el caso particular de que las estrategias sean puras, al equilibrio lo llamaremos también \concept{equilibrio de Nash puro}.
+
 
 \section{Categorías de juegos}
 
@@ -45,14 +46,22 @@ Los juegos de suma cero son una de las categorías más estudiadas en teoría de
 \end{definition}
 Los juegos no degenerados son de particular interés porque capturan el concepto de un juego en el que, para cada acción del rival, no existen dos acciones con el mismo pago. Por lo tanto, el conjunto de acciones mejor respuesta contra una estrategia pura dada es siempre unitario.
 
-Las siguientes definiciones corresponden a otras dos categorías de juegos que han sido muy estudiadas por sus propiedades de convergencia en los procesos de juego ficticio. Nos serán útiles en la sección \ref{sec:aportes:velocidad} cuando discutamos los resultados sobre su velocidad de convergencia.
+Las siguientes definiciones corresponden a categorías de juegos que han sido muy estudiadas por sus propiedades de convergencia en los procesos de juego ficticio. Nos serán útiles en la sección \ref{sec:aportes:velocidad} cuando discutamos los resultados sobre su velocidad de convergencia.
 
 \begin{definition}
-    Un juego $(A, B)$ de tamaño $n \times n$ es un \concept{juego simétrico} si es de suma cero y, para todo $i, j \in N$, $a_{ij} = -a_{ji}$ y $b_{ij} = -b_{ji}$.
+    Un juego $(A, B)$ de tamaño $n \times n$ es \concept{simétrico} si para todo $i, j \in N$, $a_{ij} = b_{ji}$.
 \end{definition}
 
 \begin{definition}
-    Un juego $(A, B)$ de tamaño $n \times m$ es un \concept{juego de intereses idénticos} si para todo $i \in N$ y $j \in M$, $a_{ij} = b_{ij}$. En este caso también nos referiremos al juego usando solo la matriz $A$.
+    Un juego $(A, B)$ de tamaño $n \times n$ es \concept{de ganancias idénticas} si $A = B$.
+\end{definition}
+
+\begin{definition}
+    Un juego $(A, B)$ de tamaño $n \times n$ es \concept{de intereses idénticos} si es equivalente a un juego de ganancias idénticas $C$ en términos de sus conjuntos de mejores respuestas a estrategias mixtas. Es decir, si cumple que:
+    \begin{itemize}
+        \item Para toda estrategia mixta $y \in \Delta(M)$ del jugador 2, $BR_1(y)$ en $A$ es igual a $BR_1(y)$ en $C$.
+        \item Para toda estrategia mixta $x \in \Delta(N)$ del jugador 1, $BR_2(x)$ en $B$ es igual a $BR_2(x)$ en $C$.
+    \end{itemize}
 \end{definition}
 
 
