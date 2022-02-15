@@ -49,19 +49,17 @@ Los juegos no degenerados son de particular interés porque capturan el concepto
 Las siguientes definiciones corresponden a categorías de juegos que han sido muy estudiadas por sus propiedades de convergencia en los procesos de juego ficticio. Nos serán útiles en la sección \ref{sec:aportes:velocidad} cuando discutamos los resultados sobre su velocidad de convergencia.
 
 \begin{definition}
-    Un juego $(A, B)$ de tamaño $n \times n$ es \concept{simétrico} si para todo $i, j \in N$, $a_{ij} = b_{ji}$.
+    Un juego $(A, B)$ de tamaño $n \times n$ es \concept{simétrico} si $N = M$ y para todo $i, j \in N$, $a_{ij} = b_{ji}$.
 \end{definition}
 
 \begin{definition}
-    Un juego $(A, B)$ de tamaño $n \times n$ es \concept{de ganancias idénticas} si $A = B$.
-\end{definition}
-
-\begin{definition}
-    Un juego $(A, B)$ de tamaño $n \times n$ es \concept{de intereses idénticos} si es equivalente a un juego de ganancias idénticas $C$ en términos de sus conjuntos de mejores respuestas a estrategias mixtas. Es decir, si cumple que:
+    Un juego $(A, B)$ de tamaño $n \times m$ es \concept{de intereses idénticos} si es BR-equivalente en estrategias mixtas a un juego con matrices de pago idénticas. Es decir, si existe un juego $(C, C)$ de tamaño $n \times m$ tal que:
     \begin{itemize}
         \item Para toda estrategia mixta $y \in \Delta(M)$ del jugador 2, $BR_1(y)$ en $A$ es igual a $BR_1(y)$ en $C$.
         \item Para toda estrategia mixta $x \in \Delta(N)$ del jugador 1, $BR_2(x)$ en $B$ es igual a $BR_2(x)$ en $C$.
     \end{itemize}
+    Para estos casos también, nos referiremos al juego usando solo la matriz $A$.
+
 \end{definition}
 
 
